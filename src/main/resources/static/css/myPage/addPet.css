@@ -1,0 +1,214 @@
+*{
+    margin : 0;
+    padding : 0;
+    font-family: 'Pretendard-Regular';
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Pretendard-Bold;
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Pretendard-Medium;
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Pretendard-SemiBold;
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff') format('woff');
+    font-style: normal;
+}
+
+.whole-container{
+    flex-direction: column;
+    width: 1200px;
+    height: 1300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.title{
+    font-size: 26px;
+    font-family: Pretendard-Bold;
+    color : #343434;
+    margin : 20px 0 10px 0;
+}
+
+.sub-title{
+    font-size: 18px;
+    font-family: Pretendard-Regular;
+    color : #343434;
+    margin : 0 0 45px 0;
+}
+
+.basic-photo{
+    width: 190px;
+    margin: 0 0 0 0;
+    position: relative;
+}
+
+#uploaded-image {
+    width: 190px; /* 원하는 가로 크기 설정 */
+    height: 190px; /* 원하는 세로 크기 설정 */
+    object-fit: cover; /* 이미지가 요소에 맞게 크롭되도록 설정 */
+    border-radius: 50%; /* 원 모양으로 만들기 위한 border-radius 설정 */
+}
+
+#photo-file{
+    display: none;
+}
+
+.photo-file{
+    background-image: url(https://lifet.co.kr/img/profile/prifle_camera.png);
+}
+
+.file-img {
+    cursor: pointer;
+    width : 40px;
+    height : 40px;
+    position: absolute;
+    top : 3px;
+    right : 5.5px;
+}
+
+.file-circle {
+    border : 1px solid #E7E7E7;
+    border-radius: 50px;
+    width: 50px;
+    height : 50px;
+    position: absolute;
+    top: 133px;
+    left: 139px;
+    background-color: #fff;
+}
+
+.pet-name,
+.detailed-type,
+.pet-birth{
+    width : 400px;
+    height: 49px;
+    padding: 0 15px;
+    background-color: #FFFFFF;
+    border-radius: 6px;
+    border : 1px solid #E7E7E7;
+    font-size: 16px;
+    font-family: Pretendard-Regular;
+    color : #343434;
+}
+
+input:focus{
+    outline : 1px solid #68A5FE;
+}
+
+.pet-name1{
+    margin : 50px 0 15px 0;
+    font-family: Pretendard-SemiBold;
+    font-size: 18px;
+    color : #343434;
+}
+
+.pet-type,
+.detailed-type1,
+.birth,
+.gender,
+.surgery {
+    margin : 37px 0 15px 0;
+    font-family: Pretendard-SemiBold;
+    font-size: 18px;
+    color : #343434;
+}
+
+#select{
+    width : 432px;
+    height : 49px;
+    padding: 0 15px;
+    border-radius: 6px;
+    border : 1px solid #E7E7E7;
+    font-size: 16px;
+    font-family: Pretendard-Regular;
+    color : #343434;
+}
+
+#select:focus{
+    outline : 1px solid #68A5FE;
+}
+
+.etc{
+    font-family: Pretendard-SemiBold;
+    font-size: 15px;
+    color : #717171;
+    /* display: none; */
+}
+
+#selectbox-direct {
+    width : 291px;
+    height : 38px;
+    border-radius: 6px;
+    border : 1px solid #E7E7E7;
+    font-size: 16px;
+    font-family: Pretendard-Regular;
+    color : #343434;
+    padding: 0 15px;
+    margin : 10px 0 0 5px;
+}
+
+.gender-button,
+.surgery-button{
+    width : 210.7px;
+    height : 49px;
+    border-radius: 6px;
+    border: 1px solid #E7E7E7;
+    background-color: #fff;
+    font-size: 16px;
+    font-family: Pretendard-Regular;
+    margin : 0 2.5px 0 2.5px;
+    color: #343434;
+    cursor: pointer;
+}
+
+.surgery-button{
+    margin : 0 2.5px 70px 2.5px;
+}
+
+.go-back{
+    width : 195.05px;
+    height: 58px;
+    border-radius: 30px;
+    background-color: #EAEAEA;
+    color: #5B5B5B;
+    font-family: Pretendard-Medium;
+    font-size: 18px;
+    border: none;
+    margin : 0 5px 0 0;
+    cursor: pointer;
+}
+
+.complete {
+    width : 260.95px;
+    height : 58px;
+    border-radius: 30px;
+    background-color: #68A5FE;
+    font-size: 18px;
+    font-family: Pretendard-Medium;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+}
+
+
+

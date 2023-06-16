@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원상세정보관리</title>
+  <link rel="stylesheet" th:href="@{/css/admin/userDetailManage.css}">
+</head>
+
+<body>
+<header class="real-header">header (기존헤더에 '관리자' 메뉴만 추가)</header>
+<div class="whole-container">
+
+  <div class="side-menubar">
+    <div class="top-leftmenu">
+      <div class="left-menu1"><b>관리자</b>의</div>
+      <div class="left-menu2">관리페이지</div>
+    </div>
+    <ul class="admin-side-menu">
+      <li>
+        <a href="" class="menu-a">전체회원 관리</a>
+      </li>
+      <li>
+        <a href="" class="menu-a">펫시터회원 관리</a>
+      </li>
+      <li>
+        <a href="" class="menu-a">펫시터 신청 관리</a>
+      </li>
+      <li>
+        <a href="" class="menu-a">산책모임게시판 관리</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="content-container">
+
+    <h2 class="guide-menu">일반회원 상세정보</h2>
+    <div class="bottom-bar"></div>
+
+    <div class="detailed-guide">* 회원 아이디를 클릭 시 해당회원의 마이페이지로 이동합니다.</div>
+
+    <div class="container">
+
+      <table class="board-table">
+        <tbody>
+        <tr>
+          <th class="table-head-left">회원번호</th>
+          <td>1</td>
+        </tr>
+        <tr>
+          <th>등급명</th>
+          <td>펫시터 신청중</td>
+        </tr>
+        <tr>
+          <th>아이디</th>
+          <td><a href="">aa123</a></td>
+        </tr>
+        <tr>
+          <th>이름</th>
+          <td>홍길동</td>
+        </tr>
+        <tr>
+          <th>성별</th>
+          <td>M</td>
+        </tr>
+        <tr>
+          <th>이메일</th>
+          <td>aa123@naver.com</td>
+        </tr>
+        <tr>
+          <th>생일</th>
+          <td>1995-01-01</td>
+        </tr>
+        <tr>
+          <th>연락처</th>
+          <td>010-1234-5678</td>
+        </tr>
+        <tr>
+          <th class="table-head-left-bottom">주소</th>
+          <td>서울시 송파구 마천로23 현대아파트 111동 202호</td>
+        </tr>
+        </tbody>
+      </table>
+
+      <div class="button-wrap">
+        <button type="button" class="btn-delete">회원 삭제</button>
+      </div>
+
+
+
+    </div>
+
+
+
+  </div>
+</body>
+
+</html>
