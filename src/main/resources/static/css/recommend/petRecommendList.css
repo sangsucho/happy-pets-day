@@ -1,0 +1,145 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard-Regular';
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-style: normal;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.body-header-container{
+    width: 100%;
+}
+
+.body-header{
+    height: 400px;
+    background-color: #68A5FE;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-title{
+    font-size: 60px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.header-comment{
+    font-size: 30px;
+    color: white;
+    margin-bottom: 50px;
+}
+
+.body-header2{
+    height: 35px;
+    display: flex;
+}
+
+.body-header3{
+    height: 150px;
+    background-color: #f9f9f9;
+
+    position: relative;
+}
+
+.section1{
+    width: 30%;
+    height: 35px;
+}
+
+.section2{
+    width: 20%;
+    height: 35px;
+}
+
+.sectionR{
+    background: linear-gradient(to top right, #f9f9f9 49%, #68A5FE 51%);
+}
+
+.sectionL{
+    background: linear-gradient(to top left, #f9f9f9 49%, #68A5FE 51%);
+}
+
+.tips{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left:50%;
+    transform:translateX(-50%);
+    top: -110px;
+}
+
+.tip{
+    margin: 0 10px;
+    width: 350px;
+    height: 220px;
+    border-radius: 10px;
+    background-color: rgba(255,255,255,0.8);
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tips img{
+    width: 90px;
+    height: 90px;
+    margin-bottom: 35px;
+}
+
+.tip-comment{
+    color: #576071;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.main-container{
+    display: flex;
+    justify-content: left;
+    width: 1245px;
+    margin-left: 45px;
+    margin-top: 100px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.recommend-item{
+    width: 370px;
+    height: 350px;
+    border-radius: 15px;
+    margin-right: 45px;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.recommend-item > img{
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
+
+.recommend-item-name{
+    width: 370px;
+    position: absolute;
+    bottom: 20px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: #7B7B7B;
+    font-size: 20px;
+}
+
