@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>펫 등록</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" th:href="@{/css/myPage/addPetCalendar.css}">
+  <link rel="stylesheet" th:href="@{/css/myPage/addPet.css}">
+</head>
+
+<body>
+<div class="whole-container">
+  <div class="title">프로필 등록</div>
+  <div class="sub-title">사진을 업로드 하고 기본 정보를 입력해주세요</div>
+
+  <div class="basic-photo">
+    <img id="uploaded-image" src="https://lifet.co.kr/img/profile/default.png" alt="">
+    <label for="photo-file">
+      <input type="file" name="photo-file" id="photo-file" accept=".jpg, .jpeg, .png" class="hidden"
+             onchange="updateImage(this)">
+      <div class="file-circle">
+        <img src="https://lifet.co.kr/img/profile/prifle_camera.png" alt="" class="file-img">
+      </div>
+    </label>
+  </div>
+
+  <div class="basic-profile">
+    <div class="pet-name1">이름 </div>
+    <input type="text" name="user-name" class="pet-name" placeholder="이름을 입력해주세요.">
+    <div class="pet-type">동물 종류</div>
+    <select name="petKind" id="select" required>
+      <option value="1">강아지</option>
+      <option value="2">고양이</option>
+      <option value="direct">기타 - 직접 입력</option>
+    </select>
+    <div class="etc">
+      기타 - 직접 입력 : <input type="text" id="selectbox-direct" name="petKind"  />
+    </div>
+  </div>
+  <div class="type-and-birth-container">
+    <div class="detailed-type1">품종</div>
+    <input type="text" name="detailed-type" class="detailed-type" placeholder="ex. 말티즈">
+    <div class="birth">생년월일</div>
+    <div class="birth-wrap">
+      <input type="text" placeholder="생년월일 선택" class="datepicker pet-birth" name="petBirth" readonly>
+    </div>
+
+    <div class="gender">성별</div>
+    <button type="button" class="gender-button" onclick="changeColor(this)" value="M">남자 아이</button>
+    <button type="button" class="gender-button" onclick="changeColor(this)" value="F">여자 아이</button>
+    <input type="hidden" id="pet-gender" name="petGender" value="">
+
+    <div class="surgery">중성화 여부</div>
+    <button type="button" class="surgery-button" onclick="changeColor2(this)" value="N">중성화 전</button>
+    <button type="button" class="surgery-button" onclick="changeColor2(this)" value="Y">중성화 완료</button>
+    <input type="hidden" id="pet-surgery" name="petSurgery" value="">
+
+  </div>
+
+  <div class="menu-button">
+    <button type="button" class="go-back">이전</button>
+    <button type="button" class="complete">완료</button>
+  </div>
+</div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script th:src="@{/js/myPage/addPet.js}"></script>
+
+</body>
+
+</html>
