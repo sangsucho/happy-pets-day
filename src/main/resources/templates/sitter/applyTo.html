@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/sitter/applyTo.css}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <style>
+      @font-face {
+        font-family: Pretendard-Bold;
+        src: url(../../../../../../../web/teamwork2/font/Pretendard-Bold.woff2);
+      }
+
+      @font-face {
+        font-family: Pretendard-Medium;
+        src: url(../../../../../../../web/teamwork2/font/Pretendard-Medium.woff2);
+      }
+
+      @font-face {
+        font-family: Pretendard-Regular;
+        src: url(../../../../../../../web/teamwork2/font/Pretendard-Regular.woff2);
+      }
+
+      @font-face {
+        font-family: Pretendard-SemiBold;
+        src: url(../../../../../../../web/teamwork2/font/Pretendard-SemiBold.woff2);
+      }
+    </style>
+  </head>
+  <body>
+    <header></header>
+    <div class="header-title">
+      <h2 class="title">지원서 작성하기</h2>
+    </div>
+    <div style="display: flex; justify-content: center; padding-bottom: 200px">
+      <div class="main">
+        <p>1. 기본 정보 확인</p>
+        <form action="#">
+          <div class="apply-sitter">
+            <div class="box-padding">
+              <div>
+                <p class="p-text">이름</p>
+                <input type="text" />
+              </div>
+              <div>
+                <p class="p-text">주민등록번호 앞 7자리</p>
+                <p class="new-p">
+                  05년생부터(만 18세이상) 펫시터 지원이 가능합니다
+                </p>
+                <div class="sitter-id">
+                  <input class="birth" type="text" maxlength="6" />
+                  <div></div>
+                  <input class="new-input" type="text" maxlength="1" />
+                  <img
+                    src="https://wayopet.com/static/images/applyform/blur.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div>
+                <p class="p-text">연락처</p>
+                <p class="new-p">
+                  입력한 휴대폰 번호로 합격 여부를 알려드립니다.
+                </p>
+                <input type="text" />
+              </div>
+              <div>
+                <p class="p-text">거주지</p>
+                <p class="new-p">시/군/구까지 입력해주세요</p>
+                <input type="text" />
+              </div>
+            </div>
+          </div>
+          <p
+            style="
+              margin: 0px auto;
+              width: 950px;
+              padding-bottom: 15px;
+              font-size: 25px;
+              font-weight: bold;
+              padding-top: 70px;
+            "
+          >
+            2. 전문 분야 선택
+          </p>
+
+          <div class="specialty">
+            <label
+              ><input
+                type="checkbox"
+                name="specialty"
+                value="dog"
+              />강아지</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                name="specialty"
+                value="cat"
+              />고양이</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                name="specialty"
+                value="other"
+              />기타</label
+            >
+          </div>
+        </form>
+        <p>3. 자기 소개 및 자격증 첨부</p>
+        <form action="#">
+          <div class="apply-sitter">
+            <div class="box-padding">
+              <div>
+                <p class="p-text">자기소개 및 지원동기</p>
+                <div>
+                  <textarea
+                    name=""
+                    id="self-introduce"
+                    cols="30"
+                    rows="10"
+                  ></textarea>
+                </div>
+              </div>
+
+              <div style="margin-top: 60px">
+                <p class="p-text">자격증 사진 업로드</p>
+                <div class="form-group">
+                  <ul class="file-wrap">
+                    <li>
+                      <span class="material-symbols-outlined"> add </span>
+                      <input
+                        type="file"
+                        id="post-image"
+                        name="boardFile"
+                        accept="image/*"
+                        multiple
+                      />
+                    </li>
+                    <!-- <li class="img-list"></li> -->
+                    <!-- <div class="input-hidden">
+                      <div class="license-name">
+                        <p>자격증 이름 :</p>
+                      </div>
+                      <input type="text" />
+                    </div> -->
+                    <!-- <li class="img-list"></li>
+                    <li class="img-list"></li> -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="btn-align">
+            <button type="submit" class="submit-btn">펫시터 지원하기</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <footer></footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/sitter/aplyTo.js}"></script>
+  </body>
+</html>

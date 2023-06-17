@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/sitter/sitterProfile.css}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <style>
+      @font-face {
+        font-family: Pretendard-Bold;
+        src: url(../../../../../../../web/teamwork2/font/Pretendard-Bold.woff2);
+      }
+
+      @font-face {
+        font-family: Pretendard-Medium;
+        src: url(../../../../../../../web/teamwork2/font/Pretendard-Medium.woff2);
+      }
+
+      @font-face {
+        font-family: Pretendard-Regular;
+        src: url(../../../../../../../web/teamwork2/font/Pretendard-Regular.woff2);
+      }
+
+      @font-face {
+        font-family: Pretendard-SemiBold;
+        src: url(../../../../../../../web/teamwork2/font/Pretendard-SemiBold.woff2);
+      }
+    </style>
+  </head>
+  <body>
+    <header></header>
+
+    <div class="img-box">
+      <div class="left-box" style="background-color: brown"></div>
+      <div class="right-box">
+        <div class="up-img"></div>
+        <div class="down-img"></div>
+      </div>
+    </div>
+
+    <div class="main">
+      <!--메인 좌측 컨텐츠-->
+      <div class="main-left">
+        <div class="profile-img">
+          <img src="" alt="" />
+        </div>
+
+        <div class="sitter-header">
+          <h2>펫시터 머릿말</h2>
+          <div class="sitter-like">
+            <span class="sitter-name">이정현 펫시터</span>
+            <div class="sitter-info">
+              <img
+                src="https://wayopet.com/static/images/common/star_1.png"
+                alt=""
+                class="img-star"
+              />
+              <span class="rating">5.0</span>
+              <span class="review-cnt">100개의 리뷰</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 경력, 자격 -->
+        <div class="sitter-license">
+          <div style="margin-top: 50px">
+            <p>경력·자격</p>
+          </div>
+
+          <div class="license-info">
+            <!-- 자격증 파일 반복 -->
+            <div class="license-box">
+              <div class="license-file">
+                <div class="license-img"><img src="" alt="" /></div>
+              </div>
+              <div class="license-name">
+                <p>짜격쯩</p>
+              </div>
+            </div>
+            <!-- 자격증 파일 반복 -->
+
+            <!-- 자격증 파일 반복 -->
+            <div class="license-box">
+              <div class="license-file">
+                <div class="license-img"><img src="" alt="" /></div>
+              </div>
+              <div class="license-name">
+                <p>짜격쯩</p>
+              </div>
+            </div>
+            <!-- 자격증 파일 반복 -->
+
+            <!-- 자격증 파일 반복 -->
+            <div class="license-box">
+              <div class="license-file">
+                <div class="license-img"><img src="" alt="" /></div>
+              </div>
+              <div class="license-name">
+                <p>짜격쯩</p>
+              </div>
+            </div>
+            <!-- 자격증 파일 반복 -->
+
+            <!-- 자격증 파일 반복 -->
+            <div class="license-box">
+              <div class="license-file">
+                <div class="license-img"><img src="" alt="" /></div>
+              </div>
+              <div class="license-name">
+                <p>짜격쯩</p>
+              </div>
+            </div>
+            <!-- 자격증 파일 반복 -->
+          </div>
+        </div>
+
+        <!-- 자소서 -->
+        <div class="sitter-introduce">
+          <p class="introduce">자기소개</p>
+          <div class="introduce-box">
+            <p class="introduce-text">
+              asdaerfgaw4iuhfaw4hfiuawehva87w4hvjahskbvuarga4hwviuawrhvnyawgficuq3hafuiw3hfuyaw3gfywa3fbkajsdvbauye4bavwui3nvkjasdvgjabiuaw4nv98awhb
+              asdaerfgaw4iuhfaw4hfiuawehva87w4hvjahskbvuarga4hwviuawrhvnyawgficuq3hafuiw3hfuyaw3gfywa3fbkajsdvbauye4bavwui3nvkjasdvgjabiuaw4nv98awhb
+              asdaerfgaw4iuhfaw4hfiuawehva87w4hvjahskbvuarga4hwviuawrhvnyawgficuq3hafuiw3hfuyaw3gfywa3fbkajsdvbauye4bavwui3nvkjasdvgjabiuaw4nv98awhb
+              asdaerfgaw4iuhfaw4hfiuawehva87w4hvjahskbvuarga4hwviuawrhvnyawgficuq3hafuiw3hfuyaw3gfywa3fbkajsdvbauye4bavwui3nvkjasdvgjabiuaw4nv98awhb
+            </p>
+          </div>
+          <div class="modify">
+            <button class="modify-btn">수정하기</button>
+          </div>
+        </div>
+        <!-- 자소서 -->
+
+        <!-- 댓글 컨텐츠 -->
+        <div class="review-box">
+          <div class="review-header">
+            <p>고객 후기 100개</p>
+            <div class="review-b">
+              <div class="review-star">
+                <img
+                  src="https://wayopet.com/static/images/common/star_1.png"
+                  style="width: 12px; height: 12px"
+                />
+                <img
+                  src="https://wayopet.com/static/images/common/star_1.png"
+                  style="width: 12px; height: 12px"
+                />
+                <img
+                  src="https://wayopet.com/static/images/common/star_1.png"
+                  style="width: 12px; height: 12px"
+                />
+                <img
+                  src="https://wayopet.com/static/images/common/star_1.png"
+                  style="width: 12px; height: 12px"
+                />
+                <img
+                  src="https://wayopet.com/static/images/common/star_1.png"
+                  style="width: 12px; height: 12px"
+                />
+              </div>
+              <p style="margin-left: 10px; font-size: 15px">5.0</p>
+            </div>
+          </div>
+          <!-- @@@@리뷰 반복 @@@@-->
+          <div class="review-review">
+            <div class="review-user">
+              <div class="review-user-profile">
+                <img
+                  src="https://wayopet.com/static/images/common/star_1.png"
+                  alt=""
+                />
+              </div>
+              <div class="review-user-name">
+                <span>이정현님</span>
+                <span>(포메라니언)</span>
+                <div>지난 주</div>
+              </div>
+            </div>
+            <div class="review-text">
+              <p>
+                wa4wa4faw4uinaewa4wa4faw4uinaewa4wa4faw4uinaewa4wa4faw4uinaewa4wa4faw4uinae
+              </p>
+            </div>
+          </div>
+          <!-- @@@@리뷰 반복 @@@@-->
+
+          <!-- 리뷰 반복  -->
+          <div class="review-review">
+            <div class="review-user">
+              <div class="review-user-profile">
+                <img
+                  src="https://wayopet.com/static/images/common/star_1.png"
+                  alt=""
+                />
+              </div>
+              <div class="review-user-name">
+                <span>이정현님</span>
+                <span>(포메라니언)</span>
+                <div>지난 주</div>
+              </div>
+            </div>
+            <div class="review-text">
+              <p>
+                wa4wa4faw4uinaewa4wa4faw4uinaewa4wa4faw4uinaewa4wa4faw4uinaewa4wa4faw4uinae
+              </p>
+            </div>
+          </div>
+          <!-- 리뷰 반복 -->
+          <div class="review-review">
+            <div class="review-user">
+              <div class="review-user-profile">
+                <img
+                  src="https://wayopet.com/static/images/common/star_1.png"
+                  alt=""
+                />
+              </div>
+              <div class="review-user-name">
+                <span>이정현님</span>
+                <span>(포메라니언)</span>
+                <div>지난 주</div>
+              </div>
+            </div>
+            <div class="review-text">
+              <p>
+                wa4wa4faw4uinaewa4wa4faw4uinaewa4wa4faw4uinaewa4wa4faw4uinaewa4wa4faw4uinae
+              </p>
+            </div>
+          </div>
+          <!-- 리뷰 반복 -->
+          <div class="review-review">
+            <div class="review-user">
+              <div class="review-user-profile">
+                <img
+                  src="https://wayopet.com/static/images/common/star_1.png"
+                  alt=""
+                />
+              </div>
+              <div class="review-user-name">
+                <span>이정현님</span>
+                <span>(포메라니언)</span>
+                <div>지난 주</div>
+              </div>
+            </div>
+            <div class="review-text">
+              <p>
+                wa4wa4faw4uinaewa4wa4faw4uinaewa4wa4faw4uinaewa4wa4faw4uinaewa4wa4faw4uinae
+              </p>
+            </div>
+          </div>
+          <div class="review-review">
+            <div class="review-user">
+              <div class="review-user-profile">
+                <img
+                  src="https://wayopet.com/static/images/common/star_1.png"
+                  alt=""
+                />
+              </div>
+              <div class="review-user-name">
+                <span>이정현님</span>
+                <span>(포메라니언)</span>
+                <div>지난 주</div>
+              </div>
+            </div>
+            <div class="review-text">
+              <p>
+                wa4wa4faw4uinaewa4wa4faw4uinaewa4wa4faw4uinaewa4wa4faw4uinaewa4wa4faw4uinae
+              </p>
+            </div>
+          </div>
+          <div class="review-review">
+            <div class="review-user">
+              <div class="review-user-profile">
+                <img
+                  src="https://wayopet.com/static/images/common/star_1.png"
+                  alt=""
+                />
+              </div>
+              <div class="review-user-name">
+                <span>이정현님</span>
+                <span>(포메라니언)</span>
+                <div>지난 주</div>
+              </div>
+            </div>
+            <div class="review-text">
+              <p>
+                1111wa4wa4faw4uinaewa4wa4faw4uinaewa4wa4faw4uinaewa4wa4faw4uinaewa4wa4faw4uinae
+              </p>
+            </div>
+          </div>
+          <div class="review-review">
+            <div class="review-user">
+              <div class="review-user-profile">
+                <img
+                  src="https://wayopet.com/static/images/common/star_1.png"
+                  alt=""
+                />
+              </div>
+              <div class="review-user-name">
+                <span>이정현님</span>
+                <span>(포메라니언)</span>
+                <div>지난 주</div>
+              </div>
+            </div>
+            <div class="review-text">
+              <p>
+                1111wa4wa4faw4uinaewa4wa4faw4uinaewa4wa4faw4uinaewa4wa4faw4uinaewa4wa4faw4uinae
+              </p>
+            </div>
+          </div>
+          <button type="button" class="review-more-btn">댓글 더 보기</button>
+          <!-- 리뷰 반복 -->
+        </div>
+        <!-- 댓글 컨텐츠 -->
+      </div>
+      <!--메인 좌측 컨텐츠-->
+      <div class="main-right">
+        <div class="sitter-price">
+          <div class="price-value">
+            <p>예약 요금</p>
+          </div>
+          <div>
+            <div class="service-box">
+              <div class="service-day">
+                <div class="new-service">
+                  <div class="categori">
+                    <span>강아지</span>
+                  </div>
+                  <div class="specialty">
+                    <span>전문</span>
+                  </div>
+                </div>
+              </div>
+              <div class="service-price">
+                <p>₩100,000</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="service-box">
+              <div class="service-day">
+                <div class="new-service">
+                  <div class="categori">
+                    <span>고양이</span>
+                  </div>
+                </div>
+              </div>
+              <div class="service-price">
+                <p>₩80,000</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="service-box">
+              <div class="service-day">
+                <div class="new-service">
+                  <div class="categori">
+                    <span>기타</span>
+                  </div>
+                </div>
+              </div>
+              <div class="service-price">
+                <p>₩60,000</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="new-calendar">
+          <div class="sec_cal">
+            <div class="cal_nav">
+              <a href="javascript:;" class="nav-btn go-prev">prev</a>
+              <div class="year-month"></div>
+              <a href="javascript:;" class="nav-btn go-next">next</a>
+            </div>
+            <div class="cal_wrap">
+              <div class="days">
+                <div class="day">일</div>
+                <div class="day">월</div>
+                <div class="day">화</div>
+                <div class="day">수</div>
+                <div class="day">목</div>
+                <div class="day">금</div>
+                <div class="day">토</div>
+              </div>
+              <div class="dates"></div>
+              <div class="calendar-schedule">
+                <div class="can-date">
+                  <div></div>
+                  <p>예약 가능</p>
+                </div>
+                <div class="cant-date">
+                  <div></div>
+                  <p>예약 마감</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reser-btn">
+          <button type="button">펫시터 예약하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div id="modal">
+      <div id="modal-content">
+        <div id="close-modal">
+          <p id="modal-title">결제 내역</p>
+          <span class="material-symbols-outlined"> close </span>
+        </div>
+        <div
+          style="display: flex; justify-content: center; align-items: center"
+        >
+          <div class="nav-css">
+            <ul id="nav">
+              <li class="col">회원번호</li>
+              <li class="col1">이름</li>
+              <li class="col2">연락처</li>
+              <li class="col3">주소</li>
+              <li class="col4">날짜</li>
+              <li class="col5">예약</li>
+            </ul>
+            <ul id="nav-content">
+              <li class="col">1</li>
+              <li>이정현</li>
+              <li>010-1233-1233</li>
+              <li>서울시 송파구</li>
+              <li>2023-10-10</li>
+              <li>
+                <button id="false">취소하기</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/sitter/sitterProfile.js}"></script>
+    <!-- jQuery -->
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-1.12.4.min.js"
+    ></script>
+    <!-- iamport.payment.js -->
+    <script
+      type="text/javascript"
+      src="https://cdn.iamport.kr/js/iamport.payment-{SDK-최신버전}.js"
+    ></script>
+  </body>
+</html>
