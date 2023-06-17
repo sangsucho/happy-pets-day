@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../../static/css/main/main.css">
+    <link rel="stylesheet" th:href="@{/css/main/main.css}">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css"/>
 </head>
 <body>
@@ -11,7 +11,7 @@
     <header>
         <div class="header">
             <!--      이미지 클릭시 메인페이지로 이동 url 채워야됨-->
-            <a th:href="" class="header--logo">
+            <a href="#" class="header--logo">
                 <img src="../../img/logo.png" alt="">
             </a>
             <!--      헤더 이동 탭 컨테이너-->
@@ -22,15 +22,15 @@
                         <a href="">펫시터 지원</a>
                     </div>
                 </div>
-                <a th:href="">모임 게시판</a>
-                <a th:href="">반려동물 추천</a>
-                <a th:href="">반려동물 입양</a>
+                <a href="#">모임 게시판</a>
+                <a href="#">반려동물 추천</a>
+                <a href="#">반려동물 입양</a>
             </div>
             <!--      로그인 회원가입 등 컨테이너-->
             <div class="header--login-container">
                 <!--          로그인 정보 없을 때-->
-                <a th:href="" class="header--join-btn header--btn header--white-btn">회원가입</a>
-                <a th:href="" class="header--login-btn header--btn header--blue-btn">로그인</a>
+                <a href="#" class="header--join-btn header--btn header--white-btn">회원가입</a>
+                <a href="#" class="header--login-btn header--btn header--blue-btn">로그인</a>
                 <!--          로그인 정보 있을 때-->
                 <!--          <a href="" class="mypage-btn header-btn white-btn">마이페이지</a>-->
                 <!--          <a href="" class="logout-btn header-btn blue-btn">로그아웃</a>-->
@@ -55,7 +55,7 @@
                         <h2>믿음직한 펫시터!<br>필요한날 예약하세요.</h2>
                         <a href="">펫시터 예약하기</a>
                     </div>
-                    <img src="../../img/dog.png" alt="">
+                    <img th:src="@{/img/dog.png}" alt="">
                 </div>
                 <div class="sitter-section1-content">
                     <div>
@@ -63,7 +63,7 @@
                         <h2>펫시터를 하고싶다면<br>쉽고 빠르게 지원해보세요.</h2>
                         <a href="">펫시터 지원하기</a>
                     </div>
-                    <img src="../../img/cat.png" alt="">
+                    <img th:src="@{/img/cat.png}" alt="">
                 </div>
             </div>
             <div class="sitter-section2">
@@ -71,7 +71,7 @@
                 <div class="sitter-container">
 <!--                    인기 펫시터 정보 3개 여기 div.sitter-info 한개 뽑아서 반복 세번-->
                     <div class="sitter-info">
-                        <img src="../../img/KakaoTalk_20230524_113238743_06.jpg" alt="">
+                        <img th:src="@{/img/KakaoTalk_20230524_113238743_06.jpg}" alt="">
                         <div class="sitter-info-container">
 <!--                            시터 이름-->
                             <div class="sitter-name">박광인</div>
@@ -80,14 +80,14 @@
                         </div>
                     </div>
                     <div class="sitter-info">
-                        <img src="../../img/KakaoTalk_20230524_113238743_06.jpg" alt="">
+                        <img th:src="@{/img/KakaoTalk_20230524_113238743_06.jpg}" alt="">
                         <div class="sitter-info-container">
                             <div class="sitter-name">박광인</div>
                             <div class="sitter-comment">동물을 사랑하는 시터</div>
                         </div>
                     </div>
                     <div class="sitter-info">
-                        <img src="../../img/KakaoTalk_20230524_113238743_06.jpg" alt="">
+                        <img th:src="@{/img/KakaoTalk_20230524_113238743_06.jpg}" alt="">
                         <div class="sitter-info-container">
                             <div class="sitter-name">박광인</div>
                             <div class="sitter-comment">동물을 사랑하는 시터</div>
@@ -187,7 +187,7 @@
                 <div class="adopt-section-content-container">
 <!--                    adopt-section-content 3번 반복, 각 입양정보 게시글 이동 href설정-->
                     <a href="" class="adopt-section-content">
-                        <img src="../../img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg" alt="">
+                        <img th:src="@{/img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg}" alt="">
                         <div>
                             <span>마포센터</span>
                             <h3>게시글 제목</h3>
@@ -195,7 +195,7 @@
                         </div>
                     </a>
                     <a href="" class="adopt-section-content">
-                        <img src="../../img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg" alt="">
+                        <img th:src="@{/img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg}" alt="">
                         <div>
                             <span>마포센터</span>
                             <h3>게시글 제목게시글 제목게시글 제목게시글 제목</h3>
@@ -203,7 +203,7 @@
                         </div>
                     </a>
                     <a href="" class="adopt-section-content">
-                        <img src="../../img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg" alt="">
+                        <img th:src="@{/img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg}" alt="">
                         <div>
                             <span>마포센터</span>
                             <h3>게시글 제목</h3>
@@ -222,7 +222,7 @@
                 <div class="footer--section1">
                     <!--          메인페이지 이동-->
                     <a href="">
-                        <img src="../../img/logo2.png" alt="">
+                        <img th:src="@{/img/logo2.png}" alt="">
                     </a>
                     <div class="footer--info">
                         팀명 : NPE 단속반<br>
@@ -246,6 +246,6 @@
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-    <script src="../../static/js/main/main.js"></script>
+    <script th:src="@{/js/main/main.js}"></script>
 </body>
 </html>

@@ -6,12 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>strollBoarddView</title>
   <link rel="stylesheet" th:href="@{/css/strollBoard/strollBoardView.css}">
+  <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+  <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
+
 </head>
 
 <body>
   <!-- 헤더부분 -->
 
-  <div class="header"></div>
+  <header th:replace="fragment/header :: header"></header>
 
   <div class="globar-content-wrap">
     <!-- 산책모임 게시글 번호 -->
@@ -180,7 +183,7 @@
 
   </div>
 
-  
+  <footer th:replace="fragment/footer :: footer"></footer>
   <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
   <!-- 카카오지도 api js -->
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3dc12d7c2624483dc7c019a0a91b727f&libraries=services"></script>

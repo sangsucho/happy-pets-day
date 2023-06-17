@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../../static/css/recommend/petRecommendDetail.css">
+    <link rel="stylesheet" th:href="@{/css/recommend/petRecommendDetail.css}">
 </head>
 <body>
 <div class="body-container">
@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="content-container">
-        <img src="../../img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg" alt="">
+        <img th:src="@{/img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg}" alt="">
         <div class="content">
             고양이가 원래 사막에서 나고 자랐다고 해서, 더위를 타지 않는다고 생각하면 절대 안돼요! 고양이에게 더위는 치명적일 수 있답니다. 온도 변화에 민감하기 때문에 더위를 느껴 체온이 올라갔을 때, 본능적으로 체온을 낮추기위해 여러가지 행동을 합니다.<br><br><br>
             ✅ 에너지를 절약한다<br><br><br>

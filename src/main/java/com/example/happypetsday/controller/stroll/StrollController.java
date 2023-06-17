@@ -18,7 +18,7 @@ public class StrollController {
     public String boardWrite(){
         return "strollBoard/strollBoardWrite";
     }
-    @GetMapping("/strollBoardList")
+    @GetMapping("/list")
     public String strollBoardList(HttpServletRequest req){
         return "strollBoard/strollBoardList";
     }
