@@ -15,7 +15,7 @@ class TimeMapperTest {
     private TimeMapper timeMapper;
 
     @Test
-    @DisplayName("연결 테스트")
+    @DisplayName("연결테스트")
     public void getTimeTest(){
         log.info("***** time : " + timeMapper.getTime());
     }
