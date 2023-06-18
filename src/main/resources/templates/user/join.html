@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+      integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" th:href="@{/css/user/join.css}" />
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-container">
+        <div class="join-wrap">
+          <form id="join-form" action="join-submit.php" class="join-form">
+            <div class="join-title">
+              <h1>회원가입</h1>
+            </div>
+            <div class="join-field">
+              <h1>회원 정보 입력</h1>
+              <div class="field">
+                <h5>이름</h5>
+                <input
+                  type="text"
+                  name
+                  class="required"
+                  placeholder="이름 입력"
+                  id="name"
+                  maxlength="10"
+                />
+                <p class="confirmMsg"></p>
+              </div>
+              <div class="field">
+                <h5>생년월일</h5>
+                <input class="required datepicker" id="birth" name="birth" />
+                <p class="confirmMsg"></p>
+              </div>
+              <div class="field">
+                <h5>성별</h5>
+                <div class="area_wrap">
+                  <div class="select-wrap">
+                    <div class="select-box" onclick="toggleGenderList()">
+                      <span class="placeholder">성별 선택</span>
+                    </div>
+                    <ul
+                      class="gender-list"
+                      id="genderList"
+                      style="display: none"
+                    >
+                      <li onclick="selectGender('여자')">여자</li>
+                      <li onclick="selectGender('남자')">남자</li>
+                    </ul>
+                  </div>
+                </div>
+                <input
+                  type="hidden"
+                  id="selectedGender"
+                  name="selectedGender"
+                />
+                <p class="confirmMsg"></p>
+              </div>
+              <div class="field">
+                <h5>핸드폰 번호</h5>
+                <div class="verify-active">
+                  <input
+                    type="tel"
+                    name
+                    class="required"
+                    placeholder="핸드폰 번호(-제외)를 입력해주세요."
+                    id="phone"
+                    pattern="[0-9]{3}[0-9]{3,4}[0-9]{4}"
+                    maxlength="11"
+                  />
+                  <p class="confirmMsg"></p>
+                </div>
+              </div>
+              <div class="field">
+                <h5>주소</h5>
+                <input
+                  type="text"
+                  id="select_postcode"
+                  placeholder="우편번호"
+                  onclick="selectAddress()"
+                  class="required"
+                />
+                <input
+                  type="text"
+                  id="select_address"
+                  placeholder="주소"
+                  class="required"
+                  style="margin-top: 10px"
+                /><br />
+                <input
+                  type="text"
+                  id="select_detailAddress"
+                  placeholder="상세주소"
+                  class="required"
+                  style="margin-top: 10px"
+                />
+                <input
+                  type="text"
+                  id="select_extraAddress"
+                  placeholder="참고항목"
+                  class="required"
+                  style="margin-top: 10px"
+                />
+
+                <p class="confirmMsg"></p>
+                <!-- <button type="button" onclick="openKakaoAddressSearch()">
+                  주소 검색
+                </button> -->
+              </div>
+            </div>
+            <div class="join-field">
+              <h1>아이디/비밀번호</h1>
+              <div class="field">
+                <h5>아이디</h5>
+                <input
+                  type="id"
+                  name
+                  class="required"
+                  placeholder="아이디를 입력해주세요."
+                  id="id"
+                  pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$"
+                />
+                <p class="confirmMsg"></p>
+              </div>
+              <div class="field">
+                <h5>비밀번호</h5>
+                <div class="verify-active">
+                  <input
+                    type="password"
+                    class="required"
+                    name
+                    placeholder="비밀번호(8자이상, 문자/숫자/특수문자 필수 조합)"
+                    id="pw"
+                  />
+                  <p class="confirmMsg"></p>
+                </div>
+              </div>
+              <div class="field" style="margin-top: 10px">
+                <div class="verify-active">
+                  <input
+                    type="password"
+                    class="required"
+                    name
+                    placeholder="비밀번호를 다시 입력해주세요."
+                    id="Repw"
+                  />
+                  <p class="confirmMsg"></p>
+                </div>
+              </div>
+              <div class="field">
+                <h5>이메일</h5>
+                <div class="verify-active">
+                  <input
+                    type="email"
+                    name
+                    placeholder="이메일을 입력해주세요."
+                    id="email"
+                    class="required"
+                  />
+                  <p class="confirmMsg"></p>
+                </div>
+              </div>
+
+              <div class="field">
+                <h5 style="margin-top: 10px">보안질문</h5>
+                <div class="verify-active">
+                  <div class="select-wrap">
+                    <div
+                      class="question-select-box"
+                      onclick="toggleSelectList()"
+                    >
+                      <span id="selectedQuestion" class="placeholder"
+                        >질문 선택</span
+                      >
+                    </div>
+                    <input
+                      type="hidden"
+                      name="questionNumber"
+                      class="questionNumber"
+                      value=""
+                    />
+                    <ul
+                      class="select-list"
+                      id="selectList"
+                      style="display: none"
+                    >
+                      <li
+                        class="select-item"
+                        onclick="selectQuestion(0)"
+                        value="1"
+                      >
+                        당신의 출신 도시는 어디인가요?
+                      </li>
+                      <li class="select-item" onclick="selectQuestion(1)">
+                        당신의 가장 좋아하는 동물은 무엇인가요?
+                      </li>
+                      <li class="select-item" onclick="selectQuestion(2)">
+                        당신의 초등학교 이름은 무엇인가요?
+                      </li>
+                      <li class="select-item" onclick="selectQuestion(3)">
+                        당신의 어머니의 이름은 무엇인가요?
+                      </li>
+                      <li class="select-item" onclick="selectQuestion(4)">
+                        당신의 아버지의 이름은 무엇인가요?
+                      </li>
+                      <li class="select-item" onclick="selectQuestion(5)">
+                        당신이 졸업한 고등학교는 어디인가요?
+                      </li>
+                    </ul>
+                  </div>
+                  <p class="confirmMsg"></p>
+                </div>
+
+                <div class="verify-active" style="margin-top: 10px">
+                  <input
+                    type="text"
+                    class="required"
+                    name
+                    placeholder="보안질문 답변 입력"
+                    id="answer"
+                  />
+                  <p class="confirmMsg"></p>
+                </div>
+              </div>
+            </div>
+            <div class="join-field">
+              <div class="term-total">
+                <h1>이용약관 동의</h1>
+                <div class="check-term">
+                  <input type="checkbox" name="term" class="all" />
+                  <label >모두 동의합니다.</label>
+                </div>
+              </div>
+            </div>
+            <button id="submit">가입하기</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+      integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script th:src="@{/js/user/join.js}"></script>
+  </body>
+</html>
