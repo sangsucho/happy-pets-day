@@ -7,7 +7,7 @@
 }
 
 /* body의 내용을 가운데 정렬 */
-body {
+.body {
   display: flex;
   justify-content: center;
 }

@@ -4,39 +4,41 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" th:href="@{/css/main/main.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css"/>
 </head>
 <body>
-<!--<header th:replace="fragment/header :: header"></header>-->
-    <header>
-        <div class="header">
-            <!--      이미지 클릭시 메인페이지로 이동 url 채워야됨-->
-            <a href="#" class="header--logo">
-                <img src="../../img/logo.png" alt="">
-            </a>
-            <!--      헤더 이동 탭 컨테이너-->
-            <div class="header--container">
-                <div class="header--sitter-btn">펫시터
-                    <div class="header--sitter-container">
-                        <a href="">펫시터 예약</a>
-                        <a href="">펫시터 지원</a>
-                    </div>
-                </div>
-                <a href="#">모임 게시판</a>
-                <a href="#">반려동물 추천</a>
-                <a href="#">반려동물 입양</a>
-            </div>
-            <!--      로그인 회원가입 등 컨테이너-->
-            <div class="header--login-container">
-                <!--          로그인 정보 없을 때-->
-                <a href="#" class="header--join-btn header--btn header--white-btn">회원가입</a>
-                <a href="#" class="header--login-btn header--btn header--blue-btn">로그인</a>
-                <!--          로그인 정보 있을 때-->
-                <!--          <a href="" class="mypage-btn header-btn white-btn">마이페이지</a>-->
-                <!--          <a href="" class="logout-btn header-btn blue-btn">로그아웃</a>-->
-            </div>
-        </div>
-    </header>
+<header th:replace="fragment/header :: header"></header>
+<!--    <header>-->
+<!--        <div class="header">-->
+<!--            &lt;!&ndash;      이미지 클릭시 메인페이지로 이동 url 채워야됨&ndash;&gt;-->
+<!--            <a href="#" class="header&#45;&#45;logo">-->
+<!--                <img src="../../img/logo.png" alt="">-->
+<!--            </a>-->
+<!--            &lt;!&ndash;      헤더 이동 탭 컨테이너&ndash;&gt;-->
+<!--            <div class="header&#45;&#45;container">-->
+<!--                <div class="header&#45;&#45;sitter-btn">펫시터-->
+<!--                    <div class="header&#45;&#45;sitter-container">-->
+<!--                        <a href="">펫시터 예약</a>-->
+<!--                        <a href="">펫시터 지원</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <a href="#">모임 게시판</a>-->
+<!--                <a href="#">반려동물 추천</a>-->
+<!--                <a href="#">반려동물 입양</a>-->
+<!--            </div>-->
+<!--            &lt;!&ndash;      로그인 회원가입 등 컨테이너&ndash;&gt;-->
+<!--            <div class="header&#45;&#45;login-container">-->
+<!--                &lt;!&ndash;          로그인 정보 없을 때&ndash;&gt;-->
+<!--                <a href="#" class="header&#45;&#45;join-btn header&#45;&#45;btn header&#45;&#45;white-btn">회원가입</a>-->
+<!--                <a href="#" class="header&#45;&#45;login-btn header&#45;&#45;btn header&#45;&#45;blue-btn">로그인</a>-->
+<!--                &lt;!&ndash;          로그인 정보 있을 때&ndash;&gt;-->
+<!--                &lt;!&ndash;          <a href="" class="mypage-btn header-btn white-btn">마이페이지</a>&ndash;&gt;-->
+<!--                &lt;!&ndash;          <a href="" class="logout-btn header-btn blue-btn">로그아웃</a>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </header>-->
     <main>
         <div class="header-section">
             <div class="header-section-container">
@@ -215,36 +217,36 @@
         </div>
     </main>
 
-<!--<footer th:replace="fragment/footer :: footer"></footer>-->
-    <footer>
-        <div class="footer">
-            <div class="footer--container">
-                <div class="footer--section1">
-                    <!--          메인페이지 이동-->
-                    <a href="">
-                        <img th:src="@{/img/logo2.png}" alt="">
-                    </a>
-                    <div class="footer--info">
-                        팀명 : NPE 단속반<br>
-                        팀원 : 김대연, 박광인, 서지민, 이건희, 이정현, 조상수 <br>
-                        프로젝트명 : Happy pet's day<br>
-                        작업공간 : 서울특별시 강남구 테헤란로 146 13층<br>
-                    </div>
-                    <div>
-                        ⓒ Elevenliter Inc. All Rights Reserved
-                    </div>
-                </div>
-                <div class="footer--section2">
-                    <h1>고객센터</h1>
-                    <h2>111-111-1111</h2>
-                    <div>평일 11:00 ~ 18:00 ｜ 점심시간 13:00 ~ 14:00<br>
-                        (토, 일요일 공휴일 휴무)
-                    </div>
-                    <div>고객문의 : official@elevenliter.com</div>
-                </div>
-            </div>
-        </div>
-    </footer>
+<footer th:replace="fragment/footer :: footer"></footer>
+<!--    <footer>-->
+<!--        <div class="footer">-->
+<!--            <div class="footer&#45;&#45;container">-->
+<!--                <div class="footer&#45;&#45;section1">-->
+<!--                    &lt;!&ndash;          메인페이지 이동&ndash;&gt;-->
+<!--                    <a href="">-->
+<!--                        <img th:src="@{/img/logo2.png}" alt="">-->
+<!--                    </a>-->
+<!--                    <div class="footer&#45;&#45;info">-->
+<!--                        팀명 : NPE 단속반<br>-->
+<!--                        팀원 : 김대연, 박광인, 서지민, 이건희, 이정현, 조상수 <br>-->
+<!--                        프로젝트명 : Happy pet's day<br>-->
+<!--                        작업공간 : 서울특별시 강남구 테헤란로 146 13층<br>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        ⓒ Elevenliter Inc. All Rights Reserved-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="footer&#45;&#45;section2">-->
+<!--                    <h1>고객센터</h1>-->
+<!--                    <h2>111-111-1111</h2>-->
+<!--                    <div>평일 11:00 ~ 18:00 ｜ 점심시간 13:00 ~ 14:00<br>-->
+<!--                        (토, 일요일 공휴일 휴무)-->
+<!--                    </div>-->
+<!--                    <div>고객문의 : official@elevenliter.com</div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </footer>-->
     <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
     <script th:src="@{/js/main/main.js}"></script>
 </body>
