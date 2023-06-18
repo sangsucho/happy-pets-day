@@ -1,0 +1,284 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Pretendard";
+  list-style-type: none;
+}
+
+:root {
+  --main-color: #68a4fe;
+  --main-font-color: #343434;
+  --border-bottom-color: #e3e3e3;
+  --hover-color: #dbe9ff;
+}
+
+#modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.4);
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#profile-box {
+  width: 500px;
+  padding-bottom: 30px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 20px;
+}
+
+#profile-contents {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* Modal Header */
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--border-bottom-color);
+  padding: 15px 30px;
+  margin-bottom: 50px;
+}
+
+.profile-title {
+  font-size: 20px;
+}
+
+.btn-close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-close img {
+  cursor: pointer;
+}
+
+/* 프로필 사진 설정 */
+.basic-photo {
+  position: relative;
+  display: inline-block;
+}
+
+.hidden {
+  display: none;
+}
+
+.file-circle {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border: 1px solid var(--border-bottom-color);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  bottom: 40px;
+  right: 0;
+}
+
+.file-circle .file-img {
+  display: block;
+  width: 70%;
+  height: 70%;
+}
+
+.change-default-img {
+  display: flex;
+  justify-content: center;
+}
+
+#uploaded-image {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+/* 프로필 정보 */
+#profile-info .field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.field .info-kind {
+  font-size: 20px;
+  font-weight: bold;
+  width: 100px;
+  color: var(--main-font-color);
+}
+
+.field .insert {
+  width: 200px;
+  height: 30px;
+  padding: 3px 7px;
+  border: 2px solid var(--border-bottom-color);
+  border-radius: 10px;
+}
+
+.field .birth {
+  width: 100px;
+  height: 30px;
+  padding: 3px 7px;
+  border: 2px solid var(--border-bottom-color);
+  border-radius: 10px;
+  margin-right: 3px;
+}
+
+.option-wrap span {
+  opacity: 0.7;
+  padding: 0 5px;
+  font-size: 18px;
+}
+
+.change_default-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.change_default-img button {
+  border: none;
+  background-color: transparent;
+  color: var(--main-color);
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* 동물 종류 */
+.dropdown {
+  position: relative;
+  z-index: 1;
+}
+
+.menu-list {
+  display: none;
+  position: absolute;
+  top: 42px;
+  width: 100%;
+  background-color: white;
+}
+
+.list {
+  border: 2px solid var(--border-bottom-color);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.list:hover {
+  background-color: var(--hover-color);
+}
+
+.list button {
+  color: var(--main-font-color);
+}
+
+#etcDirect {
+  width: 202px;
+  height: 30px;
+  padding: 3px 7px;
+  border: 2px solid var(--border-bottom-color);
+  border-radius: 10px;
+  margin-left: 100px;
+  margin-bottom: 20px;
+}
+
+.dropdown-btn {
+  background-color: transparent;
+  width: 220px;
+  height: 40px;
+  padding: 3px 7px;
+  border: 2px solid var(--border-bottom-color);
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--main-font-color);
+}
+
+li button {
+  padding: 10px 20px;
+  border: none;
+  background-color: transparent;
+}
+
+/* 저장하기 버튼 */
+form .update-btn_wrap {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.update-btn {
+  all: unset;
+  background-color: var(--main-color);
+  color: white;
+  padding: 10px 30px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+/* 별점 */
+
+.star-rating {
+  display: inline-block;
+  border: 0;
+  margin-right: 15px;
+}
+
+.star-rating > input {
+  display: none;
+}
+
+.star-rating > label {
+  float: right;
+  color: #ddd;
+}
+
+.star-rating > label:before {
+  display: inline-block;
+  font-size: 1rem;
+  padding: 0.3rem 0.2rem;
+  margin: 0;
+  cursor: pointer;
+  font-family: FontAwesome;
+  content: "\f005 ";
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: #68a4fe !important;
+}
+
+.star-rating label.active {
+  color: #68a4fe;
+}
+
+.comment-section {
+  width: 400px;
+  height: 200px;
+}
+
+.reply-section {
+  border: 1px solid var(--border-bottom-color);
+  border-radius: 10px;
+  width: 95%;
+  height: 95%;
+  padding-left: 10px;
+  padding-top: 10px;
+  font-size: 15px;
+  box-shadow: 0px 0px 32px 6px rgba(177, 180, 198, 0.2);
+  -webkit-box-shadow: 0px 0px 32px 6px rgba(177, 180, 198, 0.2);
+}
