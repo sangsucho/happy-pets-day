@@ -14,13 +14,13 @@
     integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" th:href="@{/css/strollBoard/calenderApi.css}">
-  <!-- text폰트Css -->
-<!--  <link rel="stylesheet" href="../static/css/font.css">-->
+  <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+  <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
 </head>
 
 <body>
 
-  <header class="header"></header>
+<header th:replace="fragment/header :: header"></header>
   <div class="globar-content-wrap">
 
     <form class="board-form" action="#" method="get" >
@@ -115,6 +115,7 @@
 
     </form>
   </div>
+<footer th:replace="fragment/footer :: footer"></footer>
   <!-- 폰트어썸 -->
   <script src="https://kit.fontawesome.com/c6992f5b12.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.js"></script>

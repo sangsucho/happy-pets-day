@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-  <link rel="stylesheet" href="../../static/css/fragment/footer.css">
+  <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
 </head>
 <body>
   <footer th:fragment="footer">
@@ -12,7 +12,7 @@
         <div class="footer--section1">
 <!--          메인페이지 이동-->
           <a href="">
-            <img src="../../img/logo2.png" alt="">
+            <img th:src="@{/img/logo2.png}" alt="">
           </a>
           <div class="footer--info">
             팀명 : NPE 단속반<br>
