@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" th:href="@{/css/recommend/petRecommendDetail.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
 </head>
 <body>
+<header th:replace="fragment/header :: header"></header>
 <div class="body-container">
     <div class="title">
         <div class="title-section1">댕냥 상담소</div>
@@ -31,5 +34,8 @@
         <div class="list-btn">목록</div>
     </a>
 </div>
+<footer th:replace="fragment/footer :: footer"></footer>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script th:src="@{/js/fragment/header.js}"></script>
 </body>
 </html>
