@@ -16,13 +16,13 @@
           <div class="header--container">
               <div class="header--sitter-btn">펫시터
                   <div class="header--sitter-container">
-                      <a href="">펫시터 예약</a>
-                      <a href="">펫시터 지원</a>
+                      <a th:href="@{/sitter/list}">펫시터 예약</a>
+                      <a th:href="@{/sitter/apply}">펫시터 지원</a>
                   </div>
               </div>
-              <a href="#">모임 게시판</a>
-              <a href="#">반려동물 추천</a>
-              <a href="#">반려동물 입양</a>
+              <a th:href="@{/stroll/list}">모임 게시판</a>
+              <a th:href="@{/recommend/main}">반려동물 추천</a>
+              <a th:href="@{/adopt/adoptionInformation}">반려동물 입양</a>
           </div>
     <!--      로그인 회원가입 등 컨테이너-->
           <div class="header--login-container">

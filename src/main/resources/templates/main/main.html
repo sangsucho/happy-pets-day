@@ -10,35 +10,6 @@
 </head>
 <body>
 <header th:replace="fragment/header :: header"></header>
-<!--    <header>-->
-<!--        <div class="header">-->
-<!--            &lt;!&ndash;      이미지 클릭시 메인페이지로 이동 url 채워야됨&ndash;&gt;-->
-<!--            <a href="#" class="header&#45;&#45;logo">-->
-<!--                <img src="../../img/logo.png" alt="">-->
-<!--            </a>-->
-<!--            &lt;!&ndash;      헤더 이동 탭 컨테이너&ndash;&gt;-->
-<!--            <div class="header&#45;&#45;container">-->
-<!--                <div class="header&#45;&#45;sitter-btn">펫시터-->
-<!--                    <div class="header&#45;&#45;sitter-container">-->
-<!--                        <a href="">펫시터 예약</a>-->
-<!--                        <a href="">펫시터 지원</a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <a href="#">모임 게시판</a>-->
-<!--                <a href="#">반려동물 추천</a>-->
-<!--                <a href="#">반려동물 입양</a>-->
-<!--            </div>-->
-<!--            &lt;!&ndash;      로그인 회원가입 등 컨테이너&ndash;&gt;-->
-<!--            <div class="header&#45;&#45;login-container">-->
-<!--                &lt;!&ndash;          로그인 정보 없을 때&ndash;&gt;-->
-<!--                <a href="#" class="header&#45;&#45;join-btn header&#45;&#45;btn header&#45;&#45;white-btn">회원가입</a>-->
-<!--                <a href="#" class="header&#45;&#45;login-btn header&#45;&#45;btn header&#45;&#45;blue-btn">로그인</a>-->
-<!--                &lt;!&ndash;          로그인 정보 있을 때&ndash;&gt;-->
-<!--                &lt;!&ndash;          <a href="" class="mypage-btn header-btn white-btn">마이페이지</a>&ndash;&gt;-->
-<!--                &lt;!&ndash;          <a href="" class="logout-btn header-btn blue-btn">로그아웃</a>&ndash;&gt;-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </header>-->
     <main>
         <div class="header-section">
             <div class="header-section-container">
@@ -55,7 +26,7 @@
                     <div>
                         <h1>펫시터 예약</h1>
                         <h2>믿음직한 펫시터!<br>필요한날 예약하세요.</h2>
-                        <a href="">펫시터 예약하기</a>
+                        <a th:href="@{/sitter/list}">펫시터 예약하기</a>
                     </div>
                     <img th:src="@{/img/dog.png}" alt="">
                 </div>
@@ -63,7 +34,7 @@
                     <div>
                         <h1>펫시터 지원</h1>
                         <h2>펫시터를 하고싶다면<br>쉽고 빠르게 지원해보세요.</h2>
-                        <a href="">펫시터 지원하기</a>
+                        <a th:href="@{/sitter/apply}">펫시터 지원하기</a>
                     </div>
                     <img th:src="@{/img/cat.png}" alt="">
                 </div>
@@ -71,8 +42,8 @@
             <div class="sitter-section2">
                 <div class="sitter-section2-title">인기 많은 <span>펫시터</span> 확인하세요</div>
                 <div class="sitter-container">
-<!--                    인기 펫시터 정보 3개 여기 div.sitter-info 한개 뽑아서 반복 세번-->
-                    <div class="sitter-info">
+<!--                    인기 펫시터 정보 3개 여기 a.sitter-info 한개 뽑아서 반복 세번-->
+                    <a th:href="@{/sitter/profile}" class="sitter-info">
                         <img th:src="@{/img/KakaoTalk_20230524_113238743_06.jpg}" alt="">
                         <div class="sitter-info-container">
 <!--                            시터 이름-->
@@ -80,21 +51,21 @@
 <!--                            시터 정보-->
                             <div class="sitter-comment">동물을 사랑하는 시터</div>
                         </div>
-                    </div>
-                    <div class="sitter-info">
+                    </a>
+                    <a class="sitter-info">
                         <img th:src="@{/img/KakaoTalk_20230524_113238743_06.jpg}" alt="">
                         <div class="sitter-info-container">
                             <div class="sitter-name">박광인</div>
                             <div class="sitter-comment">동물을 사랑하는 시터</div>
                         </div>
-                    </div>
-                    <div class="sitter-info">
+                    </a>
+                    <a class="sitter-info">
                         <img th:src="@{/img/KakaoTalk_20230524_113238743_06.jpg}" alt="">
                         <div class="sitter-info-container">
                             <div class="sitter-name">박광인</div>
                             <div class="sitter-comment">동물을 사랑하는 시터</div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -103,7 +74,7 @@
                 <div class="board-section-title">
                     <h1>산책 모임 게시판</h1>
 <!--                    산책 게시판 이동 href 작성-->
-                    <a href="">더보기 <span>&gt</span></a>
+                    <a th:href="@{/stroll/list}">더보기 <span>&gt</span></a>
                 </div>
                 <div class="board-section-body">
                     <div class="board-section-body-img">
@@ -115,7 +86,7 @@
                     </div>
                     <div class="board-section-body-list">
 <!--                        게시판 리스트 3개 반복 href 게시글 보기 설정-->
-                        <a class="board-list" href="">
+                        <a class="board-list" th:href="@{stroll/view}">
                             <div class="board-list-container">
                                 <div class="board-title-container">
                                     <div class="board-title">제목</div>
@@ -174,7 +145,8 @@
                 <div class="recommend-section-title">
                     <h1>반려동물 선택에<br>어려움이 있나요?</h1>
                     <h5>강아지부터 고양이, 다른 종까지<br>취향에 따라 추천해드려요!</h5>
-                    <a href="" class="recommend-btn">반려동물 추천받기</a>
+<!--                    추천 href설정-->
+                    <a th:href="@{/recommend/main}" class="recommend-btn">반려동물 추천받기</a>
                 </div>
                 <img src="https://lifet.co.kr/img/landing/visual/new_slider02.png" alt="" class="recommend-section-img">
             </div>
@@ -184,11 +156,11 @@
                 <div class="adopt-section-title">
                     <h1>보호중인 아이들</h1>
 <!--                    입양정보 페이지 이동 href설정-->
-                    <a href="">더보기 <span>&gt</span></a>
+                    <a th:href="@{/adopt/adoptionInformation}">더보기 <span>&gt</span></a>
                 </div>
                 <div class="adopt-section-content-container">
 <!--                    adopt-section-content 3번 반복, 각 입양정보 게시글 이동 href설정-->
-                    <a href="" class="adopt-section-content">
+                    <a th:href="@{/}" class="adopt-section-content">
                         <img th:src="@{/img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg}" alt="">
                         <div>
                             <span>마포센터</span>
@@ -216,37 +188,7 @@
             </div>
         </div>
     </main>
-
 <footer th:replace="fragment/footer :: footer"></footer>
-<!--    <footer>-->
-<!--        <div class="footer">-->
-<!--            <div class="footer&#45;&#45;container">-->
-<!--                <div class="footer&#45;&#45;section1">-->
-<!--                    &lt;!&ndash;          메인페이지 이동&ndash;&gt;-->
-<!--                    <a href="">-->
-<!--                        <img th:src="@{/img/logo2.png}" alt="">-->
-<!--                    </a>-->
-<!--                    <div class="footer&#45;&#45;info">-->
-<!--                        팀명 : NPE 단속반<br>-->
-<!--                        팀원 : 김대연, 박광인, 서지민, 이건희, 이정현, 조상수 <br>-->
-<!--                        프로젝트명 : Happy pet's day<br>-->
-<!--                        작업공간 : 서울특별시 강남구 테헤란로 146 13층<br>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        ⓒ Elevenliter Inc. All Rights Reserved-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="footer&#45;&#45;section2">-->
-<!--                    <h1>고객센터</h1>-->
-<!--                    <h2>111-111-1111</h2>-->
-<!--                    <div>평일 11:00 ~ 18:00 ｜ 점심시간 13:00 ~ 14:00<br>-->
-<!--                        (토, 일요일 공휴일 휴무)-->
-<!--                    </div>-->
-<!--                    <div>고객문의 : official@elevenliter.com</div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </footer>-->
     <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
     <script th:src="@{/js/main/main.js}"></script>
 </body>

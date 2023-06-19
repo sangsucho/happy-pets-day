@@ -1,7 +1,7 @@
-$('.header--seater-btn').hover(function(){
-    $('.header--seater-container').css('display', 'flex');
+$('.header--sitter-btn').hover(function(){
+    $('.header--sitter-container').css('display', 'flex');
 },function(){
-    $('.header--seater-container').css("display", "none");
+    $('.header--sitter-container').css("display", "none");
 });
 
 
