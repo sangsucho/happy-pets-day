@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>strollBoarddView</title>
+  <title>strollBoardView</title>
   <link rel="stylesheet" th:href="@{/css/strollBoard/strollBoardView.css}">
   <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
   <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
@@ -18,30 +18,26 @@
 
   <div class="globar-content-wrap">
     <!-- 산책모임 게시글 번호 -->
-    <input type="hidden" class="stroll-board-number" name="strollBoardNumber" value="산책게시글 번호">
+    <input type="hidden" class="stroll-board-number" name="strollBoardNumber" th:value="${board.strollBoardNumber}">
     <!-- 제목영역 -->
     <div class="board-view-title-wrap">
 
       <div class="title-container">
-        <div class="administrative-district">
-          <!-- 행정구역 -->
-          서울시 강남구
+        <div class="administrative-district" th:text="${board.strollBoardAdminDistrict}">
         </div>
 
         <!-- 게시글 제목 -->
-        <div class="board-title">
-          제목
+        <div class="board-title" th:text="${board.strollBoardTitle}">
         </div>
 
         <!-- 게시글 등록, 수정날짜 영역 -->
         <div class="board-register-and-update-wrap">
-          <div class="board-info">
-            작성자 : 작성자 이름 | 등록일 : 2023-05-24 | 수정일 : 2023-05-24
+          <div class="board-info" th:text="'작성자 : 작성자 이름 | 등록일 :'+ ${board.strollBoardRegisterDate}+ '| 수정일 :' +${board.strollBoardUpdateDate}">
           </div>
 
           <!-- 모임 날짜 -->
           <div class="meeting-date">
-            산책 날짜 : <b>2023-06-14</b>
+            산책 날짜 : <b th:text="${board.strollBoardMeetingDate}"></b>
           </div>
           <span class="view-count">조회수 : 14</span>
         </div>
@@ -52,17 +48,8 @@
 
     <!-- 게시글 내용 영역 -->
     <div class="board-view-content-wrap">
-      <div class="board-content">
-        <!-- 게시글 내용 -->
-        게시글 내용 이다~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~게시글 내용 이다~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~게시글 내용
-        이다~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~게시글 내용 이다~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~게시글 내용
-        이다~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~게시글 내용 이다~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~게시글 내용
-        이다~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        https://www.naver.com/
-      </div>
+      <div class="board-content" th:text="${board.strollBoardContent}"></div>
     </div>
-
-
     <!-- 카카오 지도 api영역 -->
     <div class="kakao-map-api-wrap">
       <div id="map"></div>
@@ -81,8 +68,6 @@
               <img src="https://cdn.greenpostkorea.co.kr/news/photo/201610/67579_51594_art_1475555843.jpg" alt=""
                 class="default-profile">
               <!-- <img src="https://lifet.co.kr/img/profile/default.png" alt="" class="default-profile"> -->
-
-
             </div>
             <div class="profile-info2">
               <div class="name">이름 :<b> 백설이</b></div>
@@ -185,6 +170,12 @@
 
   <footer th:replace="fragment/footer :: footer"></footer>
   <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+  <script>
+    const boardLat = [[${board.strollBoardLat}]];
+    const boardLng = [[${board.strollBoardLng}]];
+  </script>
+
+
   <!-- 카카오지도 api js -->
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3dc12d7c2624483dc7c019a0a91b727f&libraries=services"></script>
   <script th:src="@{/js/fragment/header.js}"></script>

@@ -1,6 +1,5 @@
 
-const boardLat = 37.509917862726915;
-const boardLng = 127.09918139556441;
+
 
 
 
