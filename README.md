@@ -24,5 +24,6 @@ body 제일상단
 body 제일 하단
 ```html
 <footer th:replace="fragment/footer :: footer"></footer>
+<script th:src="@{/js/fragment/header.js}"></script>
 ```
 붙여넣기
