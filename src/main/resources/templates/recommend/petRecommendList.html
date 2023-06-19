@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" th:href="@{/css/recommend/petRecommendList.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
 </head>
 <body>
+<header th:replace="fragment/header :: header"></header>
     <div class="body-header-container">
         <div class="body-header">
             <h1 class="header-title">
@@ -68,7 +71,9 @@
             <div class="recommend-item-name">골든 리트리버</div>
         </a>
     </div>
+    <footer th:replace="fragment/footer :: footer"></footer>
     <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
     <script th:src="@{/js/recommend/petRecommendList.js}"></script>
+    <script th:src="@{/js/fragment/header.js}"></script>
 </body>
 </html>

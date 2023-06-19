@@ -319,6 +319,7 @@ a{
 }
 
 .sitter-info{
+    display: block;
     width: 370px;
     height: 245px;
     position: relative;
