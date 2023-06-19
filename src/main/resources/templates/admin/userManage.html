@@ -6,10 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>관리자 | 전체회원관리</title>
   <link rel="stylesheet" th:href="@{/css/admin/userManage.css}">
+  <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+  <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
 </head>
 
 <body>
-<header class="real-header">header (기존헤더에 '관리자' 메뉴만 추가)</header>
+<header th:replace="fragment/header :: header"></header>
+
 <div class="whole-container">
 
   <div class="side-menubar">
@@ -139,8 +142,12 @@
 
 
   </div>
+  </div>
+
+  <footer th:replace="fragment/footer :: footer"></footer>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script th:src="@{/js/admin/userManage.js}"></script>
+  <script th:src="@{/js/fragment/header.js}"></script>
 </body>
 
 </html>
