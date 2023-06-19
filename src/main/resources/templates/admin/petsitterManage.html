@@ -6,10 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>관리자 | 펫시터회원관리</title>
   <link rel="stylesheet" th:href="@{/css/admin/petsitterManage.css}">
+  <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+  <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
 </head>
 
 <body>
-<header class="real-header">header (기존헤더에 '관리자' 메뉴만 추가)</header>
+<header th:replace="fragment/header :: header"></header>
+
 <div class="whole-container">
 
   <div class="side-menubar">
@@ -146,6 +149,10 @@
 
 
   </div>
+  </div>
+
+  <footer th:replace="fragment/footer :: footer"></footer>
+  <script th:src="@{/js/fragment/header.js}"></script>
 </body>
 
 </html>
