@@ -33,6 +33,9 @@ class UserMapperTest {
         userDto.setUserAddress("인천 중구");
         userDto.setQuestionNumber(2);
         userDto.setFindPasswordAnswer("강아지");
+        userDto.setUserZoneCode(467);
+        userDto.setUserAddressDetail("303호");
+        userDto.setUserAddressTip("면목동");
     }
 
     @Test

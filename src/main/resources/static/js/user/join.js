@@ -113,8 +113,8 @@ document.addEventListener("DOMContentLoaded", function () {
     yearRange: "1930:2023",
   });
 
+  $(".datepicker").datepicker();
   $(".datepicker").on("click", function () {
-    $(".datepicker").datepicker();
   });
 
   // 핸드폰번호 유효성 검사
@@ -157,6 +157,28 @@ document.addEventListener("DOMContentLoaded", function () {
   //     pwConfirmMsg.classList.remove("error");
   //   }
   // });
+
+  function checkUserIdAvailability(userId) {
+    // AJAX 호출을 통해 서버에 아이디 중복 검사 요청
+    $.ajax({
+      url: "/checkUserIdAvailability", // 중복 검사를 수행하는 서버 API 경로
+      method: "GET",
+      data: { userId: userId },
+      success: function(response) {
+        if (response.available) {
+          // 아이디 사용 가능
+          $(".confirmMsg").text("사용 가능한 아이디입니다.").removeClass("error").addClass("success");
+        } else {
+          // 아이디 중복
+          $(".confirmMsg").text("이미 사용 중인 아이디입니다.").removeClass("success").addClass("error");
+        }
+      },
+      error: function() {
+        // 오류 처리
+        $(".confirmMsg").text("중복 검사 중 오류가 발생했습니다.").removeClass("success").addClass("error");
+      }
+    });
+  }
 
   // 비밀번호 확인 유효성 검사
   RepwInput.addEventListener("input", function () {
@@ -272,16 +294,16 @@ function selectAddress() {
           extraAddr = " (" + extraAddr + ")";
         }
         // 조합된 참고항목을 해당 필드에 넣는다.
-        document.getElementById("select_extraAddress").value = extraAddr;
+        document.getElementById("userAddressTip").value = extraAddr;
       } else {
-        document.getElementById("select_extraAddress").value = "";
+        document.getElementById("userAddressTip").value = "";
       }
 
       // 우편번호와 주소 정보를 해당 필드에 넣는다.
-      document.getElementById("select_postcode").value = data.zonecode;
-      document.getElementById("select_address").value = addr;
+      document.getElementById("userZoneCode").value = data.zonecode;
+      document.getElementById("userAddress").value = addr;
       // 커서를 상세주소 필드로 이동한다.
-      document.getElementById("select_detailAddress").focus();
+      document.getElementById("userAddressDetail").focus();
     },
   }).open();
 }

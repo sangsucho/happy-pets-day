@@ -11,4 +11,6 @@ public interface UserMapper {
      void insert(UserDto userDto);
 //    회원번호,상태 조회(로그인)
      UserDto selectUserNumberAndStatus(@Param("userId")String userId, @Param("userPassword")String userPassword);
+//     아이디 중복검사
+     int countByUserId(@Param("userId") String userId);
 }
