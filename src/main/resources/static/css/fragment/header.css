@@ -37,6 +37,9 @@ header{
     align-items: center;
 }
 
+
+
+
 .header--logo{
     display: flex;
     justify-content: center;
@@ -49,13 +52,15 @@ header{
 }
 
 .header--container{
+    width: 600px;
+}
+.header--sub-container{
     display: flex;
-    margin-left: 30px;
-    margin-right: 200px;
     font-size: 18px;
+    justify-content: flex-start;
 }
 
-.header--container > a{
+.header--sub-container > a{
     margin-left: 50px;
     line-height: 70px;
 }
