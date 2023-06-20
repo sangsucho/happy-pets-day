@@ -208,29 +208,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function toggleSelectList() {
   var selectList = document.getElementById("selectList");
-  selectList.style.display =
-    selectList.style.display === "none" ? "block" : "none";
+  selectList.style.display = selectList.style.display === "none" ? "block" : "none";
 }
 
 function selectQuestion(questionIndex) {
-  var questionText =
-    document.getElementsByClassName("select-item")[questionIndex].innerText;
+  var questionText = document.getElementsByClassName("select-item")[questionIndex].innerText;
   var selectedQuestion = document.getElementById("selectedQuestion");
-  selectedQuestion.innerText = questionText;
-  selectedQuestion.style.color = "black"; // 폰트 색상을 블랙으로 변경
+  var questionNumberInput = document.querySelector('.questionNumber');
 
-  toggleSelectList(); // selectList 숨기기
+  selectedQuestion.innerText = questionText;
+  selectedQuestion.style.color = "black";
+  questionNumberInput.value = questionIndex + 1; // questionIndex에 1을 더하여 대입
+
+  toggleSelectList();
 }
+
 
 function selectList(select) {
   var selectBox = document.querySelector(".question-select-box");
-  var selectedQuestion = document.getElementById("answer");
+  var answer = document.getElementById("answer");
 
   selectBox.innerHTML = select;
-  selectedQuestion.value = select;
+  answer.value = select;
 
-  toggleSelectList(); // selectList 숨기기
+  toggleSelectList();
 }
+
 
 // 카카오 주소 api
 function selectAddress() {
