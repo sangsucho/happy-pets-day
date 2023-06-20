@@ -2,6 +2,7 @@ package com.example.happypetsday.service.stroll;
 
 import com.example.happypetsday.dto.StrollBoardDto;
 import com.example.happypetsday.mapper.StrollBoardMapper;
+import com.example.happypetsday.vo.StrollBoardVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,14 +23,22 @@ public class StrollService {
         strollBoardMapper.insert(strollBoardDto);
     }
 
-//   게시글 하나 조회
+//   게시글 번호로 게시글 하나 조회
     @Transactional(readOnly = true)
-    public StrollBoardDto findBoard(Long strollBoardNumber){
+    public StrollBoardVo findBoard(Long strollBoardNumber){
         if(strollBoardNumber==null){
             throw new IllegalArgumentException("게시글 번호 누락");
         }
         return Optional.ofNullable(strollBoardMapper.selectOnd(strollBoardNumber))
                 .orElseThrow(()->{throw new IllegalArgumentException("존재하지 않는 게시글 번호");});
+    }
+
+//   게시글 조회 수 업데이트
+    public void modifyViewCount(Long strollBoardNumber){
+        if(strollBoardNumber==null){
+            throw new IllegalArgumentException("게시글 번호 누락(조회수 없데이트)");
+        }
+        strollBoardMapper.updateViewCount(strollBoardNumber);
     }
 
 

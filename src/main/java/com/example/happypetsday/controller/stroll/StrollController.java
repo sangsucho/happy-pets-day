@@ -4,6 +4,7 @@ import com.example.happypetsday.dto.PetDto;
 import com.example.happypetsday.dto.StrollBoardDto;
 import com.example.happypetsday.service.pet.PetService;
 import com.example.happypetsday.service.stroll.StrollService;
+import com.example.happypetsday.vo.StrollBoardVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,9 +27,10 @@ public class StrollController {
 
     @GetMapping("/view")
     public String boardView(Long strollBoardNumber,Model model,HttpServletRequest req){
-//        Long userNumber = (Long)req.getSession().getAttribute("userNumber");
-//        model.addAttribute("pet",petService.findPet(userNumber));
-        model.addAttribute("board",strollService.findBoard(strollBoardNumber));
+        strollService.modifyViewCount(strollBoardNumber);
+
+        StrollBoardVo strollBoard = strollService.findBoard(strollBoardNumber);
+        model.addAttribute("board", strollBoard);
         return "strollBoard/strollBoardView";
     }
 
