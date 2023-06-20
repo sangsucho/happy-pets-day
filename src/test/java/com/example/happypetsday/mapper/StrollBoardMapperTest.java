@@ -1,6 +1,7 @@
 package com.example.happypetsday.mapper;
 
 import com.example.happypetsday.dto.StrollBoardDto;
+import com.example.happypetsday.vo.StrollBoardVo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -40,7 +41,7 @@ class StrollBoardMapperTest {
     void insertAndSelectOnd() {
         strollBoardMapper.insert(strollBoard);
 
-        StrollBoardDto findBoard = strollBoardMapper.selectOnd(strollBoard.getStrollBoardNumber());
+        StrollBoardVo findBoard = strollBoardMapper.selectOnd(strollBoard.getStrollBoardNumber());
 
         assertThat(findBoard.getStrollBoardNumber()).isEqualTo(strollBoard.getStrollBoardNumber());
     }
