@@ -25,13 +25,13 @@
     </select>
 
     <select id="selectUserInfoByUserNumber" resultType="userDto">
-        SELECT USER_ID, USER_PASSWORD, USER_NAME, USER_GENDER, USER_EMAIL, TO_CHAR(USER_BIRTH, 'YYYY-MM-DD') AS USER_BIRTH, USER_PHONE_NUMBER, USER_ADDRESS
+        SELECT USER_ID, USER_PASSWORD, USER_NAME, USER_GENDER, USER_EMAIL, TO_CHAR(USER_BIRTH, 'YYYY-MM-DD') AS USER_BIRTH, USER_PHONE_NUMBER, USER_ADDRESS, USER_ZONE_CODE,  USER_ADDRESS_DETAIL, USER_ADDRESS_TIP
         FROM TBL_USER WHERE USER_NUMBER = #{userNumber}
     </select>
 
-    <update id="update">
+    <update id="update" parameterType="userDto">
         UPDATE TBL_USER
-        SET USER_PASSWORD = #{userPassword}, USER_EMAIL = #{userEmail}, USER_BIRTH = #{userBirth}, USER_PHONE_NUMBER = #{userPhoneNumber}, USER_ADDRESS = #{userAddress}
+        SET USER_PASSWORD = #{userPassword}, USER_EMAIL = #{userEmail}, USER_BIRTH = #{userBirth}, USER_PHONE_NUMBER = #{userPhoneNumber}, USER_ADDRESS = #{userAddress}, USER_ZONE_CODE = #{userZoneCode}, USER_ADDRESS_DETAIL = #{userAddressDetail}, USER_ADDRESS_TIP = #{userAddressTip}
         WHERE USER_NUMBER = #{userNumber}
     </update>
 

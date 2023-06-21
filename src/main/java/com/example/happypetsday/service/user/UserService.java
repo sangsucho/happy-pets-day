@@ -71,5 +71,13 @@ public class UserService {
                 .orElseThrow(()->{throw new IllegalArgumentException("존재하지 않는 회원입니다.");});
     }
 
+//    회원정보 수정
+    public void editUserInfo(UserDto userDto){
+        if (userDto == null){
+            throw new IllegalArgumentException("회원정보 누락");
+        }
+        userMapper.update(userDto);
+    }
+
 
 }
