@@ -65,15 +65,15 @@
                 <div class="profile-card">
                     <div class="profile-info">
                         <!-- 이미지 분기처리 -->
-                        <th:block th:if="*{petFileName==null}" >
-                         <img src="https://lifet.co.kr/img/profile/default.png" alt="" class="default-profile">
+                        <th:block th:if="*{petFileName==null}">
+                            <img src="https://lifet.co.kr/img/profile/default.png" alt="" class="default-profile">
                         </th:block>
 
                         <th:block th:unless="*{petFileName==null}">
-                        <!-- 펫 등록 완료되면 이미지 경로 수정하기 db에서는 다 가져왔음-->
-                        <img src="https://lifet.co.kr/img/profile/default.png"
-                             alt=""
-                             class="default-profile">
+                            <!-- 펫 등록 완료되면 이미지 경로 수정하기 db에서는 다 가져왔음-->
+                            <img src="https://lifet.co.kr/img/profile/default.png"
+                                 alt=""
+                                 class="default-profile">
                         </th:block>
 
                     </div>
@@ -96,12 +96,17 @@
 
         <div class="modify-delete-box">
 
-            <button type="button" class="board-modify-btn control-btn">
-                수정
-            </button>
-            <button type="button" class="board-delete-btn control-btn">
-                삭제
-            </button>
+            <th:block th:if="${session.userNumber == board.userNumber || session.adminNumber != null }">
+
+                <th:block th:if="${session.userNumber == board.userNumber}">
+                    <button type="button" class="board-modify-btn control-btn">
+                        수정
+                    </button>
+                </th:block>
+                <button type="button" class="board-delete-btn control-btn">
+                    삭제
+                </button>
+            </th:block>
 
             <button type="button" class="control-btn list-btn">
                 목록
@@ -182,6 +187,7 @@
     const boardLat = [[${board.strollBoardLat}]];
     const boardLng = [[${board.strollBoardLng}]];
     const place = `[[${board.strollBoardMeetingPlace}]]`;
+    const date = `[[${board.strollBoardMeetingDate}]]`;
 </script>
 <!-- 카카오지도 api js -->
 <script type="text/javascript"

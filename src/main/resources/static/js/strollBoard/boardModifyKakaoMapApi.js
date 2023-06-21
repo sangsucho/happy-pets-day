@@ -1,7 +1,7 @@
 // 지도를 표시할 div와 초기 환경 설정
 const mapContainer = document.getElementById('map');
 const mapOption = {
-    center: new kakao.maps.LatLng(37.49947087294, 127.0358208842),
+    center: new kakao.maps.LatLng(boardLat, boardLng),
     level: 3
 };
 
@@ -13,7 +13,10 @@ const geocoder = new kakao.maps.services.Geocoder();
 const ps = new kakao.maps.services.Places();
 
 // 마커와 인포윈도우 생성
-const marker = new kakao.maps.Marker();
+let marker = new kakao.maps.Marker({
+    map: map,
+    position: new kakao.maps.LatLng(boardLat, boardLng)
+});
 const infowindow = new kakao.maps.InfoWindow({zindex:1});
 
 // 현재 지도 중심좌표로 주소를 검색해서 지도 좌측 상단에 표시
@@ -48,7 +51,6 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 
         $('.marker-lat').val(lat);
         $('.marker-lng').val(lng);
-
 
 
     });

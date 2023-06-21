@@ -25,7 +25,11 @@ public class StrollService {
         strollBoardMapper.insert(strollBoardDto);
     }
 
-//   게시글 번호로 게시글 하나 조회
+    /**
+     * 게시글 번호로 게시글 하나 조회(게시글 보기용)
+     * @param strollBoardNumber
+     * @return StrollBoardVo
+     */
     @Transactional(readOnly = true)
     public StrollBoardVo findBoard(Long strollBoardNumber){
         if(strollBoardNumber==null){
@@ -70,7 +74,11 @@ public class StrollService {
         strollBoardMapper.update(strollBoardDto);
     }
 
-//   게시글 1개 조회(수정용)
+    /**
+     * 게시글 1개 조회(수정용)
+     * @param strollBoardNumber
+     * @return StrollBoardDto
+     */
     @Transactional(readOnly = true)
     public StrollBoardDto findBoardToModify(Long strollBoardNumber){
         if(strollBoardNumber==null){

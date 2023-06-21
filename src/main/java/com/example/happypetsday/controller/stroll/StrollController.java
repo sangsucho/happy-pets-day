@@ -82,8 +82,22 @@ public class StrollController {
         return new RedirectView("/stroll/list");
     }
 
+//    게시글 수정 화면 이동
+    @GetMapping("/modify")
+    public String strollBoardModify(Long strollBoardNumber,Model model, HttpServletRequest req){
+        Long userNumber = (Long)req.getSession().getAttribute("userNumber");
+        List<PetDto> petList = petService.findPet(userNumber);
 
+        model.addAttribute("petList", petList);
+        model.addAttribute("board", strollService.findBoardToModify(strollBoardNumber));
+        return "strollBoard/strollBoardModify";
+    }
 
+    @PostMapping("/modify")
+    public RedirectView strollBoardModify(StrollBoardDto strollBoardDto){
+        strollService.modify(strollBoardDto);
+        return new RedirectView("/stroll/view?strollBoardNumber="+strollBoardDto.getStrollBoardNumber());
+    }
 
 
 
