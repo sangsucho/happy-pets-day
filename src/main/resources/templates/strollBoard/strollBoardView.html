@@ -18,7 +18,7 @@
 
 <div class="globar-content-wrap" th:object="${board}">
     <!-- 산책모임 게시글 번호 -->
-    <input type="hidden" class="stroll-board-number" name="strollBoardNumber" th:value="*{strollBoardNumber}">
+    <input type="hidden" class="boardNum" name="strollBoardNumber" th:value="*{strollBoardNumber}">
     <!-- 제목영역 -->
     <div class="board-view-title-wrap">
 
@@ -65,15 +65,15 @@
                 <div class="profile-card">
                     <div class="profile-info">
                         <!-- 이미지 분기처리 -->
-                        <th:block th:if="*{petFileName==null}" >
-                         <img src="https://lifet.co.kr/img/profile/default.png" alt="" class="default-profile">
+                        <th:block th:if="*{petFileName==null}">
+                            <img src="https://lifet.co.kr/img/profile/default.png" alt="" class="default-profile">
                         </th:block>
 
                         <th:block th:unless="*{petFileName==null}">
-                        <!-- 펫 등록 완료되면 이미지 경로 수정하기 db에서는 다 가져왔음-->
-                        <img src="https://lifet.co.kr/img/profile/default.png"
-                             alt=""
-                             class="default-profile">
+                            <!-- 펫 등록 완료되면 이미지 경로 수정하기 db에서는 다 가져왔음-->
+                            <img src="https://lifet.co.kr/img/profile/default.png"
+                                 alt=""
+                                 class="default-profile">
                         </th:block>
 
                     </div>
@@ -95,12 +95,19 @@
     <div class="board-modify-delete-btn-wrap">
 
         <div class="modify-delete-box">
-            <button type="button" class="board-modify-btn control-btn">
-                수정
-            </button>
-            <button type="button" class="board-delete-btn control-btn">
-                삭제
-            </button>
+
+            <th:block th:if="${session.userNumber == board.userNumber || session.adminNumber != null }">
+
+                <th:block th:if="${session.userNumber == board.userNumber}">
+                    <button type="button" class="board-modify-btn control-btn">
+                        수정
+                    </button>
+                </th:block>
+                <button type="button" class="board-delete-btn control-btn">
+                    삭제
+                </button>
+            </th:block>
+
             <button type="button" class="control-btn list-btn">
                 목록
             </button>
@@ -164,9 +171,30 @@
                 </div>
             </div>
             <!-- 댓글 반복 끝 -->
-
-
         </div>
+        <div class="pagination">
+            <ul>
+                <!-- ========== 페이징 처리 예시 ============ -->
+                <li  ><a href="#" class="prev">&lt;</a></li>
+                    <li ><a href="#" class="active">1</a></li>
+                    <li ><a href="#" >2</a></li>
+                    <li ><a href="#" >3</a></li>
+                    <li ><a href="#" >4</a></li>
+                    <li ><a href="#" >5</a></li>
+                <li ><a href="#" class="next">&gt;</a></li>
+<!--                <li  th:if="${pageInfo.prev}"><a th:href="@{/stroll/list(page=${pageInfo.startPage-1})}" class="prev">&lt;</a></li>-->
+
+<!--                <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">-->
+<!--                    <li th:if="${i == pageInfo.criteria.page}"><a th:href="@{/stroll/list/(page=${i})}" class="active" th:text="${i}"></a></li>-->
+<!--                    <li th:unless="${i == pageInfo.criteria.page}"><a th:href="@{/stroll/list/(page=${i})}" th:text="${i}"></a></li>-->
+<!--                </th:block>-->
+
+
+<!--                <li th:if="${pageInfo.next}"><a th:href="@{/stroll/list(page=${pageInfo.endPage+1})}" class="next">&gt;</a></li>-->
+                <!-- ========== /페이징 처리 예시 ============ -->
+            </ul>
+        </div>
+
 
 
     </div>
@@ -180,6 +208,7 @@
     const boardLat = [[${board.strollBoardLat}]];
     const boardLng = [[${board.strollBoardLng}]];
     const place = `[[${board.strollBoardMeetingPlace}]]`;
+    const date = `[[${board.strollBoardMeetingDate}]]`;
 </script>
 <!-- 카카오지도 api js -->
 <script type="text/javascript"

@@ -22,7 +22,6 @@ $(document).ready(function() {
     });
 });
 
-
 $('.board-write-btn').on('click',function(e){
     if(!($('.marker-lat').val()||$('.marker-lng').val())){
         e.preventDefault();

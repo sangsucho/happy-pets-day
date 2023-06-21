@@ -73,13 +73,13 @@ input:focus {
 
 /* 같이 산책할 본인의 반려동물 선택 부분 */
 .my-pet-list-wrap{
-  height: 85px;
+  height: auto;
   width: 100%;
   margin-bottom: 15px;
 }
 
 .my-pet-list-box{
-  height: 85px;
+  height: 75px;
   width: 100%;
   margin-bottom: 15px;
   display: flex;
