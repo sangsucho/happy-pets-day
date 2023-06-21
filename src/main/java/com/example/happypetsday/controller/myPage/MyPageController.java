@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/myPage/*")
 @Slf4j
+@RequestMapping("/myPage")
 public class MyPageController {
     private final UserService userService;
 
@@ -25,7 +25,7 @@ public class MyPageController {
         return "myPage/addPet";
     }
 
-    @GetMapping("/main")
+    @GetMapping("/myPage")
     public String myPage() { return "myPage/myPage"; }
     @GetMapping("/myPage")
     public String myPage(HttpServletRequest req, Model model) {
