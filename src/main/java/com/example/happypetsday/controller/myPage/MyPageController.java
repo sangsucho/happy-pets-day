@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/myPage")
+@RequestMapping("/myPage/*")
 public class MyPageController {
     private final UserService userService;
 
