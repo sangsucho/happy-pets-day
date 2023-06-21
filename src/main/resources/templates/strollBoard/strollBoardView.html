@@ -18,7 +18,7 @@
 
 <div class="globar-content-wrap" th:object="${board}">
     <!-- 산책모임 게시글 번호 -->
-    <input type="hidden" class="stroll-board-number" name="strollBoardNumber" th:value="*{strollBoardNumber}">
+    <input type="hidden" class="boardNum" name="strollBoardNumber" th:value="*{strollBoardNumber}">
     <!-- 제목영역 -->
     <div class="board-view-title-wrap">
 
@@ -95,12 +95,14 @@
     <div class="board-modify-delete-btn-wrap">
 
         <div class="modify-delete-box">
+
             <button type="button" class="board-modify-btn control-btn">
                 수정
             </button>
             <button type="button" class="board-delete-btn control-btn">
                 삭제
             </button>
+
             <button type="button" class="control-btn list-btn">
                 목록
             </button>

@@ -8,6 +8,7 @@ import com.example.happypetsday.vo.Criteria;
 import com.example.happypetsday.vo.PageVo;
 import com.example.happypetsday.vo.StrollBoardVo;
 import lombok.RequiredArgsConstructor;
+import net.bytebuddy.dynamic.scaffold.inline.RebaseImplementationTarget;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,13 +58,14 @@ public class StrollController {
 //    산책 게시글 작성
     @PostMapping("/write")
     public RedirectView boardWrite(StrollBoardDto strollBoardDto,HttpServletRequest req){
+        System.out.println(strollBoardDto);
         strollBoardDto.setUserNumber((Long)req.getSession().getAttribute("userNumber"));
         strollService.register(strollBoardDto);
 
         return new RedirectView("/stroll/list");
     }
 
-
+//   전체 게시글 목록 가져오기
     @GetMapping("/list")
     public String strollBoardList(Criteria criteria, Model model){
         List<StrollBoardVo> boardList = strollService.findAll(criteria);
@@ -72,4 +74,29 @@ public class StrollController {
         model.addAttribute("pageInfo", new PageVo(criteria, strollService.getTotal()));
         return "strollBoard/strollBoardList";
     }
+
+//    게시글 삭제
+    @GetMapping("/remove")
+    public RedirectView strollBoardRemove(Long strollBoardNumber){
+        strollService.remove(strollBoardNumber);
+        return new RedirectView("/stroll/list");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
