@@ -1,3 +1,7 @@
+import * as reply from '../module/strollReply.js';
+
+const strollBoardNumber =$('.boardNum').val();
+
 $(document).ready(function() {
     // reply-btns가 클릭되었을 때
     $('.reply-list-wrap').on('click', '.reply-btns', function(e) {
@@ -49,9 +53,22 @@ $('.board-modify-btn').on('click',function (){
     window.location.href = '/stroll/modify?strollBoardNumber=' + boardNumber;
 });
 
+// 에러메세지 출력
+function showError(a, b, c){
+    console.error(c);
+}
 
+// 댓글 작성
+$('.reply-write-btn').on('click',function (){
+   let strollReplyContent = $('#reply-content').val();
 
+   let replyObj ={
+       strollReplyContent : strollReplyContent,
+       strollBoardNumber : strollBoardNumber
+   }
 
+   reply.add(replyObj,showError)
+});
 
 
 

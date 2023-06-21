@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.happypetsday.mapper.StrollReplyMapper">
+
+    <insert id="insert">
+        <selectKey keyProperty="strollReplyNumber" order="BEFORE" resultType="long">
+            SELECT SEQ_STROLL_REPLY.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_STROLL_REPLY
+        (STROLL_REPLY_NUMBER, STROLL_REPLY_CONTNET, STROLL_REPLY_REGISTER_DATE, STROLL_REPLY_UPDATE_DATE, STROLL_BOARD_NUMBER, USER_NUMBER)
+        VALUES(#{strollReplyNumber}, #{strollReplyContent}, SYSDATE, SYSDATE, #{strollBoardNumber}, #{userNumber})
+    </insert>
+
+
+
+
+
+
+
+</mapper>
