@@ -19,5 +19,20 @@
         SELECT COUNT(*) FROM TBL_USER WHERE USER_ID = #{userId}
     </select>
 
+    <select id="selectUserPasswordByUserNumber" resultType="string">
+        SELECT USER_PASSWORD FROM TBL_USER
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
+
+    <select id="selectUserInfoByUserNumber" resultType="userDto">
+        SELECT USER_ID, USER_PASSWORD, USER_NAME, USER_GENDER, USER_EMAIL, TO_CHAR(USER_BIRTH, 'YYYY-MM-DD') AS USER_BIRTH, USER_PHONE_NUMBER, USER_ADDRESS
+        FROM TBL_USER WHERE USER_NUMBER = #{userNumber}
+    </select>
+
+    <update id="update">
+        UPDATE TBL_USER
+        SET USER_PASSWORD = #{userPassword}, USER_EMAIL = #{userEmail}, USER_BIRTH = #{userBirth}, USER_PHONE_NUMBER = #{userPhoneNumber}, USER_ADDRESS = #{userAddress}
+        WHERE USER_NUMBER = #{userNumber}
+    </update>
 
 </mapper>
