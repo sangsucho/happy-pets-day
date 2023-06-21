@@ -13,4 +13,10 @@ public interface UserMapper {
      UserDto selectUserNumberAndStatus(@Param("userId")String userId, @Param("userPassword")String userPassword);
 //     아이디 중복검사
      int countByUserId(@Param("userId") String userId);
+//     마이페이지 비밀번호 검사
+     String selectUserPasswordByUserNumber(@Param("userNumber")Long userNumber);
+//     회원 번호로 회원 정보 가져오기(마이페이지용)
+     UserDto selectUserInfoByUserNumber(@Param("userNumber")Long userNumber);
+//     마이페이지 회원정보 수정
+     void update(UserDto userDto);
 }
