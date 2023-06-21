@@ -1,5 +1,6 @@
 package com.example.happypetsday.controller.myPage;
 
+import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,6 +46,14 @@ public class MyPageController {
             return new RedirectView("/myPage/checkPw");
         }
         return new RedirectView("/myPage/checkPw");
+    }
+
+    @PostMapping("/edit")
+    public RedirectView editUserInfo(UserDto userDto, HttpServletRequest req){
+//        userDto.setUserNumber((Long)req.getSession().getAttribute("userNumber"));
+        userDto.setUserNumber(2L);
+        userService.editUserInfo(userDto);
+        return new RedirectView("/myPage/myPage");
     }
 
     @GetMapping("/myPet")
