@@ -38,7 +38,29 @@ public class UserService {
                 .orElseThrow(()->{ throw new IllegalArgumentException("존재하지 않는 회원입니다.");});
     }
 
+    /**
+     * 마이페이지 비밀번호 검사하기
+     * @param userNumber
+     * @return 로그인한 회원의 비밀번호 리턴
+     * @throws IllegalArgumentException 로그인하지 않고 조회하는경우, 존재하지 않는 회원인 경우
+     */
+    @Transactional(readOnly = true)
+    public String findUserPasswordByUserNumber(Long userNumber){
+        if(userNumber==null){
+            throw new IllegalArgumentException("로그인 정보 누락");
+        }
+        return Optional.ofNullable(userMapper.selectUserPasswordByUserNumber(userNumber))
+                .orElseThrow(()->{throw new IllegalArgumentException("존재하지 않는 회원입니다.");});
+    }
 
+    @Transactional(readOnly = true)
+    public UserDto findUserInfoByUserNumber(Long userNumber){
+        if(userNumber == null){
+            throw new IllegalArgumentException("로그인 정보 누락");
+        }
+        return Optional.ofNullable(userMapper.selectUserInfoByUserNumber(userNumber))
+                .orElseThrow(()->{throw new IllegalArgumentException("존재하지 않는 회원입니다.");});
+    }
 
 
 }
