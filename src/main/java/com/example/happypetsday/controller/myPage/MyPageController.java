@@ -23,8 +23,8 @@ import java.io.IOException;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/myPage/*")
 @Slf4j
+@RequestMapping("/myPage/*")
 public class MyPageController {
     private final UserService userService;
     private final PetService petService;
@@ -57,6 +57,7 @@ public class MyPageController {
 
     @GetMapping("/main")
     public String myPage() { return "myPage/myPage"; }
+
     @GetMapping("/myPage")
     public String myPage(HttpServletRequest req, Model model) {
         model.addAttribute("userInfo", userService.findUserInfoByUserNumber((Long)req.getSession().getAttribute("userNumber")));
