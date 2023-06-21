@@ -38,6 +38,15 @@ public class UserService {
                 .orElseThrow(()->{ throw new IllegalArgumentException("존재하지 않는 회원입니다.");});
     }
 
+    /**
+     * 아이디 중복 여부 확인
+     * @param userId 아이디
+     * @return 중복 여부 (true: 중복되지 않은 아이디, false: 중복된 아이디)
+     */
+    @Transactional(readOnly = true)
+    public boolean isUserIdAvailable(String userId) {
+        return userMapper.countByUserId(userId) == 0;
+    }
 
 
 
