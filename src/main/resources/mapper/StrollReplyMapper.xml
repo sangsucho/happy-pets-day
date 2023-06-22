@@ -7,12 +7,50 @@
             SELECT SEQ_STROLL_REPLY.NEXTVAL FROM DUAL
         </selectKey>
         INSERT INTO TBL_STROLL_REPLY
-        (STROLL_REPLY_NUMBER, STROLL_REPLY_CONTNET, STROLL_REPLY_REGISTER_DATE, STROLL_REPLY_UPDATE_DATE, STROLL_BOARD_NUMBER, USER_NUMBER)
+        (STROLL_REPLY_NUMBER, STROLL_REPLY_CONTENT, STROLL_REPLY_REGISTER_DATE, STROLL_REPLY_UPDATE_DATE, STROLL_BOARD_NUMBER, USER_NUMBER)
         VALUES(#{strollReplyNumber}, #{strollReplyContent}, SYSDATE, SYSDATE, #{strollBoardNumber}, #{userNumber})
     </insert>
 
+    <select id="selectListPage" resultType="strollReplyVo">
+        SELECT STROLL_REPLY_NUMBER, STROLL_REPLY_CONTENT,
+        STROLL_REPLY_UPDATE_DATE, STROLL_BOARD_NUMBER, USER_NUMBER, USER_ID
+        FROM(
+        SELECT ROWNUM RN,
+        STROLL_REPLY_NUMBER, STROLL_REPLY_CONTENT, STROLL_REPLY_REGISTER_DATE,
+        STROLL_REPLY_UPDATE_DATE, STROLL_BOARD_NUMBER, USER_NUMBER, USER_ID
+        FROM(
+        SELECT STROLL_REPLY_NUMBER, STROLL_REPLY_CONTENT, STROLL_REPLY_REGISTER_DATE, STROLL_REPLY_UPDATE_DATE, STROLL_BOARD_NUMBER, R.USER_NUMBER, USER_ID
+        FROM TBL_USER U JOIN TBL_STROLL_REPLY R
+        ON U.USER_NUMBER = R.USER_NUMBER AND STROLL_BOARD_NUMBER = #{strollBoardNumber}
+        ORDER BY STROLL_REPLY_NUMBER DESC
+        )
+        <![CDATA[
+        WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+            ]]>
+        )
+        WHERE RN > ( #{criteria.page} - 1 ) * #{criteria.amount}
+    </select>
 
+    <select id="selectTotal" resultType="_int">
+        SELECT COUNT(STROLL_REPLY_NUMBER) FROM TBL_STROLL_REPLY
+        WHERE STROLL_BOARD_NUMBER =#{strollBoardNumber}
+    </select>
 
+    <delete id="delete">
+        DELETE FROM TBL_STROLL_REPLY
+        WHERE STROLL_REPLY_NUMBER = #{strollReplyNumber}
+    </delete>
+
+    <delete id="deleteAll">
+        DELETE FROM TBL_STROLL_REPLY
+        WHERE STROLL_BOARD_NUMBER = #{strollBoardNumber}
+    </delete>
+
+    <update id="update">
+        UPDATE TBL_STROLL_REPLY
+        SET STROLL_REPLY_CONTNET = #{strollReplyContent} ,STROLL_REPLY_UPDATE_DATE = SYSDATE
+        WHERE STROLL_REPLY_NUMBER = #{strollReplyNumber}
+    </update>
 
 
 
