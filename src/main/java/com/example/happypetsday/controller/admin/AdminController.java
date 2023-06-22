@@ -51,8 +51,6 @@ public class AdminController {
     public String userDetailManage(Long userNumber, Model model){
         UserVo userVo = adminService.findUser(userNumber);
 
-        userVo.setUserStatusResult(adminService.viewStatus(userVo.getUserStatus()));
-
         model.addAttribute("user", userVo);
         return "admin/userDetailManage";
     }
@@ -61,12 +59,12 @@ public class AdminController {
     public String userManage(Criteria criteria, Model model){
         List<UserVo> userList = adminService.findAll(criteria);
 
-        List<UserVo> resultList = userList.stream()
-                .map(user -> {
-                    user.setUserStatusResult(adminService.viewStatus(user.getUserStatus()));
-                    return user;
-                })
-                .collect(Collectors.toList());
+//        List<UserVo> resultList = userList.stream()
+//                .map(user -> {
+//                    user.setUserStatusResult(adminService.viewStatus(user.getUserStatus()));
+//                    return user;
+//                })
+//                .collect(Collectors.toList());
 
 
 //        List<UserVo> resultList = new ArrayList<>();
@@ -76,9 +74,7 @@ public class AdminController {
 //            resultList.add(user);
 //        }
 
-
-
-        model.addAttribute("userList", resultList);
+        model.addAttribute("userList", userList);
         model.addAttribute("pageInfo", new PageVo(criteria, adminService.getTotal()));
 
         return "admin/userManage";

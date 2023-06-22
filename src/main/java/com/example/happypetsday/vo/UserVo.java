@@ -20,5 +20,5 @@ public class UserVo {
     private int questionNumber;
     private String findPasswordAnswer;
     private int userStatus;
-    private String userStatusResult;
+    private String statusName;
 }

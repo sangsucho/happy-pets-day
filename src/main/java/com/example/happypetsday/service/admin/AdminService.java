@@ -43,33 +43,6 @@ public class AdminService {
         return adminMapper.selectTotal();
     }
 
-    // 회원등급 String으로 반환
-    public String viewStatus(int userStatus){
-        String userStatusResult;
-
-        switch (userStatus){
-            case 0:
-//              관리자
-                userStatusResult="관리자";
-                break;
-            case -1:
-//               탈퇴or제명회원
-                userStatusResult="탈퇴or제명회원";
-                break;
-            case 2:
-//                펫시터 신청중인 회원
-                userStatusResult="펫시터 신청중";
-                break;
-            case 3:
-//                펫시터 회원
-                userStatusResult="펫시터 회원";
-                break;
-            default:
-                userStatusResult="일반 회원";
-        }
-        return userStatusResult; // userStatusResult 반환
-    }
-
 
     // 수정(회원 제명-회원등급 변경)
     public void modify(UserDto userDto){

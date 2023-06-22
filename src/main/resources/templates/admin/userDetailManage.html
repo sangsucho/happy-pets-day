@@ -31,10 +31,11 @@
         <tr>
           <th class="table-head-left">회원번호</th>
           <td th:text="${user.userNumber}"></td>
+          <input type="hidden" class="user-number" th:value="${user.userNumber}">
         </tr>
         <tr>
           <th>등급명</th>
-          <td th:text="${user.userStatusResult}"></td>
+          <td th:text="${user.statusName}"></td>
         </tr>
         <tr>
           <th>아이디</th>
@@ -68,7 +69,7 @@
       </table>
 
       <div class="button-wrap">
-        <button type="button" class="btn-delete">회원 삭제</button>
+        <button type="button" class="btn-delete" value="-1">회원 삭제</button>
       </div>
 
 
@@ -81,6 +82,10 @@
   </div>
 
 <footer th:replace="fragment/adminFooter :: adminFooter"></footer>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script th:src="@{/js/admin/userDetailManage.js}"></script>
 </body>
 
 </html>
