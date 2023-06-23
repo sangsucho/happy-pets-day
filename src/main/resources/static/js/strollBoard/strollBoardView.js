@@ -37,7 +37,7 @@ $('.reply-list-wrap').on('click', '.modify1', function () {
 
 // 목록 버튼
 $('.list-btn').on('click', function () {
-    window.location.href = '/replies/list/${strollBoardNumber}/';
+    window.location.href = '/stroll/list';
 });
 
 // 게시글 삭제

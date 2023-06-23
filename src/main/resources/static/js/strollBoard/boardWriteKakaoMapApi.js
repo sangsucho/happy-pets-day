@@ -113,16 +113,25 @@ function placesSearchCB(data, status, pagination) {
     map.setCenter(latLng);
 }
 
-// 지도 검색
+//엔터키로 글 작성 막기
+$('.board-form').on('keyup keypress',function (e){
+    if (e.code == 'Enter') {
+    e.preventDefault();
+        return false;
+    }
+})
+
+// 검색버튼 지도 검색
 $('.search-btn').on('click',mapSearch );
 
 // input칸 엔터 이벤트
 $('.search-input').on('keypress', function (e) {
-    if (e.code == 'Enter'&&$('.search-input').length>0) {
+    if (e.code == 'Enter'&&$('.search-input').val().length>0) {
         mapSearch();
     }
 });
 
+// 검색 실행
 function mapSearch() {
     let keyword = $('.search-input').val();
     ps.keywordSearch(keyword, placesSearchCB);
