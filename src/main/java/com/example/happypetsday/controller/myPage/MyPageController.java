@@ -43,7 +43,6 @@ public class MyPageController {
             petDto.setPetKind(direct);
         }
         petService.addPet(petDto);
-
         if(!petFile.isEmpty()){
             try {
                 petFileService.registerAndSaveFile(petFile, petDto.getPetNumber());
