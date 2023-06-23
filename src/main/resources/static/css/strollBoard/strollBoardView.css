@@ -309,7 +309,7 @@ input:focus {
 
 .reply-info-box{
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 150px;
 }
 
@@ -326,15 +326,18 @@ input:focus {
   color: #808080;
   font-family: Pretendard-medium;
   margin-top: 3px;
+  margin-left: 15px;
 }
 
 
 .reply-box__content {
+  width: 772px;
   margin-bottom: 12px;
   padding-left: 5px;
   height: 40px;
   font-size: 16px;
   overflow: auto;
+  padding-top: 4px;
 }
 
 .reply-btns {
@@ -459,6 +462,7 @@ input:focus {
   height: 23px;
   margin-bottom: 20px;
   padding: 10px;
+  padding-top: 11px;
 }
 .modify-content-btn {
   width: 75px;
@@ -517,9 +521,9 @@ input:focus {
   border-color: #68A5FE;
   color: #fff;
 }
+/* 댓글 페이징 끝 */
 
-
-
+/* 댓글 없을 경우*/
 
 
 

@@ -9,6 +9,8 @@
         <typeAlias type="com.example.happypetsday.dto.StrollBoardDto" alias="strollBoardDto"/>
         <typeAlias type="com.example.happypetsday.vo.StrollBoardVo" alias="strollBoardVo"/>
         <typeAlias type="com.example.happypetsday.vo.RecommendVo" alias="recommendVo"/>
+        <typeAlias type="com.example.happypetsday.dto.StrollReplyDto" alias="strollReplyDto"/>
+        <typeAlias type="com.example.happypetsday.vo.StrollReplyVo" alias="strollReplyVo"/>
     </typeAliases>
 
 </configuration>
