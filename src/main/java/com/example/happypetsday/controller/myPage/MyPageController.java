@@ -25,7 +25,7 @@ public class MyPageController {
     public String addPet(){
         return "myPage/addPet";
     }
-    
+
     @GetMapping("/myPage")
     public String myPage(HttpServletRequest req, Model model) {
 //        model.addAttribute("userInfo", userService.findUserInfoByUserNumber((Long)req.getSession().getAttribute("userNumber")));
@@ -53,7 +53,7 @@ public class MyPageController {
         userService.editUserInfo(userDto);
         return new RedirectView("/myPage/myPage");
     }
-
+    
     @GetMapping("/myPet")
     public String myPet() { return "myPage/myPet"; }
 
