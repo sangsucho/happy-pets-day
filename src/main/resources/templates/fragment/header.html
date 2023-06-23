@@ -23,7 +23,7 @@
                 </div>
                 <a th:href="@{/stroll/list}">모임 게시판</a>
                 <a th:href="@{/recommend/main}">반려동물 추천</a>
-                <a th:href="@{/adopt/adoptionInformation}">반려동물 입양</a>
+                <a th:href="@{/adopt/list}">반려동물 입양</a>
                 <th:block th:if="${session.adminNumber !=null}">
                     <a th:href="@{/admin/userManage}">관리자</a>
                 </th:block>
@@ -38,8 +38,8 @@
             </th:block>
             <!--          로그인 정보 있을 때-->
             <th:block th:unless="${session.userNumber ==null}">
-                <a th:href="@{/myPage/checkPw}" class="mypage-btn header-btn white-btn">마이페이지</a>
-                <a th:href="@{/user/logout}" class="logout-btn header-btn blue-btn">로그아웃</a>
+                <a th:href="@{/myPage/checkPw}" class="header--mypage-btn header--btn header--white-btn">마이페이지</a>
+                <a th:href="@{/user/logout}" class="header--logout-btn header--btn header--blue-btn">로그아웃</a>
             </th:block>
         </div>
     </div>
