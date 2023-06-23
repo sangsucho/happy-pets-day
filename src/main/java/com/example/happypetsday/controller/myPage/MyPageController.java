@@ -25,9 +25,7 @@ public class MyPageController {
     public String addPet(){
         return "myPage/addPet";
     }
-
-//    @GetMapping("/myPage")
-//    public String myPage() { return "myPage/myPage"; }
+    
     @GetMapping("/myPage")
     public String myPage(HttpServletRequest req, Model model) {
 //        model.addAttribute("userInfo", userService.findUserInfoByUserNumber((Long)req.getSession().getAttribute("userNumber")));
