@@ -2,6 +2,7 @@ package com.example.happypetsday.mapper;
 
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.vo.Criteria;
+import com.example.happypetsday.vo.SearchVo;
 import com.example.happypetsday.vo.UserVo;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -20,4 +21,7 @@ public interface AdminMapper {
 
     // 회원 삭제(제명)
     public void update(UserDto userDto);
+
+    // 검색
+    public List<UserDto> select(SearchVo searchVo);
 }

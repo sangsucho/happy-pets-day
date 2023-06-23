@@ -21,6 +21,34 @@ public class AdminRestController {
         adminService.modify(userDto);
     }
 
+    //  userId로 검색(전체회원관리)
+//    @PostMapping("/board")
+//    public String boardWrite(@RequestBody BoardDto boardDto){
+//        System.out.println(boardDto);
+//        return "success";
+//    }
+
+    @GetMapping("/searchUser")
+    public UserDto userList(){
+        UserDto userDto = new UserDto();
+        userDto.setUserNumber(1L);
+        userDto.setUserId("aaaa");
+
+        return userDto;
+    }
+
+    @GetMapping("/{userNumber}")
+    public UserDto userDetail(@PathVariable("userNumber") Long userNumber){
+//        adminService.findUser(userNumber);
+
+        System.out.println(userNumber + "=============================");
+
+        UserDto userDto = new UserDto();
+        userDto.setUserNumber(1L);
+        userDto.setUserId("aaaa");
+
+        return userDto;
+    }
 
 
 

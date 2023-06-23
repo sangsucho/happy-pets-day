@@ -2,9 +2,8 @@ package com.example.happypetsday.controller.admin;
 
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.service.admin.AdminService;
-import com.example.happypetsday.vo.Criteria;
-import com.example.happypetsday.vo.PageVo;
-import com.example.happypetsday.vo.UserVo;
+import com.example.happypetsday.service.stroll.StrollService;
+import com.example.happypetsday.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +25,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AdminController {
     private final AdminService adminService;
+    private final StrollService strollService;
 
     @GetMapping("/applicationManage")
     public String applicationManage() {
@@ -43,7 +43,12 @@ public class AdminController {
     }
 
     @GetMapping("/strollBoardManage")
-    public String strollBoardManage(){
+    public String strollBoardManage(Criteria criteria, Model model){
+        List<StrollBoardVo> boardList = strollService.findAll(criteria);
+
+        model.addAttribute("boardList",boardList);
+        model.addAttribute("pageInfo", new PageVo(criteria, strollService.getTotal()));
+
         return "admin/strollBoardManage";
     }
 
@@ -78,6 +83,12 @@ public class AdminController {
         model.addAttribute("pageInfo", new PageVo(criteria, adminService.getTotal()));
 
         return "admin/userManage";
+    }
+
+    @PostMapping("/search")
+    public void search(SearchVo searchVo, Model model){
+        List<UserDto> userDtoList = adminService.searchUser(searchVo);
+        model.addAttribute("userList", userDtoList);
     }
 
     @GetMapping("/viewApplication")

@@ -3,6 +3,7 @@ package com.example.happypetsday.service.admin;
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.mapper.AdminMapper;
 import com.example.happypetsday.vo.Criteria;
+import com.example.happypetsday.vo.SearchVo;
 import com.example.happypetsday.vo.UserVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -52,6 +53,10 @@ public class AdminService {
         adminMapper.update(userDto);
     }
 
+    // userId로 검색(전체회원관리)
+    public List<UserDto> searchUser(SearchVo searchVo){
+        return adminMapper.select(searchVo);
+    }
 
 
 
