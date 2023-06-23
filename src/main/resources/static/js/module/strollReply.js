@@ -17,14 +17,14 @@ export function add(reply,callback,error){
 }
 
 // 댓글 리스트 가져오기
-export function getListPage(pageInfo,callback, error){
+export function getListPage(pageInfo,callback, callbackPage, error){
     $.ajax({
         url : `/replies/list/${pageInfo.strollBoardNumber}/${pageInfo.page}`,
         type : 'get',
         dataType : 'json',
         success : function (result){
             if(callback){
-                callback(result);
+                callback(result,callbackPage);
             }
         },
         error : error
@@ -32,7 +32,7 @@ export function getListPage(pageInfo,callback, error){
 }
 
 // 댓글 수정
-export function modify(reply,callback,error) {
+export function modify(reply,pageInfo,callback,callbackPage,error) {
     $.ajax({
         url : `/replies/${reply.strollReplyNumber}`,
         type : 'patch',
@@ -40,20 +40,21 @@ export function modify(reply,callback,error) {
         contentType: 'application/json; charset=utf-8', //보낼 데이터의 형식을 알려준다.
         success : function (){
             if(callback){
-                callback();
+                getListPage(pageInfo,callback,callbackPage,error);
             }
         },
         error : error
     });
 }
 
-export function remove(strollReplyNumber,callback,error){
+// 댓글 삭제
+export function remove(strollReplyNumber,pageInfo,callback,callbackPage,error){
     $.ajax({
         url : `/replies/${strollReplyNumber}`,
         type : 'delete',
         success : function (){
             if(callback){
-                callback();
+                getListPage(pageInfo,callback,callbackPage,error);
             }
         },
         error : error

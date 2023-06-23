@@ -46,9 +46,9 @@ public class ReplyRestController {
 
 //    댓글 수정
     @PatchMapping("/{strollReplyNumber}")
-    public void replyModify(@PathVariable("strollReplyNumber") Long strollReplyNumber,
-                            @RequestBody StrollReplyDto strollReplyDto){
-        strollReplyDto.setStrollReplyNumber(strollReplyNumber);
+    public void replyModify( @RequestBody StrollReplyDto strollReplyDto){
+
+        strollReplyDto.setStrollReplyNumber(strollReplyDto.getStrollReplyNumber());
         replyService.modify(strollReplyDto);
     }
 

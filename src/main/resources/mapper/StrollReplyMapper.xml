@@ -48,7 +48,7 @@
 
     <update id="update">
         UPDATE TBL_STROLL_REPLY
-        SET STROLL_REPLY_CONTNET = #{strollReplyContent} ,STROLL_REPLY_UPDATE_DATE = SYSDATE
+        SET STROLL_REPLY_CONTENT = #{strollReplyContent} ,STROLL_REPLY_UPDATE_DATE = SYSDATE
         WHERE STROLL_REPLY_NUMBER = #{strollReplyNumber}
     </update>
 

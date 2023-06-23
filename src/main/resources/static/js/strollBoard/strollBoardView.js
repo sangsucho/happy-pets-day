@@ -27,11 +27,11 @@ $(document).ready(function () {
 $('.reply-list-wrap').on('click', '.modify1', function () {
     let $content = $(this).closest('.reply').find('.reply-box__content');
     $content.replaceWith(`
-<div class='modify-box'>
-  <textarea class='modify-content'>${$content.text()}</textarea>
-  <button type='button' class='modify-content-btn'>수정 완료</button>
-</div>
-`);
+    <div class='modify-box'>
+      <textarea class='modify-content'>${$content.text()}</textarea>
+      <button type='button' class='modify-content-btn'>수정 완료</button>
+    </div>
+    `);
     $('.reply-btns__box').addClass('none');
 });
 
@@ -57,7 +57,7 @@ $('.board-modify-btn').on('click', function () {
 
 // 에러메세지 출력
 function showError(a, b, c) {
-    console.error(c);
+    console.log(c);
 }
 
 // 댓글 작성 버튼
@@ -76,6 +76,10 @@ $('#reply-content').on('keypress', function (e) {
     }
 });
 
+
+
+
+
 // 댓글 작성
 function replyWrite() {
     let strollReplyContent = $('#reply-content').val();
@@ -90,7 +94,7 @@ function replyWrite() {
     reply.add(replyObj,
         function () {
             reply.getListPage({strollBoardNumber: strollBoardNumber, page: page},
-                showReply, showError)
+                showReply, showReplyPage, showError)
         }
         , showError)
 
@@ -98,7 +102,7 @@ function replyWrite() {
 }
 
 
-reply.getListPage({strollBoardNumber: strollBoardNumber, page: page}, showReply, showError);
+reply.getListPage({strollBoardNumber: strollBoardNumber, page: page}, showReply, showReplyPage, showError);
 
 
 // 댓글 리스트 보여주기
@@ -109,7 +113,7 @@ function showReply(map, showReplyPage) {
     map.replyList.forEach(r => {
         text += `
                <div class="reply">
-                <div class="reply-box" data-num="${r.strollReplyNumber}"">
+                <div class="reply-box" data-num="${r.strollReplyNumber}">
                     <div class="reply-info-box">
                         <div class="reply-box__writer">
                             ${r.userId}
@@ -152,84 +156,86 @@ function showReply(map, showReplyPage) {
     });
 
     $('.reply-list-wrap').html(text);
-    // showReplyPage(map);
+
+    showReplyPage(map.pageVo);
+
     $('.reply-count').text(`${map.totalReply}`)
 
 
+}
+
+//페이징 버튼 처리
+$('.page-ul').on('click', 'a', function (e) {
+    e.preventDefault();
+    page = $(this).data('page');
+    reply.getListPage({strollBoardNumber: strollBoardNumber, page: page}, showReply, showReplyPage, showError);
+});
+
+
+//  댓글 페이징 리스트
+function showReplyPage(pageVo) {
     let pageText = '';
 
-    if (map.pageVo.prev) {
+    if (pageVo.prev) {
         pageText +=
             `
-            <li><a href="#" data-page="${map.pageVo.startPage - 1}" class="prev">&lt;</a></li>
+            <li><a href="javascript:void(0)" data-page="${pageVo.startPage - 1}" class="prev">&lt;</a></li>
             `;
     }
 
-    for (let i = map.pageVo.startPage; i <= map.pageVo.endPage; i++) {
+    for (let i = pageVo.startPage; i <= pageVo.endPage; i++) {
         pageText += `
-           <li><a href="#" data-page="${i}"
-              ${i == map.pageVo.criteria.page ? `class="active"` : ""}>${i}</a></li>
+           <li if="${i == pageVo.criteria.page}"><a href="javascript:void(0)" data-page="${i}"
+              ${i == pageVo.criteria.page ? `class="active"` : ""}>${i}</a></li>
            `;
     }
-    if (map.pageVo.next) {
+    if (pageVo.next) {
         pageText += `
-                <li><a href="#" data-page="${map.pageVo.endPage + 1}" class="next">&gt;</a></li>
+                <li><a href="javascript:void(0)" data-page="${pageVo.endPage + 1}" class="next">&gt;</a></li>
             `;
     }
 
     $('.page-ul').html(pageText);
+}
 
+//  클릭해서 댓글 수정
+$('.reply-list-wrap').on('click', '.modify-content-btn', modifyStrollReply);
 
-    //페이징 버튼 처리
-    $('.page-ul a').on('click', function (e) {
-        e.preventDefault();
-        page = $(this).data('page');
-        reply.getListPage({strollBoardNumber: strollBoardNumber, page: page}, showReply, showError);
-    });
+// 댓글 수정
+function modifyStrollReply() {
+    let strollReplyContent = $(this).siblings('.modify-content').val();
+    let strollReplyNumber = $(this).closest('.reply-box').data('num');
+    let thisPage = $('.active').data('page');
 
+    let modifyReply = {
+        strollReplyContent:strollReplyContent,
+        strollReplyNumber:strollReplyNumber
+    }
+    let pageInfo = {
+        strollBoardNumber: strollBoardNumber,
+        page: thisPage
+    }
+
+    reply.modify(modifyReply,pageInfo,showReply, showReplyPage, showError);
 }
 
 
-// //  댓글 페이징 리스트
-// function showReplyPage(pageVo) {
-//     let pageText = '';
-//
-//     if (map.pageVo.prev) {
-//         pageText +=
-//             `
-//             <li><a href="/replies/list/${strollBoardNumber}/${map.pageVo.startPage - 1})" class="prev">&lt;</a></li>
-//             `;
-//     }
-//
-//     for(let i =map.pageVo.startPage; i<= map.pageVo.endPage; i++){
-//         pageText+=  `
-//            <li if="${i == pageInfo.criteria.page}"><a href="/replies/list/${strollBoardNumber}/${i}"
-//               ${i == map.pageVo.criteria.page ? `class="active"`:""}>${i}</a></li>
-//            `;
-//     }
-//     if(map.pageVo.next){
-//         pageText +=  `
-//                 <li><a href="/replies/list/${strollBoardNumber}/${map.pageVo.endPage + 1}" class="next">&gt;</a></li>
-//             `;
-//     }
-//
-//     $('.page-ul').html(text);
-// }
+//댓글 삭제
+$('.reply-list-wrap').on('click', '.delete1', function (){
 
-//  댓글 수정
-$('.board-reply-wrap').on('click', '.modify-content-btn', function () {
+    if(confirm("해당 댓글을 삭제하시겠습니까?")){
+        let thisPage = $('.active').data('page');
+        let rNum = $(this).closest('.reply-btn-box').siblings('.reply-box').data('num');
+        let pageInfo = {
+            strollBoardNumber: strollBoardNumber,
+            page: thisPage
+        }
+        reply.remove(rNum,pageInfo,showReply, showReplyPage, showError)
 
-    let strollReplyNumber = $('this').closest('.reply-box').data('num');
-    let strollReplyContent = $('this').closest('.modify-box').find('.modify-content').val();
+    }else{
+    }
 
-    console.log(strollReplyNumber);
-    console.log(strollReplyContent);
-
-
-})
-
-
-
+});
 
 
 
