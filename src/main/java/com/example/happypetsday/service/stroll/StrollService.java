@@ -2,6 +2,7 @@ package com.example.happypetsday.service.stroll;
 
 import com.example.happypetsday.dto.StrollBoardDto;
 import com.example.happypetsday.mapper.StrollBoardMapper;
+import com.example.happypetsday.mapper.StrollReplyMapper;
 import com.example.happypetsday.vo.Criteria;
 import com.example.happypetsday.vo.StrollBoardVo;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class StrollService {
     private final StrollBoardMapper strollBoardMapper;
+    private final StrollReplyMapper strollReplyMapper;
 
 //    게시글 추가
     public void register(StrollBoardDto strollBoardDto){
@@ -64,6 +66,7 @@ public class StrollService {
         if(strollBoardNumber==null){
             throw new IllegalArgumentException("게시글 번호 누락(게시글 삭제)");
         }
+        strollReplyMapper.deleteAll(strollBoardNumber);
         strollBoardMapper.delete(strollBoardNumber);
     }
 //   게시글 수정
