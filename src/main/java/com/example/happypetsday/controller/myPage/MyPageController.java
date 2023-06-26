@@ -83,7 +83,43 @@ public class MyPageController {
     }
 
     @GetMapping("/myPet")
-    public String myPet() { return "myPage/myPet"; }
+    public String myPet(HttpServletRequest req, Model model) {
+        Long userNumber = (Long)req.getSession().getAttribute("userNumber");
+        model.addAttribute("petList", petService.findPetInfo(userNumber));
+        return "myPage/myPet";
+    }
+
+    @PostMapping("/myPet/editPet")
+    public RedirectView editMyPet(PetDto petDto, @RequestParam("petFile") MultipartFile petFile){
+        if(petFileService.findFile(petDto.getPetNumber())!=null){
+            if(!petFile.isEmpty()){
+                try {
+                    petFileService.modifyAndSaveFile(petFile, petDto.getPetNumber());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }else{
+            if(!petFile.isEmpty()){
+                try {
+                    petFileService.registerAndSaveFile(petFile, petDto.getPetNumber());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        petService.editMyPet(petDto);
+        return new RedirectView("/myPage/myPet");
+    }
+
+    @GetMapping("/myPet/delete")
+    public RedirectView deleteMyPet(@RequestParam("petNumber") Long petNumber){
+        if(petFileService.findFile(petNumber)!=null){
+            petFileService.remove(petNumber);
+        }
+        petService.removeMyPet(petNumber);
+        return new RedirectView("/myPage/myPet");
+    }
 
     @GetMapping("/checkPw")
     public String checkPw() { return "myPage/checkPw"; }

@@ -17,4 +17,10 @@
         WHERE PET_NUMBER = #{petNumber}
     </select>
 
+    <update id="update">
+        UPDATE TBL_PET_FILE
+        SET PET_FILE_NAME = #{petFileName}, PET_FILE_UPLOAD_PATH = #{petFileUploadPath}, PET_FILE_UUID = #{petFileUuid}
+        WHERE PET_NUMBER = #{petNumber}
+    </update>
+
 </mapper>
