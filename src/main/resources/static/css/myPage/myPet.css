@@ -456,7 +456,7 @@ li button {
 }
 
 /* 저장하기 버튼 */
-form .update-btn_wrap {
+.update-btn_wrap {
   display: flex;
   justify-content: flex-end;
 }

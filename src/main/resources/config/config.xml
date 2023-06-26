@@ -5,6 +5,7 @@
     <typeAliases>
         <typeAlias type="com.example.happypetsday.dto.UserDto" alias="userDto"/>
         <typeAlias type="com.example.happypetsday.dto.PetDto" alias="petDto"/>
+        <typeAlias type="com.example.happypetsday.vo.PetVo" alias="petVo"/>
         <typeAlias type="com.example.happypetsday.dto.PetFileDto" alias="petFileDto"/>
         <typeAlias type="com.example.happypetsday.dto.StrollBoardDto" alias="strollBoardDto"/>
         <typeAlias type="com.example.happypetsday.vo.StrollBoardVo" alias="strollBoardVo"/>
@@ -12,6 +13,8 @@
         <typeAlias type="com.example.happypetsday.dto.StrollReplyDto" alias="strollReplyDto"/>
         <typeAlias type="com.example.happypetsday.vo.StrollReplyVo" alias="strollReplyVo"/>
         <typeAlias type="com.example.happypetsday.vo.UserVo" alias="userVo"/>
+        <typeAlias type="com.example.happypetsday.dto.SitterApplyDto" alias="sitterApplyDto"/>
+        <typeAlias type="com.example.happypetsday.dto.SitterApplyLicenseFile" alias="sitterApplyLicenseFile"/>
     </typeAliases>
 
 </configuration>
