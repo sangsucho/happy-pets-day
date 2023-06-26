@@ -13,3 +13,5 @@ $('.header--sitter-btn').hover(function(){
 },function(){
     $('.header--sitter-container').css("display", "none");
 });
+
+// 입양 리스트 보여주기

@@ -1,16 +1,16 @@
-$.ajax({
-    // 클릭한 게시물의 데이터만 가져와야함
-    url: "http://openapi.seoul.go.kr:8088/786e44785864656334354e61496a76/json/TbAdpWaitAnimalView/1/1/",
-    type: "get",
-    dataType: "json",
-    success: function (result) {
-        console.log(result);
-        console.log(result.TbAdpWaitAnimalView.row);
-
-        let list = result.TbAdpWaitAnimalView.row;
-        list.forEach((obj) => makeList(obj));
-    },
-});
+// $.ajax({
+//     // 클릭한 게시물의 데이터만 가져와야함
+//     url: "http://openapi.seoul.go.kr:8088/786e44785864656334354e61496a76/json/TbAdpWaitAnimalView/1/1/",
+//     type: "get",
+//     dataType: "json",
+//     success: function (result) {
+//         // console.log(result);
+//         // console.log(result.TbAdpWaitAnimalView.row);
+//
+//         let list = result.TbAdpWaitAnimalView.row;
+//         list.forEach((obj) => makeList(obj));
+//     },
+// });
 
 function makeList(obj) {
     let fullName = `${obj.NM}`;
@@ -66,4 +66,6 @@ function makeList(obj) {
 
     let content = `<div>${obj.INTRCN_CN}</div>`;
     $(".content").append(content);
+
+    console.log(petName);
 }
