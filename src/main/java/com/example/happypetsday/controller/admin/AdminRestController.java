@@ -50,6 +50,10 @@ public class AdminRestController {
         return userDto;
     }
 
-
+    // 전체회원수, 일반회원수 조회
+    @GetMapping("/usersNumberCount")
+    public UserVo usersNumberCount(){
+        return adminService.getUsersCount();
+    }
 
 }

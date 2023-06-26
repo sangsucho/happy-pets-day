@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Transactional
 @SpringBootTest
@@ -77,6 +78,28 @@ class AdminMapperTest {
         searchVo.setSearchType("userId");
         searchVo.setKeyword("aa");
         adminMapper.select(searchVo).stream().forEach(userDto -> log.info(userDto.toString()));
+    }
+
+    @Test
+    @DisplayName("전체회원 수 조회")
+    void selectTotalUser(){
+        Long totalUserCount = adminMapper.selectTotalUser();
+        UserVo userVo = new UserVo();
+        userVo.setTotalUserNumber(totalUserCount);
+
+        // Assertion
+        assertEquals(totalUserCount, userVo.getTotalUserNumber());
+    }
+
+    @Test
+    @DisplayName("일반회원 수 조회")
+    void selectBasicUser() {
+        Long basicUserCount = adminMapper.selectBasicUser();
+        UserVo userVo = new UserVo();
+        userVo.setBasicUserNumber(basicUserCount);
+
+        // Assertion
+        assertEquals(basicUserCount, userVo.getBasicUserNumber());
     }
 
 }

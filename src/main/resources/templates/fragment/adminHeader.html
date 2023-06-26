@@ -12,6 +12,23 @@
         <a th:href="@{/admin/userManage}" class="header--logo">
             <img th:src="@{/img/logo.png}" alt="">
         </a>
+        <!--      헤더 이동 탭 컨테이너-->
+        <div class="header--container">
+            <div class="header--sub-container">
+                <div class="header--sitter-btn">펫시터
+                    <div class="header--sitter-container">
+                        <a th:href="@{/sitter/list}">펫시터 예약</a>
+                        <a th:href="@{/sitter/apply}">펫시터 지원</a>
+                    </div>
+                </div>
+                <a th:href="@{/stroll/list}">모임 게시판</a>
+                <a th:href="@{/recommend/main}">반려동물 추천</a>
+                <a th:href="@{/adopt/adoptionInformation}">반려동물 입양</a>
+                <th:block th:if="${session.adminNumber !=null}">
+                    <a th:href="@{/admin/userManage}">관리자</a>
+                </th:block>
+            </div>
+        </div>
         <!--      로그인 회원가입 등 컨테이너-->
         <div class="header--login-container">
             <!--          로그인 정보 없을 때-->
@@ -27,5 +44,6 @@
     </div>
 </header>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script th:src="@{/js/fragment/header.js}"></script>
 </body>
 </html>

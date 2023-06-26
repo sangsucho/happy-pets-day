@@ -112,4 +112,27 @@ class AdminServiceTest {
     void searchUser() {
 
     }
+
+    @Test
+    @DisplayName("전체회원 수 조회")
+    void getTotalUser() {
+
+        doReturn(200L).when(adminMapper).selectTotalUser();
+
+        Long totalUserList = adminService.getTotalUser();
+
+        assertThat(totalUserList).isNotNull();
+    }
+
+    @Test
+    @DisplayName("일반회원 수 조회")
+    void getBasicUser() {
+
+        doReturn(30L).when(adminMapper).selectBasicUser();
+
+        Long BasicUserList = adminService.getBasicUser();
+
+        assertThat(BasicUserList).isNotNull();
+    }
+
 }

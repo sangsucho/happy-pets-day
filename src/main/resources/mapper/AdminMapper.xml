@@ -49,4 +49,25 @@
 
     </select>
 
+    <select id="selectTotalUser" resultType="Long">
+        SELECT COUNT(USER_NUMBER) FROM TBL_USER
+    </select>
+
+    <select id="selectBasicUser" resultType="Long">
+        SELECT COUNT(USER_NUMBER)
+        FROM TBL_USER
+        WHERE USER_STATUS = 1
+    </select>
+
+    <select id="selectSitterUser" resultType="Long">
+        SELECT COUNT(SITTER_NUMBER)
+        FROM TBL_SITTER
+        WHERE SITTER_STATUS = 'Y'
+    </select>
+
+    <select id="selectUnapprovedSitter" resultType="Long">
+        SELECT COUNT(APPLY_NUMBER)
+        FROM TBL_SITTER_APPLY
+        WHERE APPLY_STATUS = '승인 대기'
+    </select>
 </mapper>

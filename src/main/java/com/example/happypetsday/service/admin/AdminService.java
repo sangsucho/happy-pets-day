@@ -61,6 +61,21 @@ public class AdminService {
 
 
 
+
+    // 전체회원수, 일반회원수 조회
+    @Transactional(readOnly = true)
+    public UserVo getUsersCount(){
+        UserVo userVo = new UserVo();
+
+        userVo.setTotalUserNumber(adminMapper.selectTotalUser());
+        userVo.setBasicUserNumber(adminMapper.selectBasicUser());
+        userVo.setSitterUserNumber(adminMapper.selectSitterUser());
+        userVo.setUnapprovedSitterNumber(adminMapper.selectUnapprovedSitter());
+
+        return userVo;
+    }
+
+
 }
 
 
