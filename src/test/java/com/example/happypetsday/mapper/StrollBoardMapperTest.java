@@ -41,7 +41,7 @@ class StrollBoardMapperTest {
     void insertAndSelectOnd() {
         strollBoardMapper.insert(strollBoard);
 
-        StrollBoardVo findBoard = strollBoardMapper.selectOnd(strollBoard.getStrollBoardNumber());
+        StrollBoardVo findBoard = strollBoardMapper.selectOne(strollBoard.getStrollBoardNumber());
 
         assertThat(findBoard.getStrollBoardNumber()).isEqualTo(strollBoard.getStrollBoardNumber());
     }
