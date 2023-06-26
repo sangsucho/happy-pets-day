@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.happypetsday.mapper.SitterApplyLicenseFileMapper">
+
+    <insert id="insert">
+        <selectKey keyProperty="applyFileNumber" order="BEFORE" resultType="long">
+            SELECT SEQ_SITTER_APPLY_LICENSE.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_SITTER_APPLY_LICENSE_FILE (APPLY_FILE_NUMBER, APPLY_FILE_TITLE, APPLY_FILE_NAME, APPLY_FILE_UUID,
+                                                   APPLY_FILE_UPLOAD_PATH, APPLY_NUMBER, USER_NUMBER)
+        VALUES (#{applyFileNumber}, #{applyFileTitle}, #{applyFileName}, #{applyFileUuid}
+               , #{applyFileUploadPath}, #{applyNumber}, #{userNumber})
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM TBL_SITTER_APPLY_LICENSE_FILE
+        WHERE APPLY_NUMBER = #{applyNumber}
+    </delete>
+
+    <select id="select" resultType="SitterApplyLicenseFile">
+        SELECT APPLY_FILE_NUMBER, APPLY_FILE_TITLE, APPLY_FILE_NAME,
+        APPLY_FILE_UUID, APPLY_FILE_UPLOAD_PATH, APPLY_NUMBER, SITTER_NUMBER FROM TBL_SITTER_APPLY_LICENSE_FILE
+        WHERE APPLY_NUMBER = #{applyNumber}
+    </select>
+
+    <select id="selectOldList" resultType="SitterApplyLicenseFile">
+        SELECT APPLY_FILE_NUMBER, APPLY_FILE_TITLE, APPLY_FILE_NAME,
+        APPLY_FILE_UUID, APPLY_FILE_UPLOAD_PATH, APPLY_NUMBER, SITTER_NUMBER FROM TBL_SITTER_APPLY_LICENSE_FILE
+        WHERE APPLY_FILE_UPLOAD_PATH = TO_CHAR(CURRENT_DATE - 1, 'YYYY/MM/DD')
+    </select>
+    
+</mapper>

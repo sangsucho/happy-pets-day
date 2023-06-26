@@ -12,6 +12,8 @@
         <typeAlias type="com.example.happypetsday.vo.RecommendVo" alias="recommendVo"/>
         <typeAlias type="com.example.happypetsday.dto.StrollReplyDto" alias="strollReplyDto"/>
         <typeAlias type="com.example.happypetsday.vo.StrollReplyVo" alias="strollReplyVo"/>
+        <typeAlias type="com.example.happypetsday.dto.SitterApplyDto" alias="sitterApplyDto"/>
+        <typeAlias type="com.example.happypetsday.dto.SitterApplyLicenseFile" alias="sitterApplyLicenseFile"/>
     </typeAliases>
 
 </configuration>
