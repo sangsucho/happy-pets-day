@@ -24,8 +24,8 @@ marker.setMap(map);
 
 // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 let content = '<div class="customoverlay">' +
-    `  <a href="https://map.kakao.com/link/map/산책모임장소,${boardLat}, ${boardLng}" target="_blank">`+
-    `    <span class="title">산책 날짜 : 2023-06-14  <br/> 모임장소 : ${place}</span>` +
+    `  <a href="https://map.kakao.com/link/map/${place},${boardLat}, ${boardLng}" target="_blank">`+
+    `    <span class="title">산책 날짜 : ${date}  <br/> 모임장소 : ${place}</span>` +
     '  </a>' +
     '</div>';
 
