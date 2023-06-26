@@ -65,16 +65,11 @@
                 <div class="profile-card">
                     <div class="profile-info">
                         <!-- 이미지 분기처리 -->
-                        <th:block th:if="*{petFileName==null}">
-                            <img src="https://lifet.co.kr/img/profile/default.png" alt="" class="default-profile">
-                        </th:block>
+                            <img src="https://lifet.co.kr/img/profile/default.png" alt="" class="default-profile" th:if="*{petFileName==null}">
 
-                        <th:block th:unless="*{petFileName==null}">
-                            <!-- 펫 등록 완료되면 이미지 경로 수정하기 db에서는 다 가져왔음-->
-                            <img src="https://lifet.co.kr/img/profile/default.png"
+                            <img th:src="@{/petFile/display(fileName=*{petFileUploadPath+'/th_'+petFileUuid+'_'+petFileName})}"
                                  alt=""
-                                 class="default-profile">
-                        </th:block>
+                                 class="default-profile"  th:unless="*{petFileName==null}">
 
                     </div>
                     <div class="profile-info2">
