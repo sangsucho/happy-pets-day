@@ -57,7 +57,7 @@
                     </td>
 
                     <td class="user-name" th:text="${user.userName}"></td>
-                    <td class="user-level" th:text="${user.userStatusResult}"></td>
+                    <td class="user-level" th:text="${user.statusName}"></td>
                 </tr>
                  </th:block>
 
@@ -98,10 +98,11 @@
 </div>
 </div>
 
-<footer th:replace="fragment/adminFooter :: adminFooter"></footer>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<footer th:replace="fragment/adminFooter :: adminFooter"></footer>
 <script th:src="@{/js/admin/userManage.js}"></script>
 <script th:src="@{/js/fragment/header.js}"></script>
+<script th:src="@{/js/fragment/adminStatistics.js}"></script>
 </body>
 
 </html>

@@ -2,23 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.happypetsday.mapper.AdminMapper">
 
-    <select id="selectUserOne">
-        SELECT USER_NUMBER, USER_STATUS, USER_ID, USER_NAME, USER_GENDER, USER_EMAIL, USER_BIRTH, USER_PHONE_NUMBER, USER_ADDRESS
-        FROM TBL_USER
-        WHERE USER_NUMBER =#{userNumber}
+    <select id="selectUserOne" resultType="userVo">
+        SELECT USER_NUMBER, USER_ID, USER_NAME, USER_GENDER, USER_EMAIL,
+               TO_CHAR(USER_BIRTH, 'YYYY-MM-DD') AS USER_BIRTH, USER_PHONE_NUMBER, USER_ADDRESS, USER_STATUS, STATUS_NAME
+        FROM TBL_USER_STATUS S JOIN TBL_USER U
+        ON S.STATUS_NUMBER  = U.USER_STATUS AND U.USER_NUMBER = #{userNumber}
     </select>
 
-    <select id="selectAllUser">
-        SELECT USER_NUMBER, USER_ID,  USER_NAME, USER_STATUS
+    <select id="selectAllUser" resultType="userVo">
+        SELECT USER_NUMBER, USER_ID,  USER_NAME, USER_STATUS, STATUS_NAME
         FROM(
-            SELECT ROWNUM RN,
-                    USER_NUMBER, USER_ID,  USER_NAME, USER_STATUS
-            FROM(
-            SELECT USER_NUMBER, USER_ID,  USER_NAME, USER_STATUS
-            FROM TBL_USER
-            ORDER BY USER_NUMBER DESC
-            )
-        <![CDATA[
+        SELECT ROWNUM RN,
+        USER_NUMBER, USER_ID,  USER_NAME, USER_STATUS, STATUS_NAME
+        FROM(
+        SELECT USER_NUMBER, USER_ID,  USER_NAME, USER_STATUS, S.STATUS_NAME
+        FROM TBL_USER_STATUS S JOIN TBL_USER U
+        ON S.STATUS_NUMBER  = U.USER_STATUS
+        ORDER BY USER_NUMBER DESC
+        )
+             <![CDATA[
         WHERE ROWNUM <= #{page} * #{amount}
             ]]>
         )
@@ -35,4 +37,37 @@
         WHERE USER_NUMBER = #{userNumber}
     </update>
 
+    <select id="select" resultType="userDto">
+        SELECT USER_NUMBER, USER_ID
+        FROM TBL_USER
+        <choose>
+            <when test="'userId'.equals(searchType)">
+                WHERE USER_ID LIKE '%' || #{keyword} || '%'
+            </when>
+            <otherwise></otherwise>
+        </choose>
+
+    </select>
+
+    <select id="selectTotalUser" resultType="Long">
+        SELECT COUNT(USER_NUMBER) FROM TBL_USER
+    </select>
+
+    <select id="selectBasicUser" resultType="Long">
+        SELECT COUNT(USER_NUMBER)
+        FROM TBL_USER
+        WHERE USER_STATUS = 1
+    </select>
+
+    <select id="selectSitterUser" resultType="Long">
+        SELECT COUNT(SITTER_NUMBER)
+        FROM TBL_SITTER
+        WHERE SITTER_STATUS = 'Y'
+    </select>
+
+    <select id="selectUnapprovedSitter" resultType="Long">
+        SELECT COUNT(APPLY_NUMBER)
+        FROM TBL_SITTER_APPLY
+        WHERE APPLY_STATUS = '승인 대기'
+    </select>
 </mapper>

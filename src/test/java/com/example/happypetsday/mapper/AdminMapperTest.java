@@ -2,6 +2,7 @@ package com.example.happypetsday.mapper;
 
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.vo.Criteria;
+import com.example.happypetsday.vo.SearchVo;
 import com.example.happypetsday.vo.UserVo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Transactional
 @SpringBootTest
@@ -30,6 +32,7 @@ class AdminMapperTest {
     void setUp() {
         criteria = new Criteria();
         userVo = new UserVo();
+
         userVo.setUserNumber(1L);
 
         userDto = new UserDto();
@@ -68,5 +71,35 @@ class AdminMapperTest {
                 .isEqualTo(userDto.getUserStatus());
     }
 
+    @Test
+    @DisplayName("검색")
+    void select() {
+        SearchVo searchVo = new SearchVo();
+        searchVo.setSearchType("userId");
+        searchVo.setKeyword("aa");
+        adminMapper.select(searchVo).stream().forEach(userDto -> log.info(userDto.toString()));
+    }
+
+    @Test
+    @DisplayName("전체회원 수 조회")
+    void selectTotalUser(){
+        Long totalUserCount = adminMapper.selectTotalUser();
+        UserVo userVo = new UserVo();
+        userVo.setTotalUserNumber(totalUserCount);
+
+        // Assertion
+        assertEquals(totalUserCount, userVo.getTotalUserNumber());
+    }
+
+    @Test
+    @DisplayName("일반회원 수 조회")
+    void selectBasicUser() {
+        Long basicUserCount = adminMapper.selectBasicUser();
+        UserVo userVo = new UserVo();
+        userVo.setBasicUserNumber(basicUserCount);
+
+        // Assertion
+        assertEquals(basicUserCount, userVo.getBasicUserNumber());
+    }
 
 }

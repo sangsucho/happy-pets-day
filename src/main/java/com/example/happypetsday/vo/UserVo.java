@@ -20,5 +20,9 @@ public class UserVo {
     private int questionNumber;
     private String findPasswordAnswer;
     private int userStatus;
-    private String userStatusResult;
+    private String statusName;
+    private Long totalUserNumber;
+    private Long basicUserNumber;
+    private Long sitterUserNumber;
+    private Long unapprovedSitterNumber;
 }
