@@ -67,7 +67,6 @@ public class StrollController {
     @GetMapping("/list")
     public String strollBoardList(Criteria criteria, Model model){
         List<StrollBoardVo> boardList = strollService.findAll(criteria);
-
         model.addAttribute("boardList",boardList);
         model.addAttribute("pageInfo", new PageVo(criteria, strollService.getTotal()));
         return "strollBoard/strollBoardList";

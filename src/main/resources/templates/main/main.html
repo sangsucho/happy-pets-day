@@ -156,11 +156,11 @@
                 <div class="adopt-section-title">
                     <h1>보호중인 아이들</h1>
 <!--                    입양정보 페이지 이동 href설정-->
-                    <a th:href="@{/adopt/adoptionInformation}">더보기 <span>&gt</span></a>
+                    <a th:href="@{/adopt/list}">더보기 <span>&gt</span></a>
                 </div>
                 <div class="adopt-section-content-container">
 <!--                    adopt-section-content 3번 반복, 각 입양정보 게시글 이동 href설정-->
-                    <a th:href="@{/}" class="adopt-section-content">
+                    <a th:href="@{/adopt/detail}" class="adopt-section-content">
                         <img th:src="@{/img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg}" alt="">
                         <div>
                             <span>마포센터</span>
@@ -168,7 +168,7 @@
                             <p>#강아지 #품종 #성별</p>
                         </div>
                     </a>
-                    <a href="" class="adopt-section-content">
+                    <a th:href="@{/adopt/detail}" class="adopt-section-content">
                         <img th:src="@{/img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg}" alt="">
                         <div>
                             <span>마포센터</span>
@@ -176,7 +176,7 @@
                             <p>#강아지 #품종 #성별#강아지 #품종 #성별#강아지 #품종 #성별#강아지 #품종 #성별</p>
                         </div>
                     </a>
-                    <a href="" class="adopt-section-content">
+                    <a th:href="@{/adopt/detail}" class="adopt-section-content">
                         <img th:src="@{/img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg}" alt="">
                         <div>
                             <span>마포센터</span>
