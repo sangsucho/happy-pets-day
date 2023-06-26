@@ -32,6 +32,13 @@ public class PetFileService {
         petFileMapper.insert(petFileDto);
     }
 
+    public void modify(PetFileDto petFileDto){
+        if(petFileDto == null){
+            throw new IllegalArgumentException("파일 정보 누락");
+        }
+        petFileMapper.update(petFileDto);
+    }
+
     //    파일이 저장되는 하위 경로를 현재 날짜로 설정할 것이기 때문에 현재날짜를 구한다.
     private String getUploadPath(){
         return new SimpleDateFormat("yyyy/MM/dd").format(new Date());
@@ -89,13 +96,13 @@ public class PetFileService {
 
 //        썸네일 저장처리
 //        이미지 파일인 경우에만 처리하는 조건식
-        if(Files.probeContentType(uploadFile.toPath()).startsWith("image")){
-            FileOutputStream out = new FileOutputStream(new File(uploadPath, "th_"+sysName));
-            Thumbnailator.createThumbnail(file.getInputStream(), out, 300, 200);
-            out.close();
-        }
+//        if(Files.probeContentType(uploadFile.toPath()).startsWith("image")){
+//            FileOutputStream out = new FileOutputStream(new File(uploadPath, "th_"+sysName));
+//            Thumbnailator.createThumbnail(file.getInputStream(), out, 300, 200);
+//            out.close();
+//        }
 
-//        boardNumber를 제외한 모든 정보를 가진 FileDto를 반환한다.
+//        fileNumber를 제외한 모든 정보를 가진 FileDto를 반환한다.
         PetFileDto petFileDto = new PetFileDto();
         petFileDto.setPetFileUuid(uuid.toString());
         petFileDto.setPetFileName(originName);
@@ -108,6 +115,17 @@ public class PetFileService {
         PetFileDto petFileDto = saveFile(file);
         petFileDto.setPetNumber(petNumber);
         register(petFileDto);
+    }
+
+    public void modifyAndSaveFile(MultipartFile file, Long petNumber) throws IOException{
+        PetFileDto petFile = findFile(petNumber);
+        File target = new File(fileDir, petFile.getPetFileUploadPath() + "/" + petFile.getPetFileUuid() + "_" + petFile.getPetFileName());
+        if(target.exists()){
+            target.delete();
+        }
+        PetFileDto petFileDto = saveFile(file);
+        petFileDto.setPetNumber(petNumber);
+        modify(petFileDto);
     }
 
 }

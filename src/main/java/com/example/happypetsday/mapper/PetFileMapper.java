@@ -10,6 +10,6 @@ public interface PetFileMapper {
     void insert(PetFileDto petFileDto);
     void delete(Long petNumber);
     PetFileDto select(Long petNumber);
-
+    void update(PetFileDto petFileDto);
 
 }
