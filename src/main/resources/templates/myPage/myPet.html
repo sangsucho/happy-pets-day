@@ -40,6 +40,7 @@
         />
       </div>
     </div>
+    <form th:action="@{/myPage/myPet/editPet}" method="post" enctype="multipart/form-data">
     <div id="profile-contents">
       <div class="basic-photo">
         <img
@@ -50,7 +51,7 @@
         <label for="photo-file">
           <input
                   type="file"
-                  name="photo-file"
+                  name="petFile"
                   id="photo-file"
                   accept=".jpg, .jpeg, .png"
                   class="hidden"
@@ -71,27 +72,28 @@
         </div>
       </div>
       <!-- 프로필 정보 -->
-      <form action="#" method="get">
+      <div>
+        <input type="hidden" id="pet-number" name="petNumber">
         <div id="profile-info">
           <div class="field">
             <div class="info-kind">이름</div>
-            <input type="text" class="name insert" maxlength="20" />
+            <input type="text" class="name insert pet-name" name="petName" maxlength="20" />
           </div>
           <div class="field front">
             <div class="info-kind">동물 종류</div>
             <div class="dropdown">
               <button type="button" class="dropdown-btn">
-                <span>동물의 종류를 입력해주세요</span>
+                <span class="pet-kind">동물의 종류를 입력해주세요</span>
               </button>
               <ul class="menu-list">
                 <li class="list">
-                  <button type="button" id="dog" value="dog">강아지</button>
+                  <button type="button" id="dog" value="강아지">강아지</button>
                 </li>
                 <li class="list">
                   <button
                           type="button"
                           id="cat"
-                          value="cat"
+                          value="고양이"
                           onclick="selectCat"
                   >
                     고양이
@@ -106,15 +108,15 @@
             </div>
           </div>
 
-          <input type="hidden" id="etcDirect" name="etcDirect" value="" />
+          <input type="hidden" id="etcDirect" name="petKind" value="" />
 
           <div class="field">
             <div class="info-kind">품종</div>
-            <input type="text" class="insert" />
+            <input type="text" class="insert pet-detailed-type" name="petDetailedType"/>
           </div>
           <div class="field">
             <div class="info-kind">생일</div>
-            <input type="text" class="info birth datepicker" name="petBirth">
+            <input type="text" class="info birth datepicker pet-birth" name="petBirth">
 <!--            <input-->
 <!--                    class="birth birth_year"-->
 <!--                    type="text"-->
@@ -136,18 +138,18 @@
           <div class="field select-btn">
             <div class="info-kind">성별</div>
             <div class="option-wrap">
-              <input id="male" type="radio" name="gender" value="M" />
+              <input id="male" type="radio" name="petGender" value="M" />
               <span>남자아이</span>
-              <input id="female" type="radio" name="gender" value="F" />
+              <input id="female" type="radio" name="petGender" value="F" />
               <span>여자아이</span>
             </div>
           </div>
           <div class="field">
             <div class="info-kind">중성화</div>
             <div class="option-wrap">
-              <input type="radio" name="neuter" value="Y" />
+              <input type="radio" name="petSurgery" id="no" value="N" />
               <span>중성화 전</span>
-              <input type="radio" name="neuter" value="N" />
+              <input type="radio" name="petSurgery" id="yes" value="Y" />
               <span>중성화 완료</span>
             </div>
           </div>
@@ -155,6 +157,7 @@
         <div class="update-btn_wrap">
           <button id="updateBtn" class="update-btn">저장하기</button>
         </div>
+      </div>
       </form>
     </div>
   </div>
@@ -177,7 +180,7 @@
     <div class="container">
       <div class="swiper-container">
         <!--  반복할 펫카드 시작   -->
-        <div class="animal-swiper">
+        <div class="animal-swiper" th:each="petInfo : ${petList}">
           <div class="profile-card">
             <div class="profile-info">
               <button type="button" class="menu-dot">
@@ -187,27 +190,29 @@
                         class="menu-dot-img"
                 />
               </button>
-              <img
-                      src="https://lifet.co.kr/img/profile/default.png"
+              <img th:if="${petInfo.fileUploadPath != 'no'}"
+                      th:src="@{/upload/pet/{path}(path = ${petInfo.fileUploadPath})}"
                       alt=""
                       class="default-profile"
               />
+              <img th:unless="${petInfo.fileUploadPath != 'no'}" src="https://lifet.co.kr/img/profile/default.png" class="default-profile">
             </div>
             <div class="profile-info2">
               <!--펫 번호-->
-              <input type="hidden" class="pet-number" value="">
+              <input type="hidden" class="pet-number" th:value="${petInfo.petNumber}">
 
-              <div class="name">이름 : 백설이</div>
-              <div class="kind">동물 종류 : 강아지</div>
-              <div class="detailed-kind">품종 : 진돗개</div>
-              <div class="birth">생일 : 2018-06-08</div>
-              <div class="gender">성별 : M</div>
-              <div class="surgery">중성화 : 중성화 완료</div>
+              <div class="name">이름 : <span th:text="${petInfo.petName}"></span></div>
+              <div class="kind">동물 종류 : <span th:text="${petInfo.petKind}"></span></div>
+              <div class="detailed-kind">품종 : <span th:text="${petInfo.petDetailedType}"></span></div>
+              <div class="birth">생일 : <span th:text="${petInfo.petBirth}"></span></div>
+              <div class="gender">성별 : <span th:text="${petInfo.petGender}"></span></div>
+              <div class="surgery">중성화 : <span th:text="${petInfo.petSurgery}"></span></div>
             </div>
           </div>
 
           <!-- 수정, 삭제 창 -->
           <article class="edit-box">
+            <input type="hidden" class="edit-pet-number">
             <div class="select-box">
               <!-- '수정' 버튼 클릭 > 모달 띄워주기  -->
               <div class="btn-list">
@@ -222,7 +227,7 @@
               <!-- <br />
               <hr /> -->
               <div class="btn-list">
-                <a href="#" class="delete1"
+                <a th:href="@{/myPage/myPet/delete(petNumber = ${petInfo.petNumber})}" class="delete1"
                 >삭제
                   <img
                           src="https://lifet.co.kr/img/icon/icon_del.svg"
