@@ -167,3 +167,41 @@ $(document).ready(function () {
 
 
 // 카테고리 분류
+// 강아지와 고양이 선택 이벤트 처리
+
+$(".category-img").on("click", function (e) {
+    e.preventDefault();
+    const category = $(this).data("category");
+
+    if (category === "강아지") {
+        $(".board-data").hide();
+        $(".board-data").each(function () {
+            const petSpcs = $(this)
+                .find(".board-bottom")
+                .text()
+                .toLowerCase()
+                .includes("강아지");
+
+            if (petSpcs) {
+                $(this).show();
+            }
+        });
+    } else if (category === "고양이") {
+        $(".board-data").hide();
+        $(".board-data").each(function () {
+            const petSpcs = $(this)
+                .find(".board-bottom")
+                .text()
+                .toLowerCase()
+                .includes("고양이");
+
+            if (petSpcs) {
+                $(this).show();
+            }
+        });
+    } else {
+        $(".board-data").show();
+    }
+});
+
+
