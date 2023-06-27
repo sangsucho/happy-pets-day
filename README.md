@@ -11,7 +11,7 @@
 
 ## 로그인 검사 추가하는 방법
 
-1. cofig.InterCeptorConfig.Java 에 들어가서
+1. cofig.InterCeptorConfig.Java 에 들어가서 코드 참고해서 원하는 url추가
 
 ```java
     @Override

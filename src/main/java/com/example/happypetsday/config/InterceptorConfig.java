@@ -17,8 +17,9 @@ public class InterceptorConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
 //        일반 회원 세션 확인
         registry.addInterceptor(loginInterceptor)
-                .addPathPatterns("/myPage/**")
-                .addPathPatterns("/stroll/write");
+                .addPathPatterns("/myPage/**") //해당 url로 시작하는 모든 경로
+//             .addPathPatterns("/세션 검사를 할 url")
+                .addPathPatterns("/stroll/write"); //검사할 페이지를 지정
 
 //        관리자 여부 확인
         registry.addInterceptor(adminInterceptor)
