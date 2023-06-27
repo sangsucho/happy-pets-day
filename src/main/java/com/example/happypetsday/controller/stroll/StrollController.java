@@ -1,5 +1,6 @@
 package com.example.happypetsday.controller.stroll;
 
+import com.example.happypetsday.aspect.annotation.LoggingPointCut;
 import com.example.happypetsday.dto.PetDto;
 import com.example.happypetsday.dto.StrollBoardDto;
 import com.example.happypetsday.service.pet.PetFileService;
