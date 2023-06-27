@@ -1,71 +1,72 @@
-// $.ajax({
-//     // 클릭한 게시물의 데이터만 가져와야함
-//     url: "http://openapi.seoul.go.kr:8088/786e44785864656334354e61496a76/json/TbAdpWaitAnimalView/1/1/",
-//     type: "get",
-//     dataType: "json",
-//     success: function (result) {
-//         // console.log(result);
-//         // console.log(result.TbAdpWaitAnimalView.row);
-//
-//         let list = result.TbAdpWaitAnimalView.row;
-//         list.forEach((obj) => makeList(obj));
-//     },
-// });
+let petNumber = $('.pet-number').val();
 
-function makeList(obj) {
-    let fullName = `${obj.NM}`;
-    let centerName = fullName.split('(')[1].split('-')[0].split(')')[0];
-    $('.title-section1').text(centerName);
-
-    let petName = fullName.split('(')[0];
-    $('.title-section2').text(petName);
-
-    // 성별 'M', 'W' > '남아', '여아'로 변경
-    let petGender = `${obj.SEXDSTN}`;
-    if (petGender == 'M') {
-        petGender = '남아';
-    } else if (petGender == 'W') {
-        petGender = '여아';
-    }
-
-    $(".name").text(petName);
-    $(".gender").text(petGender);
-    $(".register-date").text(`${obj.ENTRNC_DATE}`);
-    $(".weight").text(`${obj.BDWGH}` + 'kg');
-
-    // 입양상태 : N(입양대기), P(입양진행중), C(입양완료)
-    let adoptStatus = `${obj.ADP_STTUS}`;
-    switch (adoptStatus) {
-        case 'N':
-            adoptStatus = '입양대기';
-            break;
-        case 'P':
-            adoptStatus = '입양진행중';
-            break;
-        case 'C':
-            adoptStatus = '입양완료';
-            break;
-        default:
-    }
-    $(".adopt-status").text(adoptStatus);
-
-    $(".introduce-video").prop("href", `${obj.INTRCN_MVP_URL}`);
-
-    // 소개영상 URL이 없을 시 새창 띄우지 않기
-    $(".introduce-video").on("click", function(event) {
-        let videoUrl =  `${obj.INTRCN_MVP_URL}`;
-        if (videoUrl == "") {
-            event.preventDefault();
-            alert("영상 URL이 존재하지 않습니다.")
-        } else {
-
+$.ajax({
+    // 클릭한 게시물의 정보를 가져와야 하니까 petNumber를 가져올 게시물 번호에 넣어준다.
+    url: `http://openapi.seoul.go.kr:8088/786e44785864656334354e61496a76/json/TbAdpWaitAnimalView/${petNumber}/${petNumber}/`,
+    type: "get",
+    dataType: "json",
+    success: function (result) {
+        let b = result.TbAdpWaitAnimalView.row[0];
+        let fullName = `${b.NM}`;
+        let centerName = fullName.split('(')[1].split('-')[0].split(')')[0];
+        let petName = fullName.split('(')[0];
+        let petSpcs = `${b.SPCS}`;
+        if (petSpcs == 'CAT') {
+            petSpcs = '고양이';
+        } else if (petSpcs == 'DOG') {
+            petSpcs = '강아지';
         }
-    })
 
-    $(".pet-image").attr("src", `https://animal.seoul.go.kr/comm/getImage?srvcId=MEDIA&upperNo=${obj.ANIMAL_NO}&fileTy=ADOPTIMG&fileNo=1&thumb`);
+        // 성별 'M', 'W' > '남아', '여아'로 변경
+        let petGender = `${b.SEXDSTN}`;
+        if (petGender == 'M') {
+            petGender = '남아';
+        } else if (petGender == 'W') {
+            petGender = '여아';
+        }
 
-    let content = `<div>${obj.INTRCN_CN}</div>`;
-    $(".content").append(content);
+        let petWeight = `${b.BDWGH}` + 'kg';
+        let regiDate = `${b.ENTRNC_DATE}`;
+        let introVideo = `${b.INTRCN_MVP_URL}`;
+        let content = `<div>${b.INTRCN_CN}</div>`;
 
-    console.log(petName);
-}
+        // 입양상태 : N(입양대기), P(입양진행중), C(입양완료)
+        let adoptStatus = `${b.ADP_STTUS}`;
+        switch (adoptStatus) {
+            case 'N':
+                adoptStatus = '입양대기';
+                break;
+            case 'P':
+                adoptStatus = '입양진행중';
+                break;
+            case 'C':
+                adoptStatus = '입양완료';
+                break;
+            default:
+        }
+
+        $(".gender").text(petGender);
+        $(".name").text(petName);
+        $(".register-date").text(regiDate);
+        $(".weight").text(petWeight);
+        $(".adopt-status").text(adoptStatus);
+        $(".adopt-status").text(adoptStatus);
+        $(".introduce-video").prop("href", introVideo);
+        $(".introduce-video").on("click", function(event) {
+            if (introVideo == "") {
+                event.preventDefault();
+                alert("영상 URL이 존재하지 않습니다.")
+            } else {
+
+            }
+        })
+        $(".content").append(content);
+        $(".pet-image").attr('src', `https://animal.seoul.go.kr/comm/getImage?srvcId=MEDIA&upperNo=${b.ANIMAL_NO}&fileTy=ADOPTIMG&fileNo=1&thumb`)
+        $(".title-section1").text(centerName);
+        $(".title-section2").text(petName);
+        $(".title-section3").text(regiDate);
+
+    }
+});
+
+
