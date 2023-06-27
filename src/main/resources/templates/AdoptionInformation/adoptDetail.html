@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <title>Happy Pet's day | 입양 상세정보</title>
@@ -11,15 +11,15 @@
      <header th:replace="fragment/header :: header"></header>
     <div class="body-container">
       <div class="title">
-        <div class="title-section1">마포센터</div>
-        <div class="title-section2">
-          라라
-        </div>
+        <div class="title-section1"></div>
+        <div class="title-section2"></div>
         <div class="title-section3">
-          <div>2023.05.24</div>
+          <div></div>
         </div>
       </div>
       <div class="content-container">
+        <input type="hidden" th:value="${petNumber}" class="pet-number">
+
         <table class="info-table">
           <tbody>
             <tr>
@@ -84,7 +84,7 @@
               </td>
               <td class="info-detail">
                 <div class="info-table-list" style="height: 20px">
-                  <a class="introduce-video" href="#" target="_blank">
+                  <a class="introduce-video" target="_blank">
                     <img
                       th:src="@{/img/youtube.png}"
                       alt=""
@@ -98,7 +98,7 @@
           </tbody>
         </table>
 
-        <img class="pet-image" src="" style="width: 400px; height: 300px";/>
+        <img class="pet-image" style="width: 400px; height: 300px";/>
 
         <div class="content"></div>
       </div>
