@@ -77,7 +77,6 @@ public class StrollController {
     }
 
 //   전체 게시글 목록 가져오기
-    @LoggingPointCut
     @GetMapping("/list")
     public String strollBoardList(Criteria criteria, Model model){
         List<StrollBoardVo> boardList = strollService.findAll(criteria);

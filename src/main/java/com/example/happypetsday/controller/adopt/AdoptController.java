@@ -1,5 +1,6 @@
 package com.example.happypetsday.controller.adopt;
 
+import com.example.happypetsday.aspect.annotation.LoggingPointCut;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
