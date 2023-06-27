@@ -14,18 +14,13 @@ $("body").on("click", function (event) {
     editBox.css("display", "block");
     tmpEditBox = editBox;
   } else{
-    console.log('none')
     tmpEditBox.css("display", "none");
   }
 });
 
-
-
-
-
-
-
-
+$('.menu-dot').on('click', function (){
+  $('.edit-pet-number').val($(this).closest(".animal-swiper").find('.pet-number').val());
+})
 
 // 삭제버튼 누를 시 alert창
 $(".delete1").on("click", function () {
@@ -42,11 +37,50 @@ let modal = $("#modal-container");
 // '수정' 클릭 > 모달 띄워주기
 $(".modify1").on("click", function () {
   modal.css('display', 'flex');
+  let petNumber = $('.edit-pet-number').val();
+  $.ajax({
+    url :`/myPage/myPet/editPet/${petNumber}`,
+    type : 'get',
+    dataType : 'json',
+    success : function (result){
+      $('#pet-number').val(petNumber);
+      $('.pet-name').val(result.petName);
+      $('.pet-detailed-type').val(result.petDetailedType);
+      $('.pet-birth').val(result.petBirth);
+      if(result.petKind != '강아지' && result.petKind != '고양이'){
+        $('.etc-direct').click();
+        // $('#etcDirect').val(result.petKind);
+      }else{
+        $('.pet-kind').text(result.petKind);
+      };
+      $('#etcDirect').val(result.petKind);
+
+      if(result.petGender == 'M'){
+        $('#male').prop('checked', true);
+      }else if(result.petGender == 'F'){
+        $('#female').prop('checked', true);
+      };
+
+      if(result.petSurgery == 'Y'){
+        $('#yes').prop('checked', true);
+      }else{
+        $('#no').prop('checked', true);
+      };
+
+      if(result.petFileName){
+        $('#uploaded-image').attr('src', `/upload/pet/${result.petFileUploadPath}/${result.petFileUuid}_${result.petFileName}`);
+      }else{
+        $('#uploaded-image').attr('src', 'https://lifet.co.kr/img/profile/default.png');
+      };
+
+    }
+  })
 });
 
 // 'X' 클릭 > 모달 끄기
 $(".btn-close").on("click", function () {
   modal.css('display', 'none');
+  $('#etcDirect').attr('type', 'hidden');
 });
 
 // '동물 종류' 드롭다운 메뉴 열기/닫기

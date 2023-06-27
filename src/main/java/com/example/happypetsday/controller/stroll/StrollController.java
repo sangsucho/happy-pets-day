@@ -2,6 +2,7 @@ package com.example.happypetsday.controller.stroll;
 
 import com.example.happypetsday.dto.PetDto;
 import com.example.happypetsday.dto.StrollBoardDto;
+import com.example.happypetsday.service.pet.PetFileService;
 import com.example.happypetsday.service.pet.PetService;
 import com.example.happypetsday.service.stroll.StrollService;
 import com.example.happypetsday.vo.Criteria;
@@ -9,6 +10,7 @@ import com.example.happypetsday.vo.PageVo;
 import com.example.happypetsday.vo.StrollBoardVo;
 import lombok.RequiredArgsConstructor;
 import net.bytebuddy.dynamic.scaffold.inline.RebaseImplementationTarget;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +31,19 @@ public class StrollController {
     private final StrollService strollService;
 
 
+    @Value("${petFile.dir}")
+    private String petFileDir;
+
+//  게시글 보기
     @GetMapping("/view")
     public String boardView(Long strollBoardNumber,Model model,HttpServletRequest req){
         strollService.modifyViewCount(strollBoardNumber);
 
         StrollBoardVo strollBoard = strollService.findBoard(strollBoardNumber);
+        String filePath = petFileDir.substring(petFileDir.indexOf("C:")+2);
+
+
+        model.addAttribute("rootPath", filePath);
         model.addAttribute("board", strollBoard);
         return "strollBoard/strollBoardView";
     }

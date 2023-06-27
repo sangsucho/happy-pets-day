@@ -36,7 +36,7 @@
                 src="https://store.bemypet.kr/wp-content/themes/bemypet-store-child/assets/icons/CARD_button_RIRI.svg"
                 alt=""
               />
-              <p class="nav-name">강아지</p>
+              <p class="nav-name" id="dog">강아지</p>
             </a>
           </li>
           <li class="header-list">
@@ -45,7 +45,7 @@
                 src="https://store.bemypet.kr/wp-content/themes/bemypet-store-child/assets/icons/CARD_button_samsaegi.svg"
                 alt=""
               />
-              <p class="nav-name">고양이</p>
+              <p class="nav-name" id="cat">고양이</p>
             </a>
           </li>
         </ul>
@@ -53,141 +53,35 @@
       <div class="main-container">
         <div class="main-container-title">
           <div class="full-list">전체()</div>
-          <form action="" class="serach-box">
+          <form action="" class="search-form">
             <div class="search">
               <input
-                type="text"
-                id="searchTxt"
-                name
-                value
-                placeholder="검색어를 입력해주세요"
+                      type="text"
+                      class="search-input"
+                      id="searchTxt"
+                      name="searchTxt"
+                      placeholder="검색어를 입력해주세요"
               />
-              <button id="search-btn"></button>
+              <button type="submit" id="search-btn"></button>
             </div>
           </form>
+
+          <!--          <form action="" class="serach-box">-->
+<!--            <div class="search">-->
+<!--              <input-->
+<!--                type="text"-->
+<!--                id="searchTxt"-->
+<!--                name-->
+<!--                value-->
+<!--                placeholder="검색어를 입력해주세요"-->
+<!--              />-->
+<!--              <button id="search-btn"></button>-->
+<!--            </div>-->
+<!--          </form>-->
         </div>
         <div class="board-list" >
           <ul class="content-list"  >
-<!--            <input type="hidden" name="adPetName" value="NM">-->
-<!--            <li class="board-data">-->
-<!--              <a href="" class="slide-card">-->
-<!--                <span class="board-img">-->
-<!--                  <img-->
-<!--                    src="https://lifet-img.s3.ap-northeast-2.amazonaws.com/06e0e67d-e47c-4042-abf4-7464736a6e73"-->
-<!--                    alt=""-->
-<!--                    class="card-img"-->
-<!--                  />-->
-<!--                </span>-->
-<!--                <div class="board-text">-->
-<!--                  <span class="board-title">질병사전</span>-->
-<!--                  <h3 class="board-middle">강아지 십자인대 파열에 대해</h3>-->
-<!--                  <p class="board-bottom">#강아지 #뼈/관절</p>-->
-<!--                  <span class="card-name">강아지</span>-->
-<!--                </div>-->
-<!--              </a>-->
-<!--            </li>-->
-<!--            <li class="board-data">-->
-<!--              <a href="" class="slide-card">-->
-<!--                <span class="board-img">-->
-<!--                  <img-->
-<!--                    src="https://lifet-img.s3.ap-northeast-2.amazonaws.com/06e0e67d-e47c-4042-abf4-7464736a6e73"-->
-<!--                    alt=""-->
-<!--                    class="card-img"-->
-<!--                  />-->
-<!--                </span>-->
-<!--                <div class="board-text">-->
-<!--                  <span class="board-title">질병사전</span>-->
-<!--                  <h3 class="board-middle">강아지 십자인대 파열에 대해</h3>-->
-<!--                  <p class="board-bottom">#강아지 #뼈/관절</p>-->
-<!--                  <span class="card-name">강아지</span>-->
-<!--                </div>-->
-<!--              </a>-->
-<!--            </li>-->
-<!--            <li class="board-data">-->
-<!--              <a href="" class="slide-card">-->
-<!--                <span class="board-img">-->
-<!--                  <img-->
-<!--                    src="https://lifet-img.s3.ap-northeast-2.amazonaws.com/06e0e67d-e47c-4042-abf4-7464736a6e73"-->
-<!--                    alt=""-->
-<!--                    class="card-img"-->
-<!--                  />-->
-<!--                </span>-->
-<!--                <div class="board-text">-->
-<!--                  <span class="board-title">질병사전</span>-->
-<!--                  <h3 class="board-middle">강아지 십자인대 파열에 대해</h3>-->
-<!--                  <p class="board-bottom">#강아지 #뼈/관절</p>-->
-<!--                  <span class="card-name">강아지</span>-->
-<!--                </div>-->
-<!--              </a>-->
-<!--            </li>-->
-<!--            <li class="board-data">-->
-<!--              <a href="" class="slide-card">-->
-<!--                <span class="board-img">-->
-<!--                  <img-->
-<!--                    src="https://lifet-img.s3.ap-northeast-2.amazonaws.com/06e0e67d-e47c-4042-abf4-7464736a6e73"-->
-<!--                    alt=""-->
-<!--                    class="card-img"-->
-<!--                  />-->
-<!--                </span>-->
-<!--                <div class="board-text">-->
-<!--                  <span class="board-title">질병사전</span>-->
-<!--                  <h3 class="board-middle">강아지 십자인대 파열에 대해</h3>-->
-<!--                  <p class="board-bottom">#강아지 #뼈/관절</p>-->
-<!--                  <span class="card-name">강아지</span>-->
-<!--                </div>-->
-<!--              </a>-->
-<!--            </li>-->
-<!--            <li class="board-data">-->
-<!--              <a href="" class="slide-card">-->
-<!--                <span class="board-img">-->
-<!--                  <img-->
-<!--                    src="https://lifet-img.s3.ap-northeast-2.amazonaws.com/06e0e67d-e47c-4042-abf4-7464736a6e73"-->
-<!--                    alt=""-->
-<!--                    class="card-img"-->
-<!--                  />-->
-<!--                </span>-->
-<!--                <div class="board-text">-->
-<!--                  <span class="board-title">질병사전</span>-->
-<!--                  <h3 class="board-middle">강아지 십자인대 파열에 대해</h3>-->
-<!--                  <p class="board-bottom">#강아지 #뼈/관절</p>-->
-<!--                  <span class="card-name">강아지</span>-->
-<!--                </div>-->
-<!--              </a>-->
-<!--            </li>-->
-<!--            <li class="board-data">-->
-<!--              <a href="" class="slide-card">-->
-<!--                <span class="board-img">-->
-<!--                  <img-->
-<!--                    src="https://lifet-img.s3.ap-northeast-2.amazonaws.com/06e0e67d-e47c-4042-abf4-7464736a6e73"-->
-<!--                    alt=""-->
-<!--                    class="card-img"-->
-<!--                  />-->
-<!--                </span>-->
-<!--                <div class="board-text">-->
-<!--                  <span class="board-title">질병사전</span>-->
-<!--                  <h3 class="board-middle">강아지 십자인대 파열에 대해</h3>-->
-<!--                  <p class="board-bottom">#강아지 #뼈/관절</p>-->
-<!--                  <span class="card-name">강아지</span>-->
-<!--                </div>-->
-<!--              </a>-->
-<!--            </li>-->
-<!--            <li class="board-data">-->
-<!--              <a href="" class="slide-card">-->
-<!--                <span class="board-img">-->
-<!--                  <img-->
-<!--                    src="https://lifet-img.s3.ap-northeast-2.amazonaws.com/06e0e67d-e47c-4042-abf4-7464736a6e73"-->
-<!--                    alt=""-->
-<!--                    class="card-img"-->
-<!--                  />-->
-<!--                </span>-->
-<!--                <div class="board-text">-->
-<!--                  <span class="board-title">질병사전</span>-->
-<!--                  <h3 class="board-middle">강아지 십자인대 파열에 대해</h3>-->
-<!--                  <p class="board-bottom">#강아지 #뼈/관절</p>-->
-<!--                  <span class="card-name">강아지</span>-->
-<!--                </div>-->
-<!--              </a>-->
-<!--            </li>-->
+
           </ul>
         </div>
       </div>

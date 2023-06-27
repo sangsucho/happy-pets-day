@@ -2,9 +2,8 @@ package com.example.happypetsday.controller.admin;
 
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.service.admin.AdminService;
-import com.example.happypetsday.vo.Criteria;
-import com.example.happypetsday.vo.PageVo;
-import com.example.happypetsday.vo.UserVo;
+import com.example.happypetsday.service.stroll.StrollService;
+import com.example.happypetsday.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +25,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AdminController {
     private final AdminService adminService;
+    private final StrollService strollService;
 
     @GetMapping("/applicationManage")
     public String applicationManage() {
@@ -43,15 +43,18 @@ public class AdminController {
     }
 
     @GetMapping("/strollBoardManage")
-    public String strollBoardManage(){
+    public String strollBoardManage(Criteria criteria, Model model){
+        List<StrollBoardVo> boardList = strollService.findAll(criteria);
+
+        model.addAttribute("boardList",boardList);
+        model.addAttribute("pageInfo", new PageVo(criteria, strollService.getTotal()));
+
         return "admin/strollBoardManage";
     }
 
     @GetMapping("/userDetailManage")
     public String userDetailManage(Long userNumber, Model model){
         UserVo userVo = adminService.findUser(userNumber);
-
-        userVo.setUserStatusResult(adminService.viewStatus(userVo.getUserStatus()));
 
         model.addAttribute("user", userVo);
         return "admin/userDetailManage";
@@ -61,12 +64,12 @@ public class AdminController {
     public String userManage(Criteria criteria, Model model){
         List<UserVo> userList = adminService.findAll(criteria);
 
-        List<UserVo> resultList = userList.stream()
-                .map(user -> {
-                    user.setUserStatusResult(adminService.viewStatus(user.getUserStatus()));
-                    return user;
-                })
-                .collect(Collectors.toList());
+//        List<UserVo> resultList = userList.stream()
+//                .map(user -> {
+//                    user.setUserStatusResult(adminService.viewStatus(user.getUserStatus()));
+//                    return user;
+//                })
+//                .collect(Collectors.toList());
 
 
 //        List<UserVo> resultList = new ArrayList<>();
@@ -76,12 +79,16 @@ public class AdminController {
 //            resultList.add(user);
 //        }
 
-
-
-        model.addAttribute("userList", resultList);
+        model.addAttribute("userList", userList);
         model.addAttribute("pageInfo", new PageVo(criteria, adminService.getTotal()));
 
         return "admin/userManage";
+    }
+
+    @PostMapping("/search")
+    public void search(SearchVo searchVo, Model model){
+        List<UserDto> userDtoList = adminService.searchUser(searchVo);
+        model.addAttribute("userList", userDtoList);
     }
 
     @GetMapping("/viewApplication")

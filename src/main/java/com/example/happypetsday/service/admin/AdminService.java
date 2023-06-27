@@ -3,6 +3,7 @@ package com.example.happypetsday.service.admin;
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.mapper.AdminMapper;
 import com.example.happypetsday.vo.Criteria;
+import com.example.happypetsday.vo.SearchVo;
 import com.example.happypetsday.vo.UserVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -43,33 +44,6 @@ public class AdminService {
         return adminMapper.selectTotal();
     }
 
-    // 회원등급 String으로 반환
-    public String viewStatus(int userStatus){
-        String userStatusResult;
-
-        switch (userStatus){
-            case 0:
-//              관리자
-                userStatusResult="관리자";
-                break;
-            case -1:
-//               탈퇴or제명회원
-                userStatusResult="탈퇴or제명회원";
-                break;
-            case 2:
-//                펫시터 신청중인 회원
-                userStatusResult="펫시터 신청중";
-                break;
-            case 3:
-//                펫시터 회원
-                userStatusResult="펫시터 회원";
-                break;
-            default:
-                userStatusResult="일반 회원";
-        }
-        return userStatusResult; // userStatusResult 반환
-    }
-
 
     // 수정(회원 제명-회원등급 변경)
     public void modify(UserDto userDto){
@@ -79,8 +53,27 @@ public class AdminService {
         adminMapper.update(userDto);
     }
 
+    // userId로 검색(전체회원관리)
+    public List<UserDto> searchUser(SearchVo searchVo){
+        return adminMapper.select(searchVo);
+    }
 
 
+
+
+
+    // 전체회원수, 일반회원수 조회
+    @Transactional(readOnly = true)
+    public UserVo getUsersCount(){
+        UserVo userVo = new UserVo();
+
+        userVo.setTotalUserNumber(adminMapper.selectTotalUser());
+        userVo.setBasicUserNumber(adminMapper.selectBasicUser());
+        userVo.setSitterUserNumber(adminMapper.selectSitterUser());
+        userVo.setUnapprovedSitterNumber(adminMapper.selectUnapprovedSitter());
+
+        return userVo;
+    }
 
 
 }

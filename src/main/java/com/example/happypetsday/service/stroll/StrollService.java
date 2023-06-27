@@ -3,6 +3,7 @@ package com.example.happypetsday.service.stroll;
 import com.example.happypetsday.dto.StrollBoardDto;
 import com.example.happypetsday.mapper.StrollBoardMapper;
 import com.example.happypetsday.mapper.StrollReplyMapper;
+import com.example.happypetsday.service.pet.PetFileService;
 import com.example.happypetsday.vo.Criteria;
 import com.example.happypetsday.vo.StrollBoardVo;
 import lombok.RequiredArgsConstructor;
