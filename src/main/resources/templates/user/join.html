@@ -10,7 +10,7 @@
     <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
     <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script th:src="@{/js/user/join.js}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 <body>
@@ -155,7 +155,7 @@
                                         placeholder="비밀번호를 다시 입력해주세요."
                                         id="Repw"
                                 />
-                                <p class="confirmMsg"></p>
+                                <p class="confirmMsg" id="repwConfirmMsg"></p>
                             </div>
                         </div>
                         <div class="field">

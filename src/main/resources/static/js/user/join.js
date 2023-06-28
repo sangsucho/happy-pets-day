@@ -12,7 +12,7 @@ function selectGender(gender) {
   var selectBox = document.querySelector(".select-box");
   var selectedGender = document.getElementById("selectedGender");
 
-  selectBox.innerHTML = gender;
+  selectBox.innerHTML = (gender === "M") ? "남자" : "여자";
   selectedGender.value = gender;
 
   var genderList = document.getElementById("genderList");
@@ -58,9 +58,9 @@ document.addEventListener("DOMContentLoaded", function () {
   nameInput.addEventListener("input", function () {
     var name = nameInput.value;
     if (
-      name.length < 2 ||
-      name.length >= 10 ||
-      !/^[A-Za-z가-힣]+$/.test(name)
+        name.length < 2 ||
+        name.length >= 10 ||
+        !/^[A-Za-z가-힣]+$/.test(name)
     ) {
       nameConfirmMsg.innerHTML = "2~10자의 한글이나 영문으로 입력해주세요.";
       nameConfirmMsg.classList.add("error");
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 달력으로 생년월일 집어넣기
 
-    $('.datepicker').datepicker();
+  $('.datepicker').datepicker();
 
 
   $.datepicker.setDefaults({
@@ -106,84 +106,37 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // // 아이디 유효성 검사
-  // idInput.addEventListener("input", function () {
-  //   var id = idInput.value;
-  //   if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/.test(id)) {
-  //     idConfirmMsg.innerHTML =
-  //       "영어와 숫자를 조합한 6~12글자의 아이디를 입력해주세요.";
-  //     idConfirmMsg.classList.add("error");
-  //   } else {
-  //     idConfirmMsg.innerHTML = "";
-  //     idConfirmMsg.classList.remove("error");
-  //   }
-  // });
-  //
-  // // 비밀번호 유효성 검사
-  // pwInput.addEventListener("input", function () {
-  //   var password = pwInput.value;
-  //   if (
-  //     !/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,15}$/.test(
-  //       password
-  //     )
-  //   ) {
-  //     pwConfirmMsg.innerHTML =
-  //       "8~15 글자의 문자/숫자/특수문자 필수 조합이어야 합니다.";
-  //     pwConfirmMsg.classList.add("error");
-  //   } else {
-  //     pwConfirmMsg.innerHTML = "";
-  //     pwConfirmMsg.classList.remove("error");
-  //   }
-  // });
+  // 아이디 유효성 검사
+  idInput.addEventListener("input", function () {
+    var id = idInput.value;
+    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/.test(id)) {
+      idConfirmMsg.innerHTML =
+          "영어와 숫자를 조합한 6~12글자의 아이디를 입력해주세요.";
+      idConfirmMsg.classList.add("error");
+    } else {
+      idConfirmMsg.innerHTML = "";
+      idConfirmMsg.classList.remove("error");
+    }
+  });
 
-  // function checkUserIdAvailability(userId) {
-  //   // AJAX 호출을 통해 서버에 아이디 중복 검사 요청
-  //   $.ajax({
-  //     url: "/checkUserIdAvailability", // 중복 검사를 수행하는 서버 API 경로
-  //     method: "GET",
-  //     data: { userId: userId },
-  //     success: function(response) {
-  //       if (response.available) {
-  //         // 아이디 사용 가능
-  //         $(".confirmMsg").text("사용 가능한 아이디입니다.").removeClass("error").addClass("success");
-  //       } else {
-  //         // 아이디 중복
-  //         $(".confirmMsg").text("이미 사용 중인 아이디입니다.").removeClass("success").addClass("error");
-  //       }
-  //     },
-  //     error: function() {
-  //       // 오류 처리
-  //       $(".confirmMsg").text("중복 검사 중 오류가 발생했습니다.").removeClass("success").addClass("error");
-  //     }
-  //   });
-  //   return false; // 폼 전송을 막기 위해 false를 반환
-  // }
+  // 비밀번호 유효성 검사
+  pwInput.addEventListener("input", function () {
+    var password = pwInput.value;
+    if (
+        !/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,15}$/.test(
+            password
+        )
+    ) {
+      pwConfirmMsg.innerHTML =
+          "8~15 글자의 문자/숫자/특수문자 필수 조합이어야 합니다.";
+      pwConfirmMsg.classList.add("error");
+    } else {
+      pwConfirmMsg.innerHTML = "";
+      pwConfirmMsg.classList.remove("error");
+    }
+  });
 
-  // function checkUserIdAvailability(userId) {
-  //   // AJAX 호출을 통해 서버에 아이디 중복 검사 요청
-  //   $.ajax({
-  //     url: "/checkUserIdAvailability",
-  //     method: "GET",
-  //     data: { userId: userId },
-  //     success: function(response) {
-  //       if (response.available) {
-  //         // 아이디 사용 가능
-  //         $(".confirmMsg").text("사용 가능한 아이디입니다.").removeClass("error").addClass("success");
-  //         $(".error-msg").hide();
-  //       } else {
-  //         // 아이디 중복
-  //         $(".confirmMsg").text("").removeClass("success");
-  //         $(".error-msg").show();
-  //       }
-  //     },
-  //     error: function() {
-  //       // 오류 처리
-  //       $(".confirmMsg").text("중복 검사 중 오류가 발생했습니다.").removeClass("success").addClass("error");
-  //     }
-  //   });
-  //   return false; // 폼 전송을 막기 위해 false를 반환
-  // }
-
+  // 아이디 중복검사
   $(document).ready(function() {
     $('#id').on('blur', function() {
       var userId = $(this).val();
@@ -223,6 +176,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // 비밀번호 확인 유효성 검사
+  var RepwConfirmMsg = document.querySelector("#repwConfirmMsg");
+
   RepwInput.addEventListener("input", function () {
     var pw = pwInput.value;
     var Repw = RepwInput.value;
@@ -236,13 +191,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+
+
   //이메일 유효성 검사
 
   emailInput.addEventListener("input", function () {
     var email = emailInput.value;
     if (
-      email.length === 0 || // 이메일이 입력되지 않은 경우
-      !/^[\w.-]+@[a-zA-Z_-]+?\.[a-zA-Z]{2,3}$/.test(email)
+        email.length === 0 || // 이메일이 입력되지 않은 경우
+        !/^[\w.-]+@[a-zA-Z_-]+?\.[a-zA-Z]{2,3}$/.test(email)
     ) {
       emailConfirmMsg.innerHTML = "올바른 이메일 주소를 입력해주세요.";
       emailConfirmMsg.classList.add("error");
@@ -257,9 +214,9 @@ document.addEventListener("DOMContentLoaded", function () {
     var answer = answerInput.value;
 
     if (
-      answer.length < 2 ||
-      answer.length >= 10 ||
-      !/^[A-Za-z가-힣]+$/.test(answer)
+        answer.length < 2 ||
+        answer.length >= 10 ||
+        !/^[A-Za-z가-힣]+$/.test(answer)
     ) {
       answerConfirmMsg.innerHTML = "2~10자의 한글이나 영문으로 입력해주세요.";
       answerConfirmMsg.classList.add("error");
@@ -329,7 +286,7 @@ function selectAddress() {
         // 건물명이 있고, 공동주택일 경우 추가한다.
         if (data.buildingName !== "" && data.apartment === "Y") {
           extraAddr +=
-            extraAddr !== "" ? ", " + data.buildingName : data.buildingName;
+              extraAddr !== "" ? ", " + data.buildingName : data.buildingName;
         }
         // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
         if (extraAddr !== "") {
@@ -350,7 +307,6 @@ function selectAddress() {
   }).open();
 }
 
-// 제출 유효성 검사
 $(document).ready(function () {
   $("#submit").click(function (event) {
     var requiredFields = $(".required");
@@ -381,7 +337,7 @@ $(document).ready(function () {
       event.preventDefault();
 
       var firstIncompleteField = incompleteFields[0];
-      var confirmMsg = firstIncompleteField.next(".confirmMsg");
+      var confirmMsg = firstIncompleteField.parent().find(".confirmMsg");
 
       // 입력되지 않은 필드로 스크롤 이동
       var fieldTopOffset = firstIncompleteField.offset().top - 100;
@@ -393,12 +349,11 @@ $(document).ready(function () {
 
       if (firstIncompleteField.attr("id") === "selectedQuestion") {
         // 보안질문을 선택하지 않은 경우 경고 메시지 표시
-        var questionConfirmMsg = firstIncompleteField
-          .parent()
-          .next(".confirmMsg");
+        var questionConfirmMsg = firstIncompleteField.next(".confirmMsg");
         questionConfirmMsg.text("질문을 선택해주세요.");
         questionConfirmMsg.css("display", "block");
       }
     }
   });
 });
+

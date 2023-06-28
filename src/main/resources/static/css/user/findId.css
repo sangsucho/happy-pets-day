@@ -5,7 +5,7 @@
   list-style-type: none;
 }
 
-body {
+.body {
   display: flex;
   justify-content: center;
 }
