@@ -3,9 +3,9 @@ package com.example.happypetsday.service.admin;
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.mapper.AdminMapper;
 import com.example.happypetsday.vo.Criteria;
-import com.example.happypetsday.vo.SearchVo;
 import com.example.happypetsday.vo.UserVo;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,13 +53,11 @@ public class AdminService {
         adminMapper.update(userDto);
     }
 
-    // userId로 검색(전체회원관리)
-    public List<UserDto> searchUser(SearchVo searchVo){
-        return adminMapper.select(searchVo);
+    // userId와 Name으로 검색(전체회원관리)
+    public List<UserVo> searchUser(Criteria criteria, String keyword){
+        List<UserVo> resultList = adminMapper.searchIdName(criteria, keyword);
+        return resultList;
     }
-
-
-
 
 
     // 전체회원수, 일반회원수 조회
