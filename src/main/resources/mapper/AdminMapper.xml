@@ -56,6 +56,12 @@
         WHERE RN  > ( #{criteria.page} - 1 ) * #{criteria.amount}
     </select>
 
+    <select id="searchIdNameCount">
+        SELECT COUNT(USER_NUMBER)
+        FROM TBL_USER
+        WHERE USER_ID LIKE '%' || #{keyword} || '%' OR USER_NAME LIKE '%' || #{keyword} || '%'
+    </select>
+
     <select id="selectTotalUser" resultType="Long">
         SELECT COUNT(USER_NUMBER) FROM TBL_USER
     </select>

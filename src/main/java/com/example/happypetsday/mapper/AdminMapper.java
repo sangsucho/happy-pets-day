@@ -26,6 +26,9 @@ public interface AdminMapper {
     // 회원id,name으로 검색
     public List<UserVo> searchIdName(@Param("criteria") Criteria criteria, @Param("keyword") String keyword);
 
+    // 회원id,name으로 검색조회결과 게시글 수
+    public int searchIdNameCount(@Param("keyword") String keyword);
+
     // 전체회원 수 조회
     public Long selectTotalUser();
 

@@ -2,29 +2,30 @@
 $('.search-txt').on('keypress', function (e) {
     if (e.code == 'Enter') {
         let message = $(this).val();
-        searchAjax(message,searchList);
-        $(this).val('');
+        let page = $('.active').text();
+        searchAjax(message,page,searchList,showSearchPage);
     }
 });
 
 // 검색 버튼 클릭 이벤트 처리
 $(".search-button").click(function () {
-    var keyword = $(".search-txt").val();  // 입력된 검색어 가져오기
-
+    let keyword = $(".search-txt").val();  // 입력된 검색어 가져오기
+    let page = $('.active').text();
     // Ajax를 통해 검색 결과 요청
-    searchAjax(keyword,searchList);
-    $(".search-txt").val('');
+    searchAjax(keyword,page,searchList,showSearchPage);
 });
 
+searchAjax('',1,searchList,showSearchPage);
 
-function searchAjax(keyword,searchList) {
+function searchAjax(keyword,page,searchList,showSearchPage) {
     $.ajax({
-        url: "/usersManage/search",
+        url: `/usersManage/search/${page}`,
         type: "get",
         data: {keyword: keyword},
         dataType: "json",
         success: function (data) {
-            searchList(data);
+            searchList(data.userList);
+            showSearchPage(data.pageVo);
         },
         error: function (xhr, status, error) {
             console.error(error);
@@ -33,7 +34,7 @@ function searchAjax(keyword,searchList) {
 }
 
 
-function searchList(userList){
+function searchList(userList) {
     // 검색 결과가 없는 경우 처리
     if (userList.length === 0) {
         $(".board-table tbody").html('<tr><td colspan="4" align="center">등록된 회원이 없습니다.</td></tr>');
@@ -41,7 +42,7 @@ function searchList(userList){
     }
 
     // 검색 결과를 템플릿에 바인딩하여 업데이트
-    var userListHtml = "";
+    let userListHtml = "";
     userList.forEach(function (user) {
         // userListHtml += '<tr>';
         // userListHtml += '<td class="no">' + user.userNumber + '</td>';
@@ -66,13 +67,42 @@ function searchList(userList){
 
     $(".board-table tbody").html(userListHtml);
 
-
-
-
-
-
-
 }
+
+//  검색조회결과 페이징 처리
+function showSearchPage(pageVo) {
+    let pageText = '';
+
+    if (pageVo.prev) {
+        pageText +=
+            `
+            <li><a href="javascript:void(0)" data-page="${pageVo.startPage - 1}" class="prev">&lt;</a></li>
+            `;
+    }
+
+    for (let i = pageVo.startPage; i <= pageVo.endPage; i++) {
+        pageText += `
+           <li if="${i == pageVo.criteria.page}"><a href="javascript:void(0)" data-page="${i}"
+              ${i == pageVo.criteria.page ? `class="active"` : ""}>${i}</a></li>
+           `;
+    }
+    if (pageVo.next) {
+        pageText += `
+                <li><a href="javascript:void(0)" data-page="${pageVo.endPage + 1}" class="next">&gt;</a></li>
+            `;
+    }
+
+    $('.page-ul').html(pageText);
+}
+
+$('.page-ul').on('click','a', function (){
+    let keyword = $(".search-txt").val();
+    let page = $(this).data('page');
+    console.log(keyword);
+    console.log(page);
+
+    searchAjax(keyword, page, searchList, showSearchPage);
+})
 
 
 

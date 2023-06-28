@@ -59,6 +59,11 @@ public class AdminService {
         return resultList;
     }
 
+    // userId와 Name으로 검색결과 게시글 수
+    @Transactional(readOnly = true)
+    public int getSearchTotal(String keyword){
+        return adminMapper.searchIdNameCount(keyword);
+    }
 
     // 전체회원수, 일반회원수 조회
     @Transactional(readOnly = true)
