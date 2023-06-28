@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-    @Value("${sitterFile.dir}")
+    @Value("${file.dir}")
     private String fileDir;
 
     @Override

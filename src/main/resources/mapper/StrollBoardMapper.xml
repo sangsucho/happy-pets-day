@@ -75,7 +75,12 @@
         WHERE STROLL_BOARD_NUMBER =#{strollBoardNumber}
     </select>
 
-
+    <select id="selectMypageBoard" resultType="strollBoardVo">
+        SELECT S.STROLL_BOARD_NUMBER, S.STROLL_BOARD_TITLE, TO_CHAR(S.STROLL_BOARD_MEETING_DATE, 'YYYY-MM-DD') AS STROLL_BOARD_MEETING_DATE, S.STROLL_BOARD_ADMIN_DISTRICT, U.USER_ID
+        FROM TBL_STROLL_BOARD S
+        JOIN TBL_USER U ON U.USER_NUMBER = S.USER_NUMBER
+        WHERE U.USER_NUMBER = #{userNumber}
+    </select>
 
 
 

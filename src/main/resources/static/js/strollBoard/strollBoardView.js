@@ -71,7 +71,6 @@ function showError(a, b, c) {
 // 댓글 작성 버튼
 $('.reply-write-btn').on('click', replyWrite);
 
-
 // 댓글 작성 엔터키
 $('#reply-content').on('keypress', function (e) {
     if (e.code == 'Enter') {
@@ -83,10 +82,6 @@ $('#reply-content').on('keypress', function (e) {
         }
     }
 });
-
-
-
-
 
 // 댓글 작성
 function replyWrite() {
