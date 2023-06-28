@@ -17,7 +17,7 @@ function modify() {
         data : JSON.stringify(user),
         contentType : 'application/json; charset=utf-8',
         success : function(){
-            console.log("ajax연결 완료")
+            // console.log("ajax연결 완료")
         },
         error : function (a,b,c){
             console.log(c);

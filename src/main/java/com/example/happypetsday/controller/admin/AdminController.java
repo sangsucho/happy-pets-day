@@ -85,11 +85,13 @@ public class AdminController {
         return "admin/userManage";
     }
 
-    @PostMapping("/search")
-    public void search(SearchVo searchVo, Model model){
-        List<UserDto> userDtoList = adminService.searchUser(searchVo);
-        model.addAttribute("userList", userDtoList);
-    }
+//    @GetMapping("/search")
+//    public void search(UserVo userVo, Model model){
+//        List<UserVo> userVoList = adminService.searchUser(userVo);
+//        model.addAttribute("userList", userVoList);
+//    }
+
+
 
     @GetMapping("/viewApplication")
     public String viewApplication(){
