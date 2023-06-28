@@ -7,37 +7,40 @@
 // 히든으로 상세페이지에서 사용할 정보를 넣어놔야 한다
 // 폼으로 보낸걸 컨트롤러로 받는데 그 때 VO를 사용해서 받는다.
 // VO에 center의 정보도 넣어준다.
-$.ajax({
-    url: "http://openapi.seoul.go.kr:8088/786e44785864656334354e61496a76/json/TbAdpWaitAnimalView/1/100/",
-    type: "get",
-    dataType: "json",
-    success: function(result) {
-        if (result.TbAdpWaitAnimalView && result.TbAdpWaitAnimalView.row) {
-            let list = result.TbAdpWaitAnimalView.row;
-            makeList(list);
-        }
-    },
-});
+viewList();
+function viewList() {
+    $.ajax({
+        url: "http://openapi.seoul.go.kr:8088/786e44785864656334354e61496a76/json/TbAdpWaitAnimalView/1/100/",
+        type: "get",
+        dataType: "json",
+        success: function (result) {
+            if (result.TbAdpWaitAnimalView && result.TbAdpWaitAnimalView.row) {
+                let list = result.TbAdpWaitAnimalView.row;
+                makeList(list);
+            }
+        },
+    });
+}
 
 function makeList(obj) {
     console.log(obj);
     let li = "";
-        obj.forEach(b => {
-            let fullName = `${b.NM}`;
-            let centerName = fullName.split('(')[1].split('-')[0].split(')')[0];
-            $('.board-title').text(centerName);
+    obj.forEach(b => {
+        let fullName = `${b.NM}`;
+        let centerName = fullName.split('(')[1].split('-')[0].split(')')[0];
+        $('.board-title').text(centerName);
 
-            let petName = fullName.split('(')[0];
-            $('.board-middle').text(petName);
+        let petName = fullName.split('(')[0];
+        $('.board-middle').text(petName);
 
-            let petSpcs = `${b.SPCS}`;
-            if (petSpcs == 'CAT') {
-                petSpcs = '고양이';
-            } else if (petSpcs == 'DOG') {
-                petSpcs = '강아지';
-            }
+        let petSpcs = `${b.SPCS}`;
+        if (petSpcs == 'CAT') {
+            petSpcs = '고양이';
+        } else if (petSpcs == 'DOG') {
+            petSpcs = '강아지';
+        }
 
-            li += `
+        li += `
       <li class="board-data">
         <a href="javascript:void(0)" class="slide-card">
           <span class="board-img">
@@ -55,7 +58,7 @@ function makeList(obj) {
         </a>
       </li>
       `;
-        });
+    });
 
 
     $(".content-list").html(li);
