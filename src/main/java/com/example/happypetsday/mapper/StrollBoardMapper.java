@@ -4,6 +4,7 @@ import com.example.happypetsday.dto.StrollBoardDto;
 import com.example.happypetsday.vo.Criteria;
 import com.example.happypetsday.vo.StrollBoardVo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -26,19 +27,8 @@ public interface StrollBoardMapper {
 //    게시글 1개 조회 (게시글 수정용)
     StrollBoardDto select(Long strollBoardNumber);
 
+//    마이페이지 내 산책모임 게시물 조회
+    List<StrollBoardVo> selectMypageBoard(@Param("userNumber") Long userNumber, @Param("criteria") Criteria criteria);
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 

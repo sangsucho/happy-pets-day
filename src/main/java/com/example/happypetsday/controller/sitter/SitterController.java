@@ -36,7 +36,7 @@ public class SitterController {
             SitterApplyDto sitterApplyDto, HttpServletRequest req, RedirectAttributes redirectAttributes,
             @RequestParam("applyFile") List<MultipartFile> files, @RequestParam("applyFileTitle") List<String> applyFileTitle
     ) {
-        sitterApplyDto.setUserNumber(3L);
+        sitterApplyDto.setUserNumber((Long)req.getSession().getAttribute("userNumber"));
 
         sitterApplyService.register(sitterApplyDto);
         redirectAttributes.addFlashAttribute("applyNumber", sitterApplyDto.getApplyNumber());

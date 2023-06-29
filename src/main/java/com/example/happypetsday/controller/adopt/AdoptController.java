@@ -22,10 +22,7 @@ public class AdoptController {
     public String apiTest() { return "AdoptionInformation/adoptDetail"; }
 
     @GetMapping("/detailByMain")
-    public String detailByMain(@RequestParam("petNumber") int petNumber, Model model) {    // 매개변수는 화면에서 받아올 정보를 담는다
+    public String detailByMain(@RequestParam("petNumber") int petNumber, Model model) {
         model.addAttribute("petNumber", petNumber);
         return "AdoptionInformation/adoptDetail"; }
 }
-
-// String { return } = 해당 html파일로 바로 이동 (model에 데이터를 담는다.)
-// RedirectView = 컨트롤러를 타서 가져온 데이터로 다른 작업을 해야하면 이걸 써야한다. (RedirectAttribute에 데이터 담는다)
