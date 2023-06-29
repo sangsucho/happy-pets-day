@@ -1,8 +1,8 @@
 package com.example.happypetsday.mapper;
 
 import com.example.happypetsday.dto.UserDto;
+import com.example.happypetsday.service.admin.AdminService;
 import com.example.happypetsday.vo.Criteria;
-import com.example.happypetsday.vo.SearchVo;
 import com.example.happypetsday.vo.UserVo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -72,12 +74,16 @@ class AdminMapperTest {
     }
 
     @Test
-    @DisplayName("검색")
-    void select() {
-        SearchVo searchVo = new SearchVo();
-        searchVo.setSearchType("userId");
-        searchVo.setKeyword("aa");
-        adminMapper.select(searchVo).stream().forEach(userDto -> log.info(userDto.toString()));
+    @DisplayName("회원 ID, 이름으로 검색")
+    void searchIdNameTest() {
+//        criteria.setPage(1); // 페이지 번호 설정
+//        criteria.setAmount(10); // 페이지 당 데이터 수 설정
+        String keyword = "12"; // 검색 키워드 설정
+
+        List<UserVo> userList = adminMapper.searchIdName(criteria, keyword);
+
+        assertThat(userList).isNotNull();
+
     }
 
     @Test

@@ -37,16 +37,29 @@
         WHERE USER_NUMBER = #{userNumber}
     </update>
 
-    <select id="select" resultType="userDto">
-        SELECT USER_NUMBER, USER_ID
-        FROM TBL_USER
-        <choose>
-            <when test="'userId'.equals(searchType)">
-                WHERE USER_ID LIKE '%' || #{keyword} || '%'
-            </when>
-            <otherwise></otherwise>
-        </choose>
+    <select id="searchIdName" resultType="userVo">
+        SELECT USER_NUMBER, USER_ID, USER_NAME, USER_STATUS, STATUS_NAME
+        FROM(
+                SELECT ROWNUM RN,
+                       USER_NUMBER, USER_ID,  USER_NAME, USER_STATUS, STATUS_NAME
+                FROM(
+                        SELECT USER_NUMBER, USER_ID,  USER_NAME, USER_STATUS, S.STATUS_NAME
+                        FROM TBL_USER_STATUS S JOIN TBL_USER U
+                                                    ON S.STATUS_NUMBER  = U.USER_STATUS
+                        WHERE USER_ID LIKE '%' || #{keyword} || '%' OR USER_NAME LIKE '%' || #{keyword} || '%'
+                        ORDER BY USER_NUMBER DESC
+                    )
+             <![CDATA[
+                WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+            ]]>
+        )
+        WHERE RN  > ( #{criteria.page} - 1 ) * #{criteria.amount}
+    </select>
 
+    <select id="searchIdNameCount">
+        SELECT COUNT(USER_NUMBER)
+        FROM TBL_USER
+        WHERE USER_ID LIKE '%' || #{keyword} || '%' OR USER_NAME LIKE '%' || #{keyword} || '%'
     </select>
 
     <select id="selectTotalUser" resultType="Long">

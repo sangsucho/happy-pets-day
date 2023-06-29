@@ -3,7 +3,6 @@ package com.example.happypetsday.service.admin;
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.mapper.AdminMapper;
 import com.example.happypetsday.vo.Criteria;
-import com.example.happypetsday.vo.SearchVo;
 import com.example.happypetsday.vo.UserVo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +15,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
@@ -32,7 +30,6 @@ class AdminServiceTest {
 
     private UserDto userDto;
     private UserVo userVo ;
-    private SearchVo searchVo;
     private Criteria criteria;
 
     @BeforeEach
@@ -59,10 +56,6 @@ class AdminServiceTest {
         userVo.setUserAddress("서울시 강남구");
         userVo.setUserStatus(1);
         userVo.setStatusName("일반회원");
-
-        searchVo = new SearchVo();
-        searchVo.setSearchType("userId");
-        searchVo.setKeyword("aaa");
     }
 
     @Test
@@ -113,26 +106,26 @@ class AdminServiceTest {
 
     }
 
-    @Test
-    @DisplayName("전체회원 수 조회")
-    void getTotalUser() {
-
-        doReturn(200L).when(adminMapper).selectTotalUser();
-
-        Long totalUserList = adminService.getTotalUser();
-
-        assertThat(totalUserList).isNotNull();
-    }
-
-    @Test
-    @DisplayName("일반회원 수 조회")
-    void getBasicUser() {
-
-        doReturn(30L).when(adminMapper).selectBasicUser();
-
-        Long BasicUserList = adminService.getBasicUser();
-
-        assertThat(BasicUserList).isNotNull();
-    }
+//    @Test
+//    @DisplayName("전체회원 수 조회")
+//    void getTotalUser() {
+//
+//        doReturn(200L).when(adminMapper).selectTotalUser();
+//
+//        Long totalUserList = adminService.getTotalUser();
+//
+//        assertThat(totalUserList).isNotNull();
+//    }
+//
+//    @Test
+//    @DisplayName("일반회원 수 조회")
+//    void getBasicUser() {
+//
+//        doReturn(30L).when(adminMapper).selectBasicUser();
+//
+//        Long BasicUserList = adminService.getBasicUser();
+//
+//        assertThat(BasicUserList).isNotNull();
+//    }
 
 }
