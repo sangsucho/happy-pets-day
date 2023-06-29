@@ -83,4 +83,29 @@
         FROM TBL_SITTER_APPLY
         WHERE APPLY_STATUS = '승인 대기'
     </select>
+
+    <select id="searchNumTitle" resultType="strollBoardVo">
+        SELECT STROLL_BOARD_NUMBER, STROLL_BOARD_TITLE, USER_ID, TO_CHAR(STROLL_BOARD_MEETING_DATE,'YYYY-MM-DD') AS STROLL_BOARD_MEETING_DATE, STROLL_BOARD_ADMIN_DISTRICT
+        FROM (
+                 SELECT ROWNUM RN,
+                        STROLL_BOARD_NUMBER, STROLL_BOARD_TITLE, USER_ID, STROLL_BOARD_MEETING_DATE, STROLL_BOARD_ADMIN_DISTRICT
+                 FROM(SELECT STROLL_BOARD_NUMBER, STROLL_BOARD_TITLE, USER_ID, STROLL_BOARD_MEETING_DATE, STROLL_BOARD_ADMIN_DISTRICT
+                      FROM TBL_USER U JOIN TBL_STROLL_BOARD B
+                                           ON U.USER_NUMBER =B.USER_NUMBER
+                      WHERE STROLL_BOARD_TITLE LIKE '%' || #{keyword} || '%' OR USER_ID LIKE '%' || #{keyword} || '%'
+                      ORDER BY STROLL_BOARD_NUMBER DESC
+                     )
+				<![CDATA[
+                 WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+            	]]>
+				)
+        WHERE RN  > ( #{criteria.page} - 1 ) * #{criteria.amount}
+    </select>
+
+    <select id="searchNumTitleCount">
+        SELECT COUNT(STROLL_BOARD_NUMBER)
+        FROM TBL_USER U JOIN TBL_STROLL_BOARD B
+                             ON U.USER_NUMBER =B.USER_NUMBER
+        WHERE USER_ID LIKE '%' || #{keyword} || '%' OR STROLL_BOARD_TITLE LIKE '%' || #{keyword} || '%'
+    </select>
 </mapper>

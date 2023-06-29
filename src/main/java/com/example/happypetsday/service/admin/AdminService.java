@@ -3,6 +3,7 @@ package com.example.happypetsday.service.admin;
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.mapper.AdminMapper;
 import com.example.happypetsday.vo.Criteria;
+import com.example.happypetsday.vo.StrollBoardVo;
 import com.example.happypetsday.vo.UserVo;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.annotations.Param;
@@ -54,6 +55,7 @@ public class AdminService {
     }
 
     // userId와 Name으로 검색(전체회원관리)
+    @Transactional(readOnly = true)
     public List<UserVo> searchUser(Criteria criteria, String keyword){
         List<UserVo> resultList = adminMapper.searchIdName(criteria, keyword);
         return resultList;
@@ -78,7 +80,18 @@ public class AdminService {
         return userVo;
     }
 
+    // userId와 게시물제목으로 검색(산책게시판관리)
+    @Transactional(readOnly = true)
+    public List<StrollBoardVo> searchNumTitle(Criteria criteria, String keyword){
+        List<StrollBoardVo> resultList = adminMapper.searchNumTitle(criteria, keyword);
+        return resultList;
+    }
 
+    // userId와 게시물제목으로 검색결과 게시글 수
+    @Transactional(readOnly = true)
+    public int searchNumTitleCount(String keyword){
+        return adminMapper.searchNumTitleCount(keyword);
+    }
 }
 
 
