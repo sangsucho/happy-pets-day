@@ -19,4 +19,15 @@ public interface UserMapper {
      UserDto selectUserInfoByUserNumber(@Param("userNumber")Long userNumber);
 //     마이페이지 회원정보 수정
      void update(UserDto userDto);
+//     아이디 찾기
+     String selectUserIdByNameAndPhone(@Param("userName") String userName, @Param("userPhoneNumber") int userPhoneNumber);
+
+//     // 비밀번호 찾기 - 보안 질문과 답변 확인
+//     int verifyUserSecurityAnswer(@Param("userId") String userId, @Param("questionNumber") int questionNumber, @Param("answer") String answer);
+
+     // 비밀번호 찾기
+     int verifyUserSecurityAnswer(@Param("userId") String userId, @Param("questionNumberInput") int questionNumberInput, @Param("answer") String answer);
+
+     // 비밀번호 찾기
+     String getUserPassword(String userId);
 }
