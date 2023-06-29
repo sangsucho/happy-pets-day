@@ -16,7 +16,7 @@
     <div class="main-container">
       <div class="sign-wrap">
         <div class="sign-form">
-          <form action="" class="find-account">
+<!--          <form action="" class="find-account">-->
             <ul class="page-tab">
               <li class="active">
                 <a th:href="@{/user/findId}" style="color: black">아이디 찾기</a>
@@ -36,7 +36,7 @@
                           name
                           class="required"
                           placeholder="이름 입력"
-                          id="name"
+                          id="userName"
                           maxlength="10"
                           required
                   />
@@ -48,24 +48,25 @@
                           name
                           class="required"
                           placeholder="핸드폰 번호(-제외)를 입력해주세요."
-                          id="phone"
+                          id="userPhoneNumber"
                           pattern="[0-9]{3}[0-9]{3,4}[0-9]{4}"
                           maxlength="11"
                           required
                   />
                 </div>
                 <p class="confirmMsg"></p>
-                <button class="submit-find" id="submit-find-id">
+                <button type="submit" class="submit-find" id="submit-find-id">
                   아이디 찾기
                 </button>
               </div>
             </div>
-          </form>
+<!--          </form>-->
         </div>
       </div>
     </div>
   </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:src="@{/js/user/findId.js}"></script>
 <footer th:replace="fragment/footer :: footer"></footer>
 </body>

@@ -79,5 +79,27 @@ public class UserService {
         userMapper.update(userDto);
     }
 
+//    아이디 찾기
+    @Transactional(readOnly = true)
+    public String findUserIdByNameAndPhone(String userName, int userPhoneNumber) {
+        if (userName == null || userPhoneNumber == 0) {
+            throw new IllegalArgumentException("이름 또는 핸드폰 번호 누락");
+        }
+        String userId = userMapper.selectUserIdByNameAndPhone(userName, userPhoneNumber);
+        if (userId == null) {
+            throw new IllegalArgumentException("일치하는 아이디가 없습니다.");
+        }
+        return userId;
+    }
+
+//  비밀번호 찾기
+    public String getUserPassword(String userId) {
+        return userMapper.getUserPassword(userId);
+    }
+//  비밀번호 찾기
+    public boolean verifyUserSecurityAnswer(String userId, int questionNumberInput, String answer) {
+        int count = userMapper.verifyUserSecurityAnswer(userId, questionNumberInput, answer);
+        return count > 0;
+    }
 
 }
