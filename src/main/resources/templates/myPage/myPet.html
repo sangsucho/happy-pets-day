@@ -191,7 +191,7 @@
                 />
               </button>
               <img th:if="${petInfo.fileUploadPath != 'no'}"
-                      th:src="@{/upload/pet/{path}(path = ${petInfo.fileUploadPath})}"
+                      th:src="${'/upload/pet/' + petInfo.fileUploadPath}"
                       alt=""
                       class="default-profile"
               />

@@ -50,6 +50,7 @@
 <!--        추천 결과 반복-->
         <a th:href="@{/recommend/detail(recommendNumber = ${recommend.recommendNumber})}" class="recommend-item" th:each="recommend : ${recommendList}">
             <img th:src="@{/upload/recommend/{path}(path = ${recommend.recommendFileName})}" alt="">
+<!--            <img th:src="${'/upload/recommend/' + recommend.recommendFileName}" alt="">-->
             <div class="recommend-item-name" th:text="${recommend.recommendName}"></div>
         </a>
     </div>
