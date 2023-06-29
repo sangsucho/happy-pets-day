@@ -62,15 +62,22 @@
           </table>
           <div class="pagination">
             <ul>
-              <!-- ========== 페이징 처리 예시 ============ -->
-              <li><a href="#" class="prev">&lt;</a></li>
-              <li><a href="#" class="active">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li><a href="#" class="next">&gt;</a></li>
-              <!-- ========== /페이징 처리 예시 ============ -->
+              <li  th:if="${pageInfo.prev}">
+                <a th:href="@{/myPage/strollList/(page=${pageInfo.startPage-1})}" class="prev">&lt;</a>
+              </li>
+
+              <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+                <li th:if="${i == pageInfo.criteria.page}">
+                  <a th:href="@{/myPage/strollList/(page=${i})}" class="active" th:text="${i}"></a>
+                </li>
+                <li th:unless="${i == pageInfo.criteria.page}">
+                  <a th:href="@{/myPage/strollList/(page=${i})}" th:text="${i}"></a>
+                </li>
+              </th:block>
+
+              <li th:if="${pageInfo.next}">
+                <a th:href="@{/myPage/strollList/(page=${pageInfo.endPage+1})}" class="next">&gt;</a>
+              </li>
             </ul>
           </div>
         </div>

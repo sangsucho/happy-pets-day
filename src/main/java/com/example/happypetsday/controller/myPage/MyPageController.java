@@ -9,10 +9,12 @@ import com.example.happypetsday.service.stroll.StrollService;
 import com.example.happypetsday.service.user.UserService;
 import com.example.happypetsday.vo.Criteria;
 import com.example.happypetsday.vo.PageVo;
+import com.example.happypetsday.vo.StrollBoardVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +26,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -137,6 +140,8 @@ public class MyPageController {
 
     @GetMapping("/strollList")
     public String strollList(Model model, HttpServletRequest req, Criteria criteria) {
-        model.addAttribute("boardList", mypageService.viewMypageBoard((Long)req.getSession().getAttribute("userNumber")));
+        model.addAttribute("boardList", mypageService.viewMypageBoard((Long)req.getSession().getAttribute("userNumber"), criteria));
+        model.addAttribute("pageInfo", new PageVo(criteria, mypageService.getTotalMypageBoard()));
         return "myPage/strollList"; }
+
 }

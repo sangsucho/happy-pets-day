@@ -76,12 +76,27 @@
     </select>
 
     <select id="selectMypageBoard" resultType="strollBoardVo">
-        SELECT S.STROLL_BOARD_NUMBER, S.STROLL_BOARD_TITLE, TO_CHAR(S.STROLL_BOARD_MEETING_DATE, 'YYYY-MM-DD') AS STROLL_BOARD_MEETING_DATE, S.STROLL_BOARD_ADMIN_DISTRICT, U.USER_ID
-        FROM TBL_STROLL_BOARD S
-        JOIN TBL_USER U ON U.USER_NUMBER = S.USER_NUMBER
-        WHERE U.USER_NUMBER = #{userNumber}
+        SELECT STROLL_BOARD_NUMBER, STROLL_BOARD_TITLE, TO_CHAR(STROLL_BOARD_MEETING_DATE, 'YYYY-MM-DD') AS STROLL_BOARD_MEETING_DATE, STROLL_BOARD_ADMIN_DISTRICT, USER_ID
+        FROM
+        (
+            SELECT ROWNUM RNUM, STROLL_BOARD_NUMBER, STROLL_BOARD_TITLE, STROLL_BOARD_MEETING_DATE, STROLL_BOARD_ADMIN_DISTRICT, USER_ID
+            FROM (
+                     SELECT S.STROLL_BOARD_NUMBER, S.STROLL_BOARD_TITLE, S.STROLL_BOARD_MEETING_DATE, S.STROLL_BOARD_ADMIN_DISTRICT, U.USER_ID
+                     FROM TBL_STROLL_BOARD S
+                     JOIN TBL_USER U ON U.USER_NUMBER = S.USER_NUMBER
+                     WHERE U.USER_NUMBER = #{userNumber}
+                     ORDER BY STROLL_BOARD_NUMBER DESC
+                 ) B1
+        <![CDATA[
+        WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+        ]]>
+        ) B2
+        WHERE RNUM > (#{criteria.page} - 1) * #{criteria.amount}
     </select>
 
-
+    <select id="selectTotalMypageBoard" resultType="_int">
+        SELECT COUNT(STROLL_BOARD_NUMBER)
+        FROM TBL_STROLL_BOARD
+    </select>
 
 </mapper>

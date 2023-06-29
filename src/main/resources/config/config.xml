@@ -15,6 +15,7 @@
         <typeAlias type="com.example.happypetsday.vo.UserVo" alias="userVo"/>
         <typeAlias type="com.example.happypetsday.dto.SitterApplyDto" alias="sitterApplyDto"/>
         <typeAlias type="com.example.happypetsday.dto.SitterApplyLicenseFile" alias="sitterApplyLicenseFile"/>
+        <typeAlias type="com.example.happypetsday.vo.Criteria" alias="criteria"/>
     </typeAliases>
 
 </configuration>
