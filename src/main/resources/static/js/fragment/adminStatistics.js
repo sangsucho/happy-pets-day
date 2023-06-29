@@ -5,7 +5,7 @@ function getTotalCount(error){
         type : 'get',
         dataType : 'json',
         success : function (result){
-            console.log(result);
+            // console.log(result);
             $(".whole-user-number").text(result.totalUserNumber);
             $(".basic-user-number").text(result.basicUserNumber);
             $(".whole-petsitter-number").text(result.sitterUserNumber);

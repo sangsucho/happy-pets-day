@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -156,34 +156,10 @@
                 <div class="adopt-section-title">
                     <h1>보호중인 아이들</h1>
 <!--                    입양정보 페이지 이동 href설정-->
-                    <a th:href="@{/adopt/adoptionInformation}">더보기 <span>&gt</span></a>
+                    <a th:href="@{/adopt/list}">더보기 <span>&gt</span></a>
                 </div>
                 <div class="adopt-section-content-container">
 <!--                    adopt-section-content 3번 반복, 각 입양정보 게시글 이동 href설정-->
-                    <a th:href="@{/}" class="adopt-section-content">
-                        <img th:src="@{/img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg}" alt="">
-                        <div>
-                            <span>마포센터</span>
-                            <h3>게시글 제목</h3>
-                            <p>#강아지 #품종 #성별</p>
-                        </div>
-                    </a>
-                    <a href="" class="adopt-section-content">
-                        <img th:src="@{/img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg}" alt="">
-                        <div>
-                            <span>마포센터</span>
-                            <h3>게시글 제목게시글 제목게시글 제목게시글 제목</h3>
-                            <p>#강아지 #품종 #성별#강아지 #품종 #성별#강아지 #품종 #성별#강아지 #품종 #성별</p>
-                        </div>
-                    </a>
-                    <a href="" class="adopt-section-content">
-                        <img th:src="@{/img/6b980705-1d57-46a4-8193-ca490d19d00d.jpg}" alt="">
-                        <div>
-                            <span>마포센터</span>
-                            <h3>게시글 제목</h3>
-                            <p>#강아지 #품종 #성별</p>
-                        </div>
-                    </a>
                 </div>
             </div>
         </div>
@@ -191,5 +167,6 @@
 <footer th:replace="fragment/footer :: footer"></footer>
     <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
     <script th:src="@{/js/main/main.js}"></script>
+    <script th:src="@{/js/AdoptionInformation/adoptMain.js}"></script>
 </body>
 </html>

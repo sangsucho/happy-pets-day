@@ -1,5 +1,6 @@
 package com.example.happypetsday.controller.stroll;
 
+import com.example.happypetsday.aspect.annotation.LoggingPointCut;
 import com.example.happypetsday.dto.PetDto;
 import com.example.happypetsday.dto.StrollBoardDto;
 import com.example.happypetsday.service.pet.PetFileService;
@@ -79,7 +80,6 @@ public class StrollController {
     @GetMapping("/list")
     public String strollBoardList(Criteria criteria, Model model){
         List<StrollBoardVo> boardList = strollService.findAll(criteria);
-
         model.addAttribute("boardList",boardList);
         model.addAttribute("pageInfo", new PageVo(criteria, strollService.getTotal()));
         return "strollBoard/strollBoardList";

@@ -169,7 +169,6 @@ function showReply(map, showReplyPage) {
 
     $('.reply-count').text(`${map.totalReply}`)
 
-
 }
 
 //페이징 버튼 처리
