@@ -2,11 +2,16 @@ package com.example.happypetsday.controller.admin;
 
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.service.admin.AdminService;
+import com.example.happypetsday.vo.Criteria;
+import com.example.happypetsday.vo.PageVo;
 import com.example.happypetsday.vo.UserVo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,33 +26,22 @@ public class AdminRestController {
         adminService.modify(userDto);
     }
 
-    //  userId로 검색(전체회원관리)
-//    @PostMapping("/board")
-//    public String boardWrite(@RequestBody BoardDto boardDto){
-//        System.out.println(boardDto);
-//        return "success";
-//    }
+    // 사용자 검색 기능
+    @GetMapping("/search/{page}")
+    public Map<String,Object> searchUser(@RequestParam("keyword") String keyword,@PathVariable("page")int page) {
 
-    @GetMapping("/searchUser")
-    public UserDto userList(){
-        UserDto userDto = new UserDto();
-        userDto.setUserNumber(1L);
-        userDto.setUserId("aaaa");
 
-        return userDto;
-    }
+//        검색어와 기본 페이지 정보를 설정하여 검색 결과를 가져옴
+        int totalSearch = adminService.getSearchTotal(keyword);
+        Criteria criteria = new Criteria(page, 10);  // 예시로 페이지 1, 10개씩 가져오도록 설정
+        List<UserVo> userList = adminService.searchUser(criteria, keyword);
+        PageVo pageVo = new PageVo(criteria,totalSearch);
+        Map<String,Object> searchMap = new HashMap<>();
+        searchMap.put("pageVo",pageVo);
+        searchMap.put("userList",userList);
+        searchMap.put("totalSearch", totalSearch);
 
-    @GetMapping("/{userNumber}")
-    public UserDto userDetail(@PathVariable("userNumber") Long userNumber){
-//        adminService.findUser(userNumber);
-
-        System.out.println(userNumber + "=============================");
-
-        UserDto userDto = new UserDto();
-        userDto.setUserNumber(1L);
-        userDto.setUserId("aaaa");
-
-        return userDto;
+        return searchMap;
     }
 
     // 전체회원수, 일반회원수 조회

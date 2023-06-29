@@ -75,6 +75,7 @@ public class MyPageController {
     public RedirectView goMypage(String userPassword, HttpServletRequest req, RedirectAttributes redirectAttributes){
         try {
             if(userPassword.equals(userService.findUserPasswordByUserNumber((Long)req.getSession().getAttribute("userNumber")))){
+                req.getSession().setAttribute("checkPw", "Y");
                 return new RedirectView("/myPage/myPage");
             }
         } catch (IllegalArgumentException e) {
@@ -127,6 +128,14 @@ public class MyPageController {
         }
         petService.removeMyPet(petNumber);
         return new RedirectView("/myPage/myPet");
+    }
+
+    @GetMapping("/goMyPage")
+    public RedirectView goMyPage(HttpServletRequest req){
+        if(req.getSession().getAttribute("checkPw") != null){
+            return new RedirectView("/myPage/myPage");
+        }
+        return new RedirectView("/myPage/checkPw");
     }
 
     @GetMapping("/checkPw")
