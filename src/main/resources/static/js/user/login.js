@@ -48,8 +48,8 @@ $(document).ready(function() {
     saveIdCheckbox.prop("checked", true);
   }
 
-  // 아이디 저장 버튼 클릭 이벤트 처리
-  $(document).on("click", "#saveId", function(event) {
+  // 로그인 버튼 클릭 이벤트 처리
+  $(document).on("click", "#submit", function(event) {
     var userId = idInput.val();
 
     // 아이디 저장 여부 확인
@@ -72,19 +72,4 @@ $(document).ready(function() {
     return savedId;
   }
 
-  function removeSavedId() {
-    // 로컬 스토리지에서 저장된 아이디 삭제
-    localStorage.removeItem("savedId");
-    idInput.val(""); // 아이디 입력란 비우기
-  }
-
-  // 로그아웃 클릭 이벤트 처리
-  $(document).on("click", "#logoutButton", function(event) {
-    removeSavedId(); // 저장된 아이디 삭제
-  });
-
-  // 로그인 페이지로 이동 시 아이디 입력란 초기화
-  $(document).on("click", "#loginLink", function(event) {
-    idInput.val(""); // 아이디 입력란 비우기
-  });
 });

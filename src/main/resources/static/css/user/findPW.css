@@ -14,7 +14,7 @@ a:hover {
   opacity: 0.6;
 }
 
-body {
+.body {
   display: flex;
   justify-content: center;
 }
@@ -58,7 +58,7 @@ input {
   flex-flow: column;
 }
 
-.find-account .page-tab {
+ .page-tab {
   width: 100%;
   flex-shrink: 0;
   display: flex;
@@ -68,7 +68,7 @@ input {
   margin-bottom: 40px;
 }
 
-.find-account .page-tab li {
+ .page-tab li {
   flex-grow: 1;
   font-size: 20px;
   font-weight: 600;
@@ -107,7 +107,7 @@ input {
   font-size: 16px;
 }
 
-.find-account .submit-find {
+.submit-find {
   display: flex;
   z-index: 10;
 }

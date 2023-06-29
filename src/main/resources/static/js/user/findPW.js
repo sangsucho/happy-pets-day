@@ -1,5 +1,5 @@
 //아이디 유효성 검사 변수값
-var idInput = document.getElementById("id");
+var idInput = document.getElementById("userId");
 var idConfirmMsg = document.querySelectorAll(".confirmMsg")[0];
 
 //보안질문 유효성 검사
@@ -12,10 +12,10 @@ var answerConfirmMsg = document.querySelectorAll(".confirmMsg")[0];
 
 // 아이디 유효성 검사
 idInput.addEventListener("input", function () {
-  var id = idInput.value;
-  if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/.test(id)) {
+  var userId = idInput.value;
+  if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/.test(userId)) {
     idConfirmMsg.innerHTML =
-      "영어와 숫자를 조합한 6~12글자의 아이디를 입력해주세요.";
+        "영어와 숫자를 조합한 6~12글자의 아이디를 입력해주세요.";
     idConfirmMsg.classList.add("error");
   } else {
     idConfirmMsg.innerHTML = "";
@@ -26,18 +26,22 @@ idInput.addEventListener("input", function () {
 function toggleSelectList() {
   var selectList = document.getElementById("selectList");
   selectList.style.display =
-    selectList.style.display === "none" ? "block" : "none";
+      selectList.style.display === "none" ? "block" : "none";
 }
 
 function selectQuestion(questionIndex) {
-  var questionText =
-    document.getElementsByClassName("select-item")[questionIndex].innerText;
+  var questionNumber = questionIndex + 1; // 선택한 보안 질문의 순서 계산
+  var questionText = document.getElementsByClassName("select-item")[questionIndex].innerText;
   var selectedQuestion = document.getElementById("selectedQuestion");
-  selectedQuestion.innerText = questionText;
-  selectedQuestion.style.color = "black"; // 폰트 색상을 블랙으로 변경
+  var questionNumberInput = document.querySelector('.questionNumber');
 
-  toggleSelectList(); // selectList 숨기기
+  selectedQuestion.innerText = questionText; // 선택한 보안 질문의 텍스트를 표시
+  selectedQuestion.style.color = "black";
+  questionNumberInput.value = questionIndex + 1; // 선택한 보안 질문의 순서 값을 input에 할당
+
+  toggleSelectList();
 }
+
 
 function selectList(select) {
   var selectBox = document.querySelector(".question-select-box");
@@ -54,9 +58,9 @@ answerInput.addEventListener("input", function () {
   var answer = answerInput.value;
 
   if (
-    answer.length < 2 ||
-    answer.length >= 10 ||
-    !/^[A-Za-z가-힣]+$/.test(answer)
+      answer.length < 2 ||
+      answer.length >= 10 ||
+      !/^[A-Za-z가-힣]+$/.test(answer)
   ) {
     answerConfirmMsg.innerHTML = "2~10자의 한글이나 영문으로 입력해주세요.";
     answerConfirmMsg.classList.add("error");
@@ -81,3 +85,44 @@ pageTabLinks.forEach(function (link) {
     this.style.color = "black";
   });
 });
+
+$(document).ready(function() {
+  $('#submit-find-pw').on('click', function() {
+    var userId = $('#userId').val();
+    var questionNumberInput = document.querySelector('.questionNumber');
+    var questionIndex = parseInt(questionNumberInput.value) - 1;
+    var answer = $('#answer').val();
+    var questionNumber = questionIndex + 1; // 선택한 보안 질문의 순서 값을 questionNumber에 할당
+    console.log('questionNumber:', questionNumber);
+    // AJAX 호출
+    $.ajax({
+      url: '/users/findPW',
+      method: 'GET',
+      data: {
+        userId: userId,
+        questionNumberInput: questionNumberInput.value,
+        answer: answer
+      },
+      success: function(response) {
+        var userPassword = response;
+        var confirmMsg = $('.confirmMsg');
+        confirmMsg.text('비밀번호: ' + userPassword);
+      },
+      error: function(xhr, status, error) {
+        // 오류 응답 처리
+      if (xhr.status === 400) {
+        // 일치하는 아이디가 없는 경우
+        var confirmMsg = $('.confirmMsg');
+        confirmMsg.text('일치하는 정보가 없습니다.');
+      } else {
+        // 기타 오류 발생
+        console.error('Error:', xhr.status);
+      }
+      }
+    });
+  });
+});
+
+
+
+

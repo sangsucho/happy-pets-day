@@ -16,7 +16,7 @@
     <div class="main-container">
       <div class="sign-wrap">
         <div class="sign-form">
-          <form action="" class="find-account">
+<!--          <form action="" class="find-account">-->
             <ul class="page-tab">
               <li class="active">
                 <a th:href="@{/user/findId}">아이디 찾기</a>
@@ -36,52 +36,36 @@
                           name
                           class="required"
                           placeholder="아이디를 입력해주세요."
-                          id="id"
+                          id="userId"
                           pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$"
                           required
                   />
 
                   <div class="verify-active">
                     <div class="select-wrap">
-                      <div
-                              class="question-select-box"
-                              onclick="toggleSelectList()"
-                      >
-                          <span id="selectedQuestion" class="placeholder"
-                          >질문 선택</span
-                          >
+                      <div class="question-select-box" onclick="toggleSelectList()">
+                        <span id="selectedQuestion" class="placeholder">질문 선택</span>
                       </div>
-
-                      <ul
-                              class="select-list"
-                              id="selectList"
-                              style="display: none"
-                      >
-                        <li class="select-item" onclick="selectQuestion(0)">
-                          당신의 출신 도시는 어디인가요?
-                        </li>
-                        <li class="select-item" onclick="selectQuestion(1)">
-                          당신의 가장 좋아하는 동물은 무엇인가요?
-                        </li>
-                        <li class="select-item" onclick="selectQuestion(2)">
-                          당신의 초등학교 이름은 무엇인가요?
-                        </li>
-                        <li class="select-item" onclick="selectQuestion(3)">
-                          당신의 어머니의 이름은 무엇인가요?
-                        </li>
-                        <li class="select-item" onclick="selectQuestion(4)">
-                          당신의 아버지의 이름은 무엇인가요?
-                        </li>
-                        <li class="select-item" onclick="selectQuestion(5)">
-                          당신이 졸업한 고등학교는 어디인가요?
-                        </li>
+                      <input
+                              type="hidden"
+                              name="questionNumber"
+                              class="questionNumber"
+                              value=""
+                      />
+                      <ul class="select-list" id="selectList" style="display: none">
+                        <li class="select-item" onclick="selectQuestion(0)">당신의 출신 도시는 어디인가요?</li>
+                        <li class="select-item" onclick="selectQuestion(1)">당신의 가장 좋아하는 동물은 무엇인가요?</li>
+                        <li class="select-item" onclick="selectQuestion(2)">당신의 초등학교 이름은 무엇인가요?</li>
+                        <li class="select-item" onclick="selectQuestion(3)">당신의 어머니의 이름은 무엇인가요?</li>
+                        <li class="select-item" onclick="selectQuestion(4)">당신의 아버지의 이름은 무엇인가요?</li>
+                        <li class="select-item" onclick="selectQuestion(5)">당신이 졸업한 고등학교는 어디인가요?</li>
                       </ul>
                     </div>
                   </div>
 
                   <input
                           type="text"
-                          name
+                          name="findPasswordAnswer"
                           class="required"
                           placeholder="답변을 입력해주세요."
                           id="answer"
@@ -90,19 +74,21 @@
                   <div class="confirmMsg"></div>
                 </div>
                 <div class="field">
-                  <button class="submit-find" id="submit-find-pw">
+                  <button type="submit" class="submit-find" id="submit-find-pw">
                     비밀번호 찾기
                   </button>
                 </div>
               </div>
             </div>
-          </form>
+<!--          </form>-->
         </div>
       </div>
     </div>
   </div>
 </div>
 <footer th:replace="fragment/footer :: footer"></footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:src="@{/js/user/findPW.js}"></script>
+<script th:src="@{/js/fragment/header.js}"></script>
 </body>
 </html>

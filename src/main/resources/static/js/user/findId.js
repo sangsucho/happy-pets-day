@@ -1,9 +1,9 @@
-//아이디 유효성 검사 변수값
-var nameInput = document.getElementById("name");
+//이름 유효성 검사 변수값
+var nameInput = document.getElementById("userName");
 var nameConfirmMsg = document.querySelector(".confirmMsg");
 
 //핸드폰번호 유효성 검사 변수값
-var phoneInput = document.getElementById("phone");
+var phoneInput = document.getElementById("userPhoneNumber");
 var phoneConfirmMsg = document.querySelectorAll(".confirmMsg")[0];
 
 // 아이디 유효성 검사
@@ -42,5 +42,39 @@ pageTabLinks.forEach(function (link) {
 
     // 클릭한 링크의 글씨 색상을 검은색으로 변경
     this.style.color = "black";
+  });
+
+
+});
+
+// 아이디 찾기
+
+$(document).ready(function() {
+  $('#submit-find-id').on('click', function() {
+    var userName = $('#userName').val();
+    var userPhoneNumber = $('#userPhoneNumber').val();
+
+    // AJAX 호출
+    $.ajax({
+      url: '/users/findId',
+      data: { userName: userName, userPhoneNumber: userPhoneNumber },
+      method: 'GET',
+      success: function(response) {
+        // 성공적으로 아이디를 찾은 경우
+        var userId = response;
+        var confirmMsg = $('.confirmMsg');
+        confirmMsg.text('아이디: ' + userId);
+      },
+      error: function(xhr, status, error) {
+        if (xhr.status === 400) {
+          // 일치하는 아이디가 없는 경우
+          var confirmMsg = $('.confirmMsg');
+          confirmMsg.text('일치하는 아이디가 없습니다.');
+        } else {
+          // 기타 오류 발생
+          console.error('Error:', xhr.status);
+        }
+      }
+    });
   });
 });
