@@ -1,8 +1,10 @@
 package com.example.happypetsday.service.admin;
 
+import com.example.happypetsday.dto.SitterApplyDto;
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.mapper.AdminMapper;
 import com.example.happypetsday.vo.Criteria;
+import com.example.happypetsday.vo.StrollBoardVo;
 import com.example.happypetsday.vo.UserVo;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.annotations.Param;
@@ -19,7 +21,7 @@ public class AdminService {
     private final AdminMapper adminMapper;
 
     /**
-     * 회원 1명 상세정보 조회
+     * 회원 1명 상세정보 조회(전체회원-회원상세정보)
      * @param userNumber
      * @throws IllegalArgumentException 존재하지 않는 회원 userNumber로 조회하는 경우
      */
@@ -32,13 +34,13 @@ public class AdminService {
                 .orElseThrow(()->{ throw new IllegalArgumentException("존재하지 않는 회원입니다.");});
     }
 
-    //    전체 조회
+    //    전체 조회(전체회원관리)
     @Transactional(readOnly = true)
     public List<UserVo> findAll(Criteria criteria){
         return adminMapper.selectAllUser(criteria);
     }
 
-    //    전체 게시글 수 조회
+    //    전체 게시글 수 조회(전체회원관리)
     @Transactional(readOnly = true)
     public int getTotal(){
         return adminMapper.selectTotal();
@@ -54,6 +56,7 @@ public class AdminService {
     }
 
     // userId와 Name으로 검색(전체회원관리)
+    @Transactional(readOnly = true)
     public List<UserVo> searchUser(Criteria criteria, String keyword){
         List<UserVo> resultList = adminMapper.searchIdName(criteria, keyword);
         return resultList;
@@ -78,7 +81,30 @@ public class AdminService {
         return userVo;
     }
 
+    // userId와 게시물제목으로 검색(산책게시판관리)
+    @Transactional(readOnly = true)
+    public List<StrollBoardVo> searchNumTitle(Criteria criteria, String keyword){
+        List<StrollBoardVo> resultList = adminMapper.searchNumTitle(criteria, keyword);
+        return resultList;
+    }
 
+    // userId와 게시물제목으로 검색결과 게시글 수
+    @Transactional(readOnly = true)
+    public int searchNumTitleCount(String keyword){
+        return adminMapper.searchNumTitleCount(keyword);
+    }
+
+    // 전체 조회(펫시터신청관리)
+    @Transactional(readOnly = true)
+    public List<SitterApplyDto> findAllPost(Criteria criteria){
+        return adminMapper.selectAllPost(criteria);
+    }
+
+    // 전체 게시글 수 조회(펫시터신청관리)
+    @Transactional(readOnly = true)
+    public int getTotalPost(){
+        return adminMapper.selectTotalPost();
+    }
 }
 
 
