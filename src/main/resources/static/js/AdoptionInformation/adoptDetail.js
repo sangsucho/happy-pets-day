@@ -17,6 +17,8 @@ $.ajax({
             petSpcs = '강아지';
         }
 
+        getCenter(centerName);
+
         // 성별 'M', 'W' > '남아', '여아'로 변경
         let petGender = `${b.SEXDSTN}`;
         if (petGender == 'M') {
@@ -65,8 +67,40 @@ $.ajax({
         $(".title-section1").text(centerName);
         $(".title-section2").text(petName);
         $(".title-section3").text(regiDate);
-
     }
 });
+function getCenter(centerName, callback) {
+    $.ajax({
+        url: `/adopts/getCenterName`,
+        type: "get",
+        data: { centerName: centerName },
+        dataType: "json",
+        success: function(result) {
+            console.log(result);
+            showCenter(centerName, result);
+            callback(result);
+        },
+        error: function(xhr, status, error) {
+            console.log(error);
+        }
+    });
+}
 
+function showCenter(centerName, center) {
+    let text = `
+    <table class="center-infomation">
+      <tr>
+        <th class="center-name">센터 이름</th>
+        <th class="center-address">센터 주소</th>
+        <th class="center-call-number">센터 연락처</th>
+      </tr>
+      <tr class="center-detail">
+        <td class="center-name-detail">${center.centerName}</td>
+        <td class="center-address-detail">${center.centerAddress}</td>
+        <td class="center-call-number-detail">${center.centerCallNumber}</td>
+      </tr>
+    </table>
+  `;
 
+    $(".center-info").html(text);
+}
