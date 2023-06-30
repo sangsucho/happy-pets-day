@@ -4,6 +4,7 @@ import com.example.happypetsday.dto.SitterApplyDto;
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.mapper.AdminMapper;
 import com.example.happypetsday.vo.Criteria;
+import com.example.happypetsday.vo.SitterApplyVo;
 import com.example.happypetsday.vo.StrollBoardVo;
 import com.example.happypetsday.vo.UserVo;
 import lombok.RequiredArgsConstructor;
@@ -96,7 +97,7 @@ public class AdminService {
 
     // 전체 조회(펫시터신청관리)
     @Transactional(readOnly = true)
-    public List<SitterApplyDto> findAllPost(Criteria criteria){
+    public List<SitterApplyVo> findAllPost(Criteria criteria){
         return adminMapper.selectAllPost(criteria);
     }
 
