@@ -140,4 +140,39 @@ tbody > tr > td {
   font-size: 15px;
 }
 
+.center-infomation{
 
+}
+
+.center-name{
+  font-size: 18px;
+  color: #68a5fe;
+}
+
+.center-address{
+  font-size: 18px;
+  color: #68a5fe;
+}
+
+.center-call-number{
+  font-size: 18px;
+  color: #68a5fe;
+}
+
+.center-detail{
+  font-size: 15px;
+  text-align: left;
+}
+
+.center-name-detail{
+  text-align: left;
+}
+
+.center-address-detail{
+  text-align: left;
+  padding: 0 20px;
+}
+
+.center-call-number-detail{
+  text-align: left;
+}
