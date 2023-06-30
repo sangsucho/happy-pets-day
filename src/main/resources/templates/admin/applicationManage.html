@@ -23,7 +23,7 @@
     <h2 class="guide-menu">펫시터 신청 관리</h2>
     <div class="bottom-bar"></div>
 
-    <div class="detailed-guide">* 펫시터 신청글 목록입니다. 제목을 클릭 시 신청서열람페이지로 이동합니다.</div>
+    <div class="detailed-guide">* 펫시터 신청글 목록입니다. 내용을 클릭 시 신청서열람페이지로 이동합니다.</div>
 
 
     <div class="container">
@@ -33,7 +33,7 @@
           <thead>
           <tr>
             <th class="table-head-left">번호</th>
-            <th>제목</th>
+            <th>내용</th>
             <th>작성자</th>
             <th class="table-head-right">작성일</th>
           </tr>
@@ -42,36 +42,23 @@
         <tbody>
         <!-- ========== 게시글 목록 예시 =========== -->
 
-        <!-- <th:block th:if="${not #lists.isEmpty(boardList)}">
-            <tr th:each="board : ${boardList}"> -->
-        <td class="no">1</td>
+         <th:block th:unless="${#lists.isEmpty(postList)}">
+            <tr th:each="apply : ${postList}">
+        <td class="no" th:text="${apply.applyNumber}"></td>
         <td class="title">
-          <a href="#">
-            펫시터 신청합니다. 저는 강아지 전문 펫시터에요.
-          </a>
+          <a th:href="@{/admin/viewApplication(applyNumber=${apply.applyNumber})}" th:text="${apply.applyContent}"></a>
         </td>
-        <td class="user-name">한유리</td>
-        <td class="date">2023-06-13 10:53:08</td>
+        <td class="user-name" th:text="${apply.userName}"></td>
+        <td class="date" th:text="${apply.applyDate}"></td>
         </tr>
+        </th:block>
 
-        <!-- 더미데이터 예시 -->
-        <td class="no">2</td>
-        <td class="title">
-          <a href="#">
-            고양이 전문 펫시터 신청합니다.
-          </a>
-        </td>
-        <td class="user-name">이주영</td>
-        <td class="date">2023-06-13 10:53:08</td>
-        </tr>
-        <!-- 더미데이터 예시 -->
 
-        <!-- </th:block>
-        <th:block th:unless="${not #lists.isEmpty(boardList)}"> -->
+        <th:block th:if="${#lists.isEmpty(postList)}">
         <tr>
           <td colspan="5" align="center">신청서가 없습니다.</td>
         </tr>
-        <!-- </th:block> -->
+        </th:block>
 
         <!-- ========== /게시글 목록 예시 =========== -->
         </tbody>
@@ -79,13 +66,15 @@
       <div class="pagination">
         <ul>
           <!-- ========== 페이징 처리 예시 ============ -->
-          <li><a href="#" class="prev">&lt;</a></li>
-          <li><a href="#" class="active">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li><a href="#" class="next">&gt;</a></li>
+          <li th:if="${pageInfo.prev}"><a th:href="@{/admin/userManage(page=${pageInfo.startPage-1})}" class="prev">&lt;</a></li>-->
+
+                              <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+                                  <li th:if="${i == pageInfo.criteria.page}"><a th:href="@{/admin/userManage(page=${i})}" class="active" th:text="${i}"></a></li>
+                                  <li th:unless="${i == pageInfo.criteria.page}"><a th:href="@{/admin/userManage(page=${i})}" th:text="${i}"></a></li>
+                              </th:block>
+
+
+                              <li th:if="${pageInfo.next}"><a th:href="@{/admin/userManage(page=${pageInfo.endPage+1})}" class="next">&gt;</a></li>
           <!-- ========== /페이징 처리 예시 ============ -->
         </ul>
       </div>
@@ -100,6 +89,7 @@
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <footer th:replace="fragment/adminFooter :: adminFooter"></footer>
+  <script th:src="@{/js/fragment/header.js}"></script>
   <script th:src="@{/js/fragment/adminStatistics.js}"></script>
 </body>
 

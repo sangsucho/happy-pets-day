@@ -198,8 +198,20 @@ body {
 
 .board-table .title {
     color: #4b4a4a;
-    width: 40%;
+    /*width: 40%;*/
+    overflow: hidden;
+    height: 30px;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.title a{
+    height: 30px;
+}
+
 
 .board-table .user-name {
     color: #4b4a4a;
