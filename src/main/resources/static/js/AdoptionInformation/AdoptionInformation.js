@@ -25,6 +25,7 @@ function viewList() {
 function makeList(obj) {
     console.log(obj);
     let li = "";
+    let i = 1;
     obj.forEach(b => {
         let fullName = `${b.NM}`;
         let centerName = fullName.split('(')[1].split('-')[0].split(')')[0];
@@ -42,7 +43,7 @@ function makeList(obj) {
 
         li += `
       <li class="board-data">
-        <a href="javascript:void(0)" class="slide-card">
+        <a href="http://localhost:10000/adopt/detailByMain?petNumber=${i++}" class="adopt-section-content" class="slide-card">
           <span class="board-img">
             <img
               src="https://animal.seoul.go.kr/comm/getImage?srvcId=MEDIA&upperNo=${b.ANIMAL_NO}&fileTy=ADOPTIMG&fileNo=1&thumb"
