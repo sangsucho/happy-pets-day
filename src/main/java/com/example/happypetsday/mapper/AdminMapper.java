@@ -2,10 +2,7 @@ package com.example.happypetsday.mapper;
 
 import com.example.happypetsday.dto.SitterApplyDto;
 import com.example.happypetsday.dto.UserDto;
-import com.example.happypetsday.vo.Criteria;
-import com.example.happypetsday.vo.StrollBoardVo;
-import com.example.happypetsday.vo.StrollReplyVo;
-import com.example.happypetsday.vo.UserVo;
+import com.example.happypetsday.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -50,7 +47,7 @@ public interface AdminMapper {
     public int searchNumTitleCount(@Param("keyword") String keyword);
 
     // 전체게시물 조회(펫시터신청관리)
-    public List<SitterApplyDto> selectAllPost(Criteria criteria);
+    public List<SitterApplyVo> selectAllPost(Criteria criteria);
 
     // 전체 게시글 수 조회(펫시터신청관리)
     public int selectTotalPost();

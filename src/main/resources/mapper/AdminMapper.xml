@@ -109,7 +109,7 @@
         WHERE USER_ID LIKE '%' || #{keyword} || '%' OR STROLL_BOARD_TITLE LIKE '%' || #{keyword} || '%'
     </select>
 
-    <select id="selectAllPost" resultType="SitterApplyDto">
+    <select id="selectAllPost" resultType="SitterApplyVo">
         SELECT APPLY_NUMBER, APPLY_CONTENT, USER_NAME, APPLY_DATE
         FROM(
                 SELECT ROWNUM RN,

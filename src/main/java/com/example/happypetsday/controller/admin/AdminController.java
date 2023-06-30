@@ -30,7 +30,7 @@ public class AdminController {
 
     @GetMapping("/applicationManage")
     public String applicationManage(Criteria criteria, Model model) {
-        List<SitterApplyDto> postList = adminService.findAllPost(criteria);
+        List<SitterApplyVo> postList = adminService.findAllPost(criteria);
 
         model.addAttribute("postList", postList);
         model.addAttribute("pageInfo", new PageVo(criteria, adminService.getTotalPost()));
