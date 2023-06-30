@@ -45,6 +45,14 @@ dependencies {
     implementation 'org.seleniumhq.selenium:selenium-java:4.9.1'
     // json-simple (OpenAPI 데이터 Parser)
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+    // WebSocket
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    // sockjs
+    implementation 'org.webjars:sockjs-client:1.5.1'
+    // stomp
+    implementation 'org.webjars:stomp-websocket:2.3.4'
+    // gson
+    implementation 'com.google.code.gson:gson:2.9.0'
 }
 
 tasks.named('test') {

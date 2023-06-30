@@ -65,7 +65,7 @@ $('.board-modify-btn').on('click', function () {
 
 // 에러메세지 출력
 function showError(a, b, c) {
-    console.log(c);
+    console.error(c);
 }
 
 // 댓글 작성 버튼

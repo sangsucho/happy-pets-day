@@ -22,6 +22,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -31,20 +32,13 @@ public class StrollController {
     private final PetService petService;
     private final StrollService strollService;
 
-
-    @Value("${petFile.dir}")
-    private String petFileDir;
-
 //  게시글 보기
     @GetMapping("/view")
-    public String boardView(Long strollBoardNumber,Model model,HttpServletRequest req){
+    public String boardView(Long strollBoardNumber, Model model){
         strollService.modifyViewCount(strollBoardNumber);
 
         StrollBoardVo strollBoard = strollService.findBoard(strollBoardNumber);
-        String filePath = petFileDir.substring(petFileDir.indexOf("C:")+2);
 
-
-        model.addAttribute("rootPath", filePath);
         model.addAttribute("board", strollBoard);
         return "strollBoard/strollBoardView";
     }
