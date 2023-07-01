@@ -286,3 +286,22 @@ input[type="file"] {
   font-weight: bold;
   padding-top: 70px;
 }
+
+.sitterFieldBox > p {
+  margin: 0px auto;
+  padding-bottom: 20px;
+  font-size: 25px;
+  font-weight: bold;
+  padding-top: 70px;
+}
+
+.sitterFieldBox > span {
+  margin-right: 40px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #343434;
+}
+.sitterFieldBox > span > input {
+  position: relative;
+  left: 6px;
+}

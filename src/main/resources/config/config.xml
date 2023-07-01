@@ -17,6 +17,13 @@
         <typeAlias type="com.example.happypetsday.dto.SitterApplyLicenseFile" alias="sitterApplyLicenseFile"/>
         <typeAlias type="com.example.happypetsday.vo.Criteria" alias="criteria"/>
         <typeAlias type="com.example.happypetsday.dto.AdoptDto" alias="adoptDto"/>
+        <typeAlias type="com.example.happypetsday.dto.SitterProfileFileDto" alias="sitterProfileFileDto"/>
+        <typeAlias type="com.example.happypetsday.dto.SitterFileDto" alias="sitterFileDto"/>
+        <typeAlias type="com.example.happypetsday.vo.SitterVo" alias="sitterVo"/>
+        <typeAlias type="com.example.happypetsday.vo.SitterListVo" alias="sitterListVo"/>
+        <typeAlias type="com.example.happypetsday.dto.SitterDto" alias="sitterDto"/>
+        <typeAlias type="com.example.happypetsday.dto.SitterFieldDto" alias="sitterFieldDto"/>
+
     </typeAliases>
 
 </configuration>

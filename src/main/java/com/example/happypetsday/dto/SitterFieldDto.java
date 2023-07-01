@@ -10,5 +10,5 @@ import org.springframework.stereotype.Component;
 public class SitterFieldDto {
     private Long sitterFieldNumber;
     private String petFieldName;
-    private Long sitterNumber;
+    private Long userNumber;
 }
