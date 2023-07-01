@@ -20,25 +20,24 @@
     <p>원하는 펫시터를 찾아보세요!</p>
   </div>
   <div class="main-content">
-    <th:block th:if="${session.sitterNumber == sitter.sitterNumber}">
-    <div class="plus-box">
+    <div class="plus-box" th:if="${showBtn ==1}">
       <div class="plus-btn">
         <span class="material-symbols-outlined"> add </span>
       </div>
     </div>
-    </th:block>
-    <div class="profile-box">
+    <div class="profile-box" th:each="sitter : ${sitterList}" th:attr="data-sitter-number=${sitter.sitterNumber}">
       <div class="sitter-thumbnail">
-        <img src="" alt="" />
+<!---->
+          <img th:src="'/upload/imgFile/' + ${sitter.sitterFileUploadPath} + '/th_' +${sitter.sitterFileUuid} + '_' + ${sitter.sitterFileFileName }" alt="" />
       </div>
       <div>
         <div class="sitter-info-box">
           <div class="sitter-info">
-            <p class="sitter-name">이정현 펫시터</p>
-            <h2>안녕하세요 내 아이처럼 소중히 돌봐드리겠습니다.</h2>
+            <p class="sitter-name" th:text="${sitter.userName}+' 펫시터'"></p>
+            <h2 th:text="${sitter.sitterHeader}"></h2>
           </div>
           <div class="sitter-profile" style="">
-            <img src="" alt="" />
+            <img  th:src="'/upload/profileFile/' + ${sitter.sitterProfileUploadPath} + '/th_' +${sitter.sitterProfileUuid} + '_' + ${sitter.sitterProfileFileName }" alt="" />
           </div>
         </div>
         <div class="info-text">
@@ -62,22 +61,22 @@
                     alt=""
             />
             </div>
-            <span>5.0</span>
+            <span >5.0</span>
             <div class="bar"></div>
             <p>후기 100개</p>
           </div>
           <div class="info-price">
+<!--            <div class="animal">-->
+<!--              <span>₩ 100,000</span>-->
+<!--              <span class="animal-name">강아지</span>-->
+<!--            </div>-->
+<!--            <div class="animal">-->
+<!--              <span>₩ 80,000</span>-->
+<!--              <span class="animal-name">고양이</span>-->
+<!--            </div>-->
             <div class="animal">
-              <span>₩ 100,000</span>
-              <span class="animal-name">강아지</span>
-            </div>
-            <div class="animal">
-              <span>₩ 80,000</span>
-              <span class="animal-name">고양이</span>
-            </div>
-            <div class="animal">
-              <span>₩ 60,000</span>
-              <span class="animal-name">기타</span>
+<!--              <span>추후 협의</span>-->
+              <span class="animal-name">전체</span>
             </div>
           </div>
         </div>

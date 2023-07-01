@@ -22,18 +22,24 @@
     <div style="display: flex; justify-content: center; padding-bottom: 200px">
       <div class="main">
         <p class="p-text">제목 작성하기</p>
-        <form action="#">
+        <form th:action="@{/sitter/addList}" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="sitterNumber">
           <div class="apply-sitter">
             <div class="box-padding">
               <div>
                 <div class="text-area">
                   <textarea
-                    name=""
+                    name="sitterHeader"
                     id="self-introduce-title"
                     cols="30"
                     rows="10"
                   ></textarea>
                 </div>
+
+                <div class="sitterField">
+                  <input name="sitter">
+                </div>
+
               </div> 
         <p class="new-text">소개 작성하기</p>
               <div class="apply-sitter">
@@ -41,42 +47,29 @@
                   <div>
                     <div class="text-area">
                       <textarea
-                        name=""
+                        name="sitterIntroduction"
                         id="self-introduce"
                         cols="30"
                         rows="10"
                       ></textarea>
                     </div>
                   </div>
-                  <!-- <div class="animal-price">
-                    <p class="p-text">희망 가격</p>
-                    <p class="pp-text">( , 와 숫자만 써주세요. 예시 : 100,000)</p>
-                    <div class="dog-price">
-                      <span>강아지 : </span><input type="text" />
-                    </div>
-                    <div class="cat-price">
-                      <span>고양이 : </span><input type="text" />
-                    </div>
-                    <div class="other-price">
-                      <span>기타 : </span><input type="text" />
-                    </div> 
-                   
-                  </div> -->
                   <div style="margin-top: 60px">
                     <p class="p-text">프로필 사진 </p>
-    
+
                     <div class="form-group">
-    
+
                       <ul class="file-wrap">
                         <li>
                           <span class="material-symbols-outlined"> add </span>
                           <input
                             type="file"
-                            id="post-image"
-                            name="boardFile"
+                            id="post-image2"
+                            name="sitterProfileFile"
                             accept="image/*"
                             multiple
                           />
+                        <li class="img-list2"></li>
                         </li>
                       </ul>
                     </div>
@@ -93,7 +86,7 @@
                       <input
                         type="file"
                         id="post-image"
-                        name="boardFile"
+                        name="sitterFile"
                         accept="image/*"
                         multiple
                       />
