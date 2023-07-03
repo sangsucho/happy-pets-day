@@ -69,7 +69,14 @@
       </table>
 
       <div class="button-wrap">
-        <button type="button" class="btn-delete" value="-1">회원 삭제</button>
+        <!-- 회원삭제 전 -->
+        <th:block th:if="${user.userStatus != -1}">
+        <button type="button" class="btn-delete" value="-1" data-confirm="회원 삭제하시겠습니까?" data-user-number="123">회원 삭제</button>
+        </th:block>
+        <!-- 회원삭제 후 -->
+        <th:block th:unless="${user.userStatus != -1}">
+          <button type="button" class="btn-restore" value="1" data-confirm="회원 복구하시겠습니까?" data-user-number="456">회원 복구</button>
+        </th:block>
       </div>
 
 
@@ -81,10 +88,9 @@
   </div>
   </div>
 
-<footer th:replace="fragment/adminFooter :: adminFooter"></footer>
-
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<footer th:replace="fragment/adminFooter :: adminFooter"></footer>
+<script th:src="@{/js/fragment/header.js}"></script>
 <script th:src="@{/js/admin/userDetailManage.js}"></script>
 </body>
 

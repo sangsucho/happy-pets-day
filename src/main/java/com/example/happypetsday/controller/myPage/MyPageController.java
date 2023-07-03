@@ -9,6 +9,7 @@ import com.example.happypetsday.service.stroll.StrollService;
 import com.example.happypetsday.service.user.UserService;
 import com.example.happypetsday.vo.Criteria;
 import com.example.happypetsday.vo.PageVo;
+import com.example.happypetsday.vo.ResVo;
 import com.example.happypetsday.vo.StrollBoardVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -145,7 +146,9 @@ public class MyPageController {
     public String checkReservation() { return "myPage/reservation-sitter"; }
 
     @GetMapping("/reservationList")
-    public String reservationList() { return "myPage/reservation-user"; }
+    public String reservationList(Model model, HttpServletRequest req) {
+        model.addAttribute("resList", mypageService.findRes((Long)req.getSession().getAttribute("userNumber")));
+        return "myPage/reservation-user"; }
 
     @GetMapping("/strollList")
     public String strollList(Model model, HttpServletRequest req, Criteria criteria) {
@@ -154,3 +157,4 @@ public class MyPageController {
         return "myPage/strollList"; }
 
 }
+

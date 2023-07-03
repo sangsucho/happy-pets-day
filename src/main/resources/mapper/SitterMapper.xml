@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.happypetsday.mapper.SitterMapper">
+
+<!--    <insert id="insert">-->
+<!--        INSERT INTO TBL_SITTER (SITTER_NUMBER,-->
+<!--        USER_NUMBER, SITTER_HEADER, SITTER_INTRODUCTION)-->
+<!--        VALUES (SEQ_SITTER.NEXTVAL, #{userNumber}, #{sitterHeader}, #{sitterIntroduction})-->
+<!--    </insert>-->
+
+    <update id="update">
+        UPDATE TBL_SITTER
+        SET SITTER_HEADER = #{sitterHeader}, SITTER_INTRODUCTION = #{sitterIntroduction}
+        WHERE USER_NUMBER = #{userNumber}
+    </update>
+
+    <select id="selectSitterNumber" resultType="long">
+        SELECT SITTER_NUMBER FROM TBL_SITTER WHERE USER_NUMBER = #{userNumber}
+    </select>
+</mapper>

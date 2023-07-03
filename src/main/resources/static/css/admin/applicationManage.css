@@ -30,7 +30,7 @@
 
 .whole-container{
     width: 1200px;
-    height : 900px;
+    height : 950px;
     margin: 0 auto;
     display: flex;
 }
@@ -149,7 +149,7 @@ body {
 
 /* 글 목록 테이블 스타일 */
 .board-table {
-    width: 100%;
+    width: 90%;
     margin-top: 40px;
     border-collapse: collapse;
 
@@ -198,8 +198,24 @@ body {
 
 .board-table .title {
     color: #4b4a4a;
-    width: 40%;
+    /*width: 40%;*/
+    overflow: hidden;
+    height: 20px;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.title a{
+    height: 20px;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 
 .board-table .user-name {
     color: #4b4a4a;
@@ -217,6 +233,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 50px;
+    width : 90%;
 }
 
 .pagination > ul {

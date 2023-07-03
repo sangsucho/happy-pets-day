@@ -1,20 +1,44 @@
 
-// '예약 취소'
 $(".cancel").on("click", function () {
-  if (confirm("예약을 취소하시겠습니까?")) {
-    // 확인 버튼을 누른 경우
+  var $this = $(this); // 클릭된 요소를 변수에 저장
 
-    // reservation-status의 텍스트를 '예약취소'로 변경
-    $(".reservation-status").text("예약 취소");
-    $(".reservation-status").css("color", "red");
-    // '다시 예약하기' 버튼으로 변경
-    $(".cancel").css("display", "none");
-    $(".complete").css("display", "none");
-    $(".r_res").css("display", "block");
+  if (confirm("예약을 취소하시겠습니까?")) {
+    var reservationNumber = $('#reservationNumber').val();
+    var reservationStatus = $('#reservationStatus').val();
+    console.log(reservationNumber);
+
+    $.ajax({
+      url: `/myPages/reservationList`,
+      type: 'get',
+      data: {
+        reservationNumber: reservationNumber,
+        reservationStatus: reservationStatus
+      },
+      contentType: 'application/json; charset=utf-8',
+      success: function (result) {
+        console.log(result);
+        $this.siblings('.reservation-status').text("취소");
+        $this.siblings('.reservation-status').css("color", "red");
+        $this.css("display", "none");
+        $this.siblings('.complete').css("display", "none");
+        $this.siblings('.r_res').css("display", "block");
+      },
+      error: function(xhr, status, error) {
+        // 오류 응답 처리
+        if (xhr.status === 400) {
+          console.error('Error:', xhr.status);
+        } else {
+          // 기타 오류 발생
+          console.error('Error:', xhr.status);
+        }
+      }
+    });
   } else {
     // 취소 버튼을 누른 경우 아무 작업도 수행하지 않음
   }
 });
+
+
 
 // '이용 완료'
 $(".complete").on("click", function () {
@@ -28,4 +52,7 @@ $(".complete").on("click", function () {
   }
 });
 
-// '다시 예약하기' 클릭 > 해당 예약 펫시터 예약 페이지로 이동
+// '후기 작성'
+
+// '다시 예약하기' 클릭 > 해당 펫시터 예약 페이지로 이동
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.happypetsday.mapper.ResMapper">
+    <select id="selectRes" resultType="resVo">
+        SELECT RESERVATION_NUMBER, SR.SITTER_NUMBER, SR.USER_NUMBER, RESERVATION_DATE, RESERVATION_STATUS,
+               U.USER_NAME AS SITTER_NAME,
+               P.PET_KIND
+        FROM TBL_SITTER_RESERVATION SR
+                 JOIN TBL_SITTER S
+                      ON SR.USER_NUMBER = #{userNumber} AND SR.SITTER_NUMBER = S.SITTER_NUMBER
+                 JOIN TBL_USER U
+                      ON S.USER_NUMBER = U.USER_NUMBER
+                 JOIN TBL_PET P
+                      ON SR.USER_NUMBER = P.USER_NUMBER
+    </select>
+
+    <update id="update">
+        UPDATE TBL_SITTER_RESERVATION
+        SET RESERVATION_STATUS = #{reservationStatus}
+        WHERE RESERVATION_NUMBER = #{reservationNumber}
+    </update>
+
+</mapper>
