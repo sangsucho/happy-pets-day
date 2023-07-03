@@ -1,5 +1,12 @@
-
-$('.btn-delete').on('click',modify)
+$('.btn-delete').on('click',function (){
+    let confirmMessage = $(this).data('confirm');
+    if (confirm(confirmMessage)) {
+        modify();
+        alert('회원이 삭제되었습니다');
+    }
+    let userNumber = $('.user-number').val();
+    window.location.href=`/admin/userDetailManage?userNumber=${userNumber}`
+})
 
 
 function modify() {
@@ -18,6 +25,7 @@ function modify() {
         contentType : 'application/json; charset=utf-8',
         success : function(){
             // console.log("ajax연결 완료")
+
         },
         error : function (a,b,c){
             console.log(c);

@@ -23,7 +23,7 @@
         <typeAlias type="com.example.happypetsday.vo.SitterListVo" alias="sitterListVo"/>
         <typeAlias type="com.example.happypetsday.dto.SitterDto" alias="sitterDto"/>
         <typeAlias type="com.example.happypetsday.dto.SitterFieldDto" alias="sitterFieldDto"/>
-
+        <typeAlias type="com.example.happypetsday.vo.SitterApplyVo" alias="sitterApplyVo"/>
     </typeAliases>
 
 </configuration>
