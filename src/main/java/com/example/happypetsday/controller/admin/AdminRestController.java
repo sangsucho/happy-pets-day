@@ -27,6 +27,13 @@ public class AdminRestController {
         adminService.modify(userDto);
     }
 
+    //    회원 복구
+    @PatchMapping("/restore")
+    public void userRestore(@RequestBody UserDto userDto){
+        userDto.setUserNumber(userDto.getUserNumber());
+        adminService.restoreUser(userDto);
+    }
+
     // 사용자 검색 기능(전체회원관리)
     @GetMapping("/search/{page}")
     public Map<String,Object> searchUser(@RequestParam("keyword") String keyword,@PathVariable("page")int page) {

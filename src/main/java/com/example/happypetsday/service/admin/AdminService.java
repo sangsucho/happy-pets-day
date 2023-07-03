@@ -56,6 +56,21 @@ public class AdminService {
         adminMapper.update(userDto);
     }
 
+    // 회원 복구
+    public void restoreUser(UserDto userDto) {
+        // 회원 복구를 위한 로직 구현
+        // userNumber를 사용하여 탈퇴 회원을 찾고, 상태를 변경하여 회원 복구 수행
+
+        if (userDto == null) {
+            throw new IllegalArgumentException("회원 정보가 없습니다.");
+        }
+
+        // 회원 상태를 변경하여 복구
+        userDto.setUserStatus(1); // 복구할 상태 값(일반회원)으로 변경
+
+        adminMapper.update(userDto);
+    }
+
     // userId와 Name으로 검색(전체회원관리)
     @Transactional(readOnly = true)
     public List<UserVo> searchUser(Criteria criteria, String keyword){
