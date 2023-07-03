@@ -85,9 +85,9 @@ a {
   object-fit: cover;
   margin: 10px;
   margin-right: 27px;
-
-  background-color: aqua;
 }
+
+
 
 .sitter-info-box {
   border-bottom: 1px solid #ebebeb;
@@ -125,7 +125,18 @@ a {
   height: 70px;
   border-radius: 45px;
   margin-left: 45px;
-  background-color: black;
+}
+
+.sitter-profile > img{
+  width: 100%;
+  height: 100%;
+  border-radius: 45px;
+}
+
+.sitter-thumbnail > img{
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
 }
 
 .info-text {
@@ -178,7 +189,7 @@ p {
 
 .animal {
   margin-top: 7px;
-  width: 150px;
+  width: 65px;
   justify-content: space-between;
   display: flex;
 }
