@@ -2,6 +2,7 @@ package com.example.happypetsday.mapper;
 
 import com.example.happypetsday.dto.StrollBoardDto;
 import com.example.happypetsday.vo.Criteria;
+import com.example.happypetsday.vo.MainStrollSearchVo;
 import com.example.happypetsday.vo.StrollBoardVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -29,6 +30,9 @@ public interface StrollBoardMapper {
 
 //    마이페이지 내 산책모임 게시물 조회
     List<StrollBoardVo> selectMypageBoard(@Param("userNumber") Long userNumber, @Param("criteria") Criteria criteria);
+
+//    메인화면에서 산책 게시판 조회
+    List<StrollBoardVo> selectMainView(MainStrollSearchVo mainStrollSearchVo);
 
 }
 

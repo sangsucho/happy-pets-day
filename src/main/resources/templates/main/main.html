@@ -86,56 +86,22 @@
                     </div>
                     <div class="board-section-body-list">
 <!--                        게시판 리스트 3개 반복 href 게시글 보기 설정-->
-                        <a class="board-list" th:href="@{stroll/view}">
+                        <a class="board-list" th:href="@{stroll/view(strollBoaardNumber=${board.strollBoardNumber})}" th:each="board : ${boardList}">
                             <div class="board-list-container">
                                 <div class="board-title-container">
-                                    <div class="board-title">제목</div>
-                                    <div class="user-name">작성자</div>
+                                    <div class="board-title" th:text="${board.strollBoardTitle}"></div>
+                                    <div class="user-name" th:text="${board.userId}"></div>
                                 </div>
-                                <div class="board-content">게시글내용게시글내용게시글내용게시글내용게시글내용</div>
+                                <div class="board-content" th:text="${board.strollBoardContent}"></div>
                                 <div class="board-info-container">
-                                    <div class="board-date">2023.06.06</div>
+                                    <div class="board-date" th:text="${board.strollBoardRegisterDate}"></div>
                                     <div>조회수</div>
-                                    <div class="board-cnt">12</div>
-                                    <div class="board-address">서울시 강남구</div>
+                                    <div class="board-cnt" th:text="${board.strollBoardViewCount}"></div>
+                                    <div class="board-address" th:text="${board.strollBoardAdminDistrict}"></div>
                                 </div>
                             </div>
                         </a>
-                        <a class="board-list" href="">
-                            <div class="board-list-container">
-                                <div class="board-title-container">
-                                    <div class="board-title">제목</div>
-                                    <div class="user-name">작성자</div>
-                                </div>
-                                <div class="board-content">게시글내용게시글내용게시글내용게시글내용게시글내용</div>
-                                <div class="board-info-container">
-                                    <div class="board-date">2023.06.06</div>
-                                    <div>조회수</div>
-                                    <div class="board-cnt">12</div>
-                                    <div class="board-address">서울시 강남구</div>
-                                </div>
-                            </div>
-                        </a>
-                        <a class="board-list" href="">
-                            <div class="board-list-container">
-                                <div class="board-title-container">
-                                    <div class="board-title">제목</div>
-                                    <div class="user-name">작성자</div>
-                                </div>
-                                <div class="board-content">게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용
-                                    게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글
-                                    내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용
-                                    게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용
-                                    게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용
-                                    게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용게시글내용</div>
-                                <div class="board-info-container">
-                                    <div class="board-date">2023.06.06</div>
-                                    <div>조회수</div>
-                                    <div class="board-cnt">12</div>
-                                    <div class="board-address">서울시 강남구</div>
-                                </div>
-                            </div>
-                        </a>
+
                     </div>
                 </div>
             </div>
