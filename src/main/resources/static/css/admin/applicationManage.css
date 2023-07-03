@@ -30,7 +30,7 @@
 
 .whole-container{
     width: 1200px;
-    height : 1050px;
+    height : 950px;
     margin: 0 auto;
     display: flex;
 }
@@ -200,7 +200,7 @@ body {
     color: #4b4a4a;
     /*width: 40%;*/
     overflow: hidden;
-    height: 30px;
+    height: 20px;
     width: 100%;
     margin: 0;
     display: flex;
@@ -209,7 +209,7 @@ body {
 }
 
 .title a{
-    height: 30px;
+    height: 20px;
     display: flex;
     overflow: hidden;
     align-items: center;
