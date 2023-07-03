@@ -2,11 +2,23 @@
 // '예약 취소'
 $(".cancel").on("click", function () {
   if (confirm("예약을 취소하시겠습니까?")) {
-    // 확인 버튼을 누른 경우
+    // 확인 버튼을 누른 경우 예약 테이블의 '예약상태'를 '취소'로 변경
+    let resNumber = $('resNumber').val();
+    console.log(resNumber);
+      $.ajax({
+        url : `/myPages/reservationList`,
+        type : 'get',
+        data : {
+          resNumber : resNumber,
+        },
+        contentType : 'application/json; charset=utf-8',
+        success : function() {
+          $('.reservation-status').text("취소");
 
-    // reservation-status의 텍스트를 '예약취소'로 변경
-    $(".reservation-status").text("예약 취소");
-    $(".reservation-status").css("color", "red");
+        }
+      });
+
+      $(".reservation-status").css("color", "red");
     // '다시 예약하기' 버튼으로 변경
     $(".cancel").css("display", "none");
     $(".complete").css("display", "none");
@@ -15,6 +27,8 @@ $(".cancel").on("click", function () {
     // 취소 버튼을 누른 경우 아무 작업도 수행하지 않음
   }
 });
+
+
 
 // '이용 완료'
 $(".complete").on("click", function () {
@@ -28,4 +42,7 @@ $(".complete").on("click", function () {
   }
 });
 
-// '다시 예약하기' 클릭 > 해당 예약 펫시터 예약 페이지로 이동
+// '후기 작성'
+
+// '다시 예약하기' 클릭 > 해당 펫시터 예약 페이지로 이동
+
