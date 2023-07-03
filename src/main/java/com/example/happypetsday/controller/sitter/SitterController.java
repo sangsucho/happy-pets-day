@@ -25,12 +25,9 @@ import java.util.List;
 @RequestMapping("/sitter/*")
 public class SitterController {
     private final SitterApplyLicenseFileService sitterApplyLicenseFileService;
-    private final SitterListService sitterListService;
     private final SitterProfileFileService sitterProfileFileService;
-    private final SitterProfileService sitterProfileService;
     private final SitterFileService sitterFileService;
     private final SitterService sitterService;
-    private final SitterFieldService sitterFieldService;
 
     @GetMapping("/apply")
     public String sitterApplyTo(){
@@ -50,7 +47,7 @@ public class SitterController {
         for(String fieldName : fieldNames){
         sitterFieldDto.setPetFieldName(fieldName);
         sitterFieldDto.setUserNumber((Long)req.getSession().getAttribute("userNumber"));
-        sitterFieldService.register(sitterFieldDto);
+        sitterService.registerField(sitterFieldDto);
         }
 
 
@@ -63,9 +60,6 @@ public class SitterController {
                 e.printStackTrace();
             }
         }
-//        System.out.println("1" + sitterApplyDto);
-//        System.out.println("2" + files);
-//        System.out.println("3" + applyFileTitle);
         return new RedirectView("/sitter/apply");
     }
 
@@ -102,10 +96,10 @@ public class SitterController {
                              List<MultipartFile> files) {
 
 
-        List<SitterListVo> sitterList = sitterListService.findAll();
+        List<SitterListVo> sitterList = sitterService.findAll();
 
         if(req.getSession().getAttribute("userNumber") != null){
-            model.addAttribute("showBtn",sitterListService.countSitter((Long)req.getSession().getAttribute("userNumber")));
+            model.addAttribute("showBtn",sitterService.countSitter((Long)req.getSession().getAttribute("userNumber")));
         }
             model.addAttribute("sitterNumber", sitterNumber);
             model.addAttribute("sitterList", sitterList);
@@ -119,7 +113,7 @@ public class SitterController {
     @GetMapping("/profile")
     public String sitterProfile(SitterDto sitterDto, HttpServletRequest req, Model model, List<MultipartFile> files){
         sitterDto.setUserNumber((Long)req.getSession().getAttribute("userNumber"));
-        List<SitterListVo> sitterListVo = sitterProfileService.find(sitterDto.getSitterNumber());
+        List<SitterListVo> sitterListVo = sitterService.findSitterProfile(sitterDto.getSitterNumber());
 //        long sitterNumber = sitterService.findSitter(sitterDto.getUserNumber());
 //        if(sitterNumber > 0){
 //            // 수정버튼 검열 로직
