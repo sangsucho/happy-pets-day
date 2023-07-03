@@ -75,7 +75,7 @@
         </th:block>
         <!-- 회원삭제 후 -->
         <th:block th:unless="${user.userStatus != -1}">
-          <button type="button" class="btn-restore" value="1" >회원 복구</button>
+          <button type="button" class="btn-restore" value="1" data-confirm="회원 복구하시겠습니까?" data-user-number="456">회원 복구</button>
         </th:block>
       </div>
 
