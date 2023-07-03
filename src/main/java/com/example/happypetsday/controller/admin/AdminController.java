@@ -1,5 +1,6 @@
 package com.example.happypetsday.controller.admin;
 
+import com.example.happypetsday.dto.SitterApplyDto;
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.service.admin.AdminService;
 import com.example.happypetsday.service.stroll.StrollService;
@@ -28,7 +29,12 @@ public class AdminController {
     private final StrollService strollService;
 
     @GetMapping("/applicationManage")
-    public String applicationManage() {
+    public String applicationManage(Criteria criteria, Model model) {
+        List<SitterApplyVo> postList = adminService.findAllPost(criteria);
+
+        model.addAttribute("postList", postList);
+        model.addAttribute("pageInfo", new PageVo(criteria, adminService.getTotalPost()));
+
         return "admin/applicationManage";
     }
 
@@ -84,13 +90,6 @@ public class AdminController {
 
         return "admin/userManage";
     }
-
-//    @GetMapping("/search")
-//    public void search(UserVo userVo, Model model){
-//        List<UserVo> userVoList = adminService.searchUser(userVo);
-//        model.addAttribute("userList", userVoList);
-//    }
-
 
 
     @GetMapping("/viewApplication")

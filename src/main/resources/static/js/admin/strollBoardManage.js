@@ -17,58 +17,54 @@ searchAjax('',1,searchList,showSearchPage);
 
 function searchAjax(keyword,page,searchList,showSearchPage) {
     $.ajax({
-        url: `/usersManage/search/${page}`,
+        url: `/usersManage/postSearch/${page}`,
         type: "get",
         data: {keyword: keyword},
         dataType: "json",
         success: function (data) {
-            searchList(data.userList);
+            console.log(data);
+            searchList(data.postList);
             showSearchPage(data.pageVo);
         },
         error: function (xhr, status, error) {
-            console.error(error);
+            console.log(error);
         }
     });
 }
 
 
-function searchList(userList) {
+function searchList(postList) {
     // 검색 결과가 없는 경우 처리
-    if (userList.length === 0) {
+    if (postList.length === 0) {
         $(".board-table tbody").html('<tr><td colspan="4" align="center">등록된 회원이 없습니다.</td></tr>');
         return;
     }
 
     // 검색 결과를 템플릿에 바인딩하여 업데이트
-    let userListHtml = "";
-    userList.forEach(function (user) {
-        // userListHtml += '<tr>';
-        // userListHtml += '<td class="no">' + user.userNumber + '</td>';
-        // userListHtml += '<td class="user-id"><a href="/admin/userDetailManage?userNumber=' + user.userNumber + '">' + user.userId + '</a></td>';
-        // userListHtml += '<td class="user-name">' + user.userName + '</td>';
-        // userListHtml += '<td class="user-level">' + user.statusName + '</td>';
-        // userListHtml += '</tr>';
-
-        userListHtml += `
+    let postListHtml = "";
+    postList.forEach(function (board) {
+        postListHtml += `
                     <tr>
-                        <td class="no">${user.userNumber}</td>
+                        <td class="no">${board.strollBoardNumber}</td>
 
-                        <td class="user-id">
-                            <a href="/admin/userDetailManage?userNumber=${user.userNumber}" >${user.userId}</a>
+                        <td class="title">
+                            <a href="/stroll/view?strollBoardNumber=${board.strollBoardNumber}" >${board.strollBoardTitle}</a>
                          </td>
-                        <td class="user-name" >${user.userName}</td>
-                        <td class="user-level" >${user.statusName}</td>
+                        <td class="author">${board.userId}</td>
+                        <td class="date">${board.strollBoardMeetingDate}</td>
+                        <td class="location">${board.strollBoardAdminDistrict}</td>
                     </tr>
                 `;
 
     });
 
-    $(".board-table tbody").html(userListHtml);
+    $(".board-table tbody").html(postListHtml);
 
 }
 
 //  검색조회결과 페이징 처리
 function showSearchPage(pageVo) {
+    console.log(pageVo);
     let pageText = '';
 
     if (pageVo.prev) {
@@ -99,16 +95,3 @@ $('.page-ul').on('click','a', function (){
 
     searchAjax(keyword, page, searchList, showSearchPage);
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
