@@ -2,13 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.happypetsday.mapper.SitterMapper">
 
-<!--    <insert id="insert">-->
-<!--        INSERT INTO TBL_SITTER (SITTER_NUMBER,-->
-<!--        USER_NUMBER, SITTER_HEADER, SITTER_INTRODUCTION)-->
-<!--        VALUES (SEQ_SITTER.NEXTVAL, #{userNumber}, #{sitterHeader}, #{sitterIntroduction})-->
-<!--    </insert>-->
-
-    <update id="update">
+    <update id="updateSitter">
         UPDATE TBL_SITTER
         SET SITTER_HEADER = #{sitterHeader}, SITTER_INTRODUCTION = #{sitterIntroduction}
         WHERE USER_NUMBER = #{userNumber}
@@ -17,4 +11,18 @@
     <select id="selectSitterNumber" resultType="long">
         SELECT SITTER_NUMBER FROM TBL_SITTER WHERE USER_NUMBER = #{userNumber}
     </select>
+
+    <select id="selectApplyNumber" resultType="long">
+        SELECT APPLY_NUMBER FROM TBL_SITTER_APPLY
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
+
+    <insert id="apply">
+        <selectKey keyProperty="applyNumber" order="BEFORE" resultType="long">
+            SELECT SEQ_SITTER_APPLY.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_SITTER_APPLY (APPLY_NUMBER, APPLY_CONTENT, APPLY_DATE, USER_NUMBER)
+        VALUES (#{applyNumber}, #{applyContent}, SYSDATE, #{userNumber})
+    </insert>
+
 </mapper>

@@ -1,5 +1,6 @@
 package com.example.happypetsday.service.sitter;
 
+import com.example.happypetsday.dto.SitterApplyDto;
 import com.example.happypetsday.dto.SitterDto;
 import com.example.happypetsday.mapper.SitterMapper;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class SitterService {
     private final SitterMapper sitterMapper;
+
 
     public void register(SitterDto sitterDto){
         if(sitterDto == null){throw new IllegalArgumentException("정보 누락");}
@@ -28,6 +30,12 @@ public class SitterService {
         if(sitterDto == null){
             throw  new IllegalArgumentException("시터 권한 없음");
         }
-        sitterMapper.update(sitterDto);
+        sitterMapper.updateSitter(sitterDto);
+    }
+
+    public void registerApply(SitterApplyDto sitterApplyDto) {
+        if(sitterApplyDto==null){throw new IllegalArgumentException("회원정보 누락");}
+        sitterMapper.apply(sitterApplyDto);
+
     }
 }

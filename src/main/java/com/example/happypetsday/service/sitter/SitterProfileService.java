@@ -1,11 +1,13 @@
 package com.example.happypetsday.service.sitter;
 
 import com.example.happypetsday.mapper.SitterProfileMapper;
+import com.example.happypetsday.vo.SitterListVo;
 import com.example.happypetsday.vo.SitterVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,13 +17,15 @@ public class SitterProfileService {
     private final SitterProfileMapper sitterProfileMapper;
 
     @Transactional(readOnly = true)
-    public SitterVo find(Long sitterNumber){
+    public List<SitterListVo> find(Long sitterNumber){
         if(sitterNumber == null){
             throw new IllegalArgumentException("펫시터 번호가 없습니다");
         }
         return Optional.ofNullable(sitterProfileMapper.select(sitterNumber))
                 .orElseThrow(() -> {throw new IllegalArgumentException("존재하지 않는 펫시터 번호");});
     }
+
+
 
 
 }

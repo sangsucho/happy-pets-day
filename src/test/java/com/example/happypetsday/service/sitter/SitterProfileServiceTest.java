@@ -1,6 +1,7 @@
 package com.example.happypetsday.service.sitter;
 
 import com.example.happypetsday.mapper.SitterProfileMapper;
+import com.example.happypetsday.vo.SitterListVo;
 import com.example.happypetsday.vo.SitterVo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +12,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -45,7 +48,7 @@ class SitterProfileServiceTest {
     @Test
     void find() {
         doReturn(sitterVo).when(sitterProfileMapper).select(anyLong());
-        SitterVo found = sitterProfileService.find(3L);
+        List<SitterListVo> found = sitterProfileService.find(3L);
         assertThat(found).isEqualTo(sitterVo);
     }
 }

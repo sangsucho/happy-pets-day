@@ -9,6 +9,7 @@ import java.util.List;
 public interface SitterApplyLicenseFileMapper {
     void insert(SitterApplyLicenseFile sitterApplyLicenseFile);
     void delete(Long applyNumber);
-    List<SitterApplyLicenseFile> select(Long applyNumber);
+    Long selectApplyNumber(Long userNumber);
+    List<SitterApplyLicenseFile> select(Long userNumber);
     List<SitterApplyLicenseFile> selectOldList();
 }

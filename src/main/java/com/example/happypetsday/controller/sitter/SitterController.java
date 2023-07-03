@@ -1,6 +1,7 @@
 package com.example.happypetsday.controller.sitter;
 
 import com.example.happypetsday.dto.*;
+import com.example.happypetsday.mapper.SitterMapper;
 import com.example.happypetsday.service.sitter.*;
 import com.example.happypetsday.vo.SitterListVo;
 import com.example.happypetsday.vo.SitterVo;
@@ -23,10 +24,10 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/sitter/*")
 public class SitterController {
-    private final SitterApplyService sitterApplyService;
     private final SitterApplyLicenseFileService sitterApplyLicenseFileService;
     private final SitterListService sitterListService;
     private final SitterProfileFileService sitterProfileFileService;
+    private final SitterProfileService sitterProfileService;
     private final SitterFileService sitterFileService;
     private final SitterService sitterService;
     private final SitterFieldService sitterFieldService;
@@ -43,7 +44,7 @@ public class SitterController {
             @RequestParam("applyFile") List<MultipartFile> files, @RequestParam("applyFileTitle") List<String> applyFileTitle
     ) {
         sitterApplyDto.setUserNumber((Long)req.getSession().getAttribute("userNumber"));
-        sitterApplyService.register(sitterApplyDto);
+        sitterService.registerApply(sitterApplyDto);
 
         String[] fieldNames = req.getParameterValues("petFieldName");
         for(String fieldName : fieldNames){
@@ -116,7 +117,17 @@ public class SitterController {
 
 
     @GetMapping("/profile")
-    public String sitterProfile(Long sitterNumber, Model model){
+    public String sitterProfile(SitterDto sitterDto, HttpServletRequest req, Model model, List<MultipartFile> files){
+        sitterDto.setUserNumber((Long)req.getSession().getAttribute("userNumber"));
+        List<SitterListVo> sitterListVo = sitterProfileService.find(sitterDto.getSitterNumber());
+//        long sitterNumber = sitterService.findSitter(sitterDto.getUserNumber());
+//        if(sitterNumber > 0){
+//            // 수정버튼 검열 로직
+//        }
+//        sitterFileService.findList(sitterNumber);
+//        sitterProfileFileService.findList(sitterNumber);
+//        sitterApplyLicenseFileService.findList(sitterApplyLicenseFileService.findApplyNum(sitterDto.getUserNumber()));
+        model.addAttribute("sitter", sitterListVo);
 
         return "sitter/sitterProfile";
     }

@@ -15,13 +15,19 @@
   </head>
   <body>
   <header th:replace="fragment/header :: header"></header>
-    <div class="img-box">
-      <div class="left-box" style="background-color: brown"></div>
-      <div class="right-box">
-        <div class="up-img"></div>
-        <div class="down-img"></div>
+
+    <div class="img-box" >
+      <th:block>
+      <div class="left-box" >
+        <img th:if="${stat==0}" th:src="'/upload/imgFile/' + ${sitter.sitterFileUploadPath} + '/th_' +${sitter.sitterFileUuid} + '_' + ${sitter.sitterFileFileName }" alt="">
       </div>
+      <div class="right-box" th:each="sitter,stat : ${sitter}" >
+          <img class="up-img" th:unless="${stat==0}" th:src="'/upload/imgFile/' + ${sitter.sitterFileUploadPath} + '/th_' +${sitter.sitterFileUuid} + '_' + ${sitter.sitterFileFileName }" >
+<!--          <img class="down-img" th:unless="${stat==0}" th:src="'/upload/imgFile/' + ${sitter.sitterFileUploadPath} + '/th_' +${sitter.sitterFileUuid} + '_' + ${sitter.sitterFileFileName }" >-->
+        </div>
+      </th:block>
     </div>
+<!--    </div>-->
 
     <div class="main">
       <!--메인 좌측 컨텐츠-->
