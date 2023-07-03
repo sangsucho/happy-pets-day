@@ -1,5 +1,6 @@
 package com.example.happypetsday.mapper;
 
+import com.example.happypetsday.vo.MainStrollSearchVo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,8 @@ class TimeMapperTest {
     @DisplayName("연결테스트")
     public void getTimeTest(){
         log.info("***** time : " + timeMapper.getTime());
+
+
     }
 
     @Test
