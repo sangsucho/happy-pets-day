@@ -322,7 +322,7 @@ thead th {
     background-color: #b9d3f9;
 }
 
-.btn-delete {
+.btn-delete, .btn-restore {
     color: #68A5FE;
     font-family: Pretendard-SemiBold;
     background-color: #fff;
@@ -334,7 +334,7 @@ thead th {
     cursor: pointer;
 }
 
-.btn-delete:hover {
+.btn-delete:hover, btn-restore:hover{
     background-color: #68A5FE;
     color: #fff;
 }

@@ -1,3 +1,9 @@
+let msg = $('.msg').val();
+if(msg){
+  alert(msg)
+}
+
+
 // 성별 리스트 설정
 function toggleGenderList() {
   var genderList = document.getElementById("genderList");
