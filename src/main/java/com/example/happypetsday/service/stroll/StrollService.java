@@ -112,45 +112,44 @@ public class StrollService {
     public List<StrollBoardVo> findMainList(Long userNumber){
         MainStrollSearchVo mainStrollSearchVo = new MainStrollSearchVo();
         List<StrollBoardVo> strollBoardList  = new ArrayList<>();
-        List<StrollBoardVo> tmpList = new ArrayList<>();
-        int tmp =0;
-        Long size = 0L;
+        int totalCount = 0;
+        long listSize = 0L;
 
         if(userNumber== null){
             mainStrollSearchVo.setFirstBoolean(false);
             mainStrollSearchVo.setSecondBoolean(false);
-            strollBoardList = strollBoardMapper.selectMainView(mainStrollSearchVo);
-            return strollBoardList;
+            return strollBoardMapper.selectMainView(mainStrollSearchVo);
         }
 
         String userAddress = userService.findUserInfoByUserNumber(userNumber).getUserAddress();
-        mainStrollSearchVo.setAddressFirst(userAddress.split(" ")[0]);
-        mainStrollSearchVo.setAddressSecond(userAddress.split(" ")[1]);
-
+        String[] splitAddress = userAddress.split(" ");
+        mainStrollSearchVo.setAddressFirst(splitAddress[0]);
+        mainStrollSearchVo.setAddressSecond(splitAddress[1]);
 
         for (int i = 0; i < 3; i++) {
-            tmpList = strollBoardMapper.selectMainView(mainStrollSearchVo);
-            tmpList.stream().forEach(strollBoardList::add);
+            List<StrollBoardVo> tmpList = strollBoardMapper.selectMainView(mainStrollSearchVo);
+            strollBoardList.addAll(tmpList);
 
-//            리스트의 변화 확인
-           if(size!=strollBoardList.size()){
-               tmp +=tmpList.size();
-           }
+            if(listSize != strollBoardList.size()){
+                totalCount +=tmpList.size();
+            }
 
-            size = (long)strollBoardList.size();
+            listSize = strollBoardList.size();
 
-            if(size>=3){
+            if(listSize>=3){
                 return strollBoardList;
-            }else if(mainStrollSearchVo.getSecondBoolean()){
+            } else if(mainStrollSearchVo.getSecondBoolean()){
                 mainStrollSearchVo.setSecondBoolean(false);
-            }else if(mainStrollSearchVo.getFirstBoolean()){
+            } else if(mainStrollSearchVo.getFirstBoolean()){
                 mainStrollSearchVo.setFirstBoolean(false);
             }
-            mainStrollSearchVo.setSize((long)tmp);
+
+            mainStrollSearchVo.setSize((long)totalCount);
         }
 
         return strollBoardList;
     }
+
 
 
 

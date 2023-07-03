@@ -1,5 +1,6 @@
 package com.example.happypetsday.controller.main;
 
+import com.example.happypetsday.aspect.annotation.LoggingPointCut;
 import com.example.happypetsday.service.stroll.StrollService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,13 +17,11 @@ public class MainController {
 
     private final StrollService strollService;
 
-
     @GetMapping("/")
     public String main(Model model, HttpServletRequest req) {
         Long userNumber = (Long)req.getSession().getAttribute("userNumber");
         model.addAttribute("boardList", strollService.findMainList(userNumber));
 
-        System.out.println(strollService.findMainList(userNumber).size());
 
         return "main/main";
     }
