@@ -31,8 +31,8 @@
           <th:block th:each="res : ${resList}">
           <div id="contents-box">
             <!-- 예약 후 이용하기 전 상태 -->
-              <input type="hidden" class="res-number" name="resNumber" th:value="${res.reservationNumber}">
-              <div class="reservation-status before" th:text="${res.reservationStatus}"></div>
+              <input type="hidden" class="res-number" name="resNumber" id="reservationNumber" th:value="${res.reservationNumber}">
+              <div class="reservation-status before" id="reservationStatus" th:text="${res.reservationStatus}"></div>
               <div class="info-wrap">
                 <h4>예약 날짜</h4>
                 <span th:text="${res.reservationDate}"></span>
