@@ -69,6 +69,7 @@
 /* 오른쪽 컨텐츠 정보 */
 .mypage-right {
   width: 85%;
+  overflow: auto;
 }
 
 .mypage-right h2 {
@@ -103,6 +104,7 @@
   align-items: center;
   border: 1px solid var(--border-bottom-color);
   border-radius: 10px;
+  margin: 10px 0 25px 0;
 }
 
 /* 이용 완료 상태 색상 */
