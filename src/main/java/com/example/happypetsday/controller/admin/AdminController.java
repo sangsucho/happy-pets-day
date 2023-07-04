@@ -93,7 +93,14 @@ public class AdminController {
 
 
     @GetMapping("/viewApplication")
-    public String viewApplication(){
+    public String viewApplication(Long applyNumber, Model model){
+        SitterApplyVo sitterApplyVo = adminService.findApplicaton(applyNumber);
+        List<SitterApplyVo> licenseList = adminService.findLicense(applyNumber);
+        List<SitterApplyVo> fieldList = adminService.findField(applyNumber);
+
+        model.addAttribute("view", sitterApplyVo);
+        model.addAttribute("license", licenseList);
+        model.addAttribute("field", fieldList);
         return "admin/viewApplication";
     }
 

@@ -421,22 +421,13 @@ thead th {
     border-bottom: 1px solid #9a9a9a ;
 }
 
-.dog-box,.cat-box,
-.etc-box{
+.field-box{
     display: flex;
     justify-content: space-between;
     margin: 15px;
 }
 
-.animal-box{
-    margin : 17px 0 0 0;
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.animal-name,
-.animal-name2,
-.animal-name3{
+.field-name{
     width : 45px;
     height : 20px;
     text-align: center;
@@ -446,6 +437,13 @@ thead th {
     background-color: #a2c5fe;
     padding: 10px 20px;
     border-radius: 30px;
+}
+
+
+.animal-box{
+    margin : 17px 0 0 0;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .color-box3{
@@ -490,6 +488,7 @@ thead th {
 
 .certificate-content{
     width : 350px;
+    margin: 0 0 0 5px;
 }
 
 .btn {

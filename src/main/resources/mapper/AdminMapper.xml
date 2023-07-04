@@ -130,4 +130,23 @@
     <select id="selectTotalPost" resultType="_int">
         SELECT COUNT(APPLY_NUMBER) FROM TBL_SITTER_APPLY
     </select>
+
+    <select id="selectApplication" resultType="SitterApplyVo">
+        SELECT A.APPLY_NUMBER,U.USER_NUMBER, U.USER_NAME, U.USER_PHONE_NUMBER, U.USER_ADDRESS,
+               A.APPLY_CONTENT
+        FROM TBL_USER U
+        JOIN TBL_SITTER_APPLY A ON  U.USER_NUMBER = A.USER_NUMBER AND A.APPLY_NUMBER = #{applyNumber}
+    </select>
+
+    <select id="selectLicense" resultType="SitterApplyVo">
+        SELECT APPLY_FILE_NUMBER, APPLY_FILE_TITLE, APPLY_FILE_NAME, APPLY_FILE_UUID, APPLY_FILE_UPLOAD_PATH, APPLY_NUMBER, USER_NUMBER
+        FROM TBL_SITTER_APPLY_LICENSE_FILE
+        WHERE APPLY_NUMBER = #{applyNumber}
+    </select>
+
+    <select id="selectField" resultType="SitterApplyVo">
+        SELECT F.SITTER_FIELD_NUMBER, F.PET_FIELD_NAME, F.USER_NUMBER, A.APPLY_NUMBER
+        FROM TBL_SITTER_FIELD F JOIN TBL_SITTER_APPLY A ON F.USER_NUMBER  = A.USER_NUMBER
+        WHERE APPLY_NUMBER = #{applyNumber}
+    </select>
 </mapper>

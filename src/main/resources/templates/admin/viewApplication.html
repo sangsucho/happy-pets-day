@@ -2,12 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>펫시터신청서 열람</title>
-  <link rel="stylesheet" th:href="@{/css/admin/viewApplication.css}" />
-  <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
-  <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>펫시터신청서 열람</title>
+    <link rel="stylesheet" th:href="@{/css/admin/viewApplication.css}"/>
+    <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
 </head>
 
 <body>
@@ -15,93 +15,79 @@
 
 <div class="whole-container">
 
-  <div class="side-menubar" th:replace="fragment/adminSideBar :: adminSideBar"></div>
+    <div class="side-menubar" th:replace="fragment/adminSideBar :: adminSideBar"></div>
 
-  <div class="content-container">
+    <div class="content-container">
 
-    <h2 class="guide-menu">신청서 열람</h2>
-    <div class="bottom-bar"></div>
-    <div class="detailed-guide">* 펫시터 지원을 희망하는 회원이 작성한 신청서입니다.</div>
+        <h2 class="guide-menu">신청서 열람</h2>
+        <div class="bottom-bar"></div>
+        <div class="detailed-guide">$ 펫시터 지원을 희망하는 회원이 작성한 신청서입니다.</div>
 
-    <div class="content-align">
-      <div class="content-box">
-        <div class="application-title">펫시터 지원서</div>
-        <div class="buttom-bar2"></div>
-        <div class="sitter-info">
-          <div class="user-name">이름 : 홍길동</div>
-          <div class="length-bar"></div>
-          <div class="user-phone-number">연락처 : 010-1234-5678</div>
-          <div class="length-bar"></div>
-          <div class="region">거주지 : 서울시 강남구</div>
-        </div>
-
-        <div class="box-wrap">
-          <div class="color-box">
-            <div class="self-introduce">
-              <div class="introduce-text">
-                안녕하세요, 펫시터에 지원하고 싶습니다. 저는 반려동물관리사와 반려견전문가 자격증을 가지고 있습니다.
-                저렴한 비용으로 다양한 반려견을 위한 전문적인 돌봄서비스를 제공하겠습니다.
-              </div>
-            </div>
-
-            <div class="color-box2">
-              <div class="special">전문 분야</div>
-              <div class="animal-box">
-                <div class="dog-box">
-                  <div class="animal-name">강아지</div>
-                </div>
-                <div class="cat-box">
-                  <div class="animal-name2">고양이</div>
-                </div>
-                <div class="etc-box">
-                  <div class="animal-name3">기타</div>
+        <div class="content-align">
+            <div class="content-box">
+                <div class="application-title">펫시터 지원서</div>
+                <div class="buttom-bar2"></div>
+                <div class="sitter-info">
+                    <div class="user-name" th:text="'이름 : ' + ${view.userName}"></div>
+                    <div class="length-bar"></div>
+                    <div class="user-phone-number" th:text="'연락처 : ' + ${view.userPhoneNumber}"></div>
+                    <div class="length-bar"></div>
+                    <div class="region" th:text="'거주지 : ' + ${view.userAddress}"></div>
                 </div>
 
-              </div>
+                <div class="box-wrap">
+                    <div class="color-box">
+                        <div class="self-introduce">
+                            <div class="introduce-text" th:text="${view.applyContent}"></div>
+                        </div>
 
+                        <div class="color-box2">
+                            <div class="special">전문 분야</div>
+                            <div class="animal-box">
+
+                                <div class="field-box" th:each="field : ${field}">
+                                    <div class="field-name" th:text="${field.petFieldName}"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="color-box3">
+                            <div class="certificate">자격증</div>
+                            <div class="img-container">
+                                <img
+                                        th:src="@{/usersManage/view(fileName=${license.applyFileUploadPath+'/th_'+license.applyFileUuid+'_'+license.applyFileName})}"
+                                        alt="" class="certificate-img" th:unless="${license.applyFileName==null}" th:each="license : ${license}">
+                            </div>
+                            <div class="certificate-name">
+                                <div class="certificate-title">자격증 이름 : </div>
+                                <div class="certificate-content">
+                                    <th:block th:each="license, iterStat : ${license}">
+                                        <span th:text="${license.applyFileTitle}" th:unless="${license.applyFileTitle==null}"></span>
+                                        <span th:if="${!iterStat.last}" th:unless="${license.applyFileTitle==null}">, </span>
+                                    </th:block>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
             </div>
-
-            <div class="color-box3">
-              <div class="certificate">자격증</div>
-              <div class="img-container">
-                <img
-                        src="https://mblogthumb-phinf.pstatic.net/MjAyMTA0MzBfMTU2/MDAxNjE5Nzc3NzgxNjU2.GeTq6GhLyIR58UobDw2X4jGo7Pf_rTMzj3yf76ayGuEg.CbEjtdZSCV4KdDcJREXFa-5wUOmvKtBN2GuPQt-NPjcg.JPEG.et0876/2.JPG?type=w800"
-                        alt="" class="certificate-img">
-                <img src="https://petplanet.cdn.ntruss.com/page/5a06a1d2cc32490d934ead9557075d33.jpeg" alt=""
-                     class="certificate-img">
-                <img
-                        src="https://modo-phinf.pstatic.net/20201004_206/1601801137899hVmH3_PNG/mosaXL1eL9.png?type=w1100"
-                        alt="" class="certificate-img">
-              </div>
-              <div class="certificate-name">
-                <div class="certificate-title">자격증 이름 : </div>
-                <div class="certificate-content">반려동물관리사, 반려견전문가(민간자격증)</div>
-              </div>
-
-
-
+            <div class="btn">
+                <button type="submit">승인</button>
+                <button type="submit">거절</button>
+                <button type="submit">목록</button>
             </div>
-
-          </div>
-
-
-
-
-
-
 
         </div>
-      </div>
-      <div class="btn">
-        <button type="submit">승인</button>
-        <button type="submit">거절</button>
-        <button type="submit">목록</button>
-      </div>
-
     </div>
-  </div>
-  </div>
+</div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <footer th:replace="fragment/adminFooter :: adminFooter"></footer>
 <script th:src="@{/js/fragment/header.js}"></script>
 </body>

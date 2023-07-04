@@ -121,6 +121,48 @@ public class AdminService {
     public int getTotalPost(){
         return adminMapper.selectTotalPost();
     }
+
+    /**
+     * 펫시터신청서 조회(펫시터신청관리-펫시터신청서열람)
+     * @param applyNumber
+     * @throws IllegalArgumentException 존재하지 않는 applyNumber로 조회하는 경우
+     */
+    @Transactional(readOnly = true)
+    public SitterApplyVo findApplicaton(Long applyNumber){
+        if(applyNumber==null){
+            throw new IllegalArgumentException("신청번호가 없습니다.");
+        }
+        return Optional.ofNullable(adminMapper.selectApplication(applyNumber))
+                .orElseThrow(()->{ throw new IllegalArgumentException("존재하지 않는 신청입니다.");});
+    }
+
+    /**
+     * 펫시터 자격증파일 조회(펫시터신청관리-펫시터신청서열람)
+     * @param applyNumber
+     * @throws IllegalArgumentException 존재하지 않는 applyNumber로 조회하는 경우
+     */
+    @Transactional(readOnly = true)
+    public List<SitterApplyVo> findLicense(Long applyNumber){
+        if(applyNumber==null){
+            throw new IllegalArgumentException("신청번호가 없습니다.");
+        }
+        return Optional.ofNullable(adminMapper.selectLicense(applyNumber))
+                .orElseThrow(()->{ throw new IllegalArgumentException("존재하지 않는 신청입니다.");});
+    }
+
+    /**
+     * 펫시터 전문분야 조회(펫시터신청관리-펫시터신청서열람)
+     * @param applyNumber
+     * @throws IllegalArgumentException 존재하지 않는 applyNumber로 조회하는 경우
+     */
+    @Transactional(readOnly = true)
+    public List<SitterApplyVo> findField(Long applyNumber){
+        if(applyNumber==null){
+            throw new IllegalArgumentException("신청번호가 없습니다.");
+        }
+        return Optional.ofNullable(adminMapper.selectField(applyNumber))
+                .orElseThrow(()->{ throw new IllegalArgumentException("존재하지 않는 신청입니다.");});
+    }
 }
 
 

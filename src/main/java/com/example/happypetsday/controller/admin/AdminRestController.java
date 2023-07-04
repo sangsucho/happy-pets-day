@@ -2,14 +2,20 @@ package com.example.happypetsday.controller.admin;
 
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.service.admin.AdminService;
+import com.example.happypetsday.service.pet.PetFileService;
+import com.example.happypetsday.service.sitter.SitterApplyLicenseFileService;
 import com.example.happypetsday.vo.Criteria;
 import com.example.happypetsday.vo.PageVo;
 import com.example.happypetsday.vo.StrollBoardVo;
 import com.example.happypetsday.vo.UserVo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +25,9 @@ import java.util.Map;
 @RequestMapping("/usersManage/*")
 public class AdminRestController {
     private final AdminService adminService;
+
+    @Value("${sitterFile.dir}")
+    private String fileDir;
 
     //    회원 삭제
     @PatchMapping("/delete")
@@ -76,5 +85,15 @@ public class AdminRestController {
         searchPostMap.put("searchTotal", searchTotal);
 
         return searchPostMap;
+    }
+
+    // 펫시터신청서 자격증 파일 가져오기
+    private final SitterApplyLicenseFileService sitterApplyLicenseFileService;
+
+
+
+    @GetMapping("/view")
+    public byte[] display(String fileName) throws IOException {
+        return FileCopyUtils.copyToByteArray(new File(fileDir,fileName));
     }
 }

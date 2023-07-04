@@ -51,4 +51,13 @@ public interface AdminMapper {
 
     // 전체 게시글 수 조회(펫시터신청관리)
     public int selectTotalPost();
+
+    // 펫시터 지원서 조회
+    public SitterApplyVo selectApplication(Long applyNumber);
+
+    // 펫시터 자격증 파일 조회
+    public List<SitterApplyVo> selectLicense(Long applyNumber);
+
+    // 펫시터 전문분야 조회
+    public List<SitterApplyVo> selectField(Long applyNumber);
 }
