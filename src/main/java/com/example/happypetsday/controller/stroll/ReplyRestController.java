@@ -1,5 +1,8 @@
+
+
 package com.example.happypetsday.controller.stroll;
 
+import com.example.happypetsday.aspect.annotation.LoggingPointCut;
 import com.example.happypetsday.dto.StrollReplyDto;
 import com.example.happypetsday.service.stroll.ReplyService;
 import com.example.happypetsday.vo.Criteria;
@@ -24,7 +27,6 @@ public class ReplyRestController {
     public void replyRegister(@RequestBody StrollReplyDto strollReplyDto, HttpServletRequest req){
         Long userNumber = (Long)req.getSession().getAttribute("userNumber");
         strollReplyDto.setUserNumber(userNumber);
-
         replyService.register(strollReplyDto);
     }
 

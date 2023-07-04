@@ -1,7 +1,7 @@
 
 
 // 댓글 작성
-export function add(reply,callback,error){
+export function add(reply,callback,callbackPage,error){
     $.ajax({
         url : `/replies/reply`,
         type : 'post',
@@ -9,7 +9,7 @@ export function add(reply,callback,error){
         contentType: 'application/json; charset=utf-8', //보낼 데이터의 형식을 알려준다.
         success : function (){
             if(callback){
-                callback();
+                callback(callbackPage);
             }
         },
         error : error

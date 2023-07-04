@@ -248,7 +248,7 @@ a{
 .board-section-body-list{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     width: 770px;
     height: 470px;

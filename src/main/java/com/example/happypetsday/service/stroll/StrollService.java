@@ -4,12 +4,15 @@ import com.example.happypetsday.dto.StrollBoardDto;
 import com.example.happypetsday.mapper.StrollBoardMapper;
 import com.example.happypetsday.mapper.StrollReplyMapper;
 import com.example.happypetsday.service.pet.PetFileService;
+import com.example.happypetsday.service.user.UserService;
 import com.example.happypetsday.vo.Criteria;
+import com.example.happypetsday.vo.MainStrollSearchVo;
 import com.example.happypetsday.vo.StrollBoardVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +22,7 @@ import java.util.Optional;
 public class StrollService {
     private final StrollBoardMapper strollBoardMapper;
     private final StrollReplyMapper strollReplyMapper;
+    private final UserService userService;
 
 //    게시글 추가
     public void register(StrollBoardDto strollBoardDto){
@@ -91,6 +95,62 @@ public class StrollService {
         return Optional.ofNullable(strollBoardMapper.select(strollBoardNumber))
                 .orElseThrow(()->{throw new IllegalArgumentException();});
     }
+
+    /**
+     * 메인화면에 띄워줄 산책게시판 정보 가져오기
+     * 1. 로그인이 안되어있으면 최신게시물 불러오기
+     * 2. 로그인이 되어있으면 회원정보에 등록된 주소와 일치되는 게시물 가져오기
+     * 3. 만약 가져온 리스트가 3개 이하면 등록된 주소에서 지역으로만 검색해서 가져와 리스트에 추가
+     * 4. 그래도 리스트가 3개 이하면 전체 게시물에서 최신순으로 3개가져와서 리스트에 추가
+     * 5. 등록된 게시물 자체가 3개 이하면 화면에서 처리
+     *  -> 게시물이 1 개라도 있으면 그냥 띄우고 하나도 없으면 게시물 등록해달라고 보여준다.
+     *
+     * @param userNumber
+     * @return List<StrollBoardVo>
+     */
+    @Transactional(readOnly = true)
+    public List<StrollBoardVo> findMainList(Long userNumber){
+        MainStrollSearchVo mainStrollSearchVo = new MainStrollSearchVo();
+        List<StrollBoardVo> strollBoardList  = new ArrayList<>();
+        int totalCount = 0;
+        long listSize = 0L;
+
+        if(userNumber== null){
+            mainStrollSearchVo.setFirstBoolean(false);
+            mainStrollSearchVo.setSecondBoolean(false);
+            return strollBoardMapper.selectMainView(mainStrollSearchVo);
+        }
+
+        String userAddress = userService.findUserInfoByUserNumber(userNumber).getUserAddress();
+        String[] splitAddress = userAddress.split(" ");
+        mainStrollSearchVo.setAddressFirst(splitAddress[0]);
+        mainStrollSearchVo.setAddressSecond(splitAddress[1]);
+
+        for (int i = 0; i < 3; i++) {
+            List<StrollBoardVo> tmpList = strollBoardMapper.selectMainView(mainStrollSearchVo);
+            strollBoardList.addAll(tmpList);
+
+            if(listSize != strollBoardList.size()){
+                totalCount +=tmpList.size();
+            }
+
+            listSize = strollBoardList.size();
+
+            if(listSize>=3){
+                return strollBoardList;
+            } else if(mainStrollSearchVo.getSecondBoolean()){
+                mainStrollSearchVo.setSecondBoolean(false);
+            } else if(mainStrollSearchVo.getFirstBoolean()){
+                mainStrollSearchVo.setFirstBoolean(false);
+            }
+
+            mainStrollSearchVo.setSize((long)totalCount);
+        }
+
+        return strollBoardList;
+    }
+
+
 
 
 

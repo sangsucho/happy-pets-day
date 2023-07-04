@@ -65,7 +65,7 @@ $('.board-modify-btn').on('click', function () {
 
 // 에러메세지 출력
 function showError(a, b, c) {
-    console.log(c);
+    console.error(c);
 }
 
 // 댓글 작성 버튼
@@ -85,6 +85,12 @@ $('#reply-content').on('keypress', function (e) {
 
 // 댓글 작성
 function replyWrite() {
+    if(loginNumber==-1){
+        alert('로그인을 해주세요');
+        window.location.href = '/user/login';
+        return;
+    }
+
     let strollReplyContent = $('#reply-content').val();
 
     let replyObj = {
