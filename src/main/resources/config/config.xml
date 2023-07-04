@@ -25,6 +25,7 @@
         <typeAlias type="com.example.happypetsday.dto.SitterFieldDto" alias="sitterFieldDto"/>
         <typeAlias type="com.example.happypetsday.vo.SitterApplyVo" alias="sitterApplyVo"/>
         <typeAlias type="com.example.happypetsday.vo.ResVo" alias="resVo"/>
+        <typeAlias type="com.example.happypetsday.vo.MainStrollSearchVo" alias="mainStrollSearchVo"/>
     </typeAliases>
 
 </configuration>
