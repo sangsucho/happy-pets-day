@@ -122,11 +122,13 @@ public class StrollService {
             return strollBoardMapper.selectMainList(mainStrollSearchVo);
         }
 
+//       회원주소 가져와서 "서울", "강남구" 이런식으로 분리
         String[] splitAddress = userService.findUserInfoByUserNumber(userNumber)
                 .getUserAddress().split(" ");
         mainStrollSearchVo.setAddressFirst(splitAddress[0]);
         mainStrollSearchVo.setAddressSecond(splitAddress[1]);
 
+//        메인화면에 띄워줄 산책게시판 3개 목록 리스트에 조건에 맞게 추가
         for (int i = 0; i < 3; i++) {
             List<StrollBoardVo> tmpList = strollBoardMapper.selectMainList(mainStrollSearchVo);
             strollBoardList.addAll(tmpList);
