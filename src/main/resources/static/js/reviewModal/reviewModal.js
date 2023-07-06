@@ -9,6 +9,8 @@ $(".modify1").on("click", function () {
 // 'X' 클릭 > 모달 끄기
 $(".btn-close").on("click", function () {
   modal.hide();
+  $('.fa-regular').removeClass('active');
+  $('.reply-section').val('');
 });
 
 // '동물 종류' 드롭다운 메뉴 열기/닫기
@@ -52,25 +54,25 @@ function updateImage(input) {
 }
 
 // 별점
-$(".star-rating .fa-regular").click(function () {
-  $(this).addClass("active");
-  $(this).nextAll().addClass("active");
-  $(this).prevAll().removeClass("active");
-  var ratingValue = $(this).prevAll().length + 1;
-  $("#rate").val(ratingValue);
-});
+// $(".star-rating .fa-regular").click(function () {
+//   $(this).addClass("active");
+//   $(this).nextAll().addClass("active");
+//   $(this).prevAll().removeClass("active");
+//   var ratingValue = $(this).prevAll().length + 1;
+//   $("#rate").val(ratingValue);
+// });
 
 // 댓글 유효성
-
-$(document).ready(function () {
-  $("#updateBtn").click(function () {
-    var ratingValue = $(".rate").val(); // 별점 값 가져오기
-    var comment = $(".reply-section").val(); // 댓글 내용 가져오기
-
-    if (ratingValue === "0" || comment.trim() === "") {
-      // 별점 또는 댓글이 비어있는지 확인
-      alert("별점과 댓글을 모두 입력하세요.");
-      return false; // 제출 방지
-    }
-  });
-});
+//
+// $(document).ready(function () {
+//   $("#updateBtn").click(function () {
+//     var ratingValue = $(".rate").val(); // 별점 값 가져오기
+//     var comment = $(".reply-section").val(); // 댓글 내용 가져오기
+//
+//     if (ratingValue === "0" || comment.trim() === "") {
+//       // 별점 또는 댓글이 비어있는지 확인
+//       alert("별점과 댓글을 모두 입력하세요.");
+//       return false; // 제출 방지
+//     }
+//   });
+// });

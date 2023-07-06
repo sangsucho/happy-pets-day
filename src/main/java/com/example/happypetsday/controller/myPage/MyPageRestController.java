@@ -15,19 +15,22 @@ import org.springframework.web.bind.annotation.*;
 public class MyPageRestController {
     private final PetService petService;
     private final MypageService mypageService;
-    private final ResVo resVo;
+
 //    마이펫 수정 창 띄우기
     @GetMapping("/myPet/editPet/{petNumber}")
     public PetVo getMyPetInfo(@PathVariable("petNumber") Long petNumber){
         return petService.findPetByPetNumber(petNumber);
     }
 
-//    예약 취소 처리
-    @GetMapping("/reservationList")
-    public void updateResStatus(@RequestParam("reservationStatus") String reservationStatus, @RequestParam("reservationNumber") Long reservationNumber) {
-        resVo.setReservationStatus(reservationStatus);
-        resVo.setReservationNumber(reservationNumber);
-        resVo.setReservationStatus("취소");
+    // 예약 상태 '취소'
+    @PatchMapping("/reservationList/cancel")
+    public void resCancel(@RequestBody ResVo resVo) {
+        mypageService.modify(resVo);
+    }
+
+    // 예약 상태 '이용 완료'
+    @PatchMapping("/reservationList/completed")
+    public void resComplete(@RequestBody ResVo resVo) {
         mypageService.modify(resVo);
     }
 

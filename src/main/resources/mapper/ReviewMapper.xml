@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.happypetsday.mapper.ReviewMapper">
+    <insert id="insert">
+        <selectKey keyProperty="reviewNumber" order="BEFORE" resultType="long">
+            SELECT SEQ_SITTER_REVIEW.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_SITTER_REVIEW (REVIEW_NUMBER, USER_NUMBER, SITTER_NUMBER, RESERVATION_NUMBER, REVIEW_CONTENT,
+        REVIEW_DATE, REVIEW_SCORE)
+        VALUES (#{reviewNumber}, #{userNumber}, #{sitterNumber}, #{reservationNumber}, #{reviewContent}, SYSDATE, #{reviewScore})
+    </insert>
+</mapper>

@@ -146,8 +146,9 @@ public class MyPageController {
     public String checkReservation() { return "myPage/reservation-sitter"; }
 
     @GetMapping("/reservationList")
-    public String reservationList(Model model, HttpServletRequest req) {
-        model.addAttribute("resList", mypageService.findRes((Long)req.getSession().getAttribute("userNumber")));
+    public String reservationList(Model model, HttpServletRequest req, Criteria criteria) {
+        model.addAttribute("resList", mypageService.findRes((Long)req.getSession().getAttribute("userNumber"), criteria));
+        model.addAttribute("pageInfo", new PageVo(criteria, mypageService.getTotalResList()));
         return "myPage/reservation-user"; }
 
     @GetMapping("/strollList")

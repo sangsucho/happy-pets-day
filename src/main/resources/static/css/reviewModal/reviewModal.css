@@ -13,15 +13,18 @@
 }
 
 #modal-container {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   background-color: rgba(0, 0, 0, 0.4);
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
+  z-index: 10001;
+  width: 100%;
+  height: 100%;
 }
 
 #profile-box {
@@ -34,8 +37,9 @@
 
 #profile-contents {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 /* Modal Header */
@@ -215,7 +219,7 @@ li button {
 }
 
 /* 저장하기 버튼 */
-form .update-btn_wrap {
+.update-btn_wrap {
   display: flex;
   justify-content: flex-end;
 }
