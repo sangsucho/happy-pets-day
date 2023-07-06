@@ -3,27 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../modal/reviewModal.css" />
+    <link rel="stylesheet" th:href="@{/css/reviewModal/reviewModal.css}" />
     <title>반려동물 프로필 수정</title>
   </head>
   <body>
-    <!-- 수정 버튼 예시 // -->
-    <article class="edit-box">
-      <div class="select-box">
-        <!-- '수정' 버튼 클릭 > 모달 띄워주기 -->
-        <a href="#" class="modify1" 동물의 종류를 입력해주세요
-          >수정
-          <img src="https://lifet.co.kr/img/icon/icon_modify.svg" alt="" />
-        </a>
-        <br />
-        <hr />
-        <a href="#" class="delete1"
-          >삭제
-          <img src="https://lifet.co.kr/img/icon/icon_del.svg" alt="" />
-        </a>
-      </div>
-    </article>
-    <!-- 수정 버튼 예시 // -->
+<!--    &lt;!&ndash; 수정 버튼 예시 // &ndash;&gt;-->
+<!--    <article class="edit-box">-->
+<!--      <div class="select-box">-->
+<!--        &lt;!&ndash; '수정' 버튼 클릭 > 모달 띄워주기 &ndash;&gt;-->
+<!--        <a href="#" class="modify1" 동물의 종류를 입력해주세요-->
+<!--          >수정-->
+<!--          <img src="https://lifet.co.kr/img/icon/icon_modify.svg" alt="" />-->
+<!--        </a>-->
+<!--        <br />-->
+<!--        <hr />-->
+<!--        <a href="#" class="delete1"-->
+<!--          >삭제-->
+<!--          <img src="https://lifet.co.kr/img/icon/icon_del.svg" alt="" />-->
+<!--        </a>-->
+<!--      </div>-->
+<!--    </article>-->
+<!--    &lt;!&ndash; 수정 버튼 예시 // &ndash;&gt;-->
     <div id="modal-container">
       <div id="profile-box">
         <div class="profile-header">
@@ -145,6 +145,6 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="fontawesome-stars.css" />
-    <script src="../modal/reviewModal.js"></script>
+    <script th:src="@{/js/reviewModal/reviewModal.js}"></script>
   </body>
 </html>
