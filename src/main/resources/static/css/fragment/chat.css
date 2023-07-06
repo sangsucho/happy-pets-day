@@ -96,6 +96,7 @@
     height: 71.75%;
     padding: 10px;
     overflow-y: auto;
+
 }
 
 #chat--screen .chatbot-footer {
@@ -126,9 +127,10 @@
 }
 
 #chat--screen .message {
-    margin: 10px;
+    margin: 10px 0;
     display: flex;
     align-items: center;
+    word-wrap: break-word;
 }
 
 #chat--screen .message-text {
@@ -143,7 +145,14 @@
 #chat--screen .user-message {
     text-align: right;
     justify-content: right;
+    margin-left: 20px;
 }
+#chat--screen .bot-message {
+    text-align: left;
+    justify-content: left;
+    margin-right: 20px;
+}
+
 
 #chat--screen .user-message > .message-text {
     background-color: #68a5fe;
@@ -275,7 +284,16 @@
     height: 27px;
 }
 
-#chat--screen .show-chat {
+#chat--screen .user---msg{
+    font-size: 12px;
+    color: #9c9c9c;
+    overflow: hidden;
+    height: 27px;
+}
+
+
+#chat--screen .show-chat,
+#chat--screen .show-chatBot{
     cursor: pointer;
 }
 

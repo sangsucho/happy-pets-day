@@ -26,6 +26,7 @@
         <typeAlias type="com.example.happypetsday.vo.SitterApplyVo" alias="sitterApplyVo"/>
         <typeAlias type="com.example.happypetsday.vo.ResVo" alias="resVo"/>
         <typeAlias type="com.example.happypetsday.vo.MainStrollSearchVo" alias="mainStrollSearchVo"/>
+        <typeAlias type="com.example.happypetsday.vo.AiChatVo" alias="aiChatVo"/>
     </typeAliases>
 
 </configuration>

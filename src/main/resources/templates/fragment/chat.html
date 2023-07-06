@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-<!--   각 파일에 추가-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" />
+    <!--   각 파일에 추가-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"/>
     <link rel="stylesheet" th:href="@{/css/fragment/chat.css}">
 </head>
 <body>
@@ -29,20 +29,18 @@
 
                 <div class="chat-bot-info-box">
                     <div class="chat--bot-name-and-time">
-                        <div class="chat--bot-name show-chat">
+                        <div class="chat--bot-name show-chatBot">
                             챗봇과 대화하기
                         </div>
                         <div class="chat-time-box">
-                            18:02
+
                         </div>
 
                     </div>
-                    <div class="chat--bot-msg">
-                        어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구
-                    </div>
+                    <!--채팅방 목록에 보여줄 챗봇기본 내용-->
+                    <div class="chat--bot-msg"></div>
 
                 </div>
-
 
 
             </div>
@@ -64,8 +62,8 @@
                             </div>
 
                         </div>
-                        <div class="chat--bot-msg">
-                            어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구
+                        <div class="user---msg">
+                            어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구
                         </div>
 
                     </div>
@@ -91,31 +89,9 @@
 
         </div>
 
+        <!--채팅창 내용-->
         <div class="chat-room-detail-wrap">
-            <div id="chatbot-header" class="chatbot-header">
-                <div class="close-box">
-                    <button type="button" id="chat-prev" class="chatbot-close chat-prev">
-                        <i class="fa-solid fa-arrow-left"></i>
-                    </button>
-                    <h4 class="chat-room-name">채팅방 이름</h4>
-                    <button type="button"  class="chatbot-close chat-screen-close">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
-            </div>
-            <div id="chatbot-body" class="chatbot-body">
 
-                <div class="user-message message">
-                    <div class="message-text">안녕</div>
-                </div>
-                <div class="bot-message message">
-                    <div class="message-text">네 안녕하세요</div>
-                </div>
-            </div>
-            <div id="chatbot-footer" class="chatbot-footer">
-                <input type="text" id="chatbot-input" placeholder="궁금한것을 물어보세요!" />
-                <button id="chatbot-send">전송</button>
-            </div>
         </div>
 
     </div>
@@ -133,6 +109,6 @@
 
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <!--각 파일에 추가-->
-<script th:src="@{/js/fragment/chat.js}"></script>
+<script type="module" th:src="@{/js/fragment/chat.js}"></script>
 </body>
 </html>
