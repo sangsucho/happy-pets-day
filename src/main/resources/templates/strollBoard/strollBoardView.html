@@ -67,7 +67,7 @@
                         <!-- 반려동물 이미지 분기처리 -->
                             <img src="https://lifet.co.kr/img/profile/default.png" alt="" class="default-profile" th:if="*{petFileName==null}">
 
-                            <img th:src="@{/petFile/display(fileName=*{petFileUploadPath+'/th_'+petFileUuid+'_'+petFileName})}" alt=""
+                            <img th:src="@{/petFile/display(fileName=*{petFileUploadPath+'/'+petFileUuid+'_'+petFileName})}" alt=""
                                  class="default-profile"  th:unless="*{petFileName==null}">
                     </div>
                     <div class="profile-info2">

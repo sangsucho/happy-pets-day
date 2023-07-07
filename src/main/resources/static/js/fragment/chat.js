@@ -145,6 +145,7 @@ function showChatBotRoom() {
                 <div class="bot-message message">
                     <div class="message-text">
                         안녕하세요 저는 Happy Pet's Day 사이트의 챗봇입니다. <br>
+                        저화 대화한 내용은 로그아웃하거나 브라우저를 종료하면 사라지게 됩니다
                         무엇을 도와드릴까요?
                     </div>
                 </div>`;
