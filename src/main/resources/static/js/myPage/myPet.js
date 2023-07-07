@@ -39,7 +39,7 @@ $(".modify1").on("click", function () {
   modal.css('display', 'flex');
   let petNumber = $('.edit-pet-number').val();
   $.ajax({
-    url :`/myPage/myPet/editPet/${petNumber}`,
+    url :`/myPages/myPet/editPet/${petNumber}`,
     type : 'get',
     dataType : 'json',
     success : function (result){
