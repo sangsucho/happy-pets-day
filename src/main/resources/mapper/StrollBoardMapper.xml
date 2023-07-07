@@ -99,7 +99,7 @@
         FROM TBL_STROLL_BOARD
     </select>
 
-     <select id="selectMainView" resultType="strollBoardVo">
+     <select id="selectMainList" resultType="strollBoardVo">
 
          SELECT STROLL_BOARD_NUMBER,USER_NUMBER ,USER_ID, STROLL_BOARD_TITLE,
          STROLL_BOARD_CONTENT,STROLL_BOARD_MEETING_PLACE, STROLL_BOARD_ADMIN_DISTRICT,
