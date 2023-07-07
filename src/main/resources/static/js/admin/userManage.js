@@ -110,5 +110,3 @@ $('.page-ul').on('click','a', function (){
 
 
 
-
-

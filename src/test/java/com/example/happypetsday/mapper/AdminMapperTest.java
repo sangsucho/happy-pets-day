@@ -1,5 +1,6 @@
 package com.example.happypetsday.mapper;
 
+import com.example.happypetsday.dto.SitterApplyDto;
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.service.admin.AdminService;
 import com.example.happypetsday.vo.Criteria;
@@ -29,6 +30,7 @@ class AdminMapperTest {
     private UserVo userVo;
     private UserDto userDto;
     private Criteria criteria;
+    private SitterApplyDto sitterApplyDto;
 
     @BeforeEach
     void setUp() {
@@ -41,6 +43,10 @@ class AdminMapperTest {
         userDto.setUserNumber(1L);
         userDto.setUserStatus(1);
 
+        sitterApplyDto = new SitterApplyDto();
+        sitterApplyDto.setApplyStatus("승인 대기");
+        sitterApplyDto.setUserNumber(1L);
+        sitterApplyDto.setApplyNumber(1L);
     }
 
     @Test
@@ -107,5 +113,16 @@ class AdminMapperTest {
         // Assertion
         assertEquals(basicUserCount, userVo.getBasicUserNumber());
     }
+
+//    @Test
+//    @DisplayName("applyStatus '승인완료'로 변경")
+//    void changeStatus(){
+//        sitterApplyDto.setApplyStatus("승인 완료");
+//
+//        adminMapper.changeStatus(sitterApplyDto);
+//
+//        assertThat(adminMapper.selectApplication(sitterApplyDto.getApplyNumber()).getApplyStatus())
+//                .isEqualTo(sitterApplyDto.getApplyStatus());
+//    }
 
 }

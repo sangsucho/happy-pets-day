@@ -1,6 +1,7 @@
 package com.example.happypetsday.service.admin;
 
 import com.example.happypetsday.dto.SitterApplyDto;
+import com.example.happypetsday.dto.SitterDto;
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.mapper.AdminMapper;
 import com.example.happypetsday.vo.Criteria;
@@ -48,7 +49,7 @@ public class AdminService {
     }
 
 
-    // 수정(회원 제명-회원등급 변경)
+    // 수정(회원등급 변경)-제명
     public void modify(UserDto userDto){
         if(userDto == null){
             throw new IllegalArgumentException("회원 정보가 없습니다.");
@@ -121,6 +122,81 @@ public class AdminService {
     public int getTotalPost(){
         return adminMapper.selectTotalPost();
     }
+
+    /**
+     * 펫시터신청서 조회(펫시터신청관리-펫시터신청서열람)
+     * @param applyNumber
+     * @throws IllegalArgumentException 존재하지 않는 applyNumber로 조회하는 경우
+     */
+    @Transactional(readOnly = true)
+    public SitterApplyVo findApplicaton(Long applyNumber){
+        if(applyNumber==null){
+            throw new IllegalArgumentException("신청번호가 없습니다.");
+        }
+        return Optional.ofNullable(adminMapper.selectApplication(applyNumber))
+                .orElseThrow(()->{ throw new IllegalArgumentException("존재하지 않는 신청입니다.");});
+    }
+
+    /**
+     * 펫시터 자격증파일 조회(펫시터신청관리-펫시터신청서열람)
+     * @param applyNumber
+     * @throws IllegalArgumentException 존재하지 않는 applyNumber로 조회하는 경우
+     */
+    @Transactional(readOnly = true)
+    public List<SitterApplyVo> findLicense(Long applyNumber){
+        if(applyNumber==null){
+            throw new IllegalArgumentException("신청번호가 없습니다.");
+        }
+        return Optional.ofNullable(adminMapper.selectLicense(applyNumber))
+                .orElseThrow(()->{ throw new IllegalArgumentException("존재하지 않는 신청입니다.");});
+    }
+
+    /**
+     * 펫시터 전문분야 조회(펫시터신청관리-펫시터신청서열람)
+     * @param applyNumber
+     * @throws IllegalArgumentException 존재하지 않는 applyNumber로 조회하는 경우
+     */
+    @Transactional(readOnly = true)
+    public List<SitterApplyVo> findField(Long applyNumber){
+        if(applyNumber==null){
+            throw new IllegalArgumentException("신청번호가 없습니다.");
+        }
+        return Optional.ofNullable(adminMapper.selectField(applyNumber))
+                .orElseThrow(()->{ throw new IllegalArgumentException("존재하지 않는 신청입니다.");});
+    }
+
+    // applyStatus '승인 완료'로 변경
+    public void modifyStatus(SitterApplyVo sitterApplyVo){
+        if(sitterApplyVo == null){
+            throw new IllegalArgumentException("신청 정보가 없습니다.");
+        }
+        adminMapper.changeStatus(sitterApplyVo);
+    }
+
+    // 일반회원->펫시터로 변경(추가)
+    public void registerSitter(SitterApplyVo sitterApplyVo){
+        if(sitterApplyVo==null){
+            throw new IllegalArgumentException("회원정보 누락");
+        }
+        adminMapper.addSitter(sitterApplyVo);
+    }
+
+    // 수정(회원등급 변경)-일반회원->펫시터회원
+    public void modifyUserToSitter(SitterApplyVo sitterApplyVo){
+        if(sitterApplyVo == null){
+            throw new IllegalArgumentException("회원 정보가 없습니다.");
+        }
+        adminMapper.update(sitterApplyVo);
+    }
+
+    // applyStatus '승인 거절'로 변경
+    public void modifyStatusRefuse(SitterApplyVo sitterApplyVo){
+        if(sitterApplyVo == null){
+            throw new IllegalArgumentException("신청 정보가 없습니다.");
+        }
+        adminMapper.changeStatusRefuse(sitterApplyVo);
+    }
+
 }
 
 
