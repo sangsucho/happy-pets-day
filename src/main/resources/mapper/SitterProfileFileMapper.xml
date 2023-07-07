@@ -22,4 +22,6 @@
         WHERE SITTER_NUMBER = #{sitterNumber}
     </delete>
 
+
+
 </mapper>

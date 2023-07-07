@@ -1,3 +1,26 @@
+
+$('#self-introduce-title').on('click', function (){
+  $(this).css('-webkit-box-shadow','0px 0px 32px 6px rgba(177, 180, 198, 0.2)');
+  $('#self-introduce').removeAttr('style');
+  $('.sitterPrice').removeAttr('style');
+})
+
+$('#self-introduce').on('click', function (){
+  $(this).css('-webkit-box-shadow','0px 0px 32px 6px rgba(177, 180, 198, 0.2)');
+  $('#self-introduce-title').removeAttr('style');
+  $('.sitterPrice').removeAttr('style');
+})
+
+$('.sitterPrice').on('click', function (){
+  $(this).css('-webkit-box-shadow','0px 0px 32px 6px rgba(177, 180, 198, 0.2)');
+  $('#self-introduce').removeAttr('style');
+  $('#self-introduce-title').removeAttr('style');
+})
+
+
+
+
+
 let $input2 = $("#post-image2");
 let $imgList2 = $(".img-list2");
 let $input = $("#post-image");
@@ -142,4 +165,27 @@ function appendImg(files) {
       $imgList.eq(i).removeClass("x-box");
     }
   }
+}
+
+function comma(str) {
+  str = String(str);
+  return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
+
+function uncomma(str) {
+  str = String(str);
+  return str.replace(/[^\d]+/g, '');
+}
+
+function inputNumberFormat(obj) {
+  obj.value = comma(uncomma(obj.value));
+}
+
+function inputOnlyNumberFormat(obj) {
+  obj.value = onlynumber(uncomma(obj.value));
+}
+
+function onlynumber(str) {
+  str = String(str);
+  return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g,'$1');
 }

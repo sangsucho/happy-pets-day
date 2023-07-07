@@ -13,3 +13,6 @@ $('.profile-box').on('click', function() {
     window.location.href='/sitter/profile?sitterNumber=' + sitterNumber;
     console.log(sitterNumber);
 });
+
+
+

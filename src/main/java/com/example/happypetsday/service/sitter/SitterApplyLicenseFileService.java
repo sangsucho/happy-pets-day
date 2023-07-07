@@ -27,11 +27,19 @@ public class SitterApplyLicenseFileService {
     private final SitterApplyLicenseFileMapper licenseFile;
 
     @Value("${sitterFile.dir}")
-    private String fileDir;
+    private String applyDir;
 
     public void register(SitterApplyLicenseFile file){
         if(file == null) { throw new IllegalArgumentException("파일 정보 누락"); }
         licenseFile.insert(file);
+    }
+
+    public Long findApplyNum(Long userNumber){
+        return licenseFile.selectApplyNumber(userNumber);
+    }
+
+    public List<SitterApplyLicenseFile> findList(Long applyNumber){
+        return licenseFile.select(applyNumber);
     }
 
     //    파일 저장 처리
@@ -42,7 +50,7 @@ public class SitterApplyLicenseFileService {
         UUID uuid = UUID.randomUUID();
         String sysName = uuid.toString() + "_" + originName;
 
-        File uploadPath = new File(fileDir, getUploadPath());
+        File uploadPath = new File(applyDir, getUploadPath());
 
         if (!uploadPath.exists()) {
             uploadPath.mkdirs();
@@ -74,7 +82,6 @@ public class SitterApplyLicenseFileService {
      * 파일 리스트를 DB등록 및 저장 처리
      *
      * @param files 여러 파일을 담은 리스트
-     * @param  파일이 속하는 게시글 번호
      * @throws IOException
      */
     public void registerAndSaveFiles(List<MultipartFile> files, Long applyNumber, List<String> applyFileTitle, Long userNumber) throws IOException {
