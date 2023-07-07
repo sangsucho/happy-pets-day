@@ -23,4 +23,7 @@ public class SitterApplyVo {
     private String applyFileUploadPath;
     private Long sitterFieldNumber;
     private String petFieldName;
+    private String sitterStatus;
+    private Long sitterNumber;
+    private int userStatus;
 }

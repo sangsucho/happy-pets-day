@@ -1,13 +1,12 @@
 package com.example.happypetsday.controller.admin;
 
+import com.example.happypetsday.dto.SitterApplyDto;
+import com.example.happypetsday.dto.SitterDto;
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.service.admin.AdminService;
 import com.example.happypetsday.service.pet.PetFileService;
 import com.example.happypetsday.service.sitter.SitterApplyLicenseFileService;
-import com.example.happypetsday.vo.Criteria;
-import com.example.happypetsday.vo.PageVo;
-import com.example.happypetsday.vo.StrollBoardVo;
-import com.example.happypetsday.vo.UserVo;
+import com.example.happypetsday.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
@@ -90,10 +89,27 @@ public class AdminRestController {
     // 펫시터신청서 자격증 파일 가져오기
     private final SitterApplyLicenseFileService sitterApplyLicenseFileService;
 
-
-
     @GetMapping("/view")
     public byte[] display(String fileName) throws IOException {
         return FileCopyUtils.copyToByteArray(new File(fileDir,fileName));
     }
+
+    // applyStatus '승인 완료'로 변경,일반회원->펫시터로 변경(추가)
+    @PatchMapping("/add")
+     public void statusModify(@RequestBody SitterApplyVo sitterApplyVo){
+        sitterApplyVo.setApplyNumber(sitterApplyVo.getApplyNumber());
+        adminService.modifyStatus(sitterApplyVo);
+        sitterApplyVo.setUserNumber(sitterApplyVo.getUserNumber());
+        adminService.registerSitter(sitterApplyVo);
+        sitterApplyVo.setUserNumber(sitterApplyVo.getUserNumber());
+        adminService.modifyUserToSitter(sitterApplyVo);
+    }
+
+    // applyStatus '승인 거절'로 변경
+    @PatchMapping("/refuse")
+    public void statusModifyRefuse(@RequestBody SitterApplyVo sitterApplyVo){
+        sitterApplyVo.setUserNumber(sitterApplyVo.getUserNumber());
+        adminService.modifyStatusRefuse(sitterApplyVo);
+    }
+
 }

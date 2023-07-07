@@ -1,6 +1,7 @@
 package com.example.happypetsday.mapper;
 
 import com.example.happypetsday.dto.SitterApplyDto;
+import com.example.happypetsday.dto.SitterDto;
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.vo.*;
 import org.apache.ibatis.annotations.Mapper;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Mapper
 public interface AdminMapper {
+
     //회원(1명) 상세 조회(전체회원관리)
     public UserVo selectUserOne(Long userNumber);
 
@@ -19,7 +21,7 @@ public interface AdminMapper {
     //전체 게시글 수 조회(전체회원관리)
     public int selectTotal();
 
-    // 회원 삭제(제명)
+    // 회원등급(UserStatus) 수정 - 회원삭제(제명)
     public void update(UserDto userDto);
 
     // 회원id,name으로 검색(전체회원관리)
@@ -60,4 +62,16 @@ public interface AdminMapper {
 
     // 펫시터 전문분야 조회
     public List<SitterApplyVo> selectField(Long applyNumber);
+
+    // applyStatus '승인 완료'로 변경
+    public void changeStatus(SitterApplyVo sitterApplyVo);
+
+    // 일반회원->펫시터로 변경(추가)
+    public void addSitter(SitterApplyVo sitterApplyVo);
+
+    // 회원등급(UserStatus) 수정 -일반회원->펫시터회원
+    public void update(SitterApplyVo sitterApplyVo);
+
+    // applyStatus '승인 거절'로 변경
+    public void changeStatusRefuse(SitterApplyVo sitterApplyVo);
 }

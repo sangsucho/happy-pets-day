@@ -21,7 +21,7 @@
 
         <h2 class="guide-menu">신청서 열람</h2>
         <div class="bottom-bar"></div>
-        <div class="detailed-guide">$ 펫시터 지원을 희망하는 회원이 작성한 신청서입니다.</div>
+        <div class="detailed-guide">* 펫시터 지원을 희망하는 회원이 작성한 신청서입니다.</div>
 
         <div class="content-align">
             <div class="content-box">
@@ -34,6 +34,11 @@
                     <div class="length-bar"></div>
                     <div class="region" th:text="'거주지 : ' + ${view.userAddress}"></div>
                 </div>
+                <input type="hidden" class="user-number" th:value="${view.userNumber}">
+                <input type="hidden" class="apply-number" th:value="${view.applyNumber}">
+                <input type="hidden" class="apply-status" th:value="${view.applyStatus}">
+                <input type="hidden" class="sitter-status" th:value="${view.sitterStatus}">
+                <input type="hidden" class="user-status" th:value="${view.userStatus}">
 
                 <div class="box-wrap">
                     <div class="color-box">
@@ -78,9 +83,9 @@
                 </div>
             </div>
             <div class="btn">
-                <button type="submit">승인</button>
-                <button type="submit">거절</button>
-                <button type="submit">목록</button>
+                <button type="button" class="approve" value="2" data-confirm="신청 승인하시겠습니까?" data-apply-number="123">승인</button>
+                <button type="button" class="refuse" value="1" data-confirm="신청 거절하시겠습니까?" data-apply-number="456">거절</button>
+                <button type="button" class="list">목록</button>
             </div>
 
         </div>
@@ -90,6 +95,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <footer th:replace="fragment/adminFooter :: adminFooter"></footer>
 <script th:src="@{/js/fragment/header.js}"></script>
+<script th:src="@{/js/admin/viewApplication.js}"></script>
 </body>
 
 </html>

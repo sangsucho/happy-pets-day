@@ -118,6 +118,7 @@
                         SELECT APPLY_NUMBER, APPLY_CONTENT, USER_NAME, APPLY_DATE
                         FROM TBL_SITTER_APPLY S JOIN TBL_USER U
                                                      ON S.USER_NUMBER  = U.USER_NUMBER
+                        WHERE APPLY_STATUS = '승인 대기'
                         ORDER BY APPLY_NUMBER DESC
                     )
              <![CDATA[
@@ -129,6 +130,7 @@
 
     <select id="selectTotalPost" resultType="_int">
         SELECT COUNT(APPLY_NUMBER) FROM TBL_SITTER_APPLY
+        WHERE APPLY_STATUS = '승인 대기'
     </select>
 
     <select id="selectApplication" resultType="SitterApplyVo">
@@ -149,4 +151,22 @@
         FROM TBL_SITTER_FIELD F JOIN TBL_SITTER_APPLY A ON F.USER_NUMBER  = A.USER_NUMBER
         WHERE APPLY_NUMBER = #{applyNumber}
     </select>
+
+    <update id="changeStatus">
+        UPDATE TBL_SITTER_APPLY
+        SET APPLY_STATUS='승인 완료'
+        WHERE APPLY_NUMBER=#{applyNumber}
+    </update>
+
+    <insert id="addSitter">
+        INSERT INTO TBL_SITTER
+            (SITTER_NUMBER, USER_NUMBER, SITTER_STATUS)
+        VALUES(SEQ_SITTER.NEXTVAL, #{userNumber}, 'Y')
+    </insert>
+
+    <update id="changeStatusRefuse">
+        UPDATE TBL_SITTER_APPLY
+        SET APPLY_STATUS='승인 거절'
+        WHERE APPLY_NUMBER=#{applyNumber}
+    </update>
 </mapper>
