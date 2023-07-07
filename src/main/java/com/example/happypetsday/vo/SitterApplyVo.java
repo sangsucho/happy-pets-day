@@ -14,4 +14,16 @@ public class SitterApplyVo {
     private String applyStatus;
     private Long userNumber;
     private String userName;
+    private String userPhoneNumber;
+    private String userAddress;
+    private Long applyFileNumber;
+    private String applyFileTitle;
+    private String applyFileName;
+    private String applyFileUuid;
+    private String applyFileUploadPath;
+    private Long sitterFieldNumber;
+    private String petFieldName;
+    private String sitterStatus;
+    private Long sitterNumber;
+    private int userStatus;
 }

@@ -1,17 +1,18 @@
 //회원 삭제
 $('.btn-delete').on('click',function (){
     let confirmMessage = $(this).data('confirm');
+    let userNumber = $('.user-number').val();
     if (confirm(confirmMessage)) {
-        modify();
+        modify(userNumber);
         alert('회원이 삭제되었습니다');
     }
-    let userNumber = $('.user-number').val();
     window.location.href=`/admin/userDetailManage?userNumber=${userNumber}`
 })
 
-function modify() {
+
+function modify(userNumber) {
     let userStatus = $('.btn-delete').val();
-    let userNumber = $('.user-number').val();
+
     let user = {
         userNumber:userNumber,
         userStatus:userStatus
@@ -66,3 +67,4 @@ function modifyRestore() {
         }
     });
 }
+
