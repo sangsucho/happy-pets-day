@@ -17,6 +17,11 @@ public class SitterListVo {
     private String sitterProfileFileName;
     private String sitterProfileUploadPath;
     private String sitterProfileUuid;
+    private Long applyNumber;
+    private String applyFileName;
+    private String applyFileUploadPath;
+    private String applyFileUuid;
+    private String applyTitle;
     private Long userNumber;
     private int reviewNumber;
     private int reviewScore;

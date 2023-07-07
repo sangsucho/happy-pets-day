@@ -4,10 +4,16 @@ var visibleReviews = 3;
 // 모든 리뷰 요소들을 선택합니다.
 var reviewElements = document.getElementsByClassName("review-review");
 
+if(reviewElements.length <= visibleReviews){
+  document.getElementsByClassName("review-more-btn")[0].style.display =
+      "none";
+}
+
 // 보여지는 리뷰 개수를 제어하는 함수입니다.
 function controlVisibleReviews() {
   // 추가로 보여질 리뷰 개수를 설정합니다.
   var additionalReviews = 3;
+
 
   // 추가로 보여질 리뷰 개수만큼 리뷰 요소들을 반복하여 보이도록 설정합니다.
   for (var i = visibleReviews; i < visibleReviews + additionalReviews; i++) {
@@ -42,6 +48,7 @@ document
 for (var i = visibleReviews; i < reviewElements.length; i++) {
   reviewElements[i].style.display = "none";
 }
+
 // ========================================
 
 $(document).ready(function () {
@@ -66,12 +73,18 @@ function calendarInit() {
     today.getFullYear(),
     today.getMonth(),
     today.getDate()
+
   );
+
   // 달력에서 표기하는 날짜 객체
 
   var currentYear = thisMonth.getFullYear(); // 달력에서 표기하는 연
   var currentMonth = thisMonth.getMonth(); // 달력에서 표기하는 월
   var currentDate = thisMonth.getDate(); // 달력에서 표기하는 일
+
+  // var resultDate = currentYear + "-" + (currentMonth + 1) + "-" + currentDate;
+
+  // console.log(resultDate);
 
   // kst 기준 현재시간
   // console.log(thisMonth);
@@ -84,6 +97,8 @@ function calendarInit() {
     currentYear = thisMonth.getFullYear();
     currentMonth = thisMonth.getMonth();
     currentDate = thisMonth.getDate();
+
+
 
     // 이전 달의 마지막 날 날짜와 요일 구하기
     var startDay = new Date(currentYear, currentMonth, 0);
@@ -134,6 +149,35 @@ function calendarInit() {
       }
     }
 
+    let sitterNumber =$('.sitterNumber').val();
+    console.log(sitterNumber);
+
+    $.ajax({
+      url: "/sitters/reservations", //url
+      method: "GET",
+      data : {sitterNumber : sitterNumber},
+      success: function (response) {
+        var soldDates = response.map(date => date.substr(8, 2));
+        var soldMonth = response.map(date => date.substr(6,1));
+
+        $(".dates .day").each(function () {
+          var dateText = $(this).text();
+          var monthText = $(".year-month").text().substr(5,1);
+
+          for (var i = 0; i < soldDates.length; i++) {
+            if (dateText === soldDates[i] && monthText === soldMonth[i]) {
+              $(this).addClass("disable");
+            }
+          }
+
+        });
+      },
+      error: function (xhr, status, error) {
+        console.error("데이터를 가져오는 데 실패했습니다.", error);
+      },
+    });
+
+
     // 다음달
     for (var i = 1; i <= (7 - nextDay == 7 ? 0 : 7 - nextDay); i++) {
       if (currentMonth === 11) {
@@ -164,15 +208,14 @@ function calendarInit() {
 $(document).ready(function () {
   calendarInit();
 
+
   // 날짜 클릭 이벤트 처리
   $(".dates").on("click", ".day.current", function () {
     // 기존에 선택된 날짜의 클래스 제거
     $(".dates .day.current.selected").removeClass("selected");
 
     // 선택된 날짜에 클래스 추가
-
     $(this).addClass("selected");
-
     // 선택된 날짜의 정보 가져오기
     var selectedDate = $(this).text(); // 선택된 날짜의 텍스트 가져오기
     var selectedMonth = $(".year-month").text().split(".")[1] - 1; // 선택된 월 가져오기 (0부터 시작하므로 1을 빼줌)
@@ -182,15 +225,64 @@ $(document).ready(function () {
     var dateObject = new Date(selectedYear, selectedMonth, selectedDate);
 
     // 선택된 날짜의 정보 출력
-    console.log(dateObject);
+    // console.log(dateObject);
+    // console.log(selectedYear + "-" + selectedMonth + "-" + selectedDate);
+    // console.log(resultDate);
+    // 예약 버튼의 데이터 속성에 선택된 날짜 설정
+    $(".reser-btn button").data("selectedDate", dateObject);
   });
 });
 
-//=====================================================================
-// var IMP = window.IMP; // 생략가능
-// IMP.init("imp78472254"); // <-- 본인 가맹점 식별코드 삽입
-const closeModalBtn = document.getElementById("close-modal");
+$(document).ready(function () {
+  calendarInit();
 
-closeModalBtn.addEventListener("click", () => {
-  modal.style.display = "none";
+  // 예약 버튼 클릭 이벤트 처리
+  $(".reser-btn button").on("click", function () {
+    let sitterNum = $('.sitterNumber').val();
+    // 선택된 날짜 가져오기
+    var selectedDate = $(this).data("selectedDate");
+
+    let dateInfo = new Date(selectedDate);
+    let dateResult = dateInfo.getFullYear() + "-" + (dateInfo.getMonth()+1) + "-" + dateInfo.getDate();
+
+
+    if (selectedDate) {
+      // 서버에 전송할 데이터 객체 생성
+      var data = {
+        reservationDate: dateResult, // 선택된 날짜를 ISO 8601 형식의 문자열로 변환하여 전송
+        sitterNumber : sitterNum
+      };
+
+      // 선택된 날짜를 서버에 저장하기 위해 AJAX 요청 보내기
+      $.ajax({
+        url: '/sitters/reserve', // 서버에서 날짜 저장을 처리하는 URL
+        method: 'POST',
+        data: data,
+        success: function() {
+          // 요청이 성공적으로 처리되었을 때 실행되는 콜백 함수
+          console.log('날짜가 성공적으로 저장되었습니다.');
+          window.location.href='/sitter/list';
+        },
+        error: function(xhr, status, error) {
+          // 요청이 실패했을 때 실행되는 콜백 함수
+          console.error('날짜 저장에 실패했습니다.', error);
+        }
+      });
+    } else {
+      // 날짜가 선택되지 않았을 때 처리
+      console.log('날짜를 선택해주세요.');
+    }
+  });
 });
+
+
+
+//=====================================================================
+let $reserveBtn = $(".reser-btn > button");
+
+
+$reserveBtn.on("click", function () {
+
+})
+
+

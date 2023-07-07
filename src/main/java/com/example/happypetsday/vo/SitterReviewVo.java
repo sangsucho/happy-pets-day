@@ -1,20 +1,19 @@
-package com.example.happypetsday.dto;
+package com.example.happypetsday.vo;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@Component
 @Data
 @NoArgsConstructor
-public class SitterReviewDto {
-    private Long reviewNumber;
+@Component
+public class SitterReviewVo {
     private Long userNumber;
     private Long sitterNumber;
-    private Long reservationNumber;
+    private String userName;
+    private double reviewScore;
     private String reviewContent;
     private String reviewDate;
-    private double reviewScore;
-    private int reviewCnt;
-    private double scoreAvg;
+    private Long reviewNumber;
+    private Long reservationNumber;
 }

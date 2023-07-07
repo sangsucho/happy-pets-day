@@ -19,8 +19,13 @@
 
     <select id="select" resultType="SitterApplyLicenseFile">
         SELECT APPLY_FILE_NUMBER, APPLY_FILE_TITLE, APPLY_FILE_NAME,
-        APPLY_FILE_UUID, APPLY_FILE_UPLOAD_PATH, APPLY_NUMBER, SITTER_NUMBER FROM TBL_SITTER_APPLY_LICENSE_FILE
+        APPLY_FILE_UUID, APPLY_FILE_UPLOAD_PATH, APPLY_NUMBER, USER_NUMBER FROM TBL_SITTER_APPLY_LICENSE_FILE
         WHERE APPLY_NUMBER = #{applyNumber}
+    </select>
+
+    <select id="selectUserNumber" resultType="long">
+        SELECT APPLY_NUMBER FROM TBL_SITTER_APPLY_FILE
+        WHERE USER_NUMBER = #{userNumber}
     </select>
 
     <select id="selectOldList" resultType="SitterApplyLicenseFile">
@@ -28,5 +33,8 @@
         APPLY_FILE_UUID, APPLY_FILE_UPLOAD_PATH, APPLY_NUMBER, SITTER_NUMBER FROM TBL_SITTER_APPLY_LICENSE_FILE
         WHERE APPLY_FILE_UPLOAD_PATH = TO_CHAR(CURRENT_DATE - 1, 'YYYY/MM/DD')
     </select>
+
+
+
     
 </mapper>
