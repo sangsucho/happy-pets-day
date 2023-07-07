@@ -3,7 +3,6 @@ package com.example.happypetsday.service.stroll;
 import com.example.happypetsday.dto.StrollBoardDto;
 import com.example.happypetsday.mapper.StrollBoardMapper;
 import com.example.happypetsday.mapper.StrollReplyMapper;
-import com.example.happypetsday.service.pet.PetFileService;
 import com.example.happypetsday.service.user.UserService;
 import com.example.happypetsday.vo.Criteria;
 import com.example.happypetsday.vo.MainStrollSearchVo;
@@ -116,18 +115,22 @@ public class StrollService {
         long listSize = 0L;
 
         if(userNumber== null){
+//            회원번호가 없으면(로그인이 되어있지 않으면)
+//            조회 조건을 전체게시물로 하게끔 설정후 바로 반환
             mainStrollSearchVo.setFirstBoolean(false);
             mainStrollSearchVo.setSecondBoolean(false);
-            return strollBoardMapper.selectMainView(mainStrollSearchVo);
+            return strollBoardMapper.selectMainList(mainStrollSearchVo);
         }
 
-        String userAddress = userService.findUserInfoByUserNumber(userNumber).getUserAddress();
-        String[] splitAddress = userAddress.split(" ");
+//       회원주소 가져와서 "서울", "강남구" 이런식으로 분리
+        String[] splitAddress = userService.findUserInfoByUserNumber(userNumber)
+                .getUserAddress().split(" ");
         mainStrollSearchVo.setAddressFirst(splitAddress[0]);
         mainStrollSearchVo.setAddressSecond(splitAddress[1]);
 
+//        메인화면에 띄워줄 산책게시판 3개 목록 리스트에 조건에 맞게 추가
         for (int i = 0; i < 3; i++) {
-            List<StrollBoardVo> tmpList = strollBoardMapper.selectMainView(mainStrollSearchVo);
+            List<StrollBoardVo> tmpList = strollBoardMapper.selectMainList(mainStrollSearchVo);
             strollBoardList.addAll(tmpList);
 
             if(listSize != strollBoardList.size()){

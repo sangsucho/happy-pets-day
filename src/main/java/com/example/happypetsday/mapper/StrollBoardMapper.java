@@ -32,7 +32,7 @@ public interface StrollBoardMapper {
     List<StrollBoardVo> selectMypageBoard(@Param("userNumber") Long userNumber, @Param("criteria") Criteria criteria);
 
 //    메인화면에서 산책 게시판 조회
-    List<StrollBoardVo> selectMainView(MainStrollSearchVo mainStrollSearchVo);
+    List<StrollBoardVo> selectMainList(MainStrollSearchVo mainStrollSearchVo);
 
 }
 
