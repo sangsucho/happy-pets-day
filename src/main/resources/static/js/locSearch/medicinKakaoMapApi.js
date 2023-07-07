@@ -100,11 +100,18 @@ function processCoordinates(list) {
   }
 }
 
-let $marker = $('.customoverlay').closest('div');
+// let $marker = $('.customoverlay').closest('div');
 
-$('#map').on('click',$marker, function (){
-  console.log(this);
-  $(this).find('.customoverlay').show();
+
+$('#map').on('click', 'area', function (){
+
+  let title = $(this).attr('title');
+
+  let $span = $(`span.title:contains(${title})`);
+
+  $span.closest('.customoverlay').show();
+
+  // $(this).find('.customoverlay').show();
 
 });
 
