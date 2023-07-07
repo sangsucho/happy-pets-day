@@ -13,5 +13,5 @@ public class SitterDto {
     private String sitterHeader;
     private String sitterIntroduction;
     private String sitterStatus;
-    private int sitterPrice;
+    private String sitterPrice;
 }

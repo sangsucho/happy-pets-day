@@ -19,15 +19,16 @@
     <h1>펫시터를 소개합니다!</h1>
     <p>원하는 펫시터를 찾아보세요!</p>
   </div>
-  <div class="main-content">
-    <div class="plus-box" th:if="${showBtn ==1}">
+
+  <div class="main-content" >
+    <div class="plus-box" th:if="${showBtn ==1}" th:with="nullSitter=${nullSitter}" th:unless="${nullSitter == 1}">
       <div class="plus-btn">
         <span class="material-symbols-outlined"> add </span>
       </div>
     </div>
-    <div class="profile-box" th:each="sitter : ${sitterList}" th:attr="data-sitter-number=${sitter.sitterNumber}">
+    <div class="profile-box" th:each="sitter : ${sitterList}" th:attr="data-sitter-number=${sitter.sitterNumber}"
+      th:unless="${sitter.sitterHeader == null}">
       <div class="sitter-thumbnail">
-<!---->
           <img th:src="'/upload/imgFile/' + ${sitter.sitterFileUploadPath} + '/th_' +${sitter.sitterFileUuid} + '_' + ${sitter.sitterFileFileName }" alt="" />
       </div>
       <div>
@@ -40,7 +41,7 @@
             <img  th:src="'/upload/profileFile/' + ${sitter.sitterProfileUploadPath} + '/th_' +${sitter.sitterProfileUuid} + '_' + ${sitter.sitterProfileFileName }" alt="" />
           </div>
         </div>
-        <div class="info-text">
+        <div class="info-text" th:with="reviews = ${cntAndAvg}">
           <div class="star-and-review">
             <div class="star-img">
               <img
@@ -61,21 +62,12 @@
                     alt=""
             />
             </div>
-            <span >5.0</span>
+            <span th:text="${reviews.scoreAvg}">5.0</span>
             <div class="bar"></div>
-            <p>후기 100개</p>
+            <span>후기 <span th:text="${reviews.reviewCnt}"></span> 개</span>
           </div>
           <div class="info-price">
-<!--            <div class="animal">-->
-<!--              <span>₩ 100,000</span>-->
-<!--              <span class="animal-name">강아지</span>-->
-<!--            </div>-->
-<!--            <div class="animal">-->
-<!--              <span>₩ 80,000</span>-->
-<!--              <span class="animal-name">고양이</span>-->
-<!--            </div>-->
             <div class="animal">
-<!--              <span>추후 협의</span>-->
               <span class="animal-name">전체</span>
             </div>
           </div>

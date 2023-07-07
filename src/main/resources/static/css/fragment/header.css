@@ -102,6 +102,7 @@ header{
 }
 
 .header--sitter-btn{
+    cursor: pointer;
     line-height: 70px;
     position: relative;
     height: 70px;

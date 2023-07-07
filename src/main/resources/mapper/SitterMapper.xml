@@ -5,12 +5,18 @@
 <!--    시터-->
     <update id="updateSitter">
         UPDATE TBL_SITTER
-        SET SITTER_HEADER = #{sitterHeader}, SITTER_INTRODUCTION = #{sitterIntroduction}
+        SET SITTER_HEADER = #{sitterHeader}, SITTER_INTRODUCTION = #{sitterIntroduction},
+        SITTER_PRICE = #{sitterPrice}
         WHERE USER_NUMBER = #{userNumber}
     </update>
 
     <select id="selectSitterNumber" resultType="long">
         SELECT SITTER_NUMBER FROM TBL_SITTER
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
+
+    <select id="selectSitterInfo" resultType="sitterDto">
+        SELECT SITTER_NUMBER, SITTER_HEADER, SITTER_INTRODUCTION, SITTER_PRICE FROM TBL_SITTER
         WHERE USER_NUMBER = #{userNumber}
     </select>
 
@@ -42,6 +48,12 @@
         DELETE FROM TBL_SITTER_FIELD
         WHERE USER_NUMBER = #{userNumber}
     </delete>
+
+    <select id="selectField" resultType="sitterFieldDto">
+        SELECT PET_FIELD_NAME
+        FROM TBL_SITTER_FIELD
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
 
 
 
@@ -85,18 +97,106 @@
         WHERE U.USER_NUMBER=#{userNumber}
     </select>
 
+    <select id="selectSitterHeader" resultType="_int">
+        SELECT COUNT(SITTER_HEADER) FROM TBL_SITTER
+        WHERE SITTER_NUMBER = #{sitterNumber}
+    </select>
+
+
+
 
 <!--    시터 프로필-->
-    <select id="selectSitterProfile" resultType="sitterListVo">
-        SELECT  sf.APPLY_FILE_TITLE, sf.APPLY_FILE_NAME, sf.APPLY_FILE_UUID
-        FROM TBL_SITTER s
-                 LEFT OUTER JOIN TBL_SITTER_APPLY_LICENSE_FILE sf
-                                 ON s.USER_NUMBER = sf.USER_NUMBER
-        WHERE s.SITTER_NUMBER = #{sitterNumber}
-    </select>
+<!--    <select id="selectSitterProfile" resultType="sitterListVo">-->
+<!--        SELECT  sf.APPLY_FILE_TITLE, sf.APPLY_FILE_NAME, sf.APPLY_FILE_UUID-->
+<!--        FROM TBL_SITTER s-->
+<!--                 LEFT OUTER JOIN TBL_SITTER_APPLY_LICENSE_FILE sf-->
+<!--                                 ON s.USER_NUMBER = sf.USER_NUMBER-->
+<!--        WHERE s.SITTER_NUMBER = #{sitterNumber}-->
+<!--    </select>-->
 
 <!--    <select id="selectSitterNumber" resultType="long">-->
 <!--        SELECT SITTER_NUMBER,USER_NUMBER FROM TBL_SITTER-->
 <!--        WHERE SITTER_NUMBER = #{sitterNumber}-->
 <!--    </select>-->
+
+<!--    시터 프로필-->
+    <select id="selectSitterFile" resultType="sitterFileDto">
+        SELECT SITTER_FILE_FILE_NAME, SITTER_FILE_UUID, SITTER_FILE_UPLOAD_PATH, SITTER_NUMBER
+        FROM TBL_SITTER_FILE
+        WHERE SITTER_NUMBER = #{sitterNumber}
+    </select>
+
+    <select id="selectSitterProfile" resultType="sitterProfileFileDto">
+        SELECT SITTER_PROFILE_FILE_NAME, SITTER_PROFILE_UUID, SITTER_PROFILE_UPLOAD_PATH, SITTER_NUMBER
+        FROM TBL_SITTER_PROFILE_FILE
+        WHERE SITTER_NUMBER = #{sitterNumber}
+    </select>
+
+    <select id="selectApplyFile" resultType="sitterApplyLicenseFile">
+        SELECT APPLY_FILE_NAME, APPLY_FILE_UUID, APPLY_FILE_UPLOAD_PATH
+        FROM TBL_SITTER_APPLY_LICENSE_FILE
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
+
+    <select id="userNumFromSitter" resultType="long">
+        SELECT USER_NUMBER FROM TBL_SITTER
+        WHERE SITTER_NUMBER = #{sitterNumber}
+    </select>
+
+    <select id="selectUserName" resultType="userDto">
+        SELECT U.USER_NAME FROM TBL_USER U
+        JOIN TBL_SITTER S
+        ON U.USER_NUMBER = S.USER_NUMBER
+        WHERE SITTER_NUMBER = #{sitterNumber}
+    </select>
+
+
+<!--    시터 예약-->
+    <insert id="insertReserve">
+        INSERT INTO TBL_SITTER_RESERVATION (RESERVATION_NUMBER, SITTER_NUMBER, USER_NUMBER, RESERVATION_DATE)
+        VALUES (SEQ_SITTER_RESERVATION.NEXTVAL, #{sitterNumber}, #{userNumber}, #{reservationDate})
+    </insert>
+
+    <update id="updateReserveStatus">
+        UPDATE TBL_SITTER_RESERVATION
+        SET RESERVATION_STATUS = #{reservationStatus}
+        WHERE USER_NUMBER = #{userNumber}
+    </update>
+
+    <select id="selectReserveCantDate">
+        SELECT RESERVATION_DATE
+        FROM TBL_SITTER_RESERVATION
+        WHERE SITTER_NUMBER = #{sitterNumber}
+    </select>
+
+
+<!--    시터 리뷰-->
+    <select id="selectSitterReview" resultType="sitterReviewVo">
+        SELECT u.USER_NAME, sr.REVIEW_SCORE, sr.REVIEW_CONTENT, sr.REVIEW_DATE
+        FROM TBL_SITTER_REVIEW sr
+        JOIN TBL_USER u
+        ON sr.USER_NUMBER = u.USER_NUMBER
+        WHERE SITTER_NUMBER = ${sitterNumber}
+    </select>
+
+    <select id="reviewCntAndScoreAvg" resultType="sitterReviewDto">
+        SELECT COUNT(REVIEW_NUMBER) reviewCnt, AVG(REVIEW_SCORE) scoreAvg FROM TBL_SITTER_REVIEW
+        WHERE SITTER_NUMBER = #{sitterNumber}
+    </select>
+
+
+<!--    시터 수정-->
+    <select id="sitterUploadNumber" resultType="sitterDto">
+        SELECT SITTER_NUMBER, SITTER_HEADER, SITTER_INTRODUCTION, SITTER_PRICE
+        FROM TBL_SITTER
+        WHERE SITTER_NUMBER = #{sitterNumber}
+    </select>
+
+    <update id="sitterUpdate">
+        UPDATE TBL_SITTER
+        SET SITTER_HEADER = #{sitterHeader}, SITTER_INTRODUCTION = #{sitterIntroduction},
+            SITTER_PRICE = #{sitterPrice}
+        WHERE SITTER_NUMBER = #{sitterNumber}
+    </update>
+
 </mapper>
