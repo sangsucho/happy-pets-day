@@ -266,6 +266,8 @@ $(document).ready(function () {
         error: function(xhr, status, error) {
           // 요청이 실패했을 때 실행되는 콜백 함수
           console.error('날짜 저장에 실패했습니다.', error);
+          alert("로그인 후 이용하세요.")
+          window.location.href='/user/login';
         }
       });
     } else {
@@ -285,4 +287,14 @@ $reserveBtn.on("click", function () {
 
 })
 
+document.addEventListener("DOMContentLoaded", function () {
+
+  function handleRating(rating) {
+    var fillStars = document.querySelector(".star-ratings-fill");
+    var fillWidth = (rating / 5) * 100 + "%";
+    fillStars.style.width = fillWidth;
+  }
+
+  handleRating(averageRating);
+});
 

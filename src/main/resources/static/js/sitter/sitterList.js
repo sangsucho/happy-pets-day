@@ -14,5 +14,14 @@ $('.profile-box').on('click', function() {
     console.log(sitterNumber);
 });
 
+document.addEventListener("DOMContentLoaded", function () {
 
+    function handleRating(rating) {
+        var fillStars = document.querySelector(".star-ratings-fill");
+        var fillWidth = (rating / 5) * 100 + "%";
+        fillStars.style.width = fillWidth;
+    }
+
+    handleRating(averageRating);
+});
 
