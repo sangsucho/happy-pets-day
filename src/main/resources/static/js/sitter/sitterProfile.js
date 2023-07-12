@@ -287,6 +287,12 @@ $reserveBtn.on("click", function () {
 
 })
 
+$('.modify-btn').on('click', function(){
+  let sitterNumber = $('.sitterNumber').val();
+  window.location.href = '/sitter/modifyInfo?sitterNumber=' + sitterNumber;
+});
+
+
 document.addEventListener("DOMContentLoaded", function () {
 
   function handleRating(rating) {
@@ -295,6 +301,6 @@ document.addEventListener("DOMContentLoaded", function () {
     fillStars.style.width = fillWidth;
   }
 
-  handleRating(averageRating);
+  handleRating();
 });
 

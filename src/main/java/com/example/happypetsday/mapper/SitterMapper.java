@@ -17,6 +17,7 @@ public interface SitterMapper {
 //    시터 지원
     void apply(SitterApplyDto sitterApplyDto);
     void updateSitter(SitterDto sitterDto);
+    UserDto selectUserInfo(Long userNumber);
 
 //    시터 필드
     void insertField(SitterFieldDto sitterFieldDto);
