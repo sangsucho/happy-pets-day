@@ -2,7 +2,6 @@ package com.example.happypetsday.service.sitter;
 
 import com.example.happypetsday.dto.SitterReviewDto;
 import com.example.happypetsday.mapper.ReviewMapper;
-import com.example.happypetsday.vo.ResVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

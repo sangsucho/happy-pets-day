@@ -22,12 +22,21 @@
 
 /* 왼쪽 탭 목록 */
 #container {
+    < < < < < < < HEAD
     display: flex;
     justify-content: center;
     width: 1200px;
     height: 100vh;
     margin: 0 auto;
     padding-top: 50px;
+= = = = = = = display: flex;
+    justify-content: center;
+    width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    padding-top: 50px;
+    margin-bottom: 30px;
+>>> >>> > dddec9df833a64c68a68f6682c6c3d24f22143fe
 }
 
 .color-text {
@@ -94,6 +103,7 @@
 }
 
 .reservation-status {
+    < < < < < < < HEAD
     width: 80px;
     height: 24px;
     font-size: 12px;
@@ -113,6 +123,23 @@
 /* 예약 완료 상태 색상 */
 .before {
     color: var(--font-orange);
+= = = = = = = width: 80 px;
+    height: 24px;
+    font-size: 12px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--border-bottom-color);
+    border-radius: 10px;
+    margin: 10px 0 25px 0;
+    color: var(--font-orange);
+>>> >>> > dddec9df833a64c68a68f6682c6c3d24f22143fe
+}
+
+/* 예약 취소 */
+.red {
+    color: red;
 }
 
 .info-wrap {
@@ -142,4 +169,41 @@
 
 .button-wrap button:hover {
     opacity: 0.7;
+}
+
+/* 페이징 스타일 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.pagination > ul {
+    display: flex;
+    list-style: none;
+}
+
+.pagination a {
+    color: #747272;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+    margin: 0 5px;
+    border-radius: 5px;
+    border: 1px solid #68a5fe;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: Pretendard-SemiBold;
+}
+
+.pagination a:hover {
+    background-color: #a4c9fe;
+    border-color: #a4c9fe;
+    color: #fff;
+}
+
+.pagination .active {
+    background-color: #68a5fe;
+    border-color: #68a5fe;
+    color: #fff;
 }

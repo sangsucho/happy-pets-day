@@ -1,14 +1,15 @@
 package com.example.happypetsday.controller.sitter;
 
-import com.example.happypetsday.dto.SitterDto;
 import com.example.happypetsday.dto.SitterReservationDto;
 import com.example.happypetsday.service.sitter.SitterService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 

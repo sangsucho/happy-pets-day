@@ -1,9 +1,10 @@
 package com.example.happypetsday.mapper;
 
-import com.example.happypetsday.dto.SitterApplyDto;
-import com.example.happypetsday.dto.SitterDto;
 import com.example.happypetsday.dto.UserDto;
-import com.example.happypetsday.vo.*;
+import com.example.happypetsday.vo.Criteria;
+import com.example.happypetsday.vo.SitterApplyVo;
+import com.example.happypetsday.vo.StrollBoardVo;
+import com.example.happypetsday.vo.UserVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

@@ -1,7 +1,6 @@
 package com.example.happypetsday.service.pet;
 
 import com.example.happypetsday.dto.PetDto;
-import com.example.happypetsday.mapper.PetFileMapper;
 import com.example.happypetsday.mapper.PetMapper;
 import com.example.happypetsday.vo.PetVo;
 import lombok.RequiredArgsConstructor;

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--   각 파일에 추가-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/fragment/chat.css}">
+</head>
+<body>
+
+<div id="chat--screen" th:fragment="chat">
+    <div id="chatbot" class="chatbot">
+        <div class="chat-room-wrap">
+
+            <div class="chat-title-box">
+                <div class="chat-room-title">
+                    채팅방 목록
+                </div>
+                <button class="chatbot-close chat-close chat-screen-close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div id="connect-chatbot" class="chatbot-room">
+
+                <div class="chat-bot-img-box">
+                    <img th:src="@{img/chatbot.png}" alt="" class="chat-bot-img">
+                </div>
+
+                <div class="chat-bot-info-box">
+                    <div class="chat--bot-name-and-time">
+                        <div class="chat--bot-name show-chatBot">
+                            챗봇과 대화하기
+                        </div>
+                        <div class="chat-time-box">
+
+                        </div>
+
+                    </div>
+                    <!--채팅방 목록에 보여줄 챗봇기본 내용-->
+                    <div class="chat--bot-msg"></div>
+
+                </div>
+
+
+            </div>
+            <ul class="chat-room-list">
+
+                <!-- 채팅방 반복 시작-->
+                <li class="chat-room ">
+                    <div class="chat-bot-img-box">
+                        <img src="https://lifet.co.kr/img/profile/default.png" alt="" class="chat-bot-img">
+                    </div>
+
+                    <div class="chat-bot-info-box ">
+                        <div class="chat--bot-name-and-time">
+                            <div class="chat--bot-name show-chat">
+                                상대방 아이디
+                            </div>
+                            <div class="chat-time-box">
+                                18:02
+                            </div>
+
+                        </div>
+                        <div class="user---msg">
+                            어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구
+                        </div>
+
+                    </div>
+                    <span class="chat--more-dot">
+              <i class="fa-solid fa-ellipsis-vertical"></i>
+            </span>
+
+                    <button type="button" class="chat-room-exit-btn">
+                        나가기
+                        <i class="fa-solid fa-door-open" style="color: #ff0000;"></i>
+                    </button>
+
+                    <a href=""></a>
+                </li>
+                <!-- 채팅방 반복 끝-->
+
+            </ul>
+
+            <div class="chat-logo-img">
+                <img th:src="@{/img/logo.png}" alt="">
+            </div>
+
+
+        </div>
+
+        <!--채팅창 내용-->
+        <div class="chat-room-detail-wrap">
+
+        </div>
+
+    </div>
+
+    <button id="chatbot-open" class="chatbot-button">
+        <!-- Font Awesome 채팅 아이콘 -->
+        <img class="chat--open-btn-img" src="https://cf.channel.io/pub-file/57027/62be8c24a1021aa00685/120_120.png"
+             alt="">
+    </button>
+    <span class="chat-notice-icon">
+      21
+    </span>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<!--각 파일에 추가-->
+<script type="module" th:src="@{/js/fragment/chat.js}"></script>
+</body>
+</html>

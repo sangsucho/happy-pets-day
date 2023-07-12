@@ -169,25 +169,26 @@
         </div>
 
         <div class="pagination">
-            <ul>
-                <li th:if="${pageInfo.prev}">
-                    <a th:href="@{/myPage/reservationList/(page=${pageInfo.startPage-1})}" class="prev">&lt;</a>
-                </li>
-
-                <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
-                    <li th:if="${i == pageInfo.criteria.page}">
-                        <a th:href="@{/myPage/reservationList/(page=${i})}" class="active" th:text="${i}"></a>
+                <ul>
+                    <li th:if="${pageInfo.prev}">
+                        <a th:href="@{/myPage/reservationList/(page=${pageInfo.startPage-1})}" class="prev">&lt;</a>
                     </li>
-                    <li th:unless="${i == pageInfo.criteria.page}">
-                        <a th:href="@{/myPage/reservationList/(page=${i})}" th:text="${i}"></a>
-                    </li>
-                </th:block>
 
-                <li th:if="${pageInfo.next}">
-                    <a th:href="@{/myPage/reservationList/(page=${pageInfo.endPage+1})}" class="next">&gt;</a>
-                </li>
-            </ul>
+                    <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+                        <li th:if="${i == pageInfo.criteria.page}">
+                            <a th:href="@{/myPage/reservationList/(page=${i})}" class="active" th:text="${i}"></a>
+                        </li>
+                        <li th:unless="${i == pageInfo.criteria.page}">
+                            <a th:href="@{/myPage/reservationList/(page=${i})}" th:text="${i}"></a>
+                        </li>
+                    </th:block>
+
+                    <li th:if="${pageInfo.next}">
+                        <a th:href="@{/myPage/reservationList/(page=${pageInfo.endPage+1})}" class="next">&gt;</a>
+                    </li>
+                </ul>
         </div>
+</div>
 </section>
 
 <!-- Footer -->
@@ -198,6 +199,7 @@
         crossorigin="anonymous"
 ></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script th:src="@{/js/fragment/myPageSidebar.js}"></script>
 <script th:src="@{/js/fragment/header.js}"></script>
 <script th:src="@{/js/reviewModal/reviewModal.js}"></script>
 <script th:src="@{/js/myPage/reservation-user.js}"></script>

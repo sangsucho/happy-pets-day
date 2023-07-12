@@ -8,6 +8,11 @@
     <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
     <link rel="stylesheet" as="style" crossorigin
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css"/>
+    <<<<<<< HEAD
+    =======
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/fragment/chat.css}">
+    >>>>>>> dddec9df833a64c68a68f6682c6c3d24f22143fe
 </head>
 <body>
 <header th:replace="fragment/header :: header"></header>
@@ -123,7 +128,11 @@
         <div class="adopt-section-container">
             <div class="adopt-section-title">
                 <h1>보호중인 아이들</h1>
+                <<<<<<< HEAD
                 <!--                    입양정보 페이지 이동 href설정-->
+                =======
+                <!--입양정보 페이지 이동 href설정-->
+                >>>>>>> dddec9df833a64c68a68f6682c6c3d24f22143fe
                 <a th:href="@{/adopt/list}">더보기 <span>&gt</span></a>
             </div>
             <div class="adopt-section-content-container">
@@ -133,8 +142,21 @@
     </div>
 </main>
 <footer th:replace="fragment/footer :: footer"></footer>
+<<<<<<< HEAD
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <script th:src="@{/js/main/main.js}"></script>
 <script th:src="@{/js/AdoptionInformation/adoptMain.js}"></script>
+=======
+
+<th:block th:unless="${session.userNumber==null}">
+    <div id="chat--screen" th:replace="fragment/chat :: chat"></div>
+</th:block>
+
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script th:src="@{/js/main/main.js}"></script>
+<script th:src="@{/js/fragment/header.js}"></script>
+<script th:src="@{/js/AdoptionInformation/adoptMain.js}"></script>
+<script type="module" th:src="@{/js/fragment/chat.js}"></script>
+>>>>>>> dddec9df833a64c68a68f6682c6c3d24f22143fe
 </body>
 </html>

@@ -2,12 +2,12 @@ package com.example.happypetsday.controller.sitter;
 
 import com.example.happypetsday.dto.SitterReviewDto;
 import com.example.happypetsday.service.sitter.SitterReviewService;
-import com.example.happypetsday.vo.ResVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 

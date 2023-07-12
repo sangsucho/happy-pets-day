@@ -2,22 +2,16 @@ package com.example.happypetsday.service.pet;
 
 import com.example.happypetsday.dto.PetFileDto;
 import com.example.happypetsday.mapper.PetFileMapper;
-import com.example.happypetsday.vo.StrollBoardVo;
 import lombok.RequiredArgsConstructor;
-import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service

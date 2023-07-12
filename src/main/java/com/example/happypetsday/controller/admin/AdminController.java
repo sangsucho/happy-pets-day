@@ -1,7 +1,5 @@
 package com.example.happypetsday.controller.admin;
 
-import com.example.happypetsday.dto.SitterApplyDto;
-import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.service.admin.AdminService;
 import com.example.happypetsday.service.stroll.StrollService;
 import com.example.happypetsday.vo.*;
@@ -9,17 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/admin/*")

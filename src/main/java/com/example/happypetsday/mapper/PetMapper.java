@@ -3,8 +3,6 @@ package com.example.happypetsday.mapper;
 import com.example.happypetsday.dto.PetDto;
 import com.example.happypetsday.vo.PetVo;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 

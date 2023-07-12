@@ -32,56 +32,34 @@
             <img th:src="'/upload/imgFile/' + ${sitter.sitterFileUploadPath} + '/th_' +${sitter.sitterFileUuid} + '_' + ${sitter.sitterFileFileName }"
                  alt=""/>
         </div>
-        <div>
-            <div class="sitter-info-box">
-                <div class="sitter-info">
-                    <p class="sitter-name" th:text="${sitter.userName}+' 펫시터'"></p>
-                    <h2 th:text="${sitter.sitterHeader}"></h2>
-                </div>
-                <div class="sitter-profile" style="">
-                    <img th:src="'/upload/profileFile/' + ${sitter.sitterProfileUploadPath} + '/th_' +${sitter.sitterProfileUuid} + '_' + ${sitter.sitterProfileFileName }"
-                         alt=""/>
-                </div>
-            </div>
-            <div class="info-text" th:with="reviews = ${cntAndAvg}">
-                <div class="star-and-review">
-                    <div class="star-img">
-                        <img
-                                src="https://wayopet.com/static/images/common/star_1.png"
-                                alt=""
-                        />
-                        <img
-                                src="https://wayopet.com/static/images/common/star_1.png"
-                                alt=""
-                        /><img
-                            src="https://wayopet.com/static/images/common/star_1.png"
-                            alt=""
-                    /><img
-                            src="https://wayopet.com/static/images/common/star_1.png"
-                            alt=""
-                    /><img
-                            src="https://wayopet.com/static/images/common/star_1.png"
-                            alt=""
-                    />
+                <div class="info-text">
+                    <div class="star-and-review">
+                        <div class="star-ratings">
+                            <div class="star-ratings-fill space-x-2 text-lg"
+                                 th:attr="style='width: ' + ${sitter.scoreAvg * 20} + '%'">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                            <div class="star-ratings-base space-x-2 text-lg">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                        </div>
+                        <span th:text="${sitter.scoreAvg}"></span>
+                        <div class="bar"></div>
+                        <span>후기 <span th:text="${sitter.reviewCnt}"></span> 개</span>
                     </div>
-                    <span th:text="${reviews.scoreAvg}">5.0</span>
-                    <div class="bar"></div>
-                    <span>후기 <span th:text="${reviews.reviewCnt}"></span> 개</span>
-                </div>
-                <div class="info-price">
-                    <div class="animal">
-                        <span class="animal-name">전체</span>
+                    <div class="info-price">
+                        <div class="animal">
+                            <span class="animal-name">전체</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 </div>
-<footer th:replace="fragment/footer :: footer"></footer>
+            <footer th:replace="fragment/footer :: footer"></footer>
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script th:src="@{/js/sitter/sitterList.js}"></script>
-<script th:src="@{/js/fragment/header.js}"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script th:src="@{/js/sitter/sitterList.js}"></script>
+            <script th:src="@{/js/fragment/header.js}"></script>
 </body>
 </html>

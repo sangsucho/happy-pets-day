@@ -2,7 +2,6 @@ package com.example.happypetsday.mapper;
 
 import com.example.happypetsday.dto.SitterApplyDto;
 import com.example.happypetsday.dto.UserDto;
-import com.example.happypetsday.service.admin.AdminService;
 import com.example.happypetsday.vo.Criteria;
 import com.example.happypetsday.vo.UserVo;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Transactional

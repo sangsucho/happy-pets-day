@@ -5,17 +5,13 @@ import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.service.myPage.MypageService;
 import com.example.happypetsday.service.pet.PetFileService;
 import com.example.happypetsday.service.pet.PetService;
-import com.example.happypetsday.service.stroll.StrollService;
 import com.example.happypetsday.service.user.UserService;
 import com.example.happypetsday.vo.Criteria;
 import com.example.happypetsday.vo.PageVo;
-import com.example.happypetsday.vo.ResVo;
-import com.example.happypetsday.vo.StrollBoardVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +23,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -147,7 +142,9 @@ public class MyPageController {
     }
 
     @GetMapping("/checkReservation")
-    public String checkReservation() {
+    public String checkReservation(Model model, HttpServletRequest req, Criteria criteria) {
+        model.addAttribute("checkRes", mypageService.findResForSitter((Long) req.getSession().getAttribute("userNumber"), criteria));
+        model.addAttribute("pageInfo", new PageVo(criteria, mypageService.getTotalResList()));
         return "myPage/reservation-sitter";
     }
 

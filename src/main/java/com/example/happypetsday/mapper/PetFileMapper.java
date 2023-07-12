@@ -1,6 +1,5 @@
 package com.example.happypetsday.mapper;
 
-import com.example.happypetsday.dto.PetDto;
 import com.example.happypetsday.dto.PetFileDto;
 import org.apache.ibatis.annotations.Mapper;
 

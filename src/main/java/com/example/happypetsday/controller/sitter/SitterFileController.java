@@ -2,7 +2,6 @@ package com.example.happypetsday.controller.sitter;
 
 import com.example.happypetsday.dto.SitterProfileFileDto;
 import com.example.happypetsday.service.sitter.SitterProfileFileService;
-import com.example.happypetsday.service.sitter.SitterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
@@ -10,7 +9,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

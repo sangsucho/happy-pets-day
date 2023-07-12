@@ -1,7 +1,5 @@
 package com.example.happypetsday.service.admin;
 
-import com.example.happypetsday.dto.SitterApplyDto;
-import com.example.happypetsday.dto.SitterDto;
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.mapper.AdminMapper;
 import com.example.happypetsday.vo.Criteria;
@@ -9,7 +7,6 @@ import com.example.happypetsday.vo.SitterApplyVo;
 import com.example.happypetsday.vo.StrollBoardVo;
 import com.example.happypetsday.vo.UserVo;
 import lombok.RequiredArgsConstructor;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

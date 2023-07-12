@@ -1,11 +1,12 @@
 package com.example.happypetsday.controller.sitter;
 
 import com.example.happypetsday.dto.*;
-import com.example.happypetsday.mapper.SitterMapper;
-import com.example.happypetsday.service.sitter.*;
+import com.example.happypetsday.service.sitter.SitterApplyLicenseFileService;
+import com.example.happypetsday.service.sitter.SitterFileService;
+import com.example.happypetsday.service.sitter.SitterProfileFileService;
+import com.example.happypetsday.service.sitter.SitterService;
 import com.example.happypetsday.vo.SitterListVo;
 import com.example.happypetsday.vo.SitterReviewVo;
-import com.example.happypetsday.vo.SitterVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +20,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller

@@ -16,5 +16,9 @@ public class ResVo {
     private String reservationDate;
     private String reservationStatus;
     private String petFieldName;
+    private String petKind;
     private int reviewCnt;
+    private String userPhoneNumber;
+    private Long petNumber;
+    private String resUserName;
 }

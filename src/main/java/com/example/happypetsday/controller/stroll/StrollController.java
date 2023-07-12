@@ -1,28 +1,21 @@
 package com.example.happypetsday.controller.stroll;
 
-import com.example.happypetsday.aspect.annotation.LoggingPointCut;
 import com.example.happypetsday.dto.PetDto;
 import com.example.happypetsday.dto.StrollBoardDto;
-import com.example.happypetsday.service.pet.PetFileService;
 import com.example.happypetsday.service.pet.PetService;
 import com.example.happypetsday.service.stroll.StrollService;
 import com.example.happypetsday.vo.Criteria;
 import com.example.happypetsday.vo.PageVo;
 import com.example.happypetsday.vo.StrollBoardVo;
 import lombok.RequiredArgsConstructor;
-import net.bytebuddy.dynamic.scaffold.inline.RebaseImplementationTarget;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller

@@ -252,21 +252,23 @@ $(document).ready(function () {
                 sitterNumber: sitterNum
             };
 
-            // 선택된 날짜를 서버에 저장하기 위해 AJAX 요청 보내기
-            $.ajax({
-                url: '/sitters/reserve', // 서버에서 날짜 저장을 처리하는 URL
-                method: 'POST',
-                data: data,
-                success: function () {
-                    // 요청이 성공적으로 처리되었을 때 실행되는 콜백 함수
-                    console.log('날짜가 성공적으로 저장되었습니다.');
-                    window.location.href = '/sitter/list';
-                },
-                error: function (xhr, status, error) {
-                    // 요청이 실패했을 때 실행되는 콜백 함수
-                    console.error('날짜 저장에 실패했습니다.', error);
-                }
-            });
+        // 선택된 날짜를 서버에 저장하기 위해 AJAX 요청 보내기
+        $.ajax({
+            url: '/sitters/reserve', // 서버에서 날짜 저장을 처리하는 URL
+            method: 'POST',
+            data: data,
+            success: function () {
+                // 요청이 성공적으로 처리되었을 때 실행되는 콜백 함수
+                console.log('날짜가 성공적으로 저장되었습니다.');
+                window.location.href = '/sitter/list';
+            },
+            error: function (xhr, status, error) {
+                // 요청이 실패했을 때 실행되는 콜백 함수
+                console.error('날짜 저장에 실패했습니다.', error);
+                alert("로그인 후 이용하세요.")
+                window.location.href = '/user/login';
+            }
+        });
         } else {
             // 날짜가 선택되지 않았을 때 처리
             console.log('날짜를 선택해주세요.');
@@ -283,4 +285,14 @@ $reserveBtn.on("click", function () {
 
 })
 
+document.addEventListener("DOMContentLoaded", function () {
+
+    function handleRating(rating) {
+        var fillStars = document.querySelector(".star-ratings-fill");
+        var fillWidth = (rating / 5) * 100 + "%";
+        fillStars.style.width = fillWidth;
+    }
+
+    handleRating(averageRating);
+});
 

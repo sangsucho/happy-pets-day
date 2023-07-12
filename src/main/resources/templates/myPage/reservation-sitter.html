@@ -24,44 +24,85 @@
 
 <!-- 회원정보 -->
 <section id="container">
-    <!-- 왼쪽 탭 목록 -->
-    <div class="mypage-left" th:replace="fragment/myPageSideBar :: myPageSideBar"></div>
+<!-- 왼쪽 탭 목록 -->
+<div class="mypage-left" th:replace="fragment/myPageSideBar :: myPageSideBar"></div>
 
-    <!-- 오른쪽 컨텐츠 -->
-    <div class="mypage-right">
-        <h2>예약 확인</h2>
+<!-- 오른쪽 컨텐츠 -->
+<div class="mypage-right">
+    <h2>예약 확인</h2>
 
-        <div id="list-wrap">
+    <div id="list-wrap">
+        <th:block th:each="checkRes : ${checkRes}">
             <div id="contents-box">
                 <!-- 예약 후 이용하기 전 상태 -->
-                <div class="reservation-status before">예약 완료</div>
+                <input type="hidden" id="reservationNumber" class="res-number" name="reservationNumber"
+                       th:value="${checkRes.reservationNumber}">
+                <input type="hidden" id="reservationStatus" class="res-status" name="reservationStatus"
+                       th:value="${checkRes.reservationStatus}">
+                <!--     펫시터 번호를 가져왔다. '내 소개'를 클릭하면 화면으로 가져온 펫시터 번호를 '펫시터 프로필' 페이지로 보내준다.-->
+                <input type="hidden" id="sitterNumber" class="sitter-number" name="sitterNumber"
+                       th:value="${checkRes.sitterNumber}">
+                <input type="hidden" id="userPhoneNumber" class="user-phone-number" name="userPhoneNumber"
+                       th:value="${checkRes.userPhoneNumber}">
+                <!--        <input type="hidden" id="petNumber" class="pet-number" name="petNumber" th:value="${checkRes.petNumber}">-->
+                <!--        <input type="hidden" id="resUserName" class="res-user-name" name="resUserName" th:value="${checkRes.resUserName}">-->
+
+                <div class="reservation-status before"
+                     th:text="${checkRes.reservationStatus}"
+                     th:classappend="${checkRes.reservationStatus == '취소'} ? 'red'">
+                </div>
                 <div class="info-wrap">
                     <h4>예약 날짜</h4>
-                    <span>2023년 6월 13일</span>
+                    <span th:text="${checkRes.reservationDate}"></span>
                 </div>
                 <div class="info-wrap">
                     <h4>예약자</h4>
-                    <span>머여닝</span>
+                    <span th:text="${checkRes.userName}"></span>
                 </div>
                 <div class="info-wrap">
-                    <h4>동물 종류</h4>
-                    <span>강아지</span>
-                </div>
-                <div class="info-wrap">
-                    <h4>가격</h4>
-                    <span>60000원</span>
+                    <h4>전화번호</h4>
+                    <span th:text="${checkRes.userPhoneNumber}"></span>
                 </div>
 
-                <!-- '상세정보' 클릭 > 예약 상세정보 모달 -->
+                <!--            예약하면 바로 예약 완료 > 거절만 처리-->
                 <div class="button-wrap">
-                    <button type="button" class="detail-info">상세정보</button>
+                    <th:block th:if="${checkRes.reservationStatus != '취소'}">
+                        <button type="button" class="reject-btn">거절</button>
+                        <button type="button" class="reject-ok-btn" style="display: none">예약을 거절했습니다</button>
+                    </th:block>
+                    <th:block th:if="${checkRes.reservationStatus == '취소'}">
+                        <button type="button" class="reject-ok-btn" th:style="${'pointer-events: none'}">예약을 거절했습니다
+                        </button>
+                    </th:block>
                 </div>
             </div>
-        </div>
+        </th:block>
     </div>
-</section>
 
-<!-- '예약 상세 정보' 모달 -->
+    <div class="pagination">
+        <ul>
+            <li th:if="${pageInfo.prev}">
+                <a th:href="@{/myPage/checkReservation/(page=${pageInfo.startPage-1})}" class="prev">&lt;</a>
+            </li>
+
+            <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
+                <li th:if="${i == pageInfo.criteria.page}">
+                    <a th:href="@{/myPage/checkReservation/(page=${i})}" class="active" th:text="${i}"></a>
+                </li>
+                <li th:unless="${i == pageInfo.criteria.page}">
+                    <a th:href="@{/myPage/checkReservation/(page=${i})}" th:text="${i}"></a>
+                </li>
+            </th:block>
+
+            <li th:if="${pageInfo.next}">
+                <a th:href="@{/myPage/checkReservation/(page=${pageInfo.endPage+1})}" class="next">&gt;</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+</section>
 
 <!-- Footer -->
 <footer th:replace="fragment/footer :: footer"></footer>
@@ -71,6 +112,7 @@
         integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
         crossorigin="anonymous"
 ></script>
+<script th:src="@{/js/fragment/myPageSidebar.js}"></script>
 <script th:src="@{/js/fragment/header.js}"></script>
 <script th:src="@{/js/myPage/reservation-sitter.js}"></script>
 </body>

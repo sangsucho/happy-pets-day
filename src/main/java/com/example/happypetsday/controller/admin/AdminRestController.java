@@ -1,15 +1,11 @@
 package com.example.happypetsday.controller.admin;
 
-import com.example.happypetsday.dto.SitterApplyDto;
-import com.example.happypetsday.dto.SitterDto;
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.service.admin.AdminService;
-import com.example.happypetsday.service.pet.PetFileService;
 import com.example.happypetsday.service.sitter.SitterApplyLicenseFileService;
 import com.example.happypetsday.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 

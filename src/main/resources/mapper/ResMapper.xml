@@ -2,53 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.happypetsday.mapper.ResMapper">
     <select id="selectRes" resultType="resVo">
-        SELECT RESERVATION_NUMBER,
-               SITTER_NUMBER,
-               USER_NUMBER,
-               RESERVATION_DATE,
-               RESERVATION_STATUS,
-               SITTER_NAME,
-               PET_FIELD_NAME,
-               NVL(REVIEW_CNT, 0) REVIEW_CNT
-        FROM (
-                 SELECT ROWNUM    AS       RNUM,
-                        RESERVATION_NUMBER,
-                        SITTER_NUMBER,
-                        USER_NUMBER,
-                        RESERVATION_DATE,
-                        RESERVATION_STATUS,
-                        USER_NAME AS       SITTER_NAME,
-                        PET_FIELD_NAME,
-                        NVL(REVIEW_CNT, 0) REVIEW_CNT
-                 FROM (
-                          SELECT SR.RESERVATION_NUMBER,
-                                 SR.SITTER_NUMBER,
-                                 SR.USER_NUMBER,
-                                 TO_CHAR(RESERVATION_DATE, 'YYYY-MM-DD') AS RESERVATION_DATE,
-                                 RESERVATION_STATUS,
-                                 U.USER_NAME,
-                                 SF.PET_FIELD_NAME,
-                                 NVL(S1.REVIEW_CNT, 0)                      REVIEW_CNT
-                          FROM TBL_SITTER_RESERVATION SR
-                                   JOIN TBL_SITTER S
-                                        ON SR.USER_NUMBER = 22 AND SR.SITTER_NUMBER = S.SITTER_NUMBER
-                                   JOIN TBL_USER U
-                                        ON S.USER_NUMBER = U.USER_NUMBER
-                                   JOIN TBL_SITTER_FIELD SF
-                                        ON SR.SITTER_NUMBER = SF.SITTER_NUMBER
-                                   LEFT JOIN (
-                              SELECT RESERVATION_NUMBER, COUNT(REVIEW_NUMBER) REVIEW_CNT
-                              FROM TBL_SITTER_REVIEW
-                              GROUP BY RESERVATION_NUMBER
-                          ) S1
-                                             ON SR.RESERVATION_NUMBER = S1.RESERVATION_NUMBER
-                          ORDER BY RESERVATION_NUMBER DESC
-                      ) S2
+        SELECT RESERVATION_NUMBER, SITTER_NUMBER, USER_NUMBER, RESERVATION_DATE, RESERVATION_STATUS,
+        SITTER_NAME, PET_FIELD_NAME, REVIEW_CNT
+        FROM(
+        SELECT ROWNUM RNUM,
+        RESERVATION_NUMBER, SITTER_NUMBER, USER_NUMBER,  RESERVATION_DATE, RESERVATION_STATUS,
+        SITTER_NAME, PET_FIELD_NAME, REVIEW_CNT
+        FROM(
+        SELECT SR.RESERVATION_NUMBER, SR.SITTER_NUMBER, SR.USER_NUMBER, TO_CHAR(RESERVATION_DATE, 'YYYY-MM-DD') AS RESERVATION_DATE, RESERVATION_STATUS,
+        (SELECT USER_NAME  FROM TBL_USER U2
+        WHERE U2.USER_NUMBER =S.USER_NUMBER) AS SITTER_NAME,
+               NVL((SELECT LISTAGG(PET_FIELD_NAME , ', ') WITHIN GROUP (ORDER BY PET_FIELD_NAME)
+                   FROM TBL_SITTER_FIELD SF
+                   WHERE SF.USER_NUMBER =S.USER_NUMBER
+                   ), '없음') AS PET_FIELD_NAME,(SELECT COUNT(REVIEW_NUMBER) REVIEW_CNT
+        FROM TBL_SITTER_REVIEW SR2
+        WHERE SR2.RESERVATION_NUMBER =SR.RESERVATION_NUMBER) AS REVIEW_CNT
+        FROM TBL_USER U
+        JOIN TBL_SITTER_RESERVATION SR
+        ON SR.USER_NUMBER = #{userNumber} AND U.USER_NUMBER=SR.USER_NUMBER
+        JOIN TBL_SITTER S
+        ON SR.SITTER_NUMBER = S.SITTER_NUMBER
+        ) B1
         <![CDATA[
-                 WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+        WHERE ROWNUM <= #{criteria.page} * (#{criteria.amount} - 1)
         ]]>
-        ) S3
-        WHERE RNUM > (#{criteria.page} - 1) * #{criteria.amount}
+        ) B2
+        WHERE RNUM > (#{criteria.page} - 1) * (#{criteria.amount} - 1)
     </select>
 
     <select id="selectTotal" resultType="_int">
@@ -62,5 +42,49 @@
         WHERE RESERVATION_NUMBER = #{reservationNumber}
     </update>
 
+    <select id="selectResForSitter" resultType="resVo">
+        SELECT SITTER_NUMBER,
+               RESERVATION_NUMBER,
+               RESERVATION_DATE,
+               USER_NUMBER,
+               USER_NAME,
+               USER_PHONE_NUMBER,
+               RESERVATION_STATUS
+        FROM (
+                 SELECT ROWNUM AS RNUM,
+                        SITTER_NUMBER,
+                        RESERVATION_NUMBER,
+                        RESERVATION_DATE,
+                        USER_NUMBER,
+                        USER_NAME,
+                        USER_PHONE_NUMBER,
+                        RESERVATION_STATUS
+                 FROM (
+                          SELECT SR.SITTER_NUMBER,
+                                 SR.RESERVATION_NUMBER,
+                                 TO_CHAR(RESERVATION_DATE, 'YYYY-MM-DD') AS RESERVATION_DATE,
+                                 SR.USER_NUMBER,
+                                 U.USER_NAME,
+                                 U.USER_PHONE_NUMBER,
+                                 SR.RESERVATION_STATUS
+                          FROM TBL_USER U
+                                   JOIN TBL_SITTER_RESERVATION SR
+                                        ON U.USER_NUMBER = SR.USER_NUMBER
+                                   JOIN TBL_SITTER S
+                                        ON S.SITTER_NUMBER = SR.SITTER_NUMBER
+                          WHERE S.SITTER_NUMBER = #{sitterNumber}
+                          ORDER BY RESERVATION_NUMBER DESC
+                      ) S1
+        <![CDATA[
+                 WHERE ROWNUM <= #{criteria.page} * (#{criteria.amount} - 1)
+        ]]>
+        ) S2
+        WHERE RNUM > (#{criteria.page} - 1) * (#{criteria.amount} - 1)
+    </select>
 
+    <update id="updateForSitter">
+        UPDATE TBL_SITTER_RESERVATION
+        SET RESERVATION_STATUS = #{reservationStatus}
+        WHERE RESERVATION_NUMBER = #{reservationNumber}
+    </update>
 </mapper>

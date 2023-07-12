@@ -1,6 +1,5 @@
 package com.example.happypetsday.service.sitter;
 
-import com.example.happypetsday.dto.SitterDto;
 import com.example.happypetsday.dto.SitterFileDto;
 import com.example.happypetsday.mapper.SitterFileMapper;
 import lombok.RequiredArgsConstructor;
