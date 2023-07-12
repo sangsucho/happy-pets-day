@@ -49,15 +49,15 @@
     margin-right: 14px;">
                         <span class="sitter-name" th:text="${name.userName}"></span> 펫시터
                     </div>
-                    <div class="sitter-info">
-                        <img
-                                src="https://wayopet.com/static/images/common/star_1.png"
-                                alt=""
-                                class="img-star"
-                        />
-                        <span class="rating">5.0</span>
-<!--                        <span class="review-cnt" th:text="${cntAvg.reviewCnt}">100개의 리뷰</span>-->
-                    </div>
+<!--                    <div class="sitter-info">-->
+<!--                        <img-->
+<!--                                src="https://wayopet.com/static/images/common/star_1.png"-->
+<!--                                alt=""-->
+<!--                                class="img-star"-->
+<!--                        />-->
+<!--                        <span class="rating">5.0</span>-->
+<!--&lt;!&ndash;                        <span class="review-cnt" th:text="${cntAvg.reviewCnt}">100개의 리뷰</span>&ndash;&gt;-->
+<!--                    </div>-->
                 </div>
             </div>
 
@@ -106,27 +106,13 @@
                     개
                     </span>
                     <div class="review-b">
-                        <div class="review-star">
-                            <img
-                                    src="https://wayopet.com/static/images/common/star_1.png"
-                                    style="width: 12px; height: 12px"
-                            />
-                            <img
-                                    src="https://wayopet.com/static/images/common/star_1.png"
-                                    style="width: 12px; height: 12px"
-                            />
-                            <img
-                                    src="https://wayopet.com/static/images/common/star_1.png"
-                                    style="width: 12px; height: 12px"
-                            />
-                            <img
-                                    src="https://wayopet.com/static/images/common/star_1.png"
-                                    style="width: 12px; height: 12px"
-                            />
-                            <img
-                                    src="https://wayopet.com/static/images/common/star_1.png"
-                                    style="width: 12px; height: 12px"
-                            />
+                        <div class="star-ratings">
+                            <div class="star-ratings-fill space-x-2 text-lg" th:attr="style='width: ' + ${cntAvg.scoreAvg * 20} + '%'">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                            <div class="star-ratings-base space-x-2 text-lg">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
                         </div>
                         <p style="margin-left: 10px; font-size: 15px" th:text="${cntAvg.scoreAvg}"></p>
                     </div>
