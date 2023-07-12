@@ -98,11 +98,6 @@ public class SitterController {
 
         List<SitterListVo> sitterList = sitterService.findAll();
 
-        for(int i=0; i<sitterList.size(); i++){
-            SitterReviewDto sitterReviewDto = sitterService.reviewCntAndScoreAvg(sitterList.get(i).getSitterNumber());
-            model.addAttribute("cntAndAvg", sitterReviewDto);
-        }
-
         if(req.getSession().getAttribute("userNumber") != null){
             Long userNum = (Long)req.getSession().getAttribute("userNumber");
             Long sitterNum = sitterService.findSitter(userNum);

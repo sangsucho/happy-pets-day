@@ -41,30 +41,19 @@
             <img  th:src="'/upload/profileFile/' + ${sitter.sitterProfileUploadPath} + '/th_' +${sitter.sitterProfileUuid} + '_' + ${sitter.sitterProfileFileName }" alt="" />
           </div>
         </div>
-        <div class="info-text" th:with="reviews = ${cntAndAvg}">
+        <div class="info-text">
           <div class="star-and-review">
-            <div class="star-img">
-              <img
-                      src="https://wayopet.com/static/images/common/star_1.png"
-                      alt=""
-              />
-              <img
-                      src="https://wayopet.com/static/images/common/star_1.png"
-                      alt=""
-              /><img
-                    src="https://wayopet.com/static/images/common/star_1.png"
-                    alt=""
-            /><img
-                    src="https://wayopet.com/static/images/common/star_1.png"
-                    alt=""
-            /><img
-                    src="https://wayopet.com/static/images/common/star_1.png"
-                    alt=""
-            />
+            <div class="star-ratings">
+              <div class="star-ratings-fill space-x-2 text-lg" th:attr="style='width: ' + ${sitter.scoreAvg * 20} + '%'">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+              <div class="star-ratings-base space-x-2 text-lg">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
             </div>
-            <span th:text="${reviews.scoreAvg}">5.0</span>
+            <span th:text="${sitter.scoreAvg}"></span>
             <div class="bar"></div>
-            <span>후기 <span th:text="${reviews.reviewCnt}"></span> 개</span>
+            <span>후기 <span th:text="${sitter.reviewCnt}"></span> 개</span>
           </div>
           <div class="info-price">
             <div class="animal">
