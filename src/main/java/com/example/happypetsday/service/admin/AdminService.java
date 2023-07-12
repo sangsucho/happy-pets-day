@@ -232,6 +232,14 @@ public class AdminService {
         return Optional.ofNullable(adminMapper.selectSitterOne(sitterNumber))
                 .orElseThrow(()->{ throw new IllegalArgumentException("존재하지 않는 회원입니다.");});
     }
+
+    // 수정(회원등급 변경)-펫시터->일반회원 강등
+    public void modifyDemotion(SitterVo sitterVo){
+        if(sitterVo == null){
+            throw new IllegalArgumentException("회원 정보가 없습니다.");
+        }
+        adminMapper.updateDemotion(sitterVo);
+    }
 }
 
 

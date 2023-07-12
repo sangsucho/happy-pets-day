@@ -89,4 +89,7 @@ public interface AdminMapper {
 
     //펫시터회원(1명) 상세 조회(펫시터회원관리)
     public SitterVo selectSitterOne(Long sitterNumber);
+
+    // 회원등급(SitterStatus) 수정 - 시터->일반회원 강등
+    public void updateDemotion(SitterVo sitterVo);
 }

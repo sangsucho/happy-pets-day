@@ -128,4 +128,18 @@ public class AdminRestController {
 
         return searchSitterMap;
     }
+
+    // sitterStatus '일반회원'으로 변경(강등)
+    @PatchMapping("/demotion")
+    public void statusModifyDemotion(@RequestBody SitterVo sitterVo){
+        UserDto userDto = new UserDto();
+
+        userDto.setUserNumber(sitterVo.getUserNumber());
+        userDto.setUserStatus(sitterVo.getUserStatus());
+
+//        sitterVo.setUserNumber(sitterVo.getUserNumber());
+        adminService.modifyDemotion(sitterVo);
+
+        adminService.restoreUser(userDto);
+    }
 }

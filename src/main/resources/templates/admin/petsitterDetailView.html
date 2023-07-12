@@ -31,14 +31,17 @@
         <tr>
           <th class="table-head-left">회원번호</th>
           <td th:text="${sitter.userNumber}"></td>
+          <input type="hidden" class="user-number" th:value="${sitter.userNumber}">
         </tr>
         <tr>
           <th>펫시터 번호</th>
           <td th:text="${sitter.sitterNumber}"></td>
+          <input type="hidden" class="sitter-number" th:value="${sitter.sitterNumber}">
         </tr>
         <tr>
           <th>등급명</th>
           <td th:text="${sitter.statusName}"></td>
+          <input type="hidden" class="user-status" value="1">
         </tr>
         <tr>
           <th>전문 분야</th>
@@ -78,7 +81,7 @@
         </tr>
         <tr>
           <th>평균평점</th>
-          <td th:text="${sitter.reviewAvg}+' 점 '"></td>
+          <td th:text="${sitter.reviewAvg}+' 점'"></td>
         </tr>
         <tr>
           <th class="table-head-left-bottom">경력･자격증</th>
@@ -88,8 +91,8 @@
       </table>
 
       <div class="button-wrap">
-        <button type="button" class="btn-degrade">강등</button>
-        <button type="button" class="btn-delete">회원 삭제</button>
+        <button type="button" class="btn-degrade" value="N" data-confirm="회원 강등하시겠습니까?" data-user-number="123">강등</button>
+        <button type="button" class="btn-delete" value="-1" data-confirm="회원 삭제하시겠습니까?" data-user-number="456">회원 삭제</button>
       </div>
 
 
@@ -104,6 +107,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <footer th:replace="fragment/adminFooter :: adminFooter"></footer>
 <script th:src="@{/js/fragment/header.js}"></script>
+<script th:src="@{/js/admin/petsitterDetailView.js}"></script>
 </body>
 
 </html>

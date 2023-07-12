@@ -29,4 +29,6 @@ public class SitterVo {
     private String userBirth;
     private String userAddress;
     private String userAddressDetail;
+    private String sitterStatus;
+    private int userStatus;
 }
