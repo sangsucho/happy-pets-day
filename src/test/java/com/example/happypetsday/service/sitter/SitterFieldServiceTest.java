@@ -21,7 +21,7 @@ class SitterFieldServiceTest {
     private SitterFieldDto sitterFieldDto;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         sitterFieldDto = new SitterFieldDto();
         sitterFieldDto.setSitterNumber(3L);
         sitterFieldDto.setPetFieldName("asdasd");

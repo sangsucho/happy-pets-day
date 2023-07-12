@@ -7,6 +7,7 @@
         </selectKey>
         INSERT INTO TBL_SITTER_REVIEW (REVIEW_NUMBER, USER_NUMBER, SITTER_NUMBER, RESERVATION_NUMBER, REVIEW_CONTENT,
         REVIEW_DATE, REVIEW_SCORE)
-        VALUES (#{reviewNumber}, #{userNumber}, #{sitterNumber}, #{reservationNumber}, #{reviewContent}, SYSDATE, #{reviewScore})
+        VALUES (#{reviewNumber}, #{userNumber}, #{sitterNumber}, #{reservationNumber}, #{reviewContent}, SYSDATE,
+        #{reviewScore})
     </insert>
 </mapper>

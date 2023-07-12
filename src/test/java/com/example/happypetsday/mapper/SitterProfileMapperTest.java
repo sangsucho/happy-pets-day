@@ -11,7 +11,7 @@ class SitterProfileMapperTest {
     SitterVo sitterVo = new SitterVo();
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         sitterVo.setUserNumber(3L);
     }
 

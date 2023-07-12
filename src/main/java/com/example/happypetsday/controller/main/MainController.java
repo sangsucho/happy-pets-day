@@ -19,7 +19,7 @@ public class MainController {
 
     @GetMapping("/")
     public String main(Model model, HttpServletRequest req) {
-        Long userNumber = (Long)req.getSession().getAttribute("userNumber");
+        Long userNumber = (Long) req.getSession().getAttribute("userNumber");
         model.addAttribute("boardList", strollService.findMainList(userNumber));
 
 

@@ -1,6 +1,6 @@
-*{
-    margin : 0;
-    padding : 0;
+* {
+    margin: 0;
+    padding: 0;
     font-family: 'Pretendard-Regular';
 }
 
@@ -28,7 +28,7 @@
     font-style: normal;
 }
 
-.container{
+.container {
     width: 1200px;
     height: 600px;
     margin: 0px auto;
@@ -38,49 +38,49 @@
     text-align: center;
 }
 
-.error-wrap{
+.error-wrap {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin : 0 0 30px 0;
+    margin: 0 0 30px 0;
 }
 
-.error-img{
-    width : 132px;
-    height : 132px;
+.error-img {
+    width: 132px;
+    height: 132px;
     border-radius: 10px;
 }
 
-.error-title{
+.error-title {
     font-size: 50px;
     font-family: Pretendard-Medium;
     color: #5A82ED;
 }
 
-.msg-wrap{
+.msg-wrap {
     text-align: center;
 }
 
-.error-msg1{
+.error-msg1 {
     font-size: 40px;
     color: #343434;
-    margin : 0 0 20px 0;
+    margin: 0 0 20px 0;
     font-family: Pretendard-Medium;
 }
 
-.error-msg2{
-    margin : 0 0 5px 0;
+.error-msg2 {
+    margin: 0 0 5px 0;
 }
 
 .error-msg2,
-.error-msg3{
+.error-msg3 {
     font-size: 18px;
     color: #343434;
 }
 
-.button-wrap{
+.button-wrap {
     text-align: center;
-    margin : 40px 0 0 0;
+    margin: 40px 0 0 0;
 }
 
 .button1, .button2 {
@@ -101,12 +101,12 @@
     color: #68A5FE;
 }
 
-.button1{
-    margin : 0 10px 0 0;
+.button1 {
+    margin: 0 10px 0 0;
 }
 
-.copyright{
-    margin : 70px 0 0 0;
-    color : #858585;
+.copyright {
+    margin: 70px 0 0 0;
+    color: #858585;
     font-size: 13px;
 }

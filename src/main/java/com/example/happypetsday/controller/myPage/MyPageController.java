@@ -40,19 +40,19 @@ public class MyPageController {
     private final MypageService mypageService;
 
     @GetMapping("/addPet")
-    public String addPet(){
+    public String addPet() {
         return "myPage/addPet";
     }
 
     @PostMapping("/addPet")
-    public RedirectView addPet(PetDto petDto, HttpServletRequest req, @RequestParam("petFile")MultipartFile petFile, @Param("direct")String direct){
-        Long userNumber = (Long)req.getSession().getAttribute("userNumber");
+    public RedirectView addPet(PetDto petDto, HttpServletRequest req, @RequestParam("petFile") MultipartFile petFile, @Param("direct") String direct) {
+        Long userNumber = (Long) req.getSession().getAttribute("userNumber");
         petDto.setUserNumber(userNumber);
-        if(petDto.getPetKind().equals("direct")){
+        if (petDto.getPetKind().equals("direct")) {
             petDto.setPetKind(direct);
         }
         petService.addPet(petDto);
-        if(!petFile.isEmpty()){
+        if (!petFile.isEmpty()) {
             try {
                 petFileService.registerAndSaveFile(petFile, petDto.getPetNumber());
             } catch (IOException e) {
@@ -64,18 +64,20 @@ public class MyPageController {
     }
 
     @GetMapping("/main")
-    public String myPage() { return "myPage/myPage"; }
+    public String myPage() {
+        return "myPage/myPage";
+    }
 
     @GetMapping("/myPage")
     public String myPage(HttpServletRequest req, Model model) {
-        model.addAttribute("userInfo", userService.findUserInfoByUserNumber((Long)req.getSession().getAttribute("userNumber")));
+        model.addAttribute("userInfo", userService.findUserInfoByUserNumber((Long) req.getSession().getAttribute("userNumber")));
         return "myPage/myPage";
     }
 
     @PostMapping("/myPage")
-    public RedirectView goMypage(String userPassword, HttpServletRequest req, RedirectAttributes redirectAttributes){
+    public RedirectView goMypage(String userPassword, HttpServletRequest req, RedirectAttributes redirectAttributes) {
         try {
-            if(userPassword.equals(userService.findUserPasswordByUserNumber((Long)req.getSession().getAttribute("userNumber")))){
+            if (userPassword.equals(userService.findUserPasswordByUserNumber((Long) req.getSession().getAttribute("userNumber")))) {
                 req.getSession().setAttribute("checkPw", "Y");
                 return new RedirectView("/myPage/myPage");
             }
@@ -86,31 +88,31 @@ public class MyPageController {
     }
 
     @PostMapping("/edit")
-    public RedirectView editUserInfo(UserDto userDto, HttpServletRequest req){
-        userDto.setUserNumber((Long)req.getSession().getAttribute("userNumber"));
+    public RedirectView editUserInfo(UserDto userDto, HttpServletRequest req) {
+        userDto.setUserNumber((Long) req.getSession().getAttribute("userNumber"));
         userService.editUserInfo(userDto);
         return new RedirectView("/myPage/myPage");
     }
 
     @GetMapping("/myPet")
     public String myPet(HttpServletRequest req, Model model) {
-        Long userNumber = (Long)req.getSession().getAttribute("userNumber");
+        Long userNumber = (Long) req.getSession().getAttribute("userNumber");
         model.addAttribute("petList", petService.findPetInfo(userNumber));
         return "myPage/myPet";
     }
 
     @PostMapping("/myPet/editPet")
-    public RedirectView editMyPet(PetDto petDto, @RequestParam("petFile") MultipartFile petFile){
-        if(petFileService.findFile(petDto.getPetNumber())!=null){
-            if(!petFile.isEmpty()){
+    public RedirectView editMyPet(PetDto petDto, @RequestParam("petFile") MultipartFile petFile) {
+        if (petFileService.findFile(petDto.getPetNumber()) != null) {
+            if (!petFile.isEmpty()) {
                 try {
                     petFileService.modifyAndSaveFile(petFile, petDto.getPetNumber());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-        }else{
-            if(!petFile.isEmpty()){
+        } else {
+            if (!petFile.isEmpty()) {
                 try {
                     petFileService.registerAndSaveFile(petFile, petDto.getPetNumber());
                 } catch (IOException e) {
@@ -123,8 +125,8 @@ public class MyPageController {
     }
 
     @GetMapping("/myPet/delete")
-    public RedirectView deleteMyPet(@RequestParam("petNumber") Long petNumber){
-        if(petFileService.findFile(petNumber)!=null){
+    public RedirectView deleteMyPet(@RequestParam("petNumber") Long petNumber) {
+        if (petFileService.findFile(petNumber) != null) {
             petFileService.remove(petNumber);
         }
         petService.removeMyPet(petNumber);
@@ -132,30 +134,36 @@ public class MyPageController {
     }
 
     @GetMapping("/goMyPage")
-    public RedirectView goMyPage(HttpServletRequest req){
-        if(req.getSession().getAttribute("checkPw") != null){
+    public RedirectView goMyPage(HttpServletRequest req) {
+        if (req.getSession().getAttribute("checkPw") != null) {
             return new RedirectView("/myPage/myPage");
         }
         return new RedirectView("/myPage/checkPw");
     }
 
     @GetMapping("/checkPw")
-    public String checkPw() { return "myPage/checkPw"; }
+    public String checkPw() {
+        return "myPage/checkPw";
+    }
 
     @GetMapping("/checkReservation")
-    public String checkReservation() { return "myPage/reservation-sitter"; }
+    public String checkReservation() {
+        return "myPage/reservation-sitter";
+    }
 
     @GetMapping("/reservationList")
     public String reservationList(Model model, HttpServletRequest req, Criteria criteria) {
-        model.addAttribute("resList", mypageService.findRes((Long)req.getSession().getAttribute("userNumber"), criteria));
+        model.addAttribute("resList", mypageService.findRes((Long) req.getSession().getAttribute("userNumber"), criteria));
         model.addAttribute("pageInfo", new PageVo(criteria, mypageService.getTotalResList()));
-        return "myPage/reservation-user"; }
+        return "myPage/reservation-user";
+    }
 
     @GetMapping("/strollList")
     public String strollList(Model model, HttpServletRequest req, Criteria criteria) {
-        model.addAttribute("boardList", mypageService.viewMypageBoard((Long)req.getSession().getAttribute("userNumber"), criteria));
+        model.addAttribute("boardList", mypageService.viewMypageBoard((Long) req.getSession().getAttribute("userNumber"), criteria));
         model.addAttribute("pageInfo", new PageVo(criteria, mypageService.getTotalMypageBoard()));
-        return "myPage/strollList"; }
+        return "myPage/strollList";
+    }
 
 }
 

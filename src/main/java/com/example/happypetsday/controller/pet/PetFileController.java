@@ -23,7 +23,7 @@ public class PetFileController {
 
     @GetMapping("/display")
     public byte[] display(String fileName) throws IOException {
-        return FileCopyUtils.copyToByteArray(new File(fileDir,fileName));
+        return FileCopyUtils.copyToByteArray(new File(fileDir, fileName));
     }
 
 

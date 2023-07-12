@@ -82,7 +82,8 @@
                                     accept="image/*"
                                     multiple
                             />
-                        <li class="img-list2" th:style="${'background-image: url(/upload/profileFile/' + sitterProfile.sitterProfileUploadPath + '/th_' + sitterProfile.sitterProfileUuid + '_' + sitterProfile.sitterProfileFileName + '); background-size: cover;'}" ></li>
+                        <li class="img-list2"
+                            th:style="${'background-image: url(/upload/profileFile/' + sitterProfile.sitterProfileUploadPath + '/th_' + sitterProfile.sitterProfileUuid + '_' + sitterProfile.sitterProfileFileName + '); background-size: cover;'}"></li>
                         </li>
                     </ul>
                 </div>
@@ -105,10 +106,11 @@
                             />
                         </li>
                         <th:block th:each="sitterFile : ${file}">
-                        <li class="img-list"th:style="${'background-image: url(/upload/imgFile/' + sitterFile.sitterFileUploadPath + '/th_' + sitterFile.sitterFileUuid + '_' + sitterFile.sitterFileFileName + '); background-size: cover;'}" ></li>
+                            <li class="img-list"
+                                th:style="${'background-image: url(/upload/imgFile/' + sitterFile.sitterFileUploadPath + '/th_' + sitterFile.sitterFileUuid + '_' + sitterFile.sitterFileFileName + '); background-size: cover;'}"></li>
                         </th:block>
-<!--                        <li class="img-list"></li>-->
-<!--                        <li class="img-list"></li>-->
+                        <!--                        <li class="img-list"></li>-->
+                        <!--                        <li class="img-list"></li>-->
                     </ul>
                 </div>
             </div>

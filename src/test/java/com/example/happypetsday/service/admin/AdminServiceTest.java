@@ -29,7 +29,7 @@ class AdminServiceTest {
     private AdminService adminService;
 
     private UserDto userDto;
-    private UserVo userVo ;
+    private UserVo userVo;
     private Criteria criteria;
 
     @BeforeEach

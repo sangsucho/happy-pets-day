@@ -82,15 +82,19 @@
         <div class="pagination">
             <ul class="page-ul">
                 <!-- ========== 페이징 처리 예시 ============ -->
-                <li  th:if="${pageInfo.prev}"><a th:href="@{/stroll/list(page=${pageInfo.startPage-1})}" class="prev">&lt;</a></li>
+                <li th:if="${pageInfo.prev}"><a th:href="@{/stroll/list(page=${pageInfo.startPage-1})}" class="prev">&lt;</a>
+                </li>
 
                 <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">
-                <li th:if="${i == pageInfo.criteria.page}"><a th:href="@{/stroll/list/(page=${i})}" class="active" th:text="${i}"></a></li>
-                <li th:unless="${i == pageInfo.criteria.page}"><a th:href="@{/stroll/list/(page=${i})}" th:text="${i}"></a></li>
+                    <li th:if="${i == pageInfo.criteria.page}"><a th:href="@{/stroll/list/(page=${i})}" class="active"
+                                                                  th:text="${i}"></a></li>
+                    <li th:unless="${i == pageInfo.criteria.page}"><a th:href="@{/stroll/list/(page=${i})}"
+                                                                      th:text="${i}"></a></li>
                 </th:block>
 
 
-                <li th:if="${pageInfo.next}"><a th:href="@{/stroll/list(page=${pageInfo.endPage+1})}" class="next">&gt;</a></li>
+                <li th:if="${pageInfo.next}"><a th:href="@{/stroll/list(page=${pageInfo.endPage+1})}"
+                                                class="next">&gt;</a></li>
                 <!-- ========== /페이징 처리 예시 ============ -->
             </ul>
         </div>

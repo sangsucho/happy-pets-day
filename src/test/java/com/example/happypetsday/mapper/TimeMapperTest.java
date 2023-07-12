@@ -17,14 +17,14 @@ class TimeMapperTest {
 
     @Test
     @DisplayName("연결테스트")
-    public void getTimeTest(){
+    public void getTimeTest() {
         log.info("***** time : " + timeMapper.getTime());
 
 
     }
 
     @Test
-    public void getTimeTest2(){
+    public void getTimeTest2() {
         log.info("***** time : " + timeMapper.getTime2());
     }
 }

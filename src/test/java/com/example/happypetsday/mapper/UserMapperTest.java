@@ -22,7 +22,7 @@ class UserMapperTest {
 
     @BeforeEach
     void setUp() {
-        userDto = new  UserDto();
+        userDto = new UserDto();
         userDto.setUserId("bbb");
         userDto.setUserPassword("1234");
         userDto.setUserName("홍길동");
@@ -43,7 +43,7 @@ class UserMapperTest {
     void insert() {
         userMapper.insert(userDto);
 
-        UserDto findUser = userMapper.selectUserNumberAndStatus(userDto.getUserId(),userDto.getUserPassword());
+        UserDto findUser = userMapper.selectUserNumberAndStatus(userDto.getUserId(), userDto.getUserPassword());
 
         assertThat(userDto.getUserNumber()).isEqualTo(findUser.getUserNumber());
         assertThat(findUser.getUserStatus()).isEqualTo(1);
@@ -51,13 +51,13 @@ class UserMapperTest {
 
     @Test
     @DisplayName("비밀번호 검사 테스트")
-    void selectUserPasswordByUserNumber(){
+    void selectUserPasswordByUserNumber() {
         assertThat(userMapper.selectUserPasswordByUserNumber(2L)).isEqualTo("1234");
     }
 
     @Test
     @DisplayName("유저 정보 뽑아오기 마이페이지용")
-    void selectUserInfoByUserNumber(){
+    void selectUserInfoByUserNumber() {
         assertThat(userMapper.selectUserInfoByUserNumber(2L).getUserPassword()).isEqualTo("1234");
     }
 }

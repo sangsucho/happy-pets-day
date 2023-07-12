@@ -32,24 +32,24 @@ public class SitterController {
     private final SitterService sitterService;
 
     @GetMapping("/apply")
-    public String sitterApplyTo(){
+    public String sitterApplyTo() {
 
         return "sitter/applyTo";
     }
 
     @PostMapping("/apply")
-    public RedirectView sendApply( SitterFieldDto sitterFieldDto,
-            SitterApplyDto sitterApplyDto, HttpServletRequest req, RedirectAttributes redirectAttributes,
-            @RequestParam("applyFile") List<MultipartFile> files, @RequestParam("applyFileTitle") List<String> applyFileTitle
+    public RedirectView sendApply(SitterFieldDto sitterFieldDto,
+                                  SitterApplyDto sitterApplyDto, HttpServletRequest req, RedirectAttributes redirectAttributes,
+                                  @RequestParam("applyFile") List<MultipartFile> files, @RequestParam("applyFileTitle") List<String> applyFileTitle
     ) {
-        sitterApplyDto.setUserNumber((Long)req.getSession().getAttribute("userNumber"));
+        sitterApplyDto.setUserNumber((Long) req.getSession().getAttribute("userNumber"));
         sitterService.registerApply(sitterApplyDto);
 
         String[] fieldNames = req.getParameterValues("petFieldName");
-        for(String fieldName : fieldNames){
-        sitterFieldDto.setPetFieldName(fieldName);
-        sitterFieldDto.setUserNumber((Long)req.getSession().getAttribute("userNumber"));
-        sitterService.registerField(sitterFieldDto);
+        for (String fieldName : fieldNames) {
+            sitterFieldDto.setPetFieldName(fieldName);
+            sitterFieldDto.setUserNumber((Long) req.getSession().getAttribute("userNumber"));
+            sitterService.registerField(sitterFieldDto);
         }
 
 
@@ -67,14 +67,14 @@ public class SitterController {
 
 
     @GetMapping("/addList")
-    public String sitterAddList(){
+    public String sitterAddList() {
         return "sitter/sitterAddList";
     }
 
     @PostMapping("/addList")
     public RedirectView sendAddList(HttpServletRequest req, SitterDto sitterDto,
-    @RequestParam("sitterProfileFile") List<MultipartFile> filess, @RequestParam("sitterFile")List<MultipartFile> files){
-        sitterDto.setUserNumber((Long)req.getSession().getAttribute("userNumber"));
+                                    @RequestParam("sitterProfileFile") List<MultipartFile> filess, @RequestParam("sitterFile") List<MultipartFile> files) {
+        sitterDto.setUserNumber((Long) req.getSession().getAttribute("userNumber"));
         Long sitterNumber = sitterService.findSitter(sitterDto.getUserNumber());
         sitterDto.setSitterNumber(sitterNumber);
 
@@ -98,15 +98,15 @@ public class SitterController {
 
         List<SitterListVo> sitterList = sitterService.findAll();
 
-        for(int i=0; i<sitterList.size(); i++){
+        for (int i = 0; i < sitterList.size(); i++) {
             SitterReviewDto sitterReviewDto = sitterService.reviewCntAndScoreAvg(sitterList.get(i).getSitterNumber());
             model.addAttribute("cntAndAvg", sitterReviewDto);
         }
 
-        if(req.getSession().getAttribute("userNumber") != null){
-            Long userNum = (Long)req.getSession().getAttribute("userNumber");
+        if (req.getSession().getAttribute("userNumber") != null) {
+            Long userNum = (Long) req.getSession().getAttribute("userNumber");
             Long sitterNum = sitterService.findSitter(userNum);
-            if(sitterNum == null){
+            if (sitterNum == null) {
                 model.addAttribute("sitterNumber", sitterNumber);
                 model.addAttribute("sitterList", sitterList);
                 return "sitter/sitterList";
@@ -114,7 +114,7 @@ public class SitterController {
                 int nullSitter = sitterService.findSitterHeaderCount(sitterNum);
                 model.addAttribute("nullSitter", nullSitter);
             }
-            model.addAttribute("showBtn",sitterService.countSitter((Long)req.getSession().getAttribute("userNumber")));
+            model.addAttribute("showBtn", sitterService.countSitter((Long) req.getSession().getAttribute("userNumber")));
         }
 
         model.addAttribute("sitterNumber", sitterNumber);
@@ -123,10 +123,8 @@ public class SitterController {
     }
 
 
-
-
     @GetMapping("/profile")
-    public String sitterProfile(SitterDto sitterDto, HttpServletRequest req, Model model){
+    public String sitterProfile(SitterDto sitterDto, HttpServletRequest req, Model model) {
 
 //        Long userNumber = (Long)req.getSession().getAttribute("userNumber");
 
@@ -144,7 +142,7 @@ public class SitterController {
         model.addAttribute("sitter", sitterFileDto);
         model.addAttribute("profile", sitterProfileFileDto);
         model.addAttribute("license", sitterApplyLicenseFile);
-        model.addAttribute("info",sitterService.findSitterInfo(userNumFromSitterNum));
+        model.addAttribute("info", sitterService.findSitterInfo(userNumFromSitterNum));
         model.addAttribute("sitterName", userDto);
         model.addAttribute("field", sitterFieldDto);
         model.addAttribute("review", sitterReviewVo);
@@ -154,9 +152,9 @@ public class SitterController {
     }
 
     @GetMapping("/modifyInfo")
-    public String sitterModify(Model model, HttpServletRequest req){
-       Long userNum = (Long)req.getSession().getAttribute("userNumber");
-       Long sitterNum = sitterService.findSitter(userNum);
+    public String sitterModify(Model model, HttpServletRequest req) {
+        Long userNum = (Long) req.getSession().getAttribute("userNumber");
+        Long sitterNum = sitterService.findSitter(userNum);
 //        Long sitterNum = 7L;
         SitterDto sitterDto = sitterService.sitterInfoUpload(sitterNum);
 
@@ -171,7 +169,7 @@ public class SitterController {
     }
 
     @PostMapping("/sendModify")
-    public RedirectView sendSitterModify(SitterDto sitterDto, @RequestParam("sitterProfileFile") List<MultipartFile> filess, @RequestParam("sitterFile") List<MultipartFile> files){
+    public RedirectView sendSitterModify(SitterDto sitterDto, @RequestParam("sitterProfileFile") List<MultipartFile> filess, @RequestParam("sitterFile") List<MultipartFile> files) {
 
         sitterService.sitterModify(sitterDto);
 
@@ -185,7 +183,7 @@ public class SitterController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new RedirectView("/sitter/profile?sitterNumber="+sitterDto.getSitterNumber());
+        return new RedirectView("/sitter/profile?sitterNumber=" + sitterDto.getSitterNumber());
     }
 
 }

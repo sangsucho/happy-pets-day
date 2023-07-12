@@ -23,27 +23,26 @@ public class RecommendController {
     private final RecommendService recommendService;
 
     @GetMapping("/main")
-    public String recommend(){
+    public String recommend() {
         return "recommend/petRecommend";
     }
 
     @GetMapping("/detail")
-    public String recommendDetail(@Param("recommendNumber")Long recommendNumber, Model model){
+    public String recommendDetail(@Param("recommendNumber") Long recommendNumber, Model model) {
         model.addAttribute("detail", recommendService.findRecommendDetail(recommendNumber));
         return "recommend/petRecommendDetail";
     }
 
     @GetMapping("/list")
-    public String recommendList(){
+    public String recommendList() {
         return "recommend/petRecommendList";
     }
 
     @PostMapping("/list")
-    public RedirectView recommendList(RecommendDto recommendDto, RedirectAttributes redirectAttributes){
+    public RedirectView recommendList(RecommendDto recommendDto, RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("recommendList", recommendService.findRecommendList(recommendDto));
         return new RedirectView("/recommend/list");
     }
-
 
 
 }

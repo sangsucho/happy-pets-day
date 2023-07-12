@@ -29,16 +29,16 @@ public class UserController {
         return "user/join";
     }
 
-//        회원가입 처리
-@PostMapping("/join")
-public RedirectView join(UserDto userDto) {
+    //        회원가입 처리
+    @PostMapping("/join")
+    public RedirectView join(UserDto userDto) {
 //    if (!userService.isUserIdAvailable(userDto.getUserId())) {
 //        // 아이디가 이미 사용 중인 경우
 //        return new RedirectView("/user/checkDuplicate");
 //    }
-    userService.register(userDto);
-    return new RedirectView("/user/login");
-}
+        userService.register(userDto);
+        return new RedirectView("/user/login");
+    }
 
 
     //    로그인 처리
@@ -79,9 +79,6 @@ public RedirectView join(UserDto userDto) {
         req.getSession().invalidate(); //세션 초기화
         return "user/login";
     }
-
-
-
 
 
     @GetMapping("/findId")

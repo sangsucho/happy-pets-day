@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/adopts/*")
 public class AdoptRestController {
-//    private final AdoptDto adoptDto;
+    //    private final AdoptDto adoptDto;
     private final AdoptService adoptService;
 
     @GetMapping("/getCenterName")

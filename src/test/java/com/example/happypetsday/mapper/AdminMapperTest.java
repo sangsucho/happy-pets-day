@@ -52,8 +52,8 @@ class AdminMapperTest {
     @Test
     @DisplayName("회원 1명 상세정보 조회")
     void selectUserOne() {
-    UserVo finduser =adminMapper.selectUserOne(userVo.getUserNumber());
-    log.info(finduser.toString());
+        UserVo finduser = adminMapper.selectUserOne(userVo.getUserNumber());
+        log.info(finduser.toString());
 
         assertThat(finduser.getUserNumber())
                 .isEqualTo(userVo.getUserNumber());
@@ -94,7 +94,7 @@ class AdminMapperTest {
 
     @Test
     @DisplayName("전체회원 수 조회")
-    void selectTotalUser(){
+    void selectTotalUser() {
         Long totalUserCount = adminMapper.selectTotalUser();
         UserVo userVo = new UserVo();
         userVo.setTotalUserNumber(totalUserCount);

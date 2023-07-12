@@ -6,133 +6,135 @@
     <link rel="stylesheet" th:href="@{/css/main/main.css}">
     <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
     <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css"/>
+    <link rel="stylesheet" as="style" crossorigin
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css"/>
 </head>
 <body>
 <header th:replace="fragment/header :: header"></header>
-    <main>
-        <div class="header-section">
-            <div class="header-section-container">
-                <div class="header-section-title">
-                    <h1>반려동물을 위한<br>Happy pet's day</h1>
-                    <h5>유기동물 입양부터 산책모임, 펫시터까지<br>반려동물과 행복한 하루 보내세요!</h5>
+<main>
+    <div class="header-section">
+        <div class="header-section-container">
+            <div class="header-section-title">
+                <h1>반려동물을 위한<br>Happy pet's day</h1>
+                <h5>유기동물 입양부터 산책모임, 펫시터까지<br>반려동물과 행복한 하루 보내세요!</h5>
+            </div>
+            <img src="https://lifet.co.kr/img/landing/visual/store_img.png" alt="" class="header-section-img">
+        </div>
+    </div>
+    <div class="sitter-section">
+        <div class="sitter-section1">
+            <div class="sitter-section1-content">
+                <div>
+                    <h1>펫시터 예약</h1>
+                    <h2>믿음직한 펫시터!<br>필요한날 예약하세요.</h2>
+                    <a th:href="@{/sitter/list}">펫시터 예약하기</a>
                 </div>
-                <img src="https://lifet.co.kr/img/landing/visual/store_img.png" alt="" class="header-section-img">
+                <img th:src="@{/img/dog.png}" alt="">
+            </div>
+            <div class="sitter-section1-content">
+                <div>
+                    <h1>펫시터 지원</h1>
+                    <h2>펫시터를 하고싶다면<br>쉽고 빠르게 지원해보세요.</h2>
+                    <a th:href="@{/sitter/apply}">펫시터 지원하기</a>
+                </div>
+                <img th:src="@{/img/cat.png}" alt="">
             </div>
         </div>
-        <div class="sitter-section">
-            <div class="sitter-section1">
-                <div class="sitter-section1-content">
-                    <div>
-                        <h1>펫시터 예약</h1>
-                        <h2>믿음직한 펫시터!<br>필요한날 예약하세요.</h2>
-                        <a th:href="@{/sitter/list}">펫시터 예약하기</a>
+        <div class="sitter-section2">
+            <div class="sitter-section2-title">인기 많은 <span>펫시터</span> 확인하세요</div>
+            <div class="sitter-container">
+                <!--                    인기 펫시터 정보 3개 여기 a.sitter-info 한개 뽑아서 반복 세번-->
+                <a th:href="@{/sitter/profile}" class="sitter-info">
+                    <img th:src="@{/img/KakaoTalk_20230524_113238743_06.jpg}" alt="">
+                    <div class="sitter-info-container">
+                        <!--                            시터 이름-->
+                        <div class="sitter-name">박광인</div>
+                        <!--                            시터 정보-->
+                        <div class="sitter-comment">동물을 사랑하는 시터</div>
                     </div>
-                    <img th:src="@{/img/dog.png}" alt="">
-                </div>
-                <div class="sitter-section1-content">
-                    <div>
-                        <h1>펫시터 지원</h1>
-                        <h2>펫시터를 하고싶다면<br>쉽고 빠르게 지원해보세요.</h2>
-                        <a th:href="@{/sitter/apply}">펫시터 지원하기</a>
+                </a>
+                <a class="sitter-info">
+                    <img th:src="@{/img/KakaoTalk_20230524_113238743_06.jpg}" alt="">
+                    <div class="sitter-info-container">
+                        <div class="sitter-name">박광인</div>
+                        <div class="sitter-comment">동물을 사랑하는 시터</div>
                     </div>
-                    <img th:src="@{/img/cat.png}" alt="">
-                </div>
-            </div>
-            <div class="sitter-section2">
-                <div class="sitter-section2-title">인기 많은 <span>펫시터</span> 확인하세요</div>
-                <div class="sitter-container">
-<!--                    인기 펫시터 정보 3개 여기 a.sitter-info 한개 뽑아서 반복 세번-->
-                    <a th:href="@{/sitter/profile}" class="sitter-info">
-                        <img th:src="@{/img/KakaoTalk_20230524_113238743_06.jpg}" alt="">
-                        <div class="sitter-info-container">
-<!--                            시터 이름-->
-                            <div class="sitter-name">박광인</div>
-<!--                            시터 정보-->
-                            <div class="sitter-comment">동물을 사랑하는 시터</div>
-                        </div>
-                    </a>
-                    <a class="sitter-info">
-                        <img th:src="@{/img/KakaoTalk_20230524_113238743_06.jpg}" alt="">
-                        <div class="sitter-info-container">
-                            <div class="sitter-name">박광인</div>
-                            <div class="sitter-comment">동물을 사랑하는 시터</div>
-                        </div>
-                    </a>
-                    <a class="sitter-info">
-                        <img th:src="@{/img/KakaoTalk_20230524_113238743_06.jpg}" alt="">
-                        <div class="sitter-info-container">
-                            <div class="sitter-name">박광인</div>
-                            <div class="sitter-comment">동물을 사랑하는 시터</div>
-                        </div>
-                    </a>
-                </div>
+                </a>
+                <a class="sitter-info">
+                    <img th:src="@{/img/KakaoTalk_20230524_113238743_06.jpg}" alt="">
+                    <div class="sitter-info-container">
+                        <div class="sitter-name">박광인</div>
+                        <div class="sitter-comment">동물을 사랑하는 시터</div>
+                    </div>
+                </a>
             </div>
         </div>
-        <div class="board-section">
-            <div class="board-section-container">
-                <div class="board-section-title">
-                    <h1>산책 모임 게시판</h1>
-<!--                    산책 게시판 이동 href 작성-->
-                    <a th:href="@{/stroll/list}">더보기 <span>&gt</span></a>
+    </div>
+    <div class="board-section">
+        <div class="board-section-container">
+            <div class="board-section-title">
+                <h1>산책 모임 게시판</h1>
+                <!--                    산책 게시판 이동 href 작성-->
+                <a th:href="@{/stroll/list}">더보기 <span>&gt</span></a>
+            </div>
+            <div class="board-section-body">
+                <div class="board-section-body-img">
+                    <h1>반려동물의 산책메이트를</h1>
+                    <h1>찾는데 어려움이 있으신가요?</h1>
+                    <h2>주변의 산책메이트를 찾아보세요!</h2>
+                    <!--                        산책 게시판 이동 href 작성-->
+                    <img src="https://lifet.co.kr/img/landing/visual/new_slider03.png" alt="">
                 </div>
-                <div class="board-section-body">
-                    <div class="board-section-body-img">
-                        <h1>반려동물의 산책메이트를</h1>
-                        <h1>찾는데 어려움이 있으신가요?</h1>
-                        <h2>주변의 산책메이트를 찾아보세요!</h2>
-<!--                        산책 게시판 이동 href 작성-->
-                        <img src="https://lifet.co.kr/img/landing/visual/new_slider03.png" alt="">
-                    </div>
-                    <div class="board-section-body-list">
-<!--                        게시판 리스트 3개 반복 href 게시글 보기 설정-->
-                        <a class="board-list" th:href="@{stroll/view(strollBoaardNumber=${board.strollBoardNumber})}" th:each="board : ${boardList}">
-                            <div class="board-list-container">
-                                <div class="board-title-container">
-                                    <div class="board-title" th:text="${board.strollBoardTitle}"></div>
-                                    <div class="user-name" th:text="${board.userId}"></div>
-                                </div>
-                                <div class="board-content" th:text="${board.strollBoardContent}"></div>
-                                <div class="board-info-container">
-                                    <div class="board-date" th:text="${board.strollBoardRegisterDate}"></div>
-                                    <div>조회수</div>
-                                    <div class="board-cnt" th:text="${board.strollBoardViewCount}"></div>
-                                    <div class="board-address" th:text="${board.strollBoardAdminDistrict}"></div>
-                                </div>
+                <div class="board-section-body-list">
+                    <!--                        게시판 리스트 3개 반복 href 게시글 보기 설정-->
+                    <a class="board-list" th:href="@{stroll/view(strollBoaardNumber=${board.strollBoardNumber})}"
+                       th:each="board : ${boardList}">
+                        <div class="board-list-container">
+                            <div class="board-title-container">
+                                <div class="board-title" th:text="${board.strollBoardTitle}"></div>
+                                <div class="user-name" th:text="${board.userId}"></div>
                             </div>
-                        </a>
+                            <div class="board-content" th:text="${board.strollBoardContent}"></div>
+                            <div class="board-info-container">
+                                <div class="board-date" th:text="${board.strollBoardRegisterDate}"></div>
+                                <div>조회수</div>
+                                <div class="board-cnt" th:text="${board.strollBoardViewCount}"></div>
+                                <div class="board-address" th:text="${board.strollBoardAdminDistrict}"></div>
+                            </div>
+                        </div>
+                    </a>
 
-                    </div>
                 </div>
             </div>
         </div>
-        <div class="recommend-section">
-            <div class="recommend-section-container">
-                <div class="recommend-section-title">
-                    <h1>반려동물 선택에<br>어려움이 있나요?</h1>
-                    <h5>강아지부터 고양이, 다른 종까지<br>취향에 따라 추천해드려요!</h5>
-<!--                    추천 href설정-->
-                    <a th:href="@{/recommend/main}" class="recommend-btn">반려동물 추천받기</a>
-                </div>
-                <img src="https://lifet.co.kr/img/landing/visual/new_slider02.png" alt="" class="recommend-section-img">
+    </div>
+    <div class="recommend-section">
+        <div class="recommend-section-container">
+            <div class="recommend-section-title">
+                <h1>반려동물 선택에<br>어려움이 있나요?</h1>
+                <h5>강아지부터 고양이, 다른 종까지<br>취향에 따라 추천해드려요!</h5>
+                <!--                    추천 href설정-->
+                <a th:href="@{/recommend/main}" class="recommend-btn">반려동물 추천받기</a>
+            </div>
+            <img src="https://lifet.co.kr/img/landing/visual/new_slider02.png" alt="" class="recommend-section-img">
+        </div>
+    </div>
+    <div class="adopt-section">
+        <div class="adopt-section-container">
+            <div class="adopt-section-title">
+                <h1>보호중인 아이들</h1>
+                <!--                    입양정보 페이지 이동 href설정-->
+                <a th:href="@{/adopt/list}">더보기 <span>&gt</span></a>
+            </div>
+            <div class="adopt-section-content-container">
+                <!--                    adopt-section-content 3번 반복, 각 입양정보 게시글 이동 href설정-->
             </div>
         </div>
-        <div class="adopt-section">
-            <div class="adopt-section-container">
-                <div class="adopt-section-title">
-                    <h1>보호중인 아이들</h1>
-<!--                    입양정보 페이지 이동 href설정-->
-                    <a th:href="@{/adopt/list}">더보기 <span>&gt</span></a>
-                </div>
-                <div class="adopt-section-content-container">
-<!--                    adopt-section-content 3번 반복, 각 입양정보 게시글 이동 href설정-->
-                </div>
-            </div>
-        </div>
-    </main>
+    </div>
+</main>
 <footer th:replace="fragment/footer :: footer"></footer>
-    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-    <script th:src="@{/js/main/main.js}"></script>
-    <script th:src="@{/js/AdoptionInformation/adoptMain.js}"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script th:src="@{/js/main/main.js}"></script>
+<script th:src="@{/js/AdoptionInformation/adoptMain.js}"></script>
 </body>
 </html>

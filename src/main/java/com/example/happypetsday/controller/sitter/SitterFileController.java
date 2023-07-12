@@ -32,7 +32,7 @@ public class SitterFileController {
     private String fileDir;
 
     @GetMapping("/imgList")
-    public List<SitterProfileFileDto> imgList(Long sitterNumber){
+    public List<SitterProfileFileDto> imgList(Long sitterNumber) {
         return sitterProfileFileService.findList(sitterNumber);
     }
 

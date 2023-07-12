@@ -85,7 +85,7 @@ public class SitterService {
         return sitterMapper.selectList();
     }
 
-    public int findSitterHeaderCount(Long sitterNumber){
+    public int findSitterHeaderCount(Long sitterNumber) {
         return sitterMapper.selectSitterHeader(sitterNumber);
     }
 

@@ -11,14 +11,14 @@ $.datepicker.setDefaults({
     yearSuffix: '년'
 });
 
-$(function() {
+$(function () {
     var currentDate = new Date();
     $("#datepicker").datepicker({
         minDate: currentDate,
-        onSelect: function(dateText) {
+        onSelect: function (dateText) {
             $("#selectedDate").val(dateText);
         },
-        beforeShowDay: function(date) {
+        beforeShowDay: function (date) {
             var selectedDate = $("#selectedDate").datepicker('getDate');
             if (selectedDate !== null) {
                 if (date.getTime() === selectedDate.getTime()) {
@@ -37,7 +37,7 @@ let year = today.getFullYear();
 let month = ('0' + (today.getMonth() + 1)).slice(-2);
 let day = ('0' + today.getDate()).slice(-2);
 
-let dateString = year + '-' + month  + '-' + day;
+let dateString = year + '-' + month + '-' + day;
 
 $("#selectedDate").val(dateString);
 

@@ -2,12 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>회원상세정보관리</title>
-  <link rel="stylesheet" th:href="@{/css/admin/userDetailManage.css}">
-  <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
-  <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원상세정보관리</title>
+    <link rel="stylesheet" th:href="@{/css/admin/userDetailManage.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
 </head>
 
 <body>
@@ -15,78 +15,80 @@
 
 <div class="whole-container">
 
-  <div class="side-menubar" th:replace="fragment/adminSideBar :: adminSideBar"></div>
+    <div class="side-menubar" th:replace="fragment/adminSideBar :: adminSideBar"></div>
 
-  <div class="content-container">
+    <div class="content-container">
 
-    <h2 class="guide-menu">일반회원 상세정보</h2>
-    <div class="bottom-bar"></div>
+        <h2 class="guide-menu">일반회원 상세정보</h2>
+        <div class="bottom-bar"></div>
 
-    <div class="detailed-guide">* 회원 아이디를 클릭 시 해당회원의 마이페이지로 이동합니다.</div>
+        <div class="detailed-guide">* 회원 아이디를 클릭 시 해당회원의 마이페이지로 이동합니다.</div>
 
-    <div class="container">
+        <div class="container">
 
-      <table class="board-table">
-        <tbody>
-        <tr>
-          <th class="table-head-left">회원번호</th>
-          <td th:text="${user.userNumber}"></td>
-          <input type="hidden" class="user-number" th:value="${user.userNumber}">
-        </tr>
-        <tr>
-          <th>등급명</th>
-          <td th:text="${user.statusName}"></td>
-        </tr>
-        <tr>
-          <th>아이디</th>
-          <td th:text="${user.userId}"><a href=""></a></td>
-        </tr>
-        <tr>
-          <th>이름</th>
-          <td th:text="${user.userName}"></td>
-        </tr>
-        <tr>
-          <th>성별</th>
-          <td th:text="${user.userGender}"></td>
-        </tr>
-        <tr>
-          <th>이메일</th>
-          <td th:text="${user.userEmail}"></td>
-        </tr>
-        <tr>
-          <th>생일</th>
-          <td th:text="${user.userBirth}"></td>
-        </tr>
-        <tr>
-          <th>연락처</th>
-          <td th:text="${user.userPhoneNumber}"></td>
-        </tr>
-        <tr>
-          <th class="table-head-left-bottom">주소</th>
-          <td th:text="${user.userAddress}"></td>
-        </tr>
-        </tbody>
-      </table>
+            <table class="board-table">
+                <tbody>
+                <tr>
+                    <th class="table-head-left">회원번호</th>
+                    <td th:text="${user.userNumber}"></td>
+                    <input type="hidden" class="user-number" th:value="${user.userNumber}">
+                </tr>
+                <tr>
+                    <th>등급명</th>
+                    <td th:text="${user.statusName}"></td>
+                </tr>
+                <tr>
+                    <th>아이디</th>
+                    <td th:text="${user.userId}"><a href=""></a></td>
+                </tr>
+                <tr>
+                    <th>이름</th>
+                    <td th:text="${user.userName}"></td>
+                </tr>
+                <tr>
+                    <th>성별</th>
+                    <td th:text="${user.userGender}"></td>
+                </tr>
+                <tr>
+                    <th>이메일</th>
+                    <td th:text="${user.userEmail}"></td>
+                </tr>
+                <tr>
+                    <th>생일</th>
+                    <td th:text="${user.userBirth}"></td>
+                </tr>
+                <tr>
+                    <th>연락처</th>
+                    <td th:text="${user.userPhoneNumber}"></td>
+                </tr>
+                <tr>
+                    <th class="table-head-left-bottom">주소</th>
+                    <td th:text="${user.userAddress}"></td>
+                </tr>
+                </tbody>
+            </table>
 
-      <div class="button-wrap">
-        <!-- 회원삭제 전 -->
-        <th:block th:if="${user.userStatus != -1}">
-        <button type="button" class="btn-delete" value="-1" data-confirm="회원 삭제하시겠습니까?" data-user-number="123">회원 삭제</button>
-        </th:block>
-        <!-- 회원삭제 후 -->
-        <th:block th:unless="${user.userStatus != -1}">
-          <button type="button" class="btn-restore" value="1" data-confirm="회원 복구하시겠습니까?" data-user-number="456">회원 복구</button>
-        </th:block>
-      </div>
+            <div class="button-wrap">
+                <!-- 회원삭제 전 -->
+                <th:block th:if="${user.userStatus != -1}">
+                    <button type="button" class="btn-delete" value="-1" data-confirm="회원 삭제하시겠습니까?"
+                            data-user-number="123">회원 삭제
+                    </button>
+                </th:block>
+                <!-- 회원삭제 후 -->
+                <th:block th:unless="${user.userStatus != -1}">
+                    <button type="button" class="btn-restore" value="1" data-confirm="회원 복구하시겠습니까?"
+                            data-user-number="456">회원 복구
+                    </button>
+                </th:block>
+            </div>
 
+
+        </div>
 
 
     </div>
-
-
-
-  </div>
-  </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <footer th:replace="fragment/adminFooter :: adminFooter"></footer>

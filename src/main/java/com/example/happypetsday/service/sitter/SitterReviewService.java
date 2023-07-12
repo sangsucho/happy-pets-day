@@ -14,7 +14,7 @@ public class SitterReviewService {
     private final ReviewMapper reviewMapper;
 
     public void register(SitterReviewDto sitterReviewDto) {
-        if(sitterReviewDto == null) {
+        if (sitterReviewDto == null) {
             throw new IllegalArgumentException("리뷰 정보 누락");
         }
         reviewMapper.insert(sitterReviewDto);

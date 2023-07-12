@@ -2,8 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.happypetsday.mapper.SitterProfileFileMapper">
     <select id="selectProfileFile" resultType="SitterProfileFileDto">
-        SELECT S.SITTER_NUMBER, SPF.SITTER_PROFILE_FILE_NAME,
-               SPF.SITTER_PROFILE_UPLOAD_PATH, SPF.SITTER_PROFILE_UUID
+        SELECT S.SITTER_NUMBER,
+               SPF.SITTER_PROFILE_FILE_NAME,
+               SPF.SITTER_PROFILE_UPLOAD_PATH,
+               SPF.SITTER_PROFILE_UUID
         FROM TBL_SITTER_PROFILE_FILE SPF
                  JOIN TBL_SITTER S
                       ON SPF.SITTER_NUMBER = S.SITTER_NUMBER
@@ -12,8 +14,9 @@
 
     <insert id="insert">
         INSERT INTO TBL_SITTER_PROFILE_FILE (SITTER_PROFILE_NUMBER, SITTER_NUMBER,
-        SITTER_PROFILE_FILE_NAME,SITTER_PROFILE_UUID, SITTER_PROFILE_UPLOAD_PATH)
-        VALUES (SEQ_SITTER_PROFILE_FILE.NEXTVAL, #{sitterNumber}, #{sitterProfileFileName}, #{sitterProfileUuid}, #{sitterProfileUploadPath})
+                                             SITTER_PROFILE_FILE_NAME, SITTER_PROFILE_UUID, SITTER_PROFILE_UPLOAD_PATH)
+        VALUES (SEQ_SITTER_PROFILE_FILE.NEXTVAL, #{sitterNumber}, #{sitterProfileFileName}, #{sitterProfileUuid},
+                #{sitterProfileUploadPath})
     </insert>
 
     <delete id="delete">
@@ -21,7 +24,6 @@
         FROM TBL_SITTER_PROFILE_FILE
         WHERE SITTER_NUMBER = #{sitterNumber}
     </delete>
-
 
 
 </mapper>

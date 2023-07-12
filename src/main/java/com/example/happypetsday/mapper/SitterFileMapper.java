@@ -9,6 +9,8 @@ import java.util.List;
 @Mapper
 public interface SitterFileMapper {
     List<SitterFileDto> selectFile(long sitterNumber);
+
     void insert(SitterFileDto sitterFileDto);
+
     void delete(long sitterNumber);
 }

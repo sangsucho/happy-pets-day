@@ -19,13 +19,13 @@ public class UserRestController {
     private final UserService userService;
     private final UserMapper userMapper;
 
-//    아이디 중복확인
+    //    아이디 중복확인
     @GetMapping("/checkDuplicate")
     public boolean checkDuplicate(@RequestParam String userId) {
         return userService.isUserIdAvailable(userId);
     }
 
-//  아이디 찾기
+    //  아이디 찾기
     @GetMapping("/users/findId")
     public ResponseEntity<String> findUserIdByNameAndPhone(@RequestParam String userName, @RequestParam String userPhoneNumber) {
         try {

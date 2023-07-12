@@ -1,320 +1,320 @@
 /* 기본 스타일 초기화 */
 * {
-  margin: 0;
-  padding: 0;
-  font-family: "Pretendard";
-  list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-family: "Pretendard";
+    list-style-type: none;
 }
 
 /* body의 내용을 가운데 정렬 */
 .body {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 /* 메인 콘텐츠를 담는 컨테이너 */
 .main {
-  display: block;
-  width: 1200px;
+    display: block;
+    width: 1200px;
 }
 
 /* 메인 콘텐츠를 최대 너비로 설정하고 수평 가운데 정렬 */
 .main-container {
-  max-width: 1170px;
-  margin: 0 auto;
-  padding: 60px 0 100px;
-  background-color: transparent;
-  min-height: 100vh;
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 60px 0 100px;
+    background-color: transparent;
+    min-height: 100vh;
 }
 
 /* 회원가입 폼을 감싸는 래퍼 */
 .join-wrap {
-  background-color: #fff;
-  box-shadow: 0px 0px 32px 6px rgba(177, 180, 198, 0.2);
-  -webkit-box-shadow: 0px 0px 32px 6px rgba(177, 180, 198, 0.2);
-  border-radius: 20px;
-  width: 630px;
-  margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0px 0px 32px 6px rgba(177, 180, 198, 0.2);
+    -webkit-box-shadow: 0px 0px 32px 6px rgba(177, 180, 198, 0.2);
+    border-radius: 20px;
+    width: 630px;
+    margin: 0 auto;
 }
 
 /* 회원가입 폼의 스타일 */
 .join-form {
-  padding: 60px 110px;
-  padding-bottom: 100px;
+    padding: 60px 110px;
+    padding-bottom: 100px;
 }
 
 /* 회원가입 제목 스타일 */
 .join-title {
-  margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 
 /* 폼 안의 필드 스타일 */
 .join-field {
-  margin-top: 60px;
+    margin-top: 60px;
 }
 
 /* 필드 내의 제목 스타일 */
 .join-field h1 {
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 1.3em;
-  margin-bottom: 30px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid #e3e3e3;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.3em;
+    margin-bottom: 30px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #e3e3e3;
 }
 
 /* 폼 필드 스타일 */
 .field {
-  position: relative;
+    position: relative;
 }
 
 /* 폼 필드의 레이블 스타일 */
 .field h5 {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.5em;
-  margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5em;
+    margin-bottom: 10px;
 }
 
 /* 이름과 전화번호 입력 필드 스타일 */
 #name,
 #phone {
-  height: 48px;
-  padding-left: 14px;
-  border-color: #e3e3e3;
+    height: 48px;
+    padding-left: 14px;
+    border-color: #e3e3e3;
 }
 
 /* 필수 입력 필드 스타일 */
 .required {
-  width: 96%;
-  border: 1px solid #e7e7e7;
-  border-radius: 4px;
-  font-size: 16px;
+    width: 96%;
+    border: 1px solid #e7e7e7;
+    border-radius: 4px;
+    font-size: 16px;
 }
 
 /* 확인 메시지 스타일 */
 .confirmMsg {
-  padding-top: 5px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  min-height: 30px;
-  line-height: 1.5em;
-  color: #dc2a2a;
-  word-break: keep-all;
-  opacity: 1;
+    padding-top: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    min-height: 30px;
+    line-height: 1.5em;
+    color: #dc2a2a;
+    word-break: keep-all;
+    opacity: 1;
 }
 
 /* 생년월일 입력 필드 스타일 */
 .birth-box {
-  display: flex;
-  position: relative;
+    display: flex;
+    position: relative;
 }
 
 /* 생년월일 입력 필드의 너비 및 여백 스타일 */
 .join-wrap .field .birth-box input {
-  width: calc(100% / 3);
-  margin-right: 12px;
+    width: calc(100% / 3);
+    margin-right: 12px;
 }
 
 /* 생년월일 일 입력 필드 스타일 */
 .join-wrap .field .birth-box #birth-day {
-  width: calc(100% / 3);
-  margin: 0;
+    width: calc(100% / 3);
+    margin: 0;
 }
 
 /* 폼 입력 필드 스타일 */
 .join-wrap .field input {
-  height: 48px;
-  padding-left: 14px;
-  border-color: #e3e3e3;
+    height: 48px;
+    padding-left: 14px;
+    border-color: #e3e3e3;
 }
 
 /* 영역을 감싸는 래퍼 스타일 */
 .area-wrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 0;
 }
 
 /* 선택 항목을 감싸는 래퍼 스타일 */
 .select-wrap {
-  border: 1px solid #e3e3e3;
-  border-radius: 4px;
-  width: 100%;
-  font-size: 16px;
-  flex: 0 0 100%;
-  display: inline-block;
-  position: relative;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 16px;
+    flex: 0 0 100%;
+    display: inline-block;
+    position: relative;
 }
 
 /* 선택 상자 스타일 */
 .select-box {
-  height: 48px;
-  padding-left: 14px;
-  background-image: url(https://lifet.co.kr/img/icon/select_down_g.svg);
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 30px px;
-  padding-right: 40px;
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 12px;
-  cursor: pointer;
-  position: relative;
+    height: 48px;
+    padding-left: 14px;
+    background-image: url(https://lifet.co.kr/img/icon/select_down_g.svg);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 30px px;
+    padding-right: 40px;
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    cursor: pointer;
+    position: relative;
 }
 
 .question-select-box {
-  height: 48px;
-  padding-left: 14px;
-  background-image: url(https://lifet.co.kr/img/icon/select_down_g.svg);
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 30px px;
-  padding-right: 40px;
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 12px;
-  cursor: pointer;
-  position: relative;
+    height: 48px;
+    padding-left: 14px;
+    background-image: url(https://lifet.co.kr/img/icon/select_down_g.svg);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 30px px;
+    padding-right: 40px;
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    cursor: pointer;
+    position: relative;
 }
 
 /* 선택 상자의 플레이스홀더 텍스트 스타일 */
 .placeholder {
-  color: #bebebe;
+    color: #bebebe;
 }
 
 /* 성별 목록 스타일 */
 .gender-list {
-  padding: 0;
-  max-height: 195px;
-  overflow-y: scroll;
-  margin-top: 1px;
+    padding: 0;
+    max-height: 195px;
+    overflow-y: scroll;
+    margin-top: 1px;
 }
 
 /* 성별 목록의 각 항목 스타일 */
 .gender-list li {
-  padding: 8px 13px;
-  line-height: 1.5em;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  white-space: nowrap;
-  cursor: pointer;
-  font-weight: 400;
+    padding: 8px 13px;
+    line-height: 1.5em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    white-space: nowrap;
+    cursor: pointer;
+    font-weight: 400;
 }
 
 /* 활성화된 검증 상태 스타일 */
 .verify-active {
-  display: initial;
-  justify-content: flex-end;
-  align-items: center;
+    display: initial;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .select-item {
-  padding: 8px 13px;
-  line-height: 1.5em;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  white-space: nowrap;
-  cursor: pointer;
-  font-weight: 400;
+    padding: 8px 13px;
+    line-height: 1.5em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    white-space: nowrap;
+    cursor: pointer;
+    font-weight: 400;
 }
 
 .select-list {
-  padding: 0;
-  max-height: 195px;
-  overflow-y: scroll;
-  margin-top: 1px;
+    padding: 0;
+    max-height: 195px;
+    overflow-y: scroll;
+    margin-top: 1px;
 }
 
 /* 버튼 스타일 */
 .btn {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 81px;
-  height: 38px;
-  line-height: inherit;
-  border: none;
-  margin: 5px;
-  color: #fff;
-  background-color: #c7c7c7;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: default;
-  margin-top: 40px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 81px;
+    height: 38px;
+    line-height: inherit;
+    border: none;
+    margin: 5px;
+    color: #fff;
+    background-color: #c7c7c7;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: default;
+    margin-top: 40px;
 }
 
 /* 체크박스 항목 스타일 */
 .check-term {
-  position: relative;
+    position: relative;
 }
 
 /* 항목의 체크박스 스타일 */
 .term .check-term input {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  opacity: 0;
-  z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 1;
 }
 
 /* 항목의 레이블 스타일 */
 .check-term label {
-  font-weight: 600;
-  height: 46px;
-  border-top: 1px solid #ededed;
-  border-bottom: 1px solid #ededed;
-  align-items: center;
-  font-size: 16px;
+    font-weight: 600;
+    height: 46px;
+    border-top: 1px solid #ededed;
+    border-bottom: 1px solid #ededed;
+    align-items: center;
+    font-size: 16px;
 }
 
 /* 제출 버튼 스타일 */
 #submit {
-  background-color: #c7c7c7;
-  cursor: not-allowed;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #68a5fe;
-  color: #fff;
-  width: 100%;
-  height: 58px;
-  font-size: 20px;
-  font-weight: 700;
-  border-radius: 30px;
-  margin-top: 40px;
-  cursor: pointer;
+    background-color: #c7c7c7;
+    cursor: not-allowed;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #68a5fe;
+    color: #fff;
+    width: 100%;
+    height: 58px;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 30px;
+    margin-top: 40px;
+    cursor: pointer;
 }
 
 /* 제출 버튼의 호버 스타일 */
 .join-wrap #submit:hover {
-  opacity: 0.8;
+    opacity: 0.8;
 }
 
 /* datePicker */
 .ui-widget-header {
-  border: 0px solid #dddddd;
-  background: #fff;
+    border: 0px solid #dddddd;
+    background: #fff;
 }
 
 .ui-datepicker-calendar > thead > tr > th {
-  font-size: 14px !important;
+    font-size: 14px !important;
 }
 
 .ui-datepicker .ui-datepicker-header {
-  position: relative;
-  padding: 10px 0;
+    position: relative;
+    padding: 10px 0;
 }
 
 .ui-state-default,
@@ -323,100 +323,100 @@
 .ui-button,
 html .ui-button.ui-state-disabled:hover,
 html .ui-button.ui-state-disabled:active {
-  border: 0px solid #c5c5c5;
-  background-color: transparent;
-  font-weight: normal;
-  color: #454545;
-  text-align: center;
+    border: 0px solid #c5c5c5;
+    background-color: transparent;
+    font-weight: normal;
+    color: #454545;
+    text-align: center;
 }
 
 .ui-datepicker .ui-datepicker-title {
-  margin: 0 0em;
-  line-height: 16px;
-  text-align: center;
-  font-size: 14px;
-  padding: 0px;
-  font-weight: bold;
+    margin: 0 0em;
+    line-height: 16px;
+    text-align: center;
+    font-size: 14px;
+    padding: 0px;
+    font-weight: bold;
 }
 
 .ui-datepicker {
-  display: none;
-  background-color: #fff;
-  border-radius: 4px;
-  margin-top: 10px;
-  margin-left: 0px;
-  margin-right: 0px;
-  padding: 20px;
-  padding-bottom: 10px;
-  width: 300px;
-  box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.1);
+    display: none;
+    background-color: #fff;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 20px;
+    padding-bottom: 10px;
+    width: 300px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.1);
 }
 
 .ui-widget.ui-widget-content {
-  border: 1px solid #eee;
+    border: 1px solid #eee;
 }
 
 #datepicker:focus > .ui-datepicker {
-  display: block;
+    display: block;
 }
 
 .ui-datepicker-prev,
 .ui-datepicker-next {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .ui-datepicker-next {
-  float: right;
+    float: right;
 }
 
 .ui-state-disabled {
-  cursor: auto;
-  color: hsla(0, 0%, 80%, 1);
+    cursor: auto;
+    color: hsla(0, 0%, 80%, 1);
 }
 
 .ui-datepicker-title {
-  text-align: center;
-  padding: 10px;
-  font-weight: 100;
-  font-size: 20px;
+    text-align: center;
+    padding: 10px;
+    font-weight: 100;
+    font-size: 20px;
 }
 
 .ui-datepicker-calendar {
-  width: 100%;
+    width: 100%;
 }
 
 .ui-datepicker-calendar > thead > tr > th {
-  padding: 5px;
-  font-size: 20px;
-  font-weight: 400;
+    padding: 5px;
+    font-size: 20px;
+    font-weight: 400;
 }
 
 .ui-datepicker-calendar > tbody > tr > td > a {
-  color: #000;
-  font-size: 12px !important;
-  font-weight: bold !important;
-  text-decoration: none;
+    color: #000;
+    font-size: 12px !important;
+    font-weight: bold !important;
+    text-decoration: none;
 }
 
 .ui-datepicker-calendar > tbody > tr > .ui-state-disabled:hover {
-  cursor: auto;
-  background-color: #fff;
+    cursor: auto;
+    background-color: #fff;
 }
 
 .ui-datepicker-calendar > tbody > tr > td {
-  border-radius: 100%;
-  width: 44px;
-  height: 30px;
-  cursor: pointer;
-  padding: 5px;
-  font-weight: 100;
-  text-align: center;
-  font-size: 12px;
+    border-radius: 100%;
+    width: 44px;
+    height: 30px;
+    cursor: pointer;
+    padding: 5px;
+    font-weight: 100;
+    text-align: center;
+    font-size: 12px;
 }
 
 .ui-datepicker-calendar > tbody > tr > td:hover {
-  background-color: transparent;
-  opacity: 0.6;
+    background-color: transparent;
+    opacity: 0.6;
 }
 
 .ui-state-hover,
@@ -427,97 +427,97 @@ html .ui-button.ui-state-disabled:active {
 .ui-widget-header .ui-state-focus,
 .ui-button:hover,
 .ui-button:focus {
-  border: 0px solid #cccccc;
-  background-color: transparent;
-  font-weight: normal;
-  color: #2b2b2b;
+    border: 0px solid #cccccc;
+    background-color: transparent;
+    font-weight: normal;
+    color: #2b2b2b;
 }
 
 .ui-widget-header .ui-icon {
-  background-image: url("../../img/btns.png");
+    background-image: url("../../img/btns.png");
 }
 
 .ui-icon-circle-triangle-e {
-  background-position: -20px 0px;
-  background-size: 36px;
+    background-position: -20px 0px;
+    background-size: 36px;
 }
 
 .ui-icon-circle-triangle-w {
-  background-position: -0px -0px;
-  background-size: 36px;
+    background-position: -0px -0px;
+    background-size: 36px;
 }
 
 .ui-datepicker-calendar > tbody > tr > td:first-child a {
-  color: red !important;
+    color: red !important;
 }
 
 .ui-datepicker-calendar > tbody > tr > td:last-child a {
-  color: #0099ff !important;
+    color: #0099ff !important;
 }
 
 .ui-datepicker-calendar > thead > tr > th:first-child {
-  color: red !important;
+    color: red !important;
 }
 
 .ui-datepicker-calendar > thead > tr > th:last-child {
-  color: #0099ff !important;
+    color: #0099ff !important;
 }
 
 .ui-state-highlight,
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
-  border: 0px;
-  background: #f1f1f1;
-  border-radius: 50%;
-  padding-top: 10px;
-  padding-bottom: 10px;
+    border: 0px;
+    background: #f1f1f1;
+    border-radius: 50%;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .inp {
-  padding: 10px 10px;
-  background-color: #f1f1f1;
-  border-radius: 4px;
-  border: 0px;
+    padding: 10px 10px;
+    background-color: #f1f1f1;
+    border-radius: 4px;
+    border: 0px;
 }
 
 .inp:focus {
-  outline: none;
-  background-color: #eee;
+    outline: none;
+    background-color: #eee;
 }
 
 .ui-datepicker select.ui-datepicker-month,
 .ui-datepicker select.ui-datepicker-year {
-  width: 30%;
-  text-align: right;
-  border: none;
+    width: 30%;
+    text-align: right;
+    border: none;
 }
 
 select {
-  -webkit-appearance: none; /* for chrome */
+    -webkit-appearance: none; /* for chrome */
 
-  -moz-appearance: none; /*for firefox*/
+    -moz-appearance: none; /*for firefox*/
 
-  appearance: none;
+    appearance: none;
 }
 
 #ui-datepicker-div .ui-datepicker-title {
-  display: flex;
-  padding-right: 50px;
-  justify-content: center;
+    display: flex;
+    padding-right: 50px;
+    justify-content: center;
 }
 
 select::-ms-expand {
-  display: none; /*for IE10,11*/
+    display: none; /*for IE10,11*/
 }
 
 select {
-  background: url("arr_pink.gif") no-repeat 97% 50%/15px auto;
+    background: url("arr_pink.gif") no-repeat 97% 50%/15px auto;
 }
 
 .success {
-  color: green;
+    color: green;
 }
 
 .error {
-  color: red;
+    color: red;
 }

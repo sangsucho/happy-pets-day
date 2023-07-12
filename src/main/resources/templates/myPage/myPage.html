@@ -1,185 +1,185 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link
-      rel="stylesheet"
-      as="style"
-      crossorigin
-      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css"
+            rel="stylesheet"
+            as="style"
+            crossorigin
+            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css"
     />
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
-      integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+            integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" th:href="@{/css/myPage/myPage.css}" />
+    <link rel="stylesheet" th:href="@{/css/myPage/myPage.css}"/>
     <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
     <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
     <title>Happy Pet's day | 회원정보 수정</title>
-  </head>
-  <!-- 회원정보 수정 페이지 -->
-  <body>
-    <!-- Header -->
-    <header th:replace="fragment/header :: header"></header>
+</head>
+<!-- 회원정보 수정 페이지 -->
+<body>
+<!-- Header -->
+<header th:replace="fragment/header :: header"></header>
 
-    <!-- 회원정보 -->
-    <section id="container">
-      <!-- 왼쪽 탭 목록 -->
-      <div class="mypage-left" th:replace="fragment/myPageSideBar :: myPageSideBar"></div>
+<!-- 회원정보 -->
+<section id="container">
+    <!-- 왼쪽 탭 목록 -->
+    <div class="mypage-left" th:replace="fragment/myPageSideBar :: myPageSideBar"></div>
 
-      <!-- 오른쪽 컨텐츠 -->
-      <div class="mypage-right">
+    <!-- 오른쪽 컨텐츠 -->
+    <div class="mypage-right">
         <h2>회원정보 수정</h2>
         <!-- '수정' 클릭 시 이동할 페이지 경로 -->
         <form th:action="@{/myPage/edit}" method="post">
-          <div class="contents-wrap">
-            <div class="info-wrap">
-              <h4>아이디</h4>
-              <input type="text" class="info id" disabled  th:value="${userInfo.userId}"/>
+            <div class="contents-wrap">
+                <div class="info-wrap">
+                    <h4>아이디</h4>
+                    <input type="text" class="info id" disabled th:value="${userInfo.userId}"/>
+                </div>
+                <div class="info-wrap">
+                    <!-- 비밀번호 변경 방식을 어떻게 할건지 정하자. -->
+                    <h4>비밀번호</h4>
+                    <input
+                            type="password"
+                            class="info password"
+                            placeholder="비밀번호(8자이상, 문자/숫자/특수문자 필수 조합)"
+                            name="userPassword"
+                            th:value="${userInfo.userPassword}"
+                    />
+                    <div>
+                        <span class="msg check-pw-msg"></span>
+                    </div>
+                </div>
+                <div class="info-wrap">
+                    <h4>비밀번호 확인</h4>
+                    <input type="password" class="info check-password" th:value="${userInfo.userPassword}"/>
+                    <div>
+                        <span class="msg check-pw-msg2"></span>
+                    </div>
+                </div>
+                <div class="info-wrap">
+                    <h4>이름</h4>
+                    <input type="text" class="info name" disabled th:value="${userInfo.userName}"/>
+                </div>
+                <div class="info-wrap">
+                    <h4>성별</h4>
+                    <input type="text" class="info gender" disabled value="남자" th:if="${userInfo.userGender == 'M'}"/>
+                    <input type="text" class="info gender" disabled value="여자" th:if="${userInfo.userGender == 'F'}"/>
+                    <input type="text" class="info gender" disabled th:if="${userInfo.userGender == 'N'}"/>
+                </div>
+                <div class="info-wrap">
+                    <h4>E-MAIL</h4>
+                    <input type="text" class="info email" name="userEmail" th:value="${userInfo.userEmail}"/>
+                </div>
+                <div class="info-wrap">
+                    <h4>생년월일</h4>
+                    <input type="text" class="info birth datepicker" name="userBirth" th:value="${userInfo.userBirth}"/>
+                    <!-- <input type="text" class="info birth datepicker" /> -->
+                    <!-- <input
+                      type="text"
+                      class="info birth birth-year"
+                      placeholder="년(4자)"
+                      maxlength="4"
+                    />
+                    <input
+                      type="text"
+                      class="info birth birth-month"
+                      placeholder="월"
+                      maxlength="2"
+                    />
+                    <input
+                      type="text"
+                      class="info birth birth-day"
+                      placeholder="일"
+                      maxlength="2"
+                    /> -->
+                </div>
+                <div class="info-wrap">
+                    <h4>핸드폰 번호</h4>
+                    <input
+                            type="tel"
+                            class="info phone-number"
+                            maxlength="11"
+                            placeholder="핸드폰 번호(-제외)를 입력해주세요."
+                            pattern="[0-9]{3}[0-9]{3,4}[0-9]{4}"
+                            name="userPhoneNumber"
+                            th:value="${userInfo.userPhoneNumber}"
+                    />
+                </div>
+                <div class="info-wrap">
+                    <h4>주소</h4>
+                    <div class="address-wrap" style="display: initial">
+                        <input
+                                type="text"
+                                id="select_postcode"
+                                placeholder="우편번호"
+                                onclick="selectAddress()"
+                                class="required"
+                                name="userZoneCode"
+                                th:value="${userInfo.userZoneCode}"
+                        />
+                        <input
+                                type="text"
+                                id="select_address"
+                                placeholder="주소"
+                                class="required"
+                                style="margin-top: 10px"
+                                name="userAddress"
+                                th:value="${userInfo.userAddress}"
+                        /><br/>
+                        <input
+                                type="text"
+                                id="select_detailAddress"
+                                placeholder="상세주소"
+                                class="required"
+                                style="margin-top: 10px"
+                                name="userAddressDetail"
+                                th:value="${userInfo.userAddressDetail}"
+                        />
+                        <input
+                                type="text"
+                                id="select_extraAddress"
+                                placeholder="참고항목"
+                                class="required"
+                                style="margin-top: 10px"
+                                name="userAddressTip"
+                                th:value="${userInfo.userAddressTip}"
+                        />
+                    </div>
+                </div>
+                <div id="button-wrap">
+                    <button class="modify-btn btn">수정하기</button>
+                    <!-- '회원탈퇴' 클릭 시 탈퇴처리 -->
+                    <button type="button" class="delete-btn btn">회원탈퇴</button>
+                </div>
             </div>
-            <div class="info-wrap">
-              <!-- 비밀번호 변경 방식을 어떻게 할건지 정하자. -->
-              <h4>비밀번호</h4>
-              <input
-                type="password"
-                class="info password"
-                placeholder="비밀번호(8자이상, 문자/숫자/특수문자 필수 조합)"
-                name="userPassword"
-                th:value="${userInfo.userPassword}"
-              />
-              <div>
-                <span class="msg check-pw-msg"></span>
-              </div>
-            </div>
-            <div class="info-wrap">
-              <h4>비밀번호 확인</h4>
-              <input type="password" class="info check-password" th:value="${userInfo.userPassword}"/>
-              <div>
-                <span class="msg check-pw-msg2"></span>
-              </div>
-            </div>
-            <div class="info-wrap">
-              <h4>이름</h4>
-              <input type="text" class="info name" disabled th:value="${userInfo.userName}" />
-            </div>
-            <div class="info-wrap">
-              <h4>성별</h4>
-              <input type="text" class="info gender" disabled value="남자" th:if="${userInfo.userGender == 'M'}"/>
-              <input type="text" class="info gender" disabled value="여자" th:if="${userInfo.userGender == 'F'}"/>
-              <input type="text" class="info gender" disabled th:if="${userInfo.userGender == 'N'}"/>
-            </div>
-            <div class="info-wrap">
-              <h4>E-MAIL</h4>
-              <input type="text" class="info email" name="userEmail" th:value="${userInfo.userEmail}"/>
-            </div>
-            <div class="info-wrap">
-              <h4>생년월일</h4>
-              <input type="text" class="info birth datepicker" name="userBirth" th:value="${userInfo.userBirth}"/>
-              <!-- <input type="text" class="info birth datepicker" /> -->
-              <!-- <input
-                type="text"
-                class="info birth birth-year"
-                placeholder="년(4자)"
-                maxlength="4"
-              />
-              <input
-                type="text"
-                class="info birth birth-month"
-                placeholder="월"
-                maxlength="2"
-              />
-              <input
-                type="text"
-                class="info birth birth-day"
-                placeholder="일"
-                maxlength="2"
-              /> -->
-            </div>
-            <div class="info-wrap">
-              <h4>핸드폰 번호</h4>
-              <input
-                type="tel"
-                class="info phone-number"
-                maxlength="11"
-                placeholder="핸드폰 번호(-제외)를 입력해주세요."
-                pattern="[0-9]{3}[0-9]{3,4}[0-9]{4}"
-                name="userPhoneNumber"
-                th:value="${userInfo.userPhoneNumber}"
-              />
-            </div>
-            <div class="info-wrap">
-              <h4>주소</h4>
-              <div class="address-wrap" style="display: initial">
-                <input
-                  type="text"
-                  id="select_postcode"
-                  placeholder="우편번호"
-                  onclick="selectAddress()"
-                  class="required"
-                  name="userZoneCode"
-                  th:value="${userInfo.userZoneCode}"
-                />
-                <input
-                  type="text"
-                  id="select_address"
-                  placeholder="주소"
-                  class="required"
-                  style="margin-top: 10px"
-                  name="userAddress"
-                  th:value="${userInfo.userAddress}"
-                /><br />
-                <input
-                  type="text"
-                  id="select_detailAddress"
-                  placeholder="상세주소"
-                  class="required"
-                  style="margin-top: 10px"
-                  name="userAddressDetail"
-                  th:value="${userInfo.userAddressDetail}"
-                />
-                <input
-                  type="text"
-                  id="select_extraAddress"
-                  placeholder="참고항목"
-                  class="required"
-                  style="margin-top: 10px"
-                  name="userAddressTip"
-                  th:value="${userInfo.userAddressTip}"
-                />
-              </div>
-            </div>
-            <div id="button-wrap">
-              <button class="modify-btn btn">수정하기</button>
-              <!-- '회원탈퇴' 클릭 시 탈퇴처리 -->
-              <button type="button" class="delete-btn btn">회원탈퇴</button>
-            </div>
-          </div>
         </form>
-      </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer th:replace="fragment/footer :: footer"></footer>
+<!-- Footer -->
+<footer th:replace="fragment/footer :: footer"></footer>
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
-      integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script th:src="@{/js/fragment/header.js}"></script>
-    <script th:src="@{/js/myPage/myPage.js}"></script>
-  </body>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+        integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script th:src="@{/js/fragment/header.js}"></script>
+<script th:src="@{/js/myPage/myPage.js}"></script>
+</body>
 </html>

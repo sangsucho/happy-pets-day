@@ -27,7 +27,7 @@ public class ReviewRestController {
     // 리뷰 작성
     @PostMapping("/register")
     public void reviewRegister(@RequestBody SitterReviewDto sitterReviewDto, HttpServletRequest req) {
-        Long userNumber = (Long)req.getSession().getAttribute("userNumber");
+        Long userNumber = (Long) req.getSession().getAttribute("userNumber");
         sitterReviewDto.setUserNumber(userNumber);
 
         sitterReviewService.register(sitterReviewDto);

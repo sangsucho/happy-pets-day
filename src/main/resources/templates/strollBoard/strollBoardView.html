@@ -65,10 +65,12 @@
                 <div class="profile-card">
                     <div class="profile-info">
                         <!-- 반려동물 이미지 분기처리 -->
-                            <img src="https://lifet.co.kr/img/profile/default.png" alt="" class="default-profile" th:if="*{petFileName==null}">
+                        <img src="https://lifet.co.kr/img/profile/default.png" alt="" class="default-profile"
+                             th:if="*{petFileName==null}">
 
-                            <img th:src="@{/petFile/display(fileName=*{petFileUploadPath+'/th_'+petFileUuid+'_'+petFileName})}" alt=""
-                                 class="default-profile"  th:unless="*{petFileName==null}">
+                        <img th:src="@{/petFile/display(fileName=*{petFileUploadPath+'/th_'+petFileUuid+'_'+petFileName})}"
+                             alt=""
+                             class="default-profile" th:unless="*{petFileName==null}">
                     </div>
                     <div class="profile-info2">
                         <div class="name">이름 :<b th:text="*{petName}"></b></div>
@@ -132,7 +134,6 @@
             <ul class="page-ul">
             </ul>
         </div>
-
 
 
     </div>

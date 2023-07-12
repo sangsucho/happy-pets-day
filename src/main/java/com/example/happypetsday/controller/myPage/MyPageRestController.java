@@ -16,9 +16,9 @@ public class MyPageRestController {
     private final PetService petService;
     private final MypageService mypageService;
 
-//    마이펫 수정 창 띄우기
+    //    마이펫 수정 창 띄우기
     @GetMapping("/myPet/editPet/{petNumber}")
-    public PetVo getMyPetInfo(@PathVariable("petNumber") Long petNumber){
+    public PetVo getMyPetInfo(@PathVariable("petNumber") Long petNumber) {
         return petService.findPetByPetNumber(petNumber);
     }
 

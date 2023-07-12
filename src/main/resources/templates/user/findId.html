@@ -1,70 +1,70 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <link rel="stylesheet" th:href="@{/css/user/findId.css}" />
-  <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
-  <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/user/findId.css}"/>
+    <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
 </head>
 <body>
 <header th:replace="fragment/header :: header"></header>
 <div class="body">
-  <div class="main">
-    <div class="main-container">
-      <div class="sign-wrap">
-        <div class="sign-form">
-<!--          <form action="" class="find-account">-->
-            <ul class="page-tab">
-              <li class="active">
-                <a th:href="@{/user/findId}" style="color: black">아이디 찾기</a>
-              </li>
-              <li>
-                <a th:href="@{/user/findPW}">비밀번호 찾기</a>
-              </li>
-            </ul>
-            <div class="find-id">
-              <div class="step-wrap-active">
-                <div class="alert">
-                  "회원가입 시 입력했던 이름과 핸드폰번호를 입력해주세요."
+    <div class="main">
+        <div class="main-container">
+            <div class="sign-wrap">
+                <div class="sign-form">
+                    <!--          <form action="" class="find-account">-->
+                    <ul class="page-tab">
+                        <li class="active">
+                            <a th:href="@{/user/findId}" style="color: black">아이디 찾기</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/user/findPW}">비밀번호 찾기</a>
+                        </li>
+                    </ul>
+                    <div class="find-id">
+                        <div class="step-wrap-active">
+                            <div class="alert">
+                                "회원가입 시 입력했던 이름과 핸드폰번호를 입력해주세요."
+                            </div>
+                            <div class="field">
+                                <input
+                                        type="text"
+                                        name
+                                        class="required"
+                                        placeholder="이름 입력"
+                                        id="userName"
+                                        maxlength="10"
+                                        required
+                                />
+                            </div>
+                            <!-- <p class="confirmMsg"></p> -->
+                            <div class="field">
+                                <input
+                                        type="tel"
+                                        name
+                                        class="required"
+                                        placeholder="핸드폰 번호(-제외)를 입력해주세요."
+                                        id="userPhoneNumber"
+                                        pattern="[0-9]{3}[0-9]{3,4}[0-9]{4}"
+                                        maxlength="11"
+                                        required
+                                />
+                            </div>
+                            <p class="confirmMsg"></p>
+                            <button type="submit" class="submit-find" id="submit-find-id">
+                                아이디 찾기
+                            </button>
+                        </div>
+                    </div>
+                    <!--          </form>-->
                 </div>
-                <div class="field">
-                  <input
-                          type="text"
-                          name
-                          class="required"
-                          placeholder="이름 입력"
-                          id="userName"
-                          maxlength="10"
-                          required
-                  />
-                </div>
-                <!-- <p class="confirmMsg"></p> -->
-                <div class="field">
-                  <input
-                          type="tel"
-                          name
-                          class="required"
-                          placeholder="핸드폰 번호(-제외)를 입력해주세요."
-                          id="userPhoneNumber"
-                          pattern="[0-9]{3}[0-9]{3,4}[0-9]{4}"
-                          maxlength="11"
-                          required
-                  />
-                </div>
-                <p class="confirmMsg"></p>
-                <button type="submit" class="submit-find" id="submit-find-id">
-                  아이디 찾기
-                </button>
-              </div>
             </div>
-<!--          </form>-->
         </div>
-      </div>
     </div>
-  </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:src="@{/js/user/findId.js}"></script>

@@ -19,10 +19,9 @@ public class SitterRestController {
     private final SitterService sitterService;
 
 
-
     @PostMapping("/reserve")
-    public RedirectView sitterProfile( HttpServletRequest req, SitterReservationDto sitterReservationDto){
-        sitterReservationDto.setUserNumber((Long)req.getSession().getAttribute("userNumber"));
+    public RedirectView sitterProfile(HttpServletRequest req, SitterReservationDto sitterReservationDto) {
+        sitterReservationDto.setUserNumber((Long) req.getSession().getAttribute("userNumber"));
 
         sitterService.registerReserve(sitterReservationDto);
 
@@ -38,8 +37,6 @@ public class SitterRestController {
                 .collect(Collectors.toList());
         return reservationDates;
     }
-
-
 
 
 }
