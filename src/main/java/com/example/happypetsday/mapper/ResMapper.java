@@ -17,4 +17,10 @@ public interface ResMapper {
 
     // 예약상태 변경
     void update(ResVo resVo);
+
+    // 펫시터 예약확인
+    List<ResVo> selectResForSitter(@Param("sitterNumber") Long sitterNumber, @Param("criteria") Criteria criteria);
+
+    // 펫시터 예약확인 '거절'
+    void updateForSitter(ResVo resVo);
 }
