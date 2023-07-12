@@ -17,4 +17,16 @@ public class SitterVo {
     private String ApplyFileName;
     private String ApplyFileUuid;
 //    Long ApplyNumber;
+    private String userId;
+    private String petFieldName;
+    private String userPhoneNumber;
+    private int reviewCount;
+    private double reviewAvg;
+    private String statusName;
+    private String userName;
+    private String userGender;
+    private String userEmail;
+    private String userBirth;
+    private String userAddress;
+    private String userAddressDetail;
 }
