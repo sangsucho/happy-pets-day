@@ -11,4 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LocSearchController {
     @GetMapping("/list")
     public String list() {return "locSearch/medicine";}
+    @GetMapping("/pharmacy")
+    public String pharmacy() {return "locSearch/pharmacy";}
 }
