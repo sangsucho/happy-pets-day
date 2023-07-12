@@ -128,4 +128,17 @@ $('.update-btn').on('click', function() {
 });
 
 // '다시 예약하기' 클릭 > 해당 펫시터 예약 페이지로 이동
+$('.r-res').on('click', function() {
+    let sitterNumber = $(this).closest('#contents-box').find('#sitterNumber').val();
+    console.log(sitterNumber);
+    window.location.href = '/sitter/profile?sitterNumber='+sitterNumber;
+});
+
+// '리뷰 보기' 클릭 > 해당 펫시터의 예약 페이지로 이동
+$('.my-review').on('click', function() {
+    let sitterNumber = $(this).closest('#contents-box').find('#sitterNumber').val();
+    console.log(sitterNumber);
+    window.location.href = '/sitter/profile?sitterNumber='+sitterNumber;
+});
+
 

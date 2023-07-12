@@ -161,7 +161,7 @@
 
         <div class="pagination">
           <ul>
-            <li  th:if="${pageInfo.prev}">
+            <li th:if="${pageInfo.prev}">
               <a th:href="@{/myPage/reservationList/(page=${pageInfo.startPage-1})}" class="prev">&lt;</a>
             </li>
 
@@ -179,6 +179,7 @@
             </li>
           </ul>
         </div>
+      </div>
     </section>
 
     <!-- Footer -->
@@ -189,6 +190,7 @@
             crossorigin="anonymous"
     ></script>
     <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+    <script th:src="@{/js/fragment/myPageSidebar.js}"></script>
     <script th:src="@{/js/fragment/header.js}"></script>
     <script th:src="@{/js/reviewModal/reviewModal.js}"></script>
     <script th:src="@{/js/myPage/reservation-user.js}"></script>
