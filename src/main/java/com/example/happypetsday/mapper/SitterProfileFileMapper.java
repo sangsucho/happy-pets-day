@@ -8,7 +8,8 @@ import java.util.List;
 
 @Mapper
 public interface SitterProfileFileMapper {
-    List<SitterProfileFileDto> selectFile(long sitterNumber);
+    List<SitterProfileFileDto> selectFile(Long sitterNumber);
     void insert(SitterProfileFileDto sitterProfileFileDto);
-    void delete(long sitterNumber);
+    void update(SitterProfileFileDto sitterProfileFileDto);
+    void delete(Long sitterNumber);
 }
