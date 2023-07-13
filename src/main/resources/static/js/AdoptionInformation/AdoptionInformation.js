@@ -23,7 +23,6 @@ function viewList() {
 }
 
 function makeList(obj) {
-    console.log(obj);
     let li = "";
     let i = 1;
     obj.forEach(b => {
@@ -41,14 +40,17 @@ function makeList(obj) {
             petSpcs = '강아지';
         }
 
+        let imgSrc = b.IMAGE_URL !== "" ? `https://animal.seoul.go.kr/comm/getImage?srvcId=MEDIA&upperNo=${b.ANIMAL_NO}&fileTy=ADOPTIMG&fileNo=1&thumb` : "https://lifet.co.kr/img/profile/default.png";
+
         li += `
       <li class="board-data">
         <a href="http://localhost:10000/adopt/detailByMain?petNumber=${i++}" class="adopt-section-content" class="slide-card">
           <span class="board-img">
             <img
-              src="https://animal.seoul.go.kr/comm/getImage?srvcId=MEDIA&upperNo=${b.ANIMAL_NO}&fileTy=ADOPTIMG&fileNo=1&thumb"
+              src="${imgSrc}"
               alt=""
               class="card-img"
+              onerror="this.src='https://lifet.co.kr/img/profile/default.png';"
             />
           </span>
           <div class="board-text">
@@ -58,14 +60,11 @@ function makeList(obj) {
           </div>
         </a>
       </li>
-      `;
+    `;
     });
-
 
     $(".content-list").html(li);
 }
-
-// a herf="javascript-void(0)"
 
 // 검색 버튼 클릭 이벤트 처리
 $(".search-form").on("submit", function (e) {
