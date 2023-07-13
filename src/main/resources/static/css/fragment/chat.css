@@ -374,3 +374,16 @@
     top: 20px;
     cursor: pointer;
 }
+
+/* 사용자채팅 불가 안내 메세지 */
+
+#chat--screen .tmp-container{
+    height: 65px;
+    border-bottom: 1px solid #d6d6d6;
+    padding-left: 15px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
