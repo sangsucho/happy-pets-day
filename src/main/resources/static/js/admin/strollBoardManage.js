@@ -22,7 +22,6 @@ function searchAjax(keyword,page,searchList,showSearchPage) {
         data: {keyword: keyword},
         dataType: "json",
         success: function (data) {
-            console.log(data);
             searchList(data.postList);
             showSearchPage(data.pageVo);
         },
@@ -36,7 +35,7 @@ function searchAjax(keyword,page,searchList,showSearchPage) {
 function searchList(postList) {
     // 검색 결과가 없는 경우 처리
     if (postList.length === 0) {
-        $(".board-table tbody").html('<tr><td colspan="4" align="center">등록된 회원이 없습니다.</td></tr>');
+        $(".board-table tbody").html('<tr><td colspan="5" align="center">등록된 게시글 없습니다.</td></tr>');
         return;
     }
 
@@ -48,7 +47,7 @@ function searchList(postList) {
                         <td class="no">${board.strollBoardNumber}</td>
 
                         <td class="title">
-                            <a href="/stroll/view?strollBoardNumber=${board.strollBoardNumber}" >${board.strollBoardTitle}</a>
+                            <a href="javascript:void(0)" data-boardurl="/stroll/view?strollBoardNumber=${board.strollBoardNumber}">${board.strollBoardTitle}</a>
                          </td>
                         <td class="author">${board.userId}</td>
                         <td class="date">${board.strollBoardMeetingDate}</td>
@@ -64,7 +63,6 @@ function searchList(postList) {
 
 //  검색조회결과 페이징 처리
 function showSearchPage(pageVo) {
-    console.log(pageVo);
     let pageText = '';
 
     if (pageVo.prev) {
@@ -94,4 +92,16 @@ $('.page-ul').on('click','a', function (){
     let page = $(this).data('page');
 
     searchAjax(keyword, page, searchList, showSearchPage);
-})
+});
+
+//산책게시판 게시글로 이동할 때
+$('.stroll-board-list').on('click','a',function (e){
+    e.preventDefault();
+    let boardUrl =$(this).data('boardurl');
+    localStorage.removeItem('url');
+    localStorage.setItem('url', '/admin/strollBoardManage');
+    window.location.href =boardUrl;
+});
+
+
+
