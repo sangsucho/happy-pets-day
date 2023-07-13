@@ -16,6 +16,12 @@
         VALUES (SEQ_SITTER_PROFILE_FILE.NEXTVAL, #{sitterNumber}, #{sitterProfileFileName}, #{sitterProfileUuid}, #{sitterProfileUploadPath})
     </insert>
 
+    <update id="update">
+        UPDATE TBL_SITTER_PROFILE_FILE
+        SET  SITTER_PROFILE_FILE_NAME = #{sitterProfileFileName}, SITTER_PROFILE_UUID =#{sitterProfileUuida}, SITTER_PROFILE_UPLOAD_PATH=#{sitterProfileUploadPath}
+        WHERE SITTER_NUMBER = #{sitterNumber}
+    </update>
+
     <delete id="delete">
         DELETE
         FROM TBL_SITTER_PROFILE_FILE
