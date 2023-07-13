@@ -9,6 +9,8 @@
     <link rel="stylesheet" th:href="@{/css/strollBoard/strollBoardList.css}">
     <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
     <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/fragment/chat.css}">
 
 </head>
 
@@ -98,8 +100,14 @@
 </div>
 
 <footer th:replace="fragment/footer :: footer"></footer>
+
+<th:block th:unless="${session.userNumber==null}">
+    <div id="chat--screen" th:replace="fragment/chat :: chat"></div>
+</th:block>
+
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <script th:src="@{/js/fragment/header.js}"></script>
+<script type="module" th:src="@{/js/fragment/chat.js}"></script>
 </body>
 
 </html>
