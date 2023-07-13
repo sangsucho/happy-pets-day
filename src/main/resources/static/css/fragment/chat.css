@@ -143,7 +143,7 @@
 }
 
 #chat--screen .user-message {
-    text-align: right;
+    text-align: left;
     justify-content: right;
     margin-left: 20px;
 }

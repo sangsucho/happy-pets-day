@@ -53,7 +53,6 @@ $('.board-delete-btn').on('click', function () {
     if (window.confirm('해당 게시글을 삭제하시겠습니까?')) {
         let boardNumber = $('.boardNum').val();
         window.location.href = '/stroll/remove?strollBoardNumber=' + boardNumber;
-    } else {
     }
 });
 
@@ -244,40 +243,3 @@ $('.reply-list-wrap').on('click', '.delete1', function (){
     }
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
