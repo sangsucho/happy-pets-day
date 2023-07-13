@@ -73,9 +73,11 @@
     </select>
 
     <select id="selectSitterUser" resultType="Long">
-        SELECT COUNT(SITTER_NUMBER)
-        FROM TBL_SITTER
-        WHERE SITTER_STATUS = 'Y'
+        SELECT  COUNT(S.SITTER_NUMBER)
+        FROM TBL_USER U
+                 JOIN TBL_SITTER S
+                      ON U.USER_NUMBER = S.USER_NUMBER
+        WHERE S.SITTER_STATUS = 'Y'  AND U.USER_STATUS = 2
     </select>
 
     <select id="selectUnapprovedSitter" resultType="Long">
