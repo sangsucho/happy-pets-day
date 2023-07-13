@@ -74,4 +74,22 @@ public interface AdminMapper {
 
     // applyStatus '승인 거절'로 변경
     public void changeStatusRefuse(SitterApplyVo sitterApplyVo);
+
+    //펫시터회원 전체 조회(펫시터회원관리)
+    public List<SitterVo> selectAllSitter(Criteria criteria);
+
+    //전체 게시글 수 조회(펫시터회원관리)
+    public int selectTotalSitter();
+
+    // 회원id로 검색(펫시터회원관리)
+    public List<SitterVo> searchId(@Param("criteria") Criteria criteria, @Param("keyword") String keyword);
+
+    // 회원id로 검색조회결과 게시글 수
+    public int searchIdCount(@Param("keyword") String keyword);
+
+    //펫시터회원(1명) 상세 조회(펫시터회원관리)
+    public SitterVo selectSitterOne(Long sitterNumber);
+
+    // 회원등급(SitterStatus) 수정 - 시터->일반회원 강등
+    public void updateDemotion(SitterVo sitterVo);
 }
