@@ -143,7 +143,7 @@
 }
 
 #chat--screen .user-message {
-    text-align: right;
+    text-align: left;
     justify-content: right;
     margin-left: 20px;
 }
@@ -373,4 +373,17 @@
     left: 309px;
     top: 20px;
     cursor: pointer;
+}
+
+/* 사용자채팅 불가 안내 메세지 */
+
+#chat--screen .tmp-container{
+    height: 65px;
+    border-bottom: 1px solid #d6d6d6;
+    padding-left: 15px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
 }
