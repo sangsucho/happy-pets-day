@@ -51,52 +51,38 @@
 
         <!-- <th:block th:if="${not #lists.isEmpty(boardList)}">
             <tr th:each="board : ${boardList}"> -->
-        <td class="no">1</td>
-        <td class="user-id">
-          <a href="#">
-            aa123
-          </a>
-        </td>
-        <td class="specialty">강아지, 고양이</td>
-        <td class="phone-num">010-1234-5678</td>
-        <td class="review">20</td>
-        <td class="average">3.9</td>
-        </tr>
-
-        <!-- 더미데이터 예시 -->
-        <td class="no">2</td>
-        <td class="user-id">
-          <a href="#">
-            bb123
-          </a>
-        </td>
-        <td class="specialty">강아지, 고양이, 기타</td>
-        <td class="phone-num">010-2222-3333</td>
-        <td class="review">32</td>
-        <td class="average">4.8</td>
-        </tr>
-        <!-- 더미데이터 예시 -->
+<!--        <td class="no">1</td>-->
+<!--        <td class="user-id">-->
+<!--          <a href="#">-->
+<!--            aa123-->
+<!--          </a>-->
+<!--        </td>-->
+<!--        <td class="specialty">강아지, 고양이</td>-->
+<!--        <td class="phone-num">010-1234-5678</td>-->
+<!--        <td class="review">20</td>-->
+<!--        <td class="average">3.9</td>-->
+<!--        </tr>-->
 
         <!-- </th:block>
         <th:block th:unless="${not #lists.isEmpty(boardList)}"> -->
-        <tr>
-          <td colspan="6" align="center">등록된 회원이 없습니다.</td>
-        </tr>
+<!--        <tr>-->
+<!--          <td colspan="6" align="center">등록된 회원이 없습니다.</td>-->
+<!--        </tr>-->
         <!-- </th:block> -->
 
         <!-- ========== /게시글 목록 예시 =========== -->
         </tbody>
       </table>
       <div class="pagination">
-        <ul>
+        <ul class="page-ul">
           <!-- ========== 페이징 처리 예시 ============ -->
-          <li><a href="#" class="prev">&lt;</a></li>
-          <li><a href="#" class="active">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li><a href="#" class="next">&gt;</a></li>
+<!--          <li><a href="#" class="prev">&lt;</a></li>-->
+<!--          <li><a href="#" class="active">1</a></li>-->
+<!--          <li><a href="#">2</a></li>-->
+<!--          <li><a href="#">3</a></li>-->
+<!--          <li><a href="#">4</a></li>-->
+<!--          <li><a href="#">5</a></li>-->
+<!--          <li><a href="#" class="next">&gt;</a></li>-->
           <!-- ========== /페이징 처리 예시 ============ -->
         </ul>
       </div>
@@ -113,6 +99,7 @@
 <footer th:replace="fragment/adminFooter :: adminFooter"></footer>
 <script th:src="@{/js/fragment/header.js}"></script>
 <script th:src="@{/js/fragment/adminStatistics.js}"></script>
+<script th:src="@{/js/admin/petsitterManage.js}"></script>
 </body>
 
 </html>

@@ -39,7 +39,10 @@
         </tr>
         <tr>
           <th>아이디</th>
-          <td th:text="${user.userId}"><a href=""></a></td>
+
+          <td>
+            <a th:href="@{/myPage/myPage(userNumber=${user.userNumber})}" th:text="${user.userId}"></a>
+            </td>
         </tr>
         <tr>
           <th>이름</th>
