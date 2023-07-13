@@ -34,16 +34,36 @@ public class OpenAiController {
                 "우리 사이트의 이름은 Happy Pet's Day 이고 반려동물에 대한 여러 서비스를 제공하고 있어" +
                 "주요 기능은 같이 반려동물 산책할 사람을 구하기, 펫시터 지원 및 예약, 반려동물 추천," +
                 "반려동물 입양 관련 정보 제공 등의 기능이 있어." +
-                "산책게시판의 url은 /stroll/list이고, 반려동물 추천 url은 /recommend/main," +
-                "펫 시터 예약 url은 /sitter/list, 반려동물 입양 정보 url은 /adopt/list 이야" +
-                "각 사이트로 이동을 해야하는 질문이 들어오면 " +
-                "<a href=\"\" style=\" font-weight: bolder; font-size: 20px; color: #68a5fe;\"></a>" +
-                "이 a태그로 href에는 알려준 url 태그내용에는 각 서비스의 이름을 적어줘" +
-                "절대 url을 직접 보여주지 말고 태그의 href에 담고 태그안에는 서비스 이름을 적어야 해" +
-                "사용자가 서비스에 대해서 물어보면 해당 링크로 이동 할 수 있게끔 해줘. 만약 답변하기 어렵운 질문이 오거나 " +
+                "우리사이트에 기능이나 서비스에 대한 질문이 들어오면 이전 질문을 토대로 해당 서비스를" +
+                "바로 이용할 수 있게" +
+                "1. <a href=\"/stroll/list\" style=\"font-weight: bolder; font-size: 20px; color: #68a5fe;\">산책메이트 구하기</a>\n" +
+                "2. <a href=\"/sitter/list\" style=\" font-weight: bolder; font-size: 20px; color: #68a5fe;\">펫시터 예약</a>\n" +
+                "3. <a href=\"/adopt/list\" style=\" font-weight: bolder; font-size: 20px; color: #68a5fe;\">반려동물 입양 정보</a>\n" +
+                "4. <a href=\"/recommend/main\" style=\" font-weight: bolder; font-size: 20px; color: #68a5fe;\">반려동물 추천</a>" +
+                "이런식으로 a태그 안에 위에 알려준 html태그 그대로 서비스명과 url을 담아서 알려줘" +
+                "만약 답변하기 어렵운 질문이 오거나 " +
                 "사용자가 불평을 하면 위로해주고 111-111-1111 우리 회사번호를 알려주고 여기로 연락을 달라고 해주면 돼" +
                 "답변은 최대한 간단하게 해줘");
+
         list.add(0,system);
+        AiChatVo user = new AiChatVo();
+        user.setRole("user");
+        user.setContent("이 사이트는 어떤 기능이나 서비스 있어?");
+        list.add(1,user);
+        AiChatVo assistant = new AiChatVo();
+        assistant.setRole("assistant");
+        assistant.setContent("Happy Pet's Day 웹 사이트에는 다음과 같은 서비스들이 있습니다\n" +
+                "1. <a href=\"/stroll/list\" style=\"font-weight: bolder; font-size: 20px; color: #68a5fe;\">산책메이트 구하기</a> : 반려동물과 함께 산책할 파트너를 찾을 수 있는 서비스입니다.\n" +
+                "2. <a href=\"/sitter/list\" style=\" font-weight: bolder; font-size: 20px; color: #68a5fe;\">펫시터 예약</a>: 여행이나 일상 생활 중에 반려동물을 맡길 수 있는 펫시터를 예약할 수 있는 서비스입니다.\n" +
+                "3. <a href=\"/adopt/list\" style=\" font-weight: bolder; font-size: 20px; color: #68a5fe;\">반려동물 입양 정보</a>: 입양하고 싶은 반려동물에 대한 정보와 입양 신청을 할 수 있는 서비스입니다.\n" +
+                "4. <a href=\"/recommend/main\" style=\" font-weight: bolder; font-size: 20px; color: #68a5fe;\">반려동물 추천</a>: 자신의 생활 방식과 성향에 맞는 반려동물을 추천받을 수 있는 서비스입니다.\n" +
+                "5. 기타 궁금한 사항이나 문의사항에 대해서는 고객센터를 통해 문의하실 수 있습니다.\n" +
+                "원하시는 서비스를 이용하시려면 해당 서비스의 링크를 클릭하시면 됩니다.");
+        list.add(2,assistant);
+
+        System.out.println("==================");
+        System.out.println(list);
+        System.out.println("==================");
 
         Map<String, Object> reqBody = new HashMap<>();
         reqBody.put("model", "gpt-3.5-turbo");
