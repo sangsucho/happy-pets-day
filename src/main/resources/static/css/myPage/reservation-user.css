@@ -183,3 +183,8 @@
     border-color: #68a5fe;
     color: #fff;
 }
+
+.notExist-res {
+  text-align: center;
+  font-size: 20px;
+}

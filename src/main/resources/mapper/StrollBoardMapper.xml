@@ -160,6 +160,7 @@
     <select id="selectTotalMypageBoard" resultType="_int">
         SELECT COUNT(STROLL_BOARD_NUMBER)
         FROM TBL_STROLL_BOARD
+        WHERE USER_NUMBER = #{userNumber}
     </select>
 
     <select id="selectMainList" resultType="strollBoardVo">

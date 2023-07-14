@@ -1,5 +1,6 @@
 package com.example.happypetsday.controller.myPage;
 
+import com.example.happypetsday.mapper.UserMapper;
 import com.example.happypetsday.service.myPage.MypageService;
 import com.example.happypetsday.service.pet.PetService;
 import com.example.happypetsday.service.sitter.SitterService;

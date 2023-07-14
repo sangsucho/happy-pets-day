@@ -79,7 +79,6 @@
           AND FIND_PASSWORD_ANSWER = #{answer}
     </select>
 
-
     <!-- 비밀번호 찾기 -->
     <select id="getUserPassword" resultType="String">
         SELECT USER_PASSWORD
