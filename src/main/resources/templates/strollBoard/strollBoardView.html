@@ -68,15 +68,9 @@
                         <img src="https://lifet.co.kr/img/profile/default.png" alt="" class="default-profile"
                              th:if="*{petFileName==null}">
 
-                        <<<<<<< HEAD
-                        <img th:src="@{/petFile/display(fileName=*{petFileUploadPath+'/th_'+petFileUuid+'_'+petFileName})}"
-                             alt=""
-                             class="default-profile" th:unless="*{petFileName==null}">
-                        =======
                         <img th:src="@{/petFile/display(fileName=*{petFileUploadPath+'/'+petFileUuid+'_'+petFileName})}"
                              alt=""
                              class="default-profile" th:unless="*{petFileName==null}">
-                        >>>>>>> dddec9df833a64c68a68f6682c6c3d24f22143fe
                     </div>
                     <div class="profile-info2">
                         <div class="name">이름 :<b th:text="*{petName}"></b></div>
