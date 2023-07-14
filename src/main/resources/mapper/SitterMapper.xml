@@ -197,7 +197,7 @@
 
     <!--    시터 리뷰-->
     <select id="selectSitterReview" resultType="sitterReviewVo">
-        SELECT u.USER_NAME, sr.REVIEW_SCORE, sr.REVIEW_CONTENT, sr.REVIEW_DATE
+        SELECT u.USER_NUMBER, sr.REVIEW_NUMBER, u.USER_NAME, sr.REVIEW_SCORE, sr.REVIEW_CONTENT, sr.REVIEW_DATE
         FROM TBL_SITTER_REVIEW sr
                  JOIN TBL_USER u
                       ON sr.USER_NUMBER = u.USER_NUMBER
@@ -209,6 +209,18 @@
         FROM TBL_SITTER_REVIEW
         WHERE SITTER_NUMBER = #{sitterNumber}
     </select>
+
+    <update id="updateMyReview">
+        UPDATE TBL_SITTER_REVIEW
+        SET REVIEW_CONTENT = #{reviewContent}, REVIEW_SCORE = #{reviewScore} ,REVIEW_DATE = SYSDATE
+        WHERE REVIEW_NUMBER =#{reviewNumber}
+    </update>
+
+    <delete id="deleteReview">
+        DELETE
+        FROM TBL_SITTER_REVIEW
+        WHERE REVIEW_NUMBER = #{reviewNumber}
+    </delete>
 
 
     <!--    시터 수정-->
