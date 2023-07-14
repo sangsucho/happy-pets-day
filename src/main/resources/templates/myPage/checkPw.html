@@ -19,35 +19,9 @@
 <!-- Header -->
 <header th:replace="fragment/header :: header"></header>
 
-<section id="container">
-    <!-- 왼쪽 탭 목록 -->
-    <div class="mypage-left">
-        <div class="color-text">
-            <span class="font-bold user-name">박광인</span>
-            <span>님의 마이페이지</span>
-        </div>
+    <section id="container">
+      <!-- 왼쪽 탭 목록 -->
 
-        <ul>
-            <li>
-                <h3>나의 정보</h3>
-                <a th:href="@{/myPage/checkPw}"> 회원정보 관리 </a>
-            </li>
-            <li>
-                <h3>나의 반려동물</h3>
-                <a th:href="@{/myPage/checkPw}"> 프로필 관리 </a>
-            </li>
-            <li>
-                <h3>펫시터</h3>
-                <a href="">내 소개</a>
-                <a th:href="@{/myPage/checkPw}">예약 내역 </a>
-                <a th:href="@{/myPage/checkPw}">예약 확인 </a>
-            </li>
-            <li>
-                <h3>나의 게시물</h3>
-                <a th:href="@{/myPage/checkPw}">산책 모임</a>
-            </li>
-        </ul>
-    </div>
 
     <!-- 오른쪽 컨텐츠 -->
     <div class="mypage-right">
@@ -79,11 +53,12 @@
         </div>
     </div>
 </section>
+    <!-- Footer -->
+    <footer th:replace="fragment/footer :: footer"></footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/fragment/myPageSidebar.js}"></script>
+    <script th:src="@{/js/fragment/header.js}"></script>
+    <script th:src="@{/js/myPage/checkPw.js}"></script>
+  </body>
 
-<!-- Footer -->
-<footer th:replace="fragment/footer :: footer"></footer>
-<script th:src="@{/js/fragment/myPageSidebar.js}"></script>
-<script th:src="@{/js/fragment/header.js}"></script>
-<script th:src="@{/js/myPage/checkPw.js}"></script>
-</body>
 </html>
