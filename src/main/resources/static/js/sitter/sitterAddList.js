@@ -189,3 +189,14 @@ function onlynumber(str) {
   str = String(str);
   return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g,'$1');
 }
+
+function validateFiles() {
+  var fileInput = document.getElementById("post-image");
+  var files = fileInput.files;
+
+  if (files.length === 0) {
+    alert("상세 페이지 배경을 선택해주세요.");
+    return false; // 전송 막기
+  }
+  return true; // 전송 허용
+}

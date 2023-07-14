@@ -20,7 +20,7 @@
 </div>
 <div style="display: flex; justify-content: center; padding-bottom: 200px">
     <div class="main">
-        <form th:action="@{/sitter/sendModify}" method="post" enctype="multipart/form-data">
+        <form th:action="@{/sitter/sendModify}" method="post" enctype="multipart/form-data" onsubmit="return validateFiles();">
             <div style="margin-top: 100px;" th:with="sitterInfo =${info}">
                 <p class="p-text">제목 작성하기</p>
 

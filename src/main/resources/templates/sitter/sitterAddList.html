@@ -22,7 +22,7 @@
     <div style="display: flex; justify-content: center; padding-bottom: 200px">
       <div class="main">
         <p class="p-text">제목 작성하기</p>
-        <form th:action="@{/sitter/addList}" method="post" enctype="multipart/form-data">
+        <form th:action="@{/sitter/addList}" method="post" enctype="multipart/form-data" onsubmit="return validateFiles();">
           <input type="hidden" name="sitterNumber">
           <div class="apply-sitter">
             <div class="box-padding">
