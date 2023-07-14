@@ -1,5 +1,6 @@
 package com.example.happypetsday.service.sitter;
 
+import com.example.happypetsday.dto.SitterFileDto;
 import com.example.happypetsday.dto.SitterProfileFileDto;
 import com.example.happypetsday.mapper.SitterProfileFileMapper;
 import lombok.RequiredArgsConstructor;
@@ -104,4 +105,27 @@ public class SitterProfileFileService {
     private String getUploadPath() {
         return new SimpleDateFormat("yyyy/MM/dd").format(new Date());
     }
+
+//    시터 번호로 실제 파일에 있는 시터 프로필사진 삭제
+public void removeSitterProfileFile(Long sitterNumber){
+    if (sitterNumber == null) {
+        throw new IllegalArgumentException("시터 번호 누락(file)");
+    }
+    List<SitterProfileFileDto> fileList = sitterProfileFileMapper.select(sitterNumber);
+
+    for(SitterProfileFileDto file : fileList){
+        File target = new File(fileDir,file.getSitterProfileUploadPath()+"/"+file.getSitterProfileUuid()+"_"+file.getSitterProfileFileName());
+        File thumbnail = new File(fileDir,file.getSitterProfileUploadPath()+"/th_"+ file.getSitterProfileUuid()+"_"+file.getSitterProfileFileName());
+
+        if(target.exists()){
+            target.delete();
+        }
+        if(thumbnail.exists()){
+            thumbnail.delete();
+        }
+    }
+
+}
+
+
 }

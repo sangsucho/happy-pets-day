@@ -11,5 +11,7 @@ public interface SitterFileMapper {
     void insert(SitterFileDto sitterFileDto);
     void update(SitterFileDto sitterFileDto);
     void delete(Long sitterNumber);
+//    시터넘버로 해당 시터의 모든 파일정보 가져오기
+    List<SitterFileDto> select(Long sitterNumber);
 
 }
