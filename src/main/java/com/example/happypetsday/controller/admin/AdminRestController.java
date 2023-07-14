@@ -139,7 +139,8 @@ public class AdminRestController {
 
 //        sitterVo.setUserNumber(sitterVo.getUserNumber());
         adminService.modifyDemotion(sitterVo);
-
         adminService.restoreUser(userDto);
+        adminService.removeSitterField(sitterVo.getUserNumber());
+        adminService.removeLicense(sitterVo.getUserNumber());
     }
 }

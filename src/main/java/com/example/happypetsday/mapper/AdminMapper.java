@@ -87,9 +87,15 @@ public interface AdminMapper {
     // 회원id로 검색조회결과 게시글 수
     public int searchIdCount(@Param("keyword") String keyword);
 
-    //펫시터회원(1명) 상세 조회(펫시터회원관리)
+    // 펫시터회원(1명) 상세 조회(펫시터회원관리)
     public SitterVo selectSitterOne(Long sitterNumber);
 
     // 회원등급(SitterStatus) 수정 - 시터->일반회원 강등
     public void updateDemotion(SitterVo sitterVo);
+
+    // 펫시터 전문분야 삭제(강등 시 사용)
+    public void deleteSitterField(Long userNumber);
+
+    // 펫시터 자격증 삭제(강등 시 사용)
+    public void deleteLicense(Long userNumber);
 }

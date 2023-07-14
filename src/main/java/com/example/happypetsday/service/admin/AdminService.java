@@ -240,6 +240,24 @@ public class AdminService {
         }
         adminMapper.updateDemotion(sitterVo);
     }
+
+    // 펫시터 전문분야 삭제(강등 시 사용)
+    public void removeSitterField(Long userNumber) {
+        if (userNumber == null) {
+            throw new IllegalArgumentException("회원 정보가 없습니다.");
+        }
+
+        adminMapper.deleteSitterField(userNumber);
+    }
+
+    // 펫시터 자격증 삭제(강등 시 사용)
+    public void removeLicense(Long userNumber) {
+        if (userNumber == null) {
+            throw new IllegalArgumentException("회원 정보가 없습니다.");
+        }
+
+        adminMapper.deleteLicense(userNumber);
+    }
 }
 
 

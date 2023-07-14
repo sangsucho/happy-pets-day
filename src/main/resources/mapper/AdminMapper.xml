@@ -152,6 +152,7 @@
         SELECT F.SITTER_FIELD_NUMBER, F.PET_FIELD_NAME, F.USER_NUMBER, A.APPLY_NUMBER
         FROM TBL_SITTER_FIELD F JOIN TBL_SITTER_APPLY A ON F.USER_NUMBER  = A.USER_NUMBER
         WHERE APPLY_NUMBER = #{applyNumber}
+        ORDER BY SITTER_FIELD_NUMBER
     </select>
 
     <update id="changeStatus">
@@ -271,4 +272,12 @@
         SET SITTER_STATUS = #{sitterStatus}
         WHERE SITTER_NUMBER = #{sitterNumber}
     </update>
+
+    <delete id="deleteSitterField">
+        DELETE FROM TBL_SITTER_FIELD tsf WHERE USER_NUMBER = #{userNumber}
+    </delete>
+
+    <delete id="deleteLicense">
+        DELETE FROM TBL_SITTER_APPLY_LICENSE_FILE tsalf WHERE USER_NUMBER = #{userNumber}
+    </delete>
 </mapper>

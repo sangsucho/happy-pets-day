@@ -22,7 +22,7 @@
     <h2 class="guide-menu">일반회원 상세정보</h2>
     <div class="bottom-bar"></div>
 
-    <div class="detailed-guide">* 회원 아이디를 클릭 시 해당회원의 마이페이지로 이동합니다.</div>
+<!--    <div class="detailed-guide">* 회원 아이디를 클릭 시 해당회원의 마이페이지로 이동합니다.</div>-->
 
     <div class="container">
 
@@ -40,9 +40,7 @@
         <tr>
           <th>아이디</th>
 
-          <td>
-            <a th:href="@{/myPage/myPage(userNumber=${user.userNumber})}" th:text="${user.userId}"></a>
-            </td>
+          <td th:text="${user.userId}"></td>
         </tr>
         <tr>
           <th>이름</th>

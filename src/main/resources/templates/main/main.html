@@ -89,7 +89,7 @@
                 </div>
                 <div class="board-section-body-list">
                     <!--                        게시판 리스트 3개 반복 href 게시글 보기 설정-->
-                    <a class="board-list" th:href="@{stroll/view(strollBoaardNumber=${board.strollBoardNumber})}"
+                    <a class="board-list" th:href="@{stroll/view(strollBoardNumber=${board.strollBoardNumber})}"
                        th:each="board : ${boardList}">
                         <div class="board-list-container">
                             <div class="board-title-container">

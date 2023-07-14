@@ -14,12 +14,16 @@ function sitterModify(sitterNumber) {
     let sitterStatus = $('.btn-degrade').val();
     let userStatus = $('.user-status').val();
     let userNumber = $('.user-number').val();
+    let petFieldName = $('.pet-FieldName').val();
+    let applyFileTitle = $('.apply-FileTitle').val();
 
     let sitter = {
         sitterNumber:sitterNumber,
         sitterStatus:sitterStatus,
         userNumber:userNumber,
-        userStatus:userStatus
+        userStatus:userStatus,
+        petFieldName:petFieldName,
+        applyFileTitle:applyFileTitle
     }
     console.log(sitter);
 

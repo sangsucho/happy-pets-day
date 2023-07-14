@@ -46,6 +46,7 @@
                 <tr>
                     <th>전문 분야</th>
                     <td th:text="${sitter.petFieldName}"></td>
+                    <input type="hidden" class="pet-FieldName" th:value="${sitter.petFieldName}">
                 </tr>
                 <tr>
                     <th>아이디</th>
@@ -89,6 +90,7 @@
                 <tr>
                     <th class="table-head-left-bottom">경력･자격증</th>
                     <td th:text="${sitter.applyFileTitle}"></td>
+                    <input type="hidden" class="apply-FileTitle" th:value="${sitter.applyFileTitle}">
                 </tr>
                 </tbody>
             </table>
