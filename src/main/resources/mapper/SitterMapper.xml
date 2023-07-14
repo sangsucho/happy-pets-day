@@ -39,6 +39,11 @@
         VALUES (#{applyNumber}, #{applyContent}, SYSDATE, #{userNumber})
     </insert>
 
+    <select id="selectUserInfo" resultType="userDto">
+        SELECT USER_NUMBER, USER_NAME, TO_CHAR(USER_BIRTH, 'YYYY-mm-DD') USER_BIRTH, USER_PHONE_NUMBER, USER_ADDRESS FROM TBL_USER
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
+
 
     <!--    시터 필드-->
     <insert id="insertField">
@@ -137,9 +142,11 @@
     </select>
 
     <select id="selectSitterProfile" resultType="sitterProfileFileDto">
-        SELECT SITTER_PROFILE_FILE_NAME, SITTER_PROFILE_UUID, SITTER_PROFILE_UPLOAD_PATH, SITTER_NUMBER
-        FROM TBL_SITTER_PROFILE_FILE
-        WHERE SITTER_NUMBER = #{sitterNumber}
+        SELECT s.SITTER_NUMBER, sf.SITTER_PROFILE_FILE_NAME, sf.SITTER_PROFILE_UUID, sf.SITTER_PROFILE_UPLOAD_PATH
+        FROM TBL_SITTER s
+                 LEFT JOIN TBL_SITTER_PROFILE_FILE sf
+                           ON sf.SITTER_NUMBER = s.SITTER_NUMBER
+        WHERE s.SITTER_NUMBER =  #{sitterNumber}
     </select>
 
     <select id="selectApplyFile" resultType="sitterApplyLicenseFile">

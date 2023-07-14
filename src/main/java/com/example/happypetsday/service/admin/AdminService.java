@@ -2,10 +2,7 @@ package com.example.happypetsday.service.admin;
 
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.mapper.AdminMapper;
-import com.example.happypetsday.vo.Criteria;
-import com.example.happypetsday.vo.SitterApplyVo;
-import com.example.happypetsday.vo.StrollBoardVo;
-import com.example.happypetsday.vo.UserVo;
+import com.example.happypetsday.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -105,7 +102,7 @@ public class AdminService {
         return resultList;
     }
 
-    // userId와 게시물제목으로 검색결과 게시글 수
+    // userId와 게시물제목으로 검색결과 게시글 수(산책게시판관리)
     @Transactional(readOnly = true)
     public int searchNumTitleCount(String keyword) {
         return adminMapper.searchNumTitleCount(keyword);
@@ -206,6 +203,52 @@ public class AdminService {
         adminMapper.changeStatusRefuse(sitterApplyVo);
     }
 
+    // 전체 조회(펫시터회원관리)
+    @Transactional(readOnly = true)
+    public List<SitterVo> findAllSitter(Criteria criteria){
+        return adminMapper.selectAllSitter(criteria);
+    }
+
+    // 전체 게시글 수 조회(펫시터회원관리)
+    @Transactional(readOnly = true)
+    public int getTotalSitter(){
+        return adminMapper.selectTotalSitter();
+    }
+
+    // userId로 검색(펫시터회원관리)
+    @Transactional(readOnly = true)
+    public List<SitterVo> searchSitter(Criteria criteria, String keyword){
+        List<SitterVo> resultList = adminMapper.searchId(criteria, keyword);
+        return resultList;
+    }
+
+    // userId로 검색결과 게시글 수(펫시터회원관리)
+    @Transactional(readOnly = true)
+    public int getSearchTotalSitter(String keyword){
+        return adminMapper.searchIdCount(keyword);
+    }
+
+    /**
+     * 펫시터회원 1명 상세정보 조회(펫시터회원-회원상세정보)
+     * @param sitterNumber
+     * @throws IllegalArgumentException 존재하지 않는 회원 sitterNumber로 조회하는 경우
+     */
+    @Transactional(readOnly = true)
+    public SitterVo findSitterUser(Long sitterNumber){
+        if(sitterNumber==null){
+            throw new IllegalArgumentException("회원번호가 없습니다.");
+        }
+        return Optional.ofNullable(adminMapper.selectSitterOne(sitterNumber))
+                .orElseThrow(()->{ throw new IllegalArgumentException("존재하지 않는 회원입니다.");});
+    }
+
+    // 수정(회원등급 변경)-펫시터->일반회원 강등
+    public void modifyDemotion(SitterVo sitterVo){
+        if(sitterVo == null){
+            throw new IllegalArgumentException("회원 정보가 없습니다.");
+        }
+        adminMapper.updateDemotion(sitterVo);
+    }
 }
 
 

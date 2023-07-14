@@ -351,5 +351,60 @@ $(document).ready(function () {
             }
         }
     });
-});
 
+    var genderField = $("#selectedGender");
+    if (genderField.val() === "") {
+      incompleteFields.push(genderField);
+    }
+
+    var questionField = $("#selectedQuestion");
+    if (questionField.text() === "질문 선택") {
+      incompleteFields.push(questionField);
+    }
+
+    var agreeCheckbox = $(".all");
+    if (!agreeCheckbox.prop("checked")) {
+      incompleteFields.push(agreeCheckbox);
+    }
+
+    // 비밀번호 유효성 검사 추가
+    var pwInput = $("#pw");
+    var pwConfirmMsg = pwInput.next(".confirmMsg");
+
+    if (
+        !/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,15}$/.test(
+            pwInput.val()
+        )
+    ) {
+      incompleteFields.push(pwInput);
+      pwConfirmMsg.text(
+          "8~15 글자의 문자/숫자/특수문자 필수 조합이어야 합니다."
+      );
+      pwConfirmMsg.css("display", "block");
+    } else {
+      pwConfirmMsg.text("");
+      pwConfirmMsg.css("display", "none");
+    }
+
+    if (incompleteFields.length > 0) {
+      event.preventDefault();
+
+      var firstIncompleteField = incompleteFields[0];
+      var confirmMsg = firstIncompleteField.parent().find(".confirmMsg");
+
+      // 입력되지 않은 필드로 스크롤 이동
+      var fieldTopOffset = firstIncompleteField.offset().top - 300;
+      $("html, body").animate({ scrollTop: fieldTopOffset }, "slow");
+
+      // 입력되지 않은 필드를 강조하기 위해 confirmMsg에 메시지 표시
+      confirmMsg.text("필수 입력 부분입니다.");
+      confirmMsg.css("display", "block");
+
+      if (firstIncompleteField.attr("id") === "selectedQuestion") {
+        // 보안질문을 선택하지 않은 경우 경고 메시지 표시
+        var questionConfirmMsg = firstIncompleteField.next(".confirmMsg");
+        questionConfirmMsg.text("질문을 선택해주세요.");
+        questionConfirmMsg.css("display", "block");
+      }
+    }
+  });

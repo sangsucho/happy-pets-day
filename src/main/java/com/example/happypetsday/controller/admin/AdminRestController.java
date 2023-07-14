@@ -108,4 +108,34 @@ public class AdminRestController {
         adminService.modifyStatusRefuse(sitterApplyVo);
     }
 
+    // 펫시터회원관리 검색 기능
+    @GetMapping("/sitterSearch/{page}")
+    public Map<String,Object> searchSitter(@RequestParam("keyword") String keyword,@PathVariable("page")int page) {
+
+        // 검색어와 기본 페이지 정보를 설정하여 검색 결과를 가져옴
+        int searchTotalSitter = adminService.getSearchTotalSitter(keyword);
+        Criteria criteria = new Criteria(page, 10);  // 예시로 페이지 1, 10개씩 가져오도록 설정
+        List<SitterVo> sitterList = adminService.searchSitter(criteria, keyword);
+        PageVo pageVo = new PageVo(criteria,searchTotalSitter);
+        Map<String,Object> searchSitterMap = new HashMap<>();
+        searchSitterMap.put("pageVo",pageVo);
+        searchSitterMap.put("sitterList",sitterList);
+        searchSitterMap.put("searchTotalSitter", searchTotalSitter);
+
+        return searchSitterMap;
+    }
+
+    // sitterStatus '일반회원'으로 변경(강등)
+    @PatchMapping("/demotion")
+    public void statusModifyDemotion(@RequestBody SitterVo sitterVo){
+        UserDto userDto = new UserDto();
+
+        userDto.setUserNumber(sitterVo.getUserNumber());
+        userDto.setUserStatus(sitterVo.getUserStatus());
+
+//        sitterVo.setUserNumber(sitterVo.getUserNumber());
+        adminService.modifyDemotion(sitterVo);
+
+        adminService.restoreUser(userDto);
+    }
 }

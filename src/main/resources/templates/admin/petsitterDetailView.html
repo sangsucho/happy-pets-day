@@ -30,68 +30,80 @@
                 <tbody>
                 <tr>
                     <th class="table-head-left">회원번호</th>
-                    <td>14</td>
+                    <td th:text="${sitter.userNumber}"></td>
+                    <input type="hidden" class="user-number" th:value="${sitter.userNumber}">
                 </tr>
                 <tr>
                     <th>펫시터 번호</th>
-                    <td>3</td>
+                    <td th:text="${sitter.sitterNumber}"></td>
+                    <input type="hidden" class="sitter-number" th:value="${sitter.sitterNumber}">
                 </tr>
                 <tr>
                     <th>등급명</th>
-                    <td>펫시터</td>
+                    <td th:text="${sitter.statusName}"></td>
+                    <input type="hidden" class="user-status" value="1">
                 </tr>
                 <tr>
                     <th>전문 분야</th>
-                    <td>강아지, 고양이, 기타</td>
+                    <td th:text="${sitter.petFieldName}"></td>
                 </tr>
                 <tr>
                     <th>아이디</th>
-                    <td><a href="">aa123</a></td>
+                    <td>
+                        <a th:href="@{/sitter/profile(sitterNumber=${sitter.sitterNumber})}" th:text="${sitter.userId}"></a>
+                    </td>
+
                 </tr>
                 <tr>
                     <th>이름</th>
-                    <td>홍길동</td>
+                    <td th:text="${sitter.userName}"></td>
                 </tr>
                 <tr>
                     <th>성별</th>
-                    <td>M</td>
+                    <td th:text="${sitter.userGender}"></td>
                 </tr>
                 <tr>
                     <th>이메일</th>
-                    <td>aa123@naver.com</td>
+                    <td th:text="${sitter.userEmail}"></td>
                 </tr>
                 <tr>
                     <th>생일</th>
-                    <td>1995-01-01</td>
+                    <td th:text="${sitter.userBirth}"></td>
                 </tr>
                 <tr>
                     <th>연락처</th>
-                    <td>010-1234-5678</td>
+                    <td th:text="${sitter.userPhoneNumber}"></td>
                 </tr>
                 <tr>
                     <th>주소</th>
-                    <td>서울시 송파구 마천로23 현대아파트 111동 202호</td>
+                    <td th:text="${sitter.userAddress}+${sitter.userAddressDetail==null?'':sitter.userAddressDetail}"></td>
                 </tr>
                 <tr>
                     <th>후기</th>
-                    <td>20</td>
+                    <td th:text="${sitter.reviewCount}+' 개'"></td>
                 </tr>
                 <tr>
                     <th>평균평점</th>
-                    <td>3.5</td>
+                    <td th:text="${sitter.reviewAvg}+' 점'"></td>
                 </tr>
                 <tr>
                     <th class="table-head-left-bottom">경력･자격증</th>
-                    <td>반려동물관리사, 반려견전문가(민간자격증)</td>
+                    <td th:text="${sitter.applyFileTitle}"></td>
                 </tr>
                 </tbody>
             </table>
 
             <div class="button-wrap">
-                <button type="button" class="btn-degrade">강등</button>
-                <button type="button" class="btn-delete">회원 삭제</button>
+                <button type="button" class="btn-degrade" value="N" data-confirm="회원 강등하시겠습니까?" data-user-number="123">
+                    강등
+                </button>
+                <button type="button" class="btn-delete" value="-1" data-confirm="회원 삭제하시겠습니까?" data-user-number="456">
+                    회원 삭제
+                </button>
             </div>
 
+
+        </div>
 
         </div>
 
@@ -102,6 +114,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <footer th:replace="fragment/adminFooter :: adminFooter"></footer>
 <script th:src="@{/js/fragment/header.js}"></script>
+<script th:src="@{/js/admin/petsitterDetailView.js}"></script>
 </body>
 
 </html>

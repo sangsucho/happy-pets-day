@@ -2,20 +2,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>strollBoardModify</title>
-    <link rel="stylesheet" th:href="@{/css/strollBoard/strollBoardWrite.css}">
-    <link rel="stylesheet" as="style" crossorigin
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css"/>
-    <!-- 달력apiCss -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
-          integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link rel="stylesheet" th:href="@{/css/strollBoard/calenderApi.css}">
-    <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
-    <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>strollBoardModify</title>
+  <link rel="stylesheet" th:href="@{/css/strollBoard/strollBoardWrite.css}">
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css" />
+  <!-- 달력apiCss -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+    integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" th:href="@{/css/strollBoard/calenderApi.css}">
+  <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+  <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"/>
+  <link rel="stylesheet" th:href="@{/css/fragment/chat.css}">
 </head>
 
 <body>
@@ -116,22 +118,26 @@
     </form>
 </div>
 <footer th:replace="fragment/footer :: footer"></footer>
-<script>
+<th:block th:unless="${session.userNumber==null}">
+  <div id="chat--screen" th:replace="fragment/chat :: chat"></div>
+</th:block>
+
+  <script>
     const boardLat = [[${board.strollBoardLat}]];
     const boardLng = [[${board.strollBoardLng}]];
-</script>
-<!-- 폰트어썸 -->
-<script src="https://kit.fontawesome.com/c6992f5b12.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-<!-- 달력Api js -->
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-<script th:src="@{/js/strollBoard/boardModifyCalenderApi.js}"></script>
-<!-- 카카오지도Api js -->
-<script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3dc12d7c2624483dc7c019a0a91b727f&libraries=services"></script>
-<script th:src="@{/js/strollBoard/boardModifyKakaoMapApi.js}"></script>
-<script th:src="@{/js/strollBoard/strollBoardModify.js}"></script>
-<script th:src="@{/js/fragment/header.js}"></script>
+  </script>
+  <!-- 폰트어썸 -->
+  <script src="https://kit.fontawesome.com/c6992f5b12.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+  <!-- 달력Api js -->
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script th:src="@{/js/strollBoard/boardModifyCalenderApi.js}"></script>
+  <!-- 카카오지도Api js -->
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3dc12d7c2624483dc7c019a0a91b727f&libraries=services"></script>
+  <script th:src="@{/js/strollBoard/boardModifyKakaoMapApi.js}"></script>
+  <script th:src="@{/js/strollBoard/strollBoardModify.js}"></script>
+  <script th:src="@{/js/fragment/header.js}"></script>
+  <script type="module" th:src="@{/js/fragment/chat.js}"></script>
 
 </body>
 

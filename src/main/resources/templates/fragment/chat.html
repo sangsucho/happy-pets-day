@@ -24,7 +24,7 @@
             <div id="connect-chatbot" class="chatbot-room">
 
                 <div class="chat-bot-img-box">
-                    <img th:src="@{img/chatbot.png}" alt="" class="chat-bot-img">
+                    <img th:src="@{/img/chatbot.png}" alt="" class="chat-bot-img">
                 </div>
 
                 <div class="chat-bot-info-box">
@@ -45,39 +45,43 @@
 
             </div>
             <ul class="chat-room-list">
+                <!--회원간 채팅불가 안내 메세지-->
+                <li class="tmp-container">
+                    회원 간의 채팅 기능은 준비 중입니다!
+                </li>
 
                 <!-- 채팅방 반복 시작-->
-                <li class="chat-room ">
-                    <div class="chat-bot-img-box">
-                        <img src="https://lifet.co.kr/img/profile/default.png" alt="" class="chat-bot-img">
-                    </div>
+<!--                <li class="chat-room ">-->
+<!--                    <div class="chat-bot-img-box">-->
+<!--                        <img src="https://lifet.co.kr/img/profile/default.png" alt="" class="chat-bot-img">-->
+<!--                    </div>-->
 
-                    <div class="chat-bot-info-box ">
-                        <div class="chat--bot-name-and-time">
-                            <div class="chat--bot-name show-chat">
-                                상대방 아이디
-                            </div>
-                            <div class="chat-time-box">
-                                18:02
-                            </div>
+<!--                    <div class="chat-bot-info-box ">-->
+<!--                        <div class="chat&#45;&#45;bot-name-and-time">-->
+<!--                            <div class="chat&#45;&#45;bot-name show-chat">-->
+<!--                                상대방 아이디-->
+<!--                            </div>-->
+<!--                            <div class="chat-time-box">-->
+<!--                                18:02-->
+<!--                            </div>-->
 
-                        </div>
-                        <div class="user---msg">
-                            어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구
-                        </div>
+<!--                        </div>-->
+<!--                        <div class="user-&#45;&#45;msg">-->
+<!--                            어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구-->
+<!--                        </div>-->
 
-                    </div>
-                    <span class="chat--more-dot">
-              <i class="fa-solid fa-ellipsis-vertical"></i>
-            </span>
+<!--                    </div>-->
+<!--                    <span class="chat&#45;&#45;more-dot">-->
+<!--              <i class="fa-solid fa-ellipsis-vertical"></i>-->
+<!--            </span>-->
 
-                    <button type="button" class="chat-room-exit-btn">
-                        나가기
-                        <i class="fa-solid fa-door-open" style="color: #ff0000;"></i>
-                    </button>
+<!--                    <button type="button" class="chat-room-exit-btn">-->
+<!--                        나가기-->
+<!--                        <i class="fa-solid fa-door-open" style="color: #ff0000;"></i>-->
+<!--                    </button>-->
 
-                    <a href=""></a>
-                </li>
+<!--                    <a href=""></a>-->
+<!--                </li>-->
                 <!-- 채팅방 반복 끝-->
 
             </ul>

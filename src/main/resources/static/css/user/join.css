@@ -94,15 +94,16 @@
 
 /* 확인 메시지 스타일 */
 .confirmMsg {
-    padding-top: 5px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    min-height: 30px;
-    line-height: 1.5em;
-    color: #dc2a2a;
-    word-break: keep-all;
-    opacity: 1;
+  padding-top: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-height: 30px;
+  line-height: 1.5em;
+  color: #dc2a2a;
+  word-break: keep-all;
+  opacity: 1;
+  margin: 5px 0 5px 0;
 }
 
 /* 생년월일 입력 필드 스타일 */

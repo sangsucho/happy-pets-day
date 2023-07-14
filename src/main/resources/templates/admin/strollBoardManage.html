@@ -44,7 +44,7 @@
                     </tr>
                     </thead>
                 </div>
-                <tbody>
+                <tbody class="stroll-board-list">
                 <!-- ========== 게시글 목록 예시 =========== -->
 
                 <!--        <th:block th:unless="${#lists.isEmpty(boardList)}">-->
@@ -88,11 +88,13 @@
         </div>
 
 
+
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <footer th:replace="fragment/adminFooter :: adminFooter"></footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:src="@{/js/fragment/header.js}"></script>
 <script th:src="@{/js/fragment/adminStatistics.js}"></script>
 <script th:src="@{/js/admin/strollBoardManage.js}"></script>

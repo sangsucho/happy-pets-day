@@ -22,6 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
         fillStars.style.width = fillWidth;
     }
 
-    handleRating(averageRating);
+    handleRating();
 });
 

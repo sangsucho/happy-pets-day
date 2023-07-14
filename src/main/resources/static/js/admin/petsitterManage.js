@@ -2,7 +2,7 @@
 $('.search-txt').on('keypress', function (e) {
     if (e.code == 'Enter') {
         let message = $(this).val();
-        searchAjax(message, 1, searchList, showSearchPage);
+        searchAjax(message,1,searchList,showSearchPage);
     }
 });
 
@@ -10,54 +10,57 @@ $('.search-txt').on('keypress', function (e) {
 $(".search-button").click(function () {
     let keyword = $(".search-txt").val();  // 입력된 검색어 가져오기
     // Ajax를 통해 검색 결과 요청
-    searchAjax(keyword, 1, searchList, showSearchPage);
+    searchAjax(keyword,1,searchList,showSearchPage);
 });
 
-searchAjax('', 1, searchList, showSearchPage);
+searchAjax('',1,searchList,showSearchPage);
 
-function searchAjax(keyword, page, searchList, showSearchPage) {
+function searchAjax(keyword,page,searchList,showSearchPage) {
     $.ajax({
-        url: `/usersManage/postSearch/${page}`,
+        url: `/usersManage/sitterSearch/${page}`,
         type: "get",
-        data: {keyword: keyword},
+        data:{keyword: keyword},
         dataType: "json",
         success: function (data) {
-            searchList(data.postList);
+            console.log(data);
+            searchList(data.sitterList);
             showSearchPage(data.pageVo);
         },
         error: function (xhr, status, error) {
-            console.log(error);
+            console.error(error);
         }
     });
 }
 
 
-function searchList(postList) {
+function searchList(sitterList) {
     // 검색 결과가 없는 경우 처리
-    if (postList.length === 0) {
-        $(".board-table tbody").html('<tr><td colspan="5" align="center">등록된 게시글 없습니다.</td></tr>');
+    if (sitterList.length === 0) {
+        $(".board-table tbody").html('<tr><td colspan="6" align="center">등록된 회원이 없습니다.</td></tr>');
         return;
     }
 
     // 검색 결과를 템플릿에 바인딩하여 업데이트
-    let postListHtml = "";
-    postList.forEach(function (board) {
-        postListHtml += `
-                    <tr>
-                        <td class="no">${board.strollBoardNumber}</td>
+    let sitterListHtml = "";
+    sitterList.forEach(function (sitter) {
 
-                        <td class="title">
-                            <a href="javascript:void(0)" data-boardurl="/stroll/view?strollBoardNumber=${board.strollBoardNumber}">${board.strollBoardTitle}</a>
+        sitterListHtml += `
+                    <tr>
+                        <td class="no">${sitter.sitterNumber}</td>
+
+                        <td class="user-id">
+                            <a href="/admin/petsitterDetailView?sitterNumber=${sitter.sitterNumber}" >${sitter.userId}</a>
                          </td>
-                        <td class="author">${board.userId}</td>
-                        <td class="date">${board.strollBoardMeetingDate}</td>
-                        <td class="location">${board.strollBoardAdminDistrict}</td>
+                        <td class="specialty" >${sitter.petFieldName}</td>
+                        <td class="phone-num" >${sitter.userPhoneNumber}</td>
+                        <td class="review" >${sitter.reviewCount}</td>
+                        <td class="average" >${sitter.reviewAvg}</td>
                     </tr>
                 `;
 
     });
 
-    $(".board-table tbody").html(postListHtml);
+    $(".board-table tbody").html(sitterListHtml);
 
 }
 
@@ -87,21 +90,9 @@ function showSearchPage(pageVo) {
     $('.page-ul').html(pageText);
 }
 
-$('.page-ul').on('click', 'a', function () {
+$('.page-ul').on('click','a', function (){
     let keyword = $(".search-txt").val();
     let page = $(this).data('page');
 
     searchAjax(keyword, page, searchList, showSearchPage);
-});
-
-//산책게시판 게시글로 이동할 때
-$('.stroll-board-list').on('click','a',function (e){
-    e.preventDefault();
-    let boardUrl =$(this).data('boardurl');
-    localStorage.removeItem('url');
-    localStorage.setItem('url', '/admin/strollBoardManage');
-    window.location.href =boardUrl;
-});
-
-
-
+})

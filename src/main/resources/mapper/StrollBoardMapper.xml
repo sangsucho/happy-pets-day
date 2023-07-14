@@ -177,15 +177,21 @@
         <![CDATA[
              WHERE ROWNUM <= 3
                  ]]>
-        <if test="firstBoolean">
-            AND STROLL_BOARD_ADMIN_DISTRICT LIKE '%'||#{addressFirst}||'%'
-        </if>
-        <if test="secondBoolean">
-            AND STROLL_BOARD_ADMIN_DISTRICT LIKE '%'||#{addressSecond}||'%'
-        </if>
-        ORDER BY B.STROLL_BOARD_NUMBER DESC
-        )
-        WHERE RN > #{size}
+             <if test="!(firstBoolean) and addressFirst !=null">
+                 AND NOT(STROLL_BOARD_ADMIN_DISTRICT LIKE '%'||#{addressFirst}||'%')
+             </if>
+            <if test="firstBoolean">
+             AND STROLL_BOARD_ADMIN_DISTRICT LIKE '%'||#{addressFirst}||'%'
+            </if>
+             <if test="!(secondBoolean) and addressSecond !=null">
+                 AND NOT(STROLL_BOARD_ADMIN_DISTRICT LIKE '%'||#{addressSecond}||'%')
+             </if>
+            <if test="secondBoolean">
+             AND STROLL_BOARD_ADMIN_DISTRICT LIKE '%'||#{addressSecond}||'%'
+            </if>
+             ORDER BY B.STROLL_BOARD_NUMBER DESC
+         )
+         WHERE RN > #{size}
 
 
     </select>

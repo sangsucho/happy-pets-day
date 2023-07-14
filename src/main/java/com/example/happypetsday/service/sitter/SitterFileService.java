@@ -31,7 +31,6 @@ public class SitterFileService {
         if (sitterFileDto == null) {
             throw new IllegalArgumentException("시터 배경파일 누락");
         }
-
         fileMapper.insert(sitterFileDto);
     }
 

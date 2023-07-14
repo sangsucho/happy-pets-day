@@ -27,10 +27,8 @@ public class SitterProfileFileService {
     @Value("${sitterProfile.dir}")
     private String fileDir;
 
-    public void register(SitterProfileFileDto sitterProfileFileDto) {
-        if (sitterProfileFileDto == null) {
-            throw new IllegalArgumentException("파일 정보 누락");
-        }
+    public void register(SitterProfileFileDto sitterProfileFileDto){
+//        if(sitterProfileFileDto == null) { throw new IllegalArgumentException("파일 정보 누락"); }
 
         sitterProfileFileMapper.insert(sitterProfileFileDto);
     }

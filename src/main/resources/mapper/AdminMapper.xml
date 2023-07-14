@@ -224,4 +224,104 @@
         SET APPLY_STATUS='승인 거절'
         WHERE APPLY_NUMBER = #{applyNumber}
     </update>
+
+    <select id="selectAllSitter">
+        SELECT USER_NUMBER, SITTER_NUMBER, USER_ID, PET_FIELD_NAME,
+        USER_PHONE_NUMBER ,REVIEW_COUNT, REVIEW_AVG
+        FROM(
+        SELECT ROWNUM RN, USER_NUMBER,  SITTER_NUMBER, USER_ID, PET_FIELD_NAME,
+        USER_PHONE_NUMBER ,REVIEW_COUNT,  REVIEW_AVG
+        FROM(
+        SELECT U.USER_NUMBER,  S.SITTER_NUMBER, U.USER_ID,
+        NVL(
+        (SELECT LISTAGG(PET_FIELD_NAME  , ', ') WITHIN GROUP (ORDER BY SITTER_FIELD_NUMBER)
+        FROM TBL_SITTER_FIELD SF
+        WHERE USER_NUMBER = U.USER_NUMBER) ,'없음'
+        ) AS PET_FIELD_NAME,
+        U.USER_PHONE_NUMBER ,COUNT(REVIEW_NUMBER) AS REVIEW_COUNT, NVL(AVG(REVIEW_SCORE), 0) AS REVIEW_AVG
+        FROM TBL_USER U
+        JOIN TBL_SITTER S
+        ON U.USER_NUMBER =S.USER_NUMBER
+        LEFT JOIN TBL_SITTER_REVIEW SR
+        ON S.SITTER_NUMBER = SR.SITTER_NUMBER
+        GROUP BY S.SITTER_NUMBER, U.USER_ID, U.USER_PHONE_NUMBER, U.USER_NUMBER
+        ORDER BY S.SITTER_NUMBER DESC
+        ) B1
+            <![CDATA[
+        WHERE ROWNUM <= #{page} * #{amount}
+            ]]>
+        )
+        WHERE RN  > ( #{criteria.page} - 1 ) * #{criteria.amount}
+    </select>
+
+    <select id="selectTotalSitter" resultType="_int">
+        SELECT COUNT(SITTER_NUMBER) FROM TBL_SITTER
+    </select>
+
+    <select id="searchId" resultType="sitterVo">
+        SELECT USER_NUMBER,  SITTER_NUMBER, USER_ID, PET_FIELD_NAME,
+        USER_PHONE_NUMBER ,REVIEW_COUNT,  REVIEW_AVG
+        FROM(
+        SELECT ROWNUM RN, USER_NUMBER,  SITTER_NUMBER, USER_ID, PET_FIELD_NAME,
+        USER_PHONE_NUMBER ,REVIEW_COUNT,  REVIEW_AVG
+        FROM(
+        SELECT U.USER_NUMBER,  S.SITTER_NUMBER, U.USER_ID,
+        NVL(
+        (SELECT LISTAGG(PET_FIELD_NAME  , ', ') WITHIN GROUP (ORDER BY SITTER_FIELD_NUMBER)
+        FROM TBL_SITTER_FIELD SF
+        WHERE USER_NUMBER = U.USER_NUMBER) ,'없음'
+        ) AS PET_FIELD_NAME,
+        U.USER_PHONE_NUMBER ,COUNT(REVIEW_NUMBER) AS REVIEW_COUNT, NVL(AVG(REVIEW_SCORE), 0) AS REVIEW_AVG
+        FROM TBL_USER U
+        JOIN TBL_SITTER S
+        ON U.USER_NUMBER =S.USER_NUMBER AND USER_ID LIKE '%' || #{keyword} ||'%' AND S.SITTER_STATUS ='Y' AND U.USER_STATUS = 2
+        LEFT JOIN TBL_SITTER_REVIEW SR
+        ON S.SITTER_NUMBER = SR.SITTER_NUMBER
+        GROUP BY S.SITTER_NUMBER, U.USER_ID, U.USER_PHONE_NUMBER, U.USER_NUMBER
+        ORDER BY S.SITTER_NUMBER DESC
+        ) B1
+        <![CDATA[
+        WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+            ]]>
+        )
+        WHERE RN  > ( #{criteria.page} - 1 ) * #{criteria.amount}
+    </select>
+
+    <select id="searchIdCount" resultType="_int">
+        SELECT COUNT(SITTER_NUMBER)
+        FROM TBL_USER U
+                 JOIN TBL_SITTER S
+                      ON U.USER_NUMBER =S.USER_NUMBER AND S.SITTER_STATUS ='Y' AND U.USER_STATUS = 2
+        WHERE USER_ID LIKE '%' || #{keyword} || '%'
+    </select>
+
+    <select id="selectSitterOne" resultType="sitterVo">
+        SELECT U.USER_NUMBER,  S.SITTER_NUMBER, U.USER_ID, US.STATUS_NAME ,
+               NVL(
+                       (SELECT LISTAGG(PET_FIELD_NAME  , ', ') WITHIN GROUP (ORDER BY SITTER_FIELD_NUMBER)
+                           FROM TBL_SITTER_FIELD SF
+                           WHERE USER_NUMBER = U.USER_NUMBER) ,'없음'
+			) AS PET_FIELD_NAME,U.USER_NAME ,U.USER_GENDER,U.USER_EMAIL, TO_CHAR(U.USER_BIRTH,'YYYY-MM-DD') AS USER_BIRTH ,
+               U.USER_PHONE_NUMBER ,COUNT(REVIEW_NUMBER) AS REVIEW_COUNT, NVL(AVG(REVIEW_SCORE), 0) AS REVIEW_AVG,
+               U.USER_ADDRESS,U.USER_ADDRESS_DETAIL  ,
+               NVL((SELECT LISTAGG(APPLY_FILE_TITLE  , ', ')  WITHIN GROUP (ORDER BY APPLY_FILE_TITLE )
+        FROM TBL_SITTER_APPLY_LICENSE_FILE
+        WHERE USER_NUMBER = U.USER_NUMBER),'없음') AS APPLY_FILE_TITLE
+
+        FROM TBL_USER_STATUS US
+            JOIN TBL_USER U
+        ON US.STATUS_NUMBER = U.USER_STATUS
+            JOIN TBL_SITTER S
+            ON U.USER_NUMBER =S.USER_NUMBER AND S.SITTER_NUMBER = #{sitterNumber}
+            LEFT JOIN TBL_SITTER_REVIEW SR
+            ON S.SITTER_NUMBER = SR.SITTER_NUMBER
+        GROUP BY S.SITTER_NUMBER, U.USER_ID, U.USER_PHONE_NUMBER, U.USER_NUMBER,US.STATUS_NAME,
+            U.USER_NAME,U.USER_GENDER,U.USER_EMAIL, U.USER_BIRTH,U.USER_ADDRESS,U.USER_ADDRESS_DETAIL
+    </select>
+
+    <update id="updateDemotion">
+        UPDATE TBL_SITTER
+        SET SITTER_STATUS = #{sitterStatus}
+        WHERE SITTER_NUMBER = #{sitterNumber}
+    </update>
 </mapper>

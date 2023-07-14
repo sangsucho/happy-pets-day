@@ -29,12 +29,21 @@ public class AdminController {
     }
 
     @GetMapping("/petsitterDetailView")
-    public String petsitterDetailView() {
+    public String petsitterDetailView(Long sitterNumber, Model model){
+        SitterVo sitterVo = adminService.findSitterUser(sitterNumber);
+
+        model.addAttribute("sitter", sitterVo);
+
         return "admin/petsitterDetailView";
     }
 
     @GetMapping("/petsitterManage")
-    public String petsitterManage() {
+    public String petsitterManage(Model model){
+//        Criteria criteria = new Criteria();
+//        List<SitterVo> sitterList = adminService.findAllSitter(criteria);
+//
+//        model.addAttribute("sitterList", sitterList);
+//        model.addAttribute("pageInfo", new PageVo(criteria, adminService.getTotalSitter()));
         return "admin/petsitterManage";
     }
 

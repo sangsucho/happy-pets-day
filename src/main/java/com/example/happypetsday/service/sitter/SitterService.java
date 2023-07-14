@@ -40,6 +40,13 @@ public class SitterService {
         return sitterMapper.selectSitterInfo(userNumber);
     }
 
+    public UserDto findUserInfo(Long userNumber){
+        if (userNumber == null) {
+            throw new IllegalArgumentException("회원번호가 없습니다.");
+        }
+        return sitterMapper.selectUserInfo(userNumber);
+    }
+
 
     //    시터 게시글
     public void addList(SitterDto sitterDto) {
@@ -116,11 +123,9 @@ public class SitterService {
         if (sitterNumber == null) {
             throw new IllegalArgumentException("펫시터 번호가 없습니다");
         }
-        return Optional.ofNullable(sitterMapper.selectSitterProfile(sitterNumber))
-                .orElseThrow(() -> {
-                    throw new IllegalArgumentException("시터프로필이 없습니다.");
-                });
+        return sitterMapper.selectSitterProfile(sitterNumber);
     }
+
 
     @Transactional(readOnly = true)
     public List<SitterApplyLicenseFile> findLicenseFile(Long userNumber) {
