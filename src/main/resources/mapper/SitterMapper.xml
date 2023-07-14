@@ -205,6 +205,18 @@
         WHERE SITTER_NUMBER = #{sitterNumber}
     </select>
 
+    <update id="updateMyReview">
+        UPDATE TBL_SITTER_REVIEW
+        SET REVIEW_CONTENT = #{reviewContent}, REVIEW_SCORE = #{reviewScore} ,REVIEW_DATE = SYSDATE
+        WHERE REVIEW_NUMBER =#{reviewNumber}
+    </update>
+
+    <delete id="deleteReview">
+        DELETE
+        FROM TBL_SITTER_REVIEW
+        WHERE REVIEW_NUMBER = #{reviewNumber}
+    </delete>
+
 
     <!--    시터 수정-->
     <select id="sitterUploadNumber" resultType="sitterDto">

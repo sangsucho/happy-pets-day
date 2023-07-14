@@ -184,6 +184,14 @@ public class SitterService {
         return sitterMapper.reviewCntAndScoreAvg(sitterNumber);
     }
 
+    public void modifyMyReview(SitterReviewDto sitterReviewDto){
+        sitterMapper.updateMyReview(sitterReviewDto);
+    }
+
+    public void removeReview(Long reviewNumber){
+        sitterMapper.deleteReview(reviewNumber);
+    }
+
     //    시터 수정
     public SitterDto sitterInfoUpload(Long sitterNumber) {
         if (sitterNumber == null) {

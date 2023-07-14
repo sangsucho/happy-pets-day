@@ -53,7 +53,7 @@
                                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                             </div>
                         </div>
-                        <span th:text="${sitter.scoreAvg}"></span>
+                        <span th:text="${#numbers.formatDecimal(sitter.scoreAvg,1,1)}"></span>
                         <div class="bar"></div>
                         <span>후기 <span th:text="${sitter.reviewCnt}"></span> 개</span>
                     </div>

@@ -22,7 +22,82 @@
 <body>
 <header th:replace="fragment/header :: header"></header>
 <!--모달-->
+<div id="modal-container" >
+    <div id="profile-box">
+        <div class="profile-header">
+            <div class="profile-title">
+                <h3>후기 수정</h3>
+            </div>
+            <div class="btn-close">
+                <img src="../../img/pngwing.com.png" alt="닫기" width="30" height="30" />
+            </div>
+        </div>
+        <div id="profile-contents">
+            <div id="profile-info">
+                <p style="text-align: center">별점과 리뷰를 남겨주세요</p>
+                <div class="field" style="justify-content: center">
+                    <div class="star-rating">
+                        <input
+                                type="radio"
+                                id="star1"
+                                name="reviewScore"
+                                value="5"
+                                class="rating"
+                        />
+                        <label class="fa-regular fa-star"></label>
+                        <input
+                                type="radio"
+                                id="star2"
+                                name="reviewScore"
+                                value="4"
+                                class="rating"
+                        />
+                        <label class="fa-regular fa-star"></label>
+                        <input
+                                type="radio"
+                                id="star3"
+                                name="reviewScore"
+                                value="3"
+                                class="rating"
+                        />
+                        <label class="fa-regular fa-star"></label>
+                        <input
+                                type="radio"
+                                id="star4"
+                                name="reviewScore"
+                                value="2"
+                                class="rating"
+                        />
+                        <label class="fa-regular fa-star"></label>
+                        <input
+                                type="radio"
+                                id="star5"
+                                name="reviewScore"
+                                value="1"
+                                class="rating"
+                        />
+                        <label class="fa-regular fa-star"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="comment-section">
+              <textarea
+                      class="reply-section"
+                      style="resize: none"
+                      name="reviewContent"
+                      id="reviewContent"
+              ></textarea>
+            </div>
 
+            <div class="update-btn_wrap" style="margin-top: 25px">
+                <input type="hidden" class="reviewNum" id="reviewNum" value="">
+                <input type="hidden" id="rate" class="rate" value="0"/>
+                <button type="button" id="updateBtn" class="update-btn">저장하기</button>
+            </div>
+
+        </div>
+    </div>
+</div>
 <!--모달-->
 <div class="img-box">
     <div class="left-box">
@@ -115,7 +190,7 @@
                                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                             </div>
                         </div>
-                        <p style="margin-left: 10px; font-size: 15px" th:text="${cntAvg.scoreAvg}"></p>
+                        <p style="margin-left: 10px; font-size: 15px" th:text="${#numbers.formatDecimal(cntAvg.scoreAvg,1,1)}"></p>
                     </div>
                 </div>
                 <!-- @@@@리뷰 반복 @@@@-->
@@ -123,86 +198,11 @@
                     <div class="review-user">
                         <input type="hidden" class="userNumber" th:value="${review.userNumber}">
                         <input type="hidden" id="reviewNumber" class="reviewNumber" th:value="${review.reviewNumber}">
-                        <div id="modal-container" >
-                        <div id="profile-box">
-                            <div class="profile-header">
-                                <div class="profile-title">
-                                    <h3>후기 수정</h3>
-                                </div>
-                                <div class="btn-close">
-                                    <img src="../../img/pngwing.com.png" alt="닫기" width="30" height="30" />
-                                </div>
-                            </div>
-                            <div id="profile-contents">
-                                <div id="profile-info">
-                                    <p style="text-align: center">별점과 리뷰를 남겨주세요</p>
-                                    <div class="field" style="justify-content: center">
-                                        <div class="star-rating">
-                                            <input
-                                                    type="radio"
-                                                    id="star1"
-                                                    name="reviewScore"
-                                                    value="5"
-                                                    class="rating"
-                                            />
-                                            <label class="fa-regular fa-star"></label>
-                                            <input
-                                                    type="radio"
-                                                    id="star2"
-                                                    name="reviewScore"
-                                                    value="4"
-                                                    class="rating"
-                                            />
-                                            <label class="fa-regular fa-star"></label>
-                                            <input
-                                                    type="radio"
-                                                    id="star3"
-                                                    name="reviewScore"
-                                                    value="3"
-                                                    class="rating"
-                                            />
-                                            <label class="fa-regular fa-star"></label>
-                                            <input
-                                                    type="radio"
-                                                    id="star4"
-                                                    name="reviewScore"
-                                                    value="2"
-                                                    class="rating"
-                                            />
-                                            <label class="fa-regular fa-star"></label>
-                                            <input
-                                                    type="radio"
-                                                    id="star5"
-                                                    name="reviewScore"
-                                                    value="1"
-                                                    class="rating"
-                                            />
-                                            <label class="fa-regular fa-star"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="comment-section">
-              <textarea
-                      class="reply-section"
-                      style="resize: none"
-                      name="reviewContent"
-                      id="reviewContent"
-              ></textarea>
-                                </div>
 
-                                <div class="update-btn_wrap" style="margin-top: 25px">
-                                    <input type="hidden" class="reviewNum" id="reviewNum" value="">
-                                    <input type="hidden" id="rate" class="rate" value="0"/>
-                                    <button type="button" id="updateBtn" class="update-btn" th:action="@{/sitters/sendModify}">저장하기</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
                         <div class="review-user-name">
                             <span th:text="${review.userName}"></span><span> 님</span>
                             <!--                <span>(포메라니언)</span>-->
-                            <div th:text="${review.reviewDate}"></div>
+                            <div id="reviewDate" th:value="${review.reviewDate}"></div>
                         </div>
                         <div class="reply-btn-box" >
                             <span class="reply-btns"></span>
@@ -330,7 +330,10 @@
         </div>
     </div>
 </div>
-
+<script
+        src="https://kit.fontawesome.com/85b8cbcba2.js"
+        crossorigin="anonymous"
+></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:src="@{/js/sitter/sitterProfile.js}"></script>
 <!-- jQuery -->

@@ -1,6 +1,8 @@
 // 초기에 보여지는 댓글 개수 설정
 var visibleReviews = 3;
 
+
+
 // 모든 리뷰 요소들을 선택합니다.
 var reviewElements = document.getElementsByClassName("review-review");
 
@@ -308,8 +310,20 @@ let modal = $("#modal-container");
 $(".modify1").on("click", function () {
     $("#modal-container").css("display", "flex");
     var reviewNumberValue = $(this).closest('.review-review').find('.reviewNumber').val();
-    console.log(reviewNumberValue);
+    // console.log(reviewNumberValue);
     $('#reviewNum').val(reviewNumberValue);
+
+
+
+});
+
+$(".star-rating .fa-regular").click(function () {
+    $(this).addClass("active");
+    $(this).nextAll().addClass("active");
+    $(this).prevAll().removeClass("active");
+    let rating = $(this).prev("input.rating").val();
+    $('#rate').val(rating);
+    console.log(rating);
 });
 
 // 'X' 클릭 > 모달 끄기
@@ -345,42 +359,30 @@ $(document).ready(function () {
 });
 
 $(document).ready(function() {
-    // '수정' 버튼 클릭 시 모달에 리뷰 내용 전달
     $(document).on('click', '.modify1', function() {
         var reviewNumber =$(this).closest('.review-review').find('.reviewNumber').val();
         var reviewContent = $(this).closest('.review').find('.review-content').text();
 
-        // 모달에 리뷰 번호와 내용을 설정
         $('#reviewNum').val(reviewNumber);
         $('#reviewContent').val(reviewContent);
-
-        // console.log(reviewNumber);
-        console.log(reviewContent);
-        // 모달 열기
         $('#modal-container').css('display', 'flex');
     });
-
-    // '저장하기' 버튼 클릭 시 수정된 리뷰 업데이트
     $(document).on('click', '#updateBtn', function() {
-        var reviewNumber = $('#reviewNumber').val();
+        var reviewNumber = $('#reviewNum').val();
         var reviewContent = $('#reviewContent').val();
-        // console.log(reviewNumber);
-        console.log(reviewContent);
-
-        // 서버로 전송할 데이터 객체 생성
+        var reviewScore = $('#rate').val();
         var data = {
             reviewNumber: reviewNumber,
-            reviewContent: reviewContent
+            reviewContent: reviewContent,
+            reviewScore: reviewScore
         };
-
-        // AJAX 요청
         $.ajax({
-            url: '/sitters/reviewModify',
+            url: '/sitters/sendModifyReview',
             method: 'POST',
-            data: data,
+            data: JSON.stringify(data),
+            contentType: 'application/json',
             success: function(response) {
-                console.log('데이터 업데이트 성공');
-                // 추가 동작 또는 모달 닫기 등 수행
+                document.location.reload();
             },
             error: function(xhr, status, error) {
                 console.error('데이터 업데이트 실패:', error);
@@ -394,9 +396,60 @@ $(document).ready(function() {
     });
 });
 
-// =================================
+$(document).ready(function() {
+    $(document).on('click', '.delete1', function() {
+        var reviewNumber = $(this).closest('.review-review').find('.reviewNumber').val();
 
-$('.reply-btns').on('click', function (){
-    var reviewNumberValue = $(this).closest('.review-review').find('.reviewNumber').val();
-    console.log(reviewNumberValue);
+        // 컨펌 팝업 표시
+        if (confirm('삭제하시겠습니까?')) {
+            var data = { reviewNumber: reviewNumber };
+            $.ajax({
+                url: '/sitters/removeReview',
+                method: 'POST',
+                data: data,
+                success: function(response) {
+                    document.location.reload();
+                },
+                error: function(xhr, status, error) {
+                    console.error('데이터 업데이트 실패:', error);
+                }
+            });
+        }
+    });
 });
+
+function timeForToday(value) {
+    const today = new Date();
+    const timeValue = new Date(value);
+    const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
+
+    if (betweenTime < 1) {
+        return "방금 전";
+    }
+    if (betweenTime < 60) {
+        return `${betweenTime}분 전`;
+    }
+    const betweenTimeHour = Math.floor(betweenTime / 60);
+    if (betweenTimeHour < 24) {
+        return `${betweenTimeHour}시간 전`;
+    }
+    const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+    if (betweenTimeDay < 365) {
+        return `${betweenTimeDay}일 전`;
+    }
+    return `${Math.floor(betweenTimeDay / 365)}년 전`;
+}
+
+// reviewDate 요소를 선택하여 값을 변경하는 함수
+function updateReviewDate() {
+    const reviewDateElement = document.getElementById('reviewDate');
+    const reviewDateValue = reviewDateElement.getAttribute('value');
+    const formattedDate = timeForToday(reviewDateValue);
+    reviewDateElement.textContent = formattedDate;
+}
+
+updateReviewDate();
+
+
+
+
