@@ -8,8 +8,9 @@ import java.util.List;
 
 @Mapper
 public interface RecommendMapper {
-//    추천 결과 리스트 반환
+    //    추천 결과 리스트 반환
     List<RecommendVo> selectRecommendList(RecommendDto recommendDto);
-//    추천 결과 상세정보 반환
+
+    //    추천 결과 상세정보 반환
     RecommendVo selectRecommendByNumber(Long recommendNumber);
 }

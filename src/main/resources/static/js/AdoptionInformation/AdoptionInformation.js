@@ -8,6 +8,7 @@
 // 폼으로 보낸걸 컨트롤러로 받는데 그 때 VO를 사용해서 받는다.
 // VO에 center의 정보도 넣어준다.
 viewList();
+
 function viewList() {
     $.ajax({
         url: "http://openapi.seoul.go.kr:8088/786e44785864656334354e61496a76/json/TbAdpWaitAnimalView/1/100/",
@@ -23,7 +24,6 @@ function viewList() {
 }
 
 function makeList(obj) {
-    console.log(obj);
     let li = "";
     let i = 1;
     obj.forEach(b => {
@@ -41,14 +41,17 @@ function makeList(obj) {
             petSpcs = '강아지';
         }
 
+        let imgSrc = b.IMAGE_URL !== "" ? `https://animal.seoul.go.kr/comm/getImage?srvcId=MEDIA&upperNo=${b.ANIMAL_NO}&fileTy=ADOPTIMG&fileNo=1&thumb` : "https://lifet.co.kr/img/profile/default.png";
+
         li += `
       <li class="board-data">
         <a href="http://localhost:10000/adopt/detailByMain?petNumber=${i++}" class="adopt-section-content" class="slide-card">
           <span class="board-img">
             <img
-              src="https://animal.seoul.go.kr/comm/getImage?srvcId=MEDIA&upperNo=${b.ANIMAL_NO}&fileTy=ADOPTIMG&fileNo=1&thumb"
+              src="${imgSrc}"
               alt=""
               class="card-img"
+              onerror="this.src='https://lifet.co.kr/img/profile/default.png';"
             />
           </span>
           <div class="board-text">
@@ -58,14 +61,11 @@ function makeList(obj) {
           </div>
         </a>
       </li>
-      `;
+    `;
     });
-
 
     $(".content-list").html(li);
 }
-
-// a herf="javascript-void(0)"
 
 // 검색 버튼 클릭 이벤트 처리
 $(".search-form").on("submit", function (e) {
@@ -167,7 +167,6 @@ function displayTotalPostCount() {
 $(document).ready(function () {
     displayTotalPostCount();
 });
-
 
 
 // 카테고리 분류

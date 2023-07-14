@@ -3,7 +3,6 @@ package com.example.happypetsday.controller.pet;
 import com.example.happypetsday.service.pet.PetFileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +22,7 @@ public class PetFileController {
 
     @GetMapping("/display")
     public byte[] display(String fileName) throws IOException {
-        return FileCopyUtils.copyToByteArray(new File(fileDir,fileName));
+        return FileCopyUtils.copyToByteArray(new File(fileDir, fileName));
     }
 
 

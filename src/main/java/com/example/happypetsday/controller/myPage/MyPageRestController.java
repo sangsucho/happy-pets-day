@@ -1,12 +1,15 @@
 package com.example.happypetsday.controller.myPage;
 
+import com.example.happypetsday.mapper.UserMapper;
 import com.example.happypetsday.service.myPage.MypageService;
 import com.example.happypetsday.service.pet.PetService;
 import com.example.happypetsday.service.sitter.SitterService;
+import com.example.happypetsday.service.user.UserService;
 import com.example.happypetsday.vo.PetVo;
 import com.example.happypetsday.vo.ResVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,10 +22,11 @@ public class MyPageRestController {
     private final PetService petService;
     private final MypageService mypageService;
     private final SitterService sitterService;
+    private final UserService userService;
 
-//    마이펫 수정 창 띄우기
+    //    마이펫 수정 창 띄우기
     @GetMapping("/myPet/editPet/{petNumber}")
-    public PetVo getMyPetInfo(@PathVariable("petNumber") Long petNumber){
+    public PetVo getMyPetInfo(@PathVariable("petNumber") Long petNumber) {
         return petService.findPetByPetNumber(petNumber);
     }
 
@@ -47,6 +51,13 @@ public class MyPageRestController {
     // 회원번호로 시터번호 가져오기
     @GetMapping("/sitter/profile/view")
     public Long viewSitterProfile(HttpServletRequest req) {
-        return sitterService.findSitter((Long)req.getSession().getAttribute("userNumber"));
+        return sitterService.findSitter((Long) req.getSession().getAttribute("userNumber"));
+    }
+
+    // 회원번호로 이름 가져오기
+    @GetMapping("/userName")
+    public String getUserName(HttpServletRequest req) {
+        Long userNumber = (Long) req.getSession().getAttribute("userNumber");
+        return userService.getUserName(userNumber);
     }
 }

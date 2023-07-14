@@ -3,32 +3,47 @@
 <mapper namespace="com.example.happypetsday.mapper.AdminMapper">
 
     <select id="selectUserOne" resultType="userVo">
-        SELECT USER_NUMBER, USER_ID, USER_NAME, USER_GENDER, USER_EMAIL,
-               TO_CHAR(USER_BIRTH, 'YYYY-MM-DD') AS USER_BIRTH, USER_PHONE_NUMBER, USER_ADDRESS, USER_STATUS, STATUS_NAME
-        FROM TBL_USER_STATUS S JOIN TBL_USER U
-        ON S.STATUS_NUMBER  = U.USER_STATUS AND U.USER_NUMBER = #{userNumber}
+        SELECT USER_NUMBER,
+               USER_ID,
+               USER_NAME,
+               USER_GENDER,
+               USER_EMAIL,
+               TO_CHAR(USER_BIRTH, 'YYYY-MM-DD') AS USER_BIRTH,
+               USER_PHONE_NUMBER,
+               USER_ADDRESS,
+               USER_STATUS,
+               STATUS_NAME
+        FROM TBL_USER_STATUS S
+                 JOIN TBL_USER U
+                      ON S.STATUS_NUMBER = U.USER_STATUS AND U.USER_NUMBER = #{userNumber}
     </select>
 
     <select id="selectAllUser" resultType="userVo">
-        SELECT USER_NUMBER, USER_ID,  USER_NAME, USER_STATUS, STATUS_NAME
-        FROM(
-        SELECT ROWNUM RN,
-        USER_NUMBER, USER_ID,  USER_NAME, USER_STATUS, STATUS_NAME
-        FROM(
-        SELECT USER_NUMBER, USER_ID,  USER_NAME, USER_STATUS, S.STATUS_NAME
-        FROM TBL_USER_STATUS S JOIN TBL_USER U
-        ON S.STATUS_NUMBER  = U.USER_STATUS
-        ORDER BY USER_NUMBER DESC
-        )
+        SELECT USER_NUMBER, USER_ID, USER_NAME, USER_STATUS, STATUS_NAME
+        FROM (
+                 SELECT ROWNUM RN,
+                        USER_NUMBER,
+                        USER_ID,
+                        USER_NAME,
+                        USER_STATUS,
+                        STATUS_NAME
+                 FROM (
+                          SELECT USER_NUMBER, USER_ID, USER_NAME, USER_STATUS, S.STATUS_NAME
+                          FROM TBL_USER_STATUS S
+                                   JOIN TBL_USER U
+                                        ON S.STATUS_NUMBER = U.USER_STATUS
+                          ORDER BY USER_NUMBER DESC
+                      )
              <![CDATA[
-        WHERE ROWNUM <= #{page} * #{amount}
+                 WHERE ROWNUM <= #{page} * #{amount}
             ]]>
         )
-        WHERE RN > ( #{page} - 1 ) * #{amount}
+        WHERE RN > (#{page} - 1) * #{amount}
     </select>
 
     <select id="selectTotal" resultType="_int">
-        SELECT COUNT(USER_NUMBER) FROM TBL_USER
+        SELECT COUNT(USER_NUMBER)
+        FROM TBL_USER
     </select>
 
     <update id="update">
@@ -39,31 +54,39 @@
 
     <select id="searchIdName" resultType="userVo">
         SELECT USER_NUMBER, USER_ID, USER_NAME, USER_STATUS, STATUS_NAME
-        FROM(
-                SELECT ROWNUM RN,
-                       USER_NUMBER, USER_ID,  USER_NAME, USER_STATUS, STATUS_NAME
-                FROM(
-                        SELECT USER_NUMBER, USER_ID,  USER_NAME, USER_STATUS, S.STATUS_NAME
-                        FROM TBL_USER_STATUS S JOIN TBL_USER U
-                                                    ON S.STATUS_NUMBER  = U.USER_STATUS
-                        WHERE USER_ID LIKE '%' || #{keyword} || '%' OR USER_NAME LIKE '%' || #{keyword} || '%'
-                        ORDER BY USER_NUMBER DESC
-                    )
+        FROM (
+                 SELECT ROWNUM RN,
+                        USER_NUMBER,
+                        USER_ID,
+                        USER_NAME,
+                        USER_STATUS,
+                        STATUS_NAME
+                 FROM (
+                          SELECT USER_NUMBER, USER_ID, USER_NAME, USER_STATUS, S.STATUS_NAME
+                          FROM TBL_USER_STATUS S
+                                   JOIN TBL_USER U
+                                        ON S.STATUS_NUMBER = U.USER_STATUS
+                          WHERE USER_ID LIKE '%' || #{keyword} || '%'
+                             OR USER_NAME LIKE '%' || #{keyword} || '%'
+                          ORDER BY USER_NUMBER DESC
+                      )
              <![CDATA[
-                WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+                 WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
             ]]>
         )
-        WHERE RN  > ( #{criteria.page} - 1 ) * #{criteria.amount}
+        WHERE RN > (#{criteria.page} - 1) * #{criteria.amount}
     </select>
 
     <select id="searchIdNameCount">
         SELECT COUNT(USER_NUMBER)
         FROM TBL_USER
-        WHERE USER_ID LIKE '%' || #{keyword} || '%' OR USER_NAME LIKE '%' || #{keyword} || '%'
+        WHERE USER_ID LIKE '%' || #{keyword} || '%'
+           OR USER_NAME LIKE '%' || #{keyword} || '%'
     </select>
 
     <select id="selectTotalUser" resultType="Long">
-        SELECT COUNT(USER_NUMBER) FROM TBL_USER
+        SELECT COUNT(USER_NUMBER)
+        FROM TBL_USER
     </select>
 
     <select id="selectBasicUser" resultType="Long">
@@ -73,9 +96,11 @@
     </select>
 
     <select id="selectSitterUser" resultType="Long">
-        SELECT COUNT(SITTER_NUMBER)
-        FROM TBL_SITTER
-        WHERE SITTER_STATUS = 'Y'
+        SELECT  COUNT(S.SITTER_NUMBER)
+        FROM TBL_USER U
+                 JOIN TBL_SITTER S
+                      ON U.USER_NUMBER = S.USER_NUMBER
+        WHERE S.SITTER_STATUS = 'Y'  AND U.USER_STATUS = 2
     </select>
 
     <select id="selectUnapprovedSitter" resultType="Long">
@@ -85,90 +110,127 @@
     </select>
 
     <select id="searchNumTitle" resultType="strollBoardVo">
-        SELECT STROLL_BOARD_NUMBER, STROLL_BOARD_TITLE, USER_ID, TO_CHAR(STROLL_BOARD_MEETING_DATE,'YYYY-MM-DD') AS STROLL_BOARD_MEETING_DATE, STROLL_BOARD_ADMIN_DISTRICT
+        SELECT STROLL_BOARD_NUMBER,
+               STROLL_BOARD_TITLE,
+               USER_ID,
+               TO_CHAR(STROLL_BOARD_MEETING_DATE, 'YYYY-MM-DD') AS STROLL_BOARD_MEETING_DATE,
+               STROLL_BOARD_ADMIN_DISTRICT
         FROM (
                  SELECT ROWNUM RN,
-                        STROLL_BOARD_NUMBER, STROLL_BOARD_TITLE, USER_ID, STROLL_BOARD_MEETING_DATE, STROLL_BOARD_ADMIN_DISTRICT
-                 FROM(SELECT STROLL_BOARD_NUMBER, STROLL_BOARD_TITLE, USER_ID, STROLL_BOARD_MEETING_DATE, STROLL_BOARD_ADMIN_DISTRICT
-                      FROM TBL_USER U JOIN TBL_STROLL_BOARD B
-                                           ON U.USER_NUMBER =B.USER_NUMBER
-                      WHERE STROLL_BOARD_TITLE LIKE '%' || #{keyword} || '%' OR USER_ID LIKE '%' || #{keyword} || '%'
-                      ORDER BY STROLL_BOARD_NUMBER DESC
-                     )
+                        STROLL_BOARD_NUMBER,
+                        STROLL_BOARD_TITLE,
+                        USER_ID,
+                        STROLL_BOARD_MEETING_DATE,
+                        STROLL_BOARD_ADMIN_DISTRICT
+                 FROM (SELECT STROLL_BOARD_NUMBER,
+                              STROLL_BOARD_TITLE,
+                              USER_ID,
+                              STROLL_BOARD_MEETING_DATE,
+                              STROLL_BOARD_ADMIN_DISTRICT
+                       FROM TBL_USER U
+                                JOIN TBL_STROLL_BOARD B
+                                     ON U.USER_NUMBER = B.USER_NUMBER
+                       WHERE STROLL_BOARD_TITLE LIKE '%' || #{keyword} || '%'
+                          OR USER_ID LIKE '%' || #{keyword} || '%'
+                       ORDER BY STROLL_BOARD_NUMBER DESC
+                      )
 				<![CDATA[
                  WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
             	]]>
 				)
-        WHERE RN  > ( #{criteria.page} - 1 ) * #{criteria.amount}
+        WHERE RN > (#{criteria.page} - 1) * #{criteria.amount}
     </select>
 
     <select id="searchNumTitleCount">
         SELECT COUNT(STROLL_BOARD_NUMBER)
-        FROM TBL_USER U JOIN TBL_STROLL_BOARD B
-                             ON U.USER_NUMBER =B.USER_NUMBER
-        WHERE USER_ID LIKE '%' || #{keyword} || '%' OR STROLL_BOARD_TITLE LIKE '%' || #{keyword} || '%'
+        FROM TBL_USER U
+                 JOIN TBL_STROLL_BOARD B
+                      ON U.USER_NUMBER = B.USER_NUMBER
+        WHERE USER_ID LIKE '%' || #{keyword} || '%'
+           OR STROLL_BOARD_TITLE LIKE '%' || #{keyword} || '%'
     </select>
 
     <select id="selectAllPost" resultType="SitterApplyVo">
         SELECT APPLY_NUMBER, APPLY_CONTENT, USER_NAME, APPLY_DATE
-        FROM(
-                SELECT ROWNUM RN,
-                       APPLY_NUMBER, APPLY_CONTENT, USER_NAME, APPLY_DATE
-                FROM(
-                        SELECT APPLY_NUMBER, APPLY_CONTENT, USER_NAME, APPLY_DATE
-                        FROM TBL_SITTER_APPLY S JOIN TBL_USER U
-                                                     ON S.USER_NUMBER  = U.USER_NUMBER
-                        WHERE APPLY_STATUS = '승인 대기'
-                        ORDER BY APPLY_NUMBER DESC
-                    )
+        FROM (
+                 SELECT ROWNUM RN,
+                        APPLY_NUMBER,
+                        APPLY_CONTENT,
+                        USER_NAME,
+                        APPLY_DATE
+                 FROM (
+                          SELECT APPLY_NUMBER, APPLY_CONTENT, USER_NAME, APPLY_DATE
+                          FROM TBL_SITTER_APPLY S
+                                   JOIN TBL_USER U
+                                        ON S.USER_NUMBER = U.USER_NUMBER
+                          WHERE APPLY_STATUS = '승인 대기'
+                          ORDER BY APPLY_NUMBER DESC
+                      )
              <![CDATA[
-                WHERE ROWNUM <= #{page} * #{amount}
+                 WHERE ROWNUM <= #{page} * #{amount}
             ]]>
         )
-        WHERE RN > ( #{page} - 1 ) * #{amount}
+        WHERE RN > (#{page} - 1) * #{amount}
     </select>
 
     <select id="selectTotalPost" resultType="_int">
-        SELECT COUNT(APPLY_NUMBER) FROM TBL_SITTER_APPLY
+        SELECT COUNT(APPLY_NUMBER)
+        FROM TBL_SITTER_APPLY
         WHERE APPLY_STATUS = '승인 대기'
     </select>
 
     <select id="selectApplication" resultType="SitterApplyVo">
-        SELECT A.APPLY_NUMBER,U.USER_NUMBER, U.USER_NAME, U.USER_PHONE_NUMBER, U.USER_ADDRESS,
+        SELECT A.APPLY_NUMBER,
+               U.USER_NUMBER,
+               U.USER_NAME,
+               U.USER_PHONE_NUMBER,
+               U.USER_ADDRESS,
                A.APPLY_CONTENT
         FROM TBL_USER U
-        JOIN TBL_SITTER_APPLY A ON  U.USER_NUMBER = A.USER_NUMBER AND A.APPLY_NUMBER = #{applyNumber}
+                 JOIN TBL_SITTER_APPLY A ON U.USER_NUMBER = A.USER_NUMBER AND A.APPLY_NUMBER = #{applyNumber}
     </select>
 
     <select id="selectLicense" resultType="SitterApplyVo">
-        SELECT APPLY_FILE_NUMBER, APPLY_FILE_TITLE, APPLY_FILE_NAME, APPLY_FILE_UUID, APPLY_FILE_UPLOAD_PATH, APPLY_NUMBER, USER_NUMBER
+        SELECT APPLY_FILE_NUMBER,
+               APPLY_FILE_TITLE,
+               APPLY_FILE_NAME,
+               APPLY_FILE_UUID,
+               APPLY_FILE_UPLOAD_PATH,
+               APPLY_NUMBER,
+               USER_NUMBER
         FROM TBL_SITTER_APPLY_LICENSE_FILE
         WHERE APPLY_NUMBER = #{applyNumber}
     </select>
 
     <select id="selectField" resultType="SitterApplyVo">
         SELECT F.SITTER_FIELD_NUMBER, F.PET_FIELD_NAME, F.USER_NUMBER, A.APPLY_NUMBER
-        FROM TBL_SITTER_FIELD F JOIN TBL_SITTER_APPLY A ON F.USER_NUMBER  = A.USER_NUMBER
+        FROM TBL_SITTER_FIELD F
+                 JOIN TBL_SITTER_APPLY A ON F.USER_NUMBER = A.USER_NUMBER
         WHERE APPLY_NUMBER = #{applyNumber}
+        ORDER BY SITTER_FIELD_NUMBER
     </select>
 
     <update id="changeStatus">
         UPDATE TBL_SITTER_APPLY
         SET APPLY_STATUS='승인 완료'
-        WHERE APPLY_NUMBER=#{applyNumber}
+        WHERE APPLY_NUMBER = #{applyNumber}
     </update>
 
     <insert id="addSitter">
         INSERT INTO TBL_SITTER
             (SITTER_NUMBER, USER_NUMBER, SITTER_STATUS)
-        VALUES(SEQ_SITTER.NEXTVAL, #{userNumber}, 'Y')
+        VALUES (SEQ_SITTER.NEXTVAL, #{userNumber}, 'Y')
     </insert>
 
     <update id="changeStatusRefuse">
         UPDATE TBL_SITTER_APPLY
         SET APPLY_STATUS='승인 거절'
-        WHERE APPLY_NUMBER=#{applyNumber}
+        WHERE APPLY_NUMBER = #{applyNumber}
     </update>
+
+    <delete id="deleteSitterApply">
+        DELETE FROM TBL_SITTER_APPLY WHERE USER_NUMBER = #{userNumber}
+    </delete>
 
     <select id="selectAllSitter">
         SELECT USER_NUMBER, SITTER_NUMBER, USER_ID, PET_FIELD_NAME,
@@ -269,4 +331,32 @@
         SET SITTER_STATUS = #{sitterStatus}
         WHERE SITTER_NUMBER = #{sitterNumber}
     </update>
+
+    <delete id="deleteSitterTable">
+        DELETE FROM TBL_SITTER WHERE SITTER_NUMBER = #{sitterNumber}
+    </delete>
+
+    <delete id="deleteSitterField">
+        DELETE FROM TBL_SITTER_FIELD tsf WHERE USER_NUMBER = #{userNumber}
+    </delete>
+
+    <delete id="deleteLicense">
+        DELETE FROM TBL_SITTER_APPLY_LICENSE_FILE tsalf WHERE USER_NUMBER = #{userNumber}
+    </delete>
+
+    <delete id="deleteSitterReview">
+        DELETE FROM TBL_SITTER_REVIEW WHERE SITTER_NUMBER = #{sitterNumber}
+    </delete>
+
+    <delete id="deleteSitterReservation">
+        DELETE FROM TBL_SITTER_RESERVATION WHERE SITTER_NUMBER = #{sitterNumber}
+    </delete>
+
+    <delete id="deleteProfileFile">
+        DELETE FROM TBL_SITTER_PROFILE_FILE WHERE SITTER_NUMBER = #{sitterNumber}
+    </delete>
+
+    <delete id="deleteSitterFile">
+        DELETE FROM TBL_SITTER_FILE WHERE SITTER_NUMBER = #{sitterNumber}
+    </delete>
 </mapper>

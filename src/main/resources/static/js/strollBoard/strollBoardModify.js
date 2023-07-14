@@ -21,6 +21,7 @@ function updatePetState() {
 // 라디오 버튼을 클릭할 때마다 상태를 업데이트
 $('.pet-radio-input').on('click', updatePetState);
 
+
 $('.board-write-btn').on('click', function (e) {
     if (!($('.marker-lat').val() || $('.marker-lng').val())) {
         e.preventDefault();

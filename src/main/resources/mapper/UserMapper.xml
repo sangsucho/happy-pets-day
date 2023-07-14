@@ -5,33 +5,60 @@
         <selectKey keyProperty="userNumber" order="BEFORE" resultType="Long">
             SELECT SEQ_USER.NEXTVAL FROM DUAL
         </selectKey>
-        INSERT INTO TBL_USER(USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_GENDER, USER_EMAIL, USER_BIRTH, USER_PHONE_NUMBER, USER_ADDRESS, QUESTION_NUMBER, FIND_PASSWORD_ANSWER, USER_ZONE_CODE, USER_ADDRESS_DETAIL, USER_ADDRESS_TIP)
-        VALUES(#{userNumber},#{userId}, #{userPassword}, #{userName}, #{userGender}, #{userEmail}, #{userBirth}, #{userPhoneNumber}, #{userAddress}, #{questionNumber},#{findPasswordAnswer}, #{userZoneCode}, #{userAddressDetail}, #{userAddressTip})
+        INSERT INTO TBL_USER(USER_NUMBER, USER_ID, USER_PASSWORD, USER_NAME, USER_GENDER, USER_EMAIL, USER_BIRTH,
+        USER_PHONE_NUMBER, USER_ADDRESS, QUESTION_NUMBER, FIND_PASSWORD_ANSWER, USER_ZONE_CODE, USER_ADDRESS_DETAIL,
+        USER_ADDRESS_TIP)
+        VALUES(#{userNumber},#{userId}, #{userPassword}, #{userName}, #{userGender}, #{userEmail}, #{userBirth},
+        #{userPhoneNumber}, #{userAddress}, #{questionNumber},#{findPasswordAnswer}, #{userZoneCode},
+        #{userAddressDetail}, #{userAddressTip})
     </insert>
 
     <select id="selectUserNumberAndStatus" resultType="userDto">
-        SELECT USER_NUMBER ,USER_STATUS  FROM TBL_USER
-        WHERE USER_ID =#{userId}  AND USER_PASSWORD=#{userPassword}
+        SELECT USER_NUMBER, USER_STATUS
+        FROM TBL_USER
+        WHERE USER_ID = #{userId}
+          AND USER_PASSWORD = #{userPassword}
     </select>
 
     <!-- 아이디 중복검사 -->
     <select id="countByUserId" resultType="int">
-        SELECT COUNT(*) FROM TBL_USER WHERE USER_ID = #{userId}
+        SELECT COUNT(*)
+        FROM TBL_USER
+        WHERE USER_ID = #{userId}
     </select>
 
     <select id="selectUserPasswordByUserNumber" resultType="string">
-        SELECT USER_PASSWORD FROM TBL_USER
+        SELECT USER_PASSWORD
+        FROM TBL_USER
         WHERE USER_NUMBER = #{userNumber}
     </select>
 
     <select id="selectUserInfoByUserNumber" resultType="userDto">
-        SELECT USER_ID, USER_PASSWORD, USER_NAME, USER_GENDER, USER_EMAIL, TO_CHAR(USER_BIRTH, 'YYYY-MM-DD') AS USER_BIRTH, USER_PHONE_NUMBER, USER_ADDRESS, USER_ZONE_CODE,  USER_ADDRESS_DETAIL, USER_ADDRESS_TIP
-        FROM TBL_USER WHERE USER_NUMBER = #{userNumber}
+        SELECT USER_ID,
+               USER_PASSWORD,
+               USER_NAME,
+               USER_GENDER,
+               USER_EMAIL,
+               TO_CHAR(USER_BIRTH, 'YYYY-MM-DD') AS USER_BIRTH,
+               USER_PHONE_NUMBER,
+               USER_ADDRESS,
+               USER_ZONE_CODE,
+               USER_ADDRESS_DETAIL,
+               USER_ADDRESS_TIP
+        FROM TBL_USER
+        WHERE USER_NUMBER = #{userNumber}
     </select>
 
     <update id="update" parameterType="userDto">
         UPDATE TBL_USER
-        SET USER_PASSWORD = #{userPassword}, USER_EMAIL = #{userEmail}, USER_BIRTH = #{userBirth}, USER_PHONE_NUMBER = #{userPhoneNumber}, USER_ADDRESS = #{userAddress}, USER_ZONE_CODE = #{userZoneCode}, USER_ADDRESS_DETAIL = #{userAddressDetail}, USER_ADDRESS_TIP = #{userAddressTip}
+        SET USER_PASSWORD       = #{userPassword},
+            USER_EMAIL          = #{userEmail},
+            USER_BIRTH          = #{userBirth},
+            USER_PHONE_NUMBER   = #{userPhoneNumber},
+            USER_ADDRESS        = #{userAddress},
+            USER_ZONE_CODE      = #{userZoneCode},
+            USER_ADDRESS_DETAIL = #{userAddressDetail},
+            USER_ADDRESS_TIP    = #{userAddressTip}
         WHERE USER_NUMBER = #{userNumber}
     </update>
 
@@ -39,16 +66,18 @@
     <select id="selectUserIdByNameAndPhone" resultType="String">
         SELECT USER_ID
         FROM TBL_USER
-        WHERE USER_NAME = #{userName} AND USER_PHONE_NUMBER = #{userPhoneNumber}
+        WHERE USER_NAME = #{userName}
+          AND USER_PHONE_NUMBER = #{userPhoneNumber}
     </select>
 
     <!-- 비밀번호 찾기 - 보안 질문과 답변 확인 -->
     <select id="verifyUserSecurityAnswer" resultType="int">
         SELECT COUNT(*)
         FROM TBL_USER
-        WHERE USER_ID = #{userId} AND QUESTION_NUMBER = #{questionNumberInput} AND FIND_PASSWORD_ANSWER = #{answer}
+        WHERE USER_ID = #{userId}
+          AND QUESTION_NUMBER = #{questionNumberInput}
+          AND FIND_PASSWORD_ANSWER = #{answer}
     </select>
-
 
     <!-- 비밀번호 찾기 -->
     <select id="getUserPassword" resultType="String">
@@ -57,5 +86,11 @@
         WHERE USER_ID = #{userId}
     </select>
 
+<!--    회원번호로 이름 가져오기-->
+    <select id= "getUserName" resultType="String">
+        SELECT USER_NAME
+        FROM TBL_USER
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
 
 </mapper>

@@ -48,15 +48,6 @@
     margin-right: 14px;">
                         <span class="sitter-name" th:text="${name.userName}"></span> 펫시터
                     </div>
-<!--                    <div class="sitter-info">-->
-<!--                        <img-->
-<!--                                src="https://wayopet.com/static/images/common/star_1.png"-->
-<!--                                alt=""-->
-<!--                                class="img-star"-->
-<!--                        />-->
-<!--                        <span class="rating">5.0</span>-->
-<!--&lt;!&ndash;                        <span class="review-cnt" th:text="${cntAvg.reviewCnt}">100개의 리뷰</span>&ndash;&gt;-->
-<!--                    </div>-->
                 </div>
             </div>
 
@@ -71,7 +62,7 @@
                     <div class="license-box">
                         <div class="license-file">
                             <div class="license-img"><img
-                                    th:src="'/upload/applyFile/' + ${license.applyFileUploadPath} + '/th_' + ${license.applyFileUuid} + '_' + ${license.applyFileName}"
+                                    th:src="'/upload/sitter/applyFile/' + ${license.applyFileUploadPath} + '/th_' + ${license.applyFileUuid} + '_' + ${license.applyFileName}"
                                     alt=""/></div>
                         </div>
                         <div class="license-name">
@@ -96,6 +87,7 @@
                 </th:block>
 <!--                    <input type="hidden" class="sitter-num" name="sitter-num" th:value="${sitter.sitterNumber}">-->
             </div>
+
             <!-- 자소서 -->
 
             <!-- 댓글 컨텐츠 -->
@@ -109,7 +101,8 @@
                     </span>
                     <div class="review-b">
                         <div class="star-ratings">
-                            <div class="star-ratings-fill space-x-2 text-lg" th:attr="style='width: ' + ${cntAvg.scoreAvg * 20} + '%'">
+                            <div class="star-ratings-fill space-x-2 text-lg"
+                                 th:attr="style='width: ' + ${cntAvg.scoreAvg * 20} + '%'">
                                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                             </div>
                             <div class="star-ratings-base space-x-2 text-lg">
@@ -212,6 +205,9 @@
                 </div>
             </div>
         </div>
+
+        <div id="moveScroll"></div>
+
         <div class="new-calendar">
             <div class="sec_cal">
                 <div class="cal_nav">

@@ -11,7 +11,7 @@ $.datepicker.setDefaults({
     yearSuffix: '년'
 });
 
-$(function() {
+$(function () {
     let currentDate = new Date();
 
     let selectedDateString = $("#selectedDate").val();
@@ -19,10 +19,10 @@ $(function() {
 
     $("#datepicker").datepicker({
         minDate: currentDate,
-        onSelect: function(dateText) {
+        onSelect: function (dateText) {
             $("#selectedDate").val(dateText);
         },
-        beforeShowDay: function(date) {
+        beforeShowDay: function (date) {
             if (selectedDate !== null) {
                 if (date.getTime() === selectedDate.getTime()) {
                     return [true, 'selectedDate'];
@@ -36,3 +36,6 @@ $(function() {
         $("#datepicker").datepicker('setDate', selectedDate);
     }
 });
+
+
+

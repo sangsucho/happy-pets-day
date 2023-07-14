@@ -1,4 +1,3 @@
-
 // 산책할 대표동물을 체크하면(radio)
 // 해당 input의 css변경
 $(document).ready(function() {

@@ -2,37 +2,71 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.happypetsday.mapper.PetMapper">
     <select id="selectUsersPet" resultType="petDto">
-        SELECT PET_NUMBER, USER_NUMBER, PET_NAME, PET_BIRTH, PET_KIND, PET_DETAILED_TYPE, PET_GENDER, PET_SURGERY
+        SELECT PET_NUMBER,
+               USER_NUMBER,
+               PET_NAME,
+               PET_BIRTH,
+               PET_KIND,
+               PET_DETAILED_TYPE,
+               PET_GENDER,
+               PET_SURGERY
         FROM TBL_PET
-        WHERE USER_NUMBER =#{userNumber}
+        WHERE USER_NUMBER = #{userNumber}
     </select>
 
     <insert id="insertPet">
         <selectKey keyProperty="petNumber" order="BEFORE" resultType="Long">
             SELECT SEQ_PET.NEXTVAL FROM DUAL
         </selectKey>
-        INSERT INTO TBL_PET (PET_NUMBER, USER_NUMBER, PET_NAME, PET_BIRTH, PET_KIND, PET_DETAILED_TYPE, PET_GENDER, PET_SURGERY)
-        VALUES (#{petNumber}, #{userNumber}, #{petName}, #{petBirth}, #{petKind}, #{petDetailedType}, #{petGender}, #{petSurgery})
+        INSERT INTO TBL_PET (PET_NUMBER, USER_NUMBER, PET_NAME, PET_BIRTH, PET_KIND, PET_DETAILED_TYPE, PET_GENDER,
+        PET_SURGERY)
+        VALUES (#{petNumber}, #{userNumber}, #{petName}, #{petBirth}, #{petKind}, #{petDetailedType}, #{petGender},
+        #{petSurgery})
     </insert>
 
     <select id="selectMyPetByUserNumber" resultType="petVo">
-        SELECT P.PET_NUMBER, P.PET_NAME, TO_CHAR(P.PET_BIRTH, 'YYYY-MM-DD') AS PET_BIRTH, P.PET_KIND, P.PET_DETAILED_TYPE, P.PET_GENDER, P.PET_SURGERY, F.PET_FILE_NAME, F.PET_FILE_UPLOAD_PATH, F.PET_FILE_UUID
-        FROM TBL_PET P LEFT JOIN TBL_PET_FILE F
-        ON P.PET_NUMBER = F.PET_NUMBER
+        SELECT P.PET_NUMBER,
+               P.PET_NAME,
+               TO_CHAR(P.PET_BIRTH, 'YYYY-MM-DD') AS PET_BIRTH,
+               P.PET_KIND,
+               P.PET_DETAILED_TYPE,
+               P.PET_GENDER,
+               P.PET_SURGERY,
+               F.PET_FILE_NAME,
+               F.PET_FILE_UPLOAD_PATH,
+               F.PET_FILE_UUID
+        FROM TBL_PET P
+                 LEFT JOIN TBL_PET_FILE F
+                           ON P.PET_NUMBER = F.PET_NUMBER
         WHERE P.USER_NUMBER = #{userNumber}
         ORDER BY P.PET_NUMBER DESC
     </select>
 
     <select id="selectByPetNumber" resultType="petVo">
-        SELECT P.PET_NUMBER, P.PET_NAME, TO_CHAR(P.PET_BIRTH, 'YYYY-MM-DD') AS PET_BIRTH, P.PET_KIND, P.PET_DETAILED_TYPE, P.PET_GENDER, P.PET_SURGERY, F.PET_FILE_NAME, F.PET_FILE_UPLOAD_PATH, F.PET_FILE_UUID
-        FROM TBL_PET P LEFT JOIN TBL_PET_FILE F
-        ON P.PET_NUMBER = F.PET_NUMBER
+        SELECT P.PET_NUMBER,
+               P.PET_NAME,
+               TO_CHAR(P.PET_BIRTH, 'YYYY-MM-DD') AS PET_BIRTH,
+               P.PET_KIND,
+               P.PET_DETAILED_TYPE,
+               P.PET_GENDER,
+               P.PET_SURGERY,
+               F.PET_FILE_NAME,
+               F.PET_FILE_UPLOAD_PATH,
+               F.PET_FILE_UUID
+        FROM TBL_PET P
+                 LEFT JOIN TBL_PET_FILE F
+                           ON P.PET_NUMBER = F.PET_NUMBER
         WHERE P.PET_NUMBER = #{petNumber}
     </select>
 
     <update id="updateMyPet">
         UPDATE TBL_PET
-        SET PET_NAME = #{petName}, PET_KIND = #{petKind}, PET_DETAILED_TYPE = #{petDetailedType}, PET_BIRTH = #{petBirth}, PET_GENDER = #{petGender}, PET_SURGERY = #{petSurgery}
+        SET PET_NAME          = #{petName},
+            PET_KIND          = #{petKind},
+            PET_DETAILED_TYPE = #{petDetailedType},
+            PET_BIRTH         = #{petBirth},
+            PET_GENDER        = #{petGender},
+            PET_SURGERY       = #{petSurgery}
         WHERE PET_NUMBER = #{petNumber}
     </update>
 

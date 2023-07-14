@@ -1,7 +1,6 @@
 package com.example.happypetsday.mapper;
 
 import com.example.happypetsday.dto.SitterFileDto;
-import com.example.happypetsday.vo.SitterListVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

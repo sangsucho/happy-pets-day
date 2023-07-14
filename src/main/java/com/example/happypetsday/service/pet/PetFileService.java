@@ -2,22 +2,16 @@ package com.example.happypetsday.service.pet;
 
 import com.example.happypetsday.dto.PetFileDto;
 import com.example.happypetsday.mapper.PetFileMapper;
-import com.example.happypetsday.vo.StrollBoardVo;
 import lombok.RequiredArgsConstructor;
-import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -29,28 +23,30 @@ public class PetFileService {
     @Value("${petFile.dir}")
     private String fileDir;
 
-    public void register(PetFileDto petFileDto){
-        if(petFileDto == null) { throw new IllegalArgumentException("파일 정보 누락"); }
+    public void register(PetFileDto petFileDto) {
+        if (petFileDto == null) {
+            throw new IllegalArgumentException("파일 정보 누락");
+        }
         petFileMapper.insert(petFileDto);
     }
 
-    public void modify(PetFileDto petFileDto){
-        if(petFileDto == null){
+    public void modify(PetFileDto petFileDto) {
+        if (petFileDto == null) {
             throw new IllegalArgumentException("파일 정보 누락");
         }
         petFileMapper.update(petFileDto);
     }
 
     //    파일이 저장되는 하위 경로를 현재 날짜로 설정할 것이기 때문에 현재날짜를 구한다.
-    private String getUploadPath(){
+    private String getUploadPath() {
         return new SimpleDateFormat("yyyy/MM/dd").format(new Date());
     }
 
-    public PetFileDto findFile(Long petNumber){
+    public PetFileDto findFile(Long petNumber) {
         return petFileMapper.select(petNumber);
     }
 
-    public void remove(Long petNumber){
+    public void remove(Long petNumber) {
         if (petNumber == null) {
             throw new IllegalArgumentException("게시물 번호 누락(file)");
         }
@@ -58,10 +54,10 @@ public class PetFileService {
         PetFileDto petFile = findFile(petNumber);
         File target = new File(fileDir, petFile.getPetFileUploadPath() + "/" + petFile.getPetFileUuid() + "_" + petFile.getPetFileName());
         File thumbnail = new File(fileDir, petFile.getPetFileUploadPath() + "/th_" + petFile.getPetFileUuid() + "_" + petFile.getPetFileName());
-        if(target.exists()){
+        if (target.exists()) {
             target.delete();
         }
-        if(thumbnail.exists()){
+        if (thumbnail.exists()) {
             thumbnail.delete();
         }
 
@@ -71,7 +67,7 @@ public class PetFileService {
     //    파일 저장 처리
     public PetFileDto saveFile(MultipartFile file) throws IOException {
 //        사용자가 올린 파일 이름(확장자를 포함)
-        String originName = new String( file.getOriginalFilename().getBytes(), "UTF-8");
+        String originName = new String(file.getOriginalFilename().getBytes(), "UTF-8");
 
 //        파일 이름에 붙여줄 uuid 생성(파일이름 중복이 나오지 않게 처리)
         UUID uuid = UUID.randomUUID();
@@ -82,7 +78,7 @@ public class PetFileService {
         File uploadPath = new File(fileDir, getUploadPath());
 
 //        경로가 존재하지 않는다면(폴더가 없다면)
-        if(!uploadPath.exists()){
+        if (!uploadPath.exists()) {
 //            경로에 필요한 폴더를 생성한다.
             uploadPath.mkdirs();
         }
@@ -113,16 +109,16 @@ public class PetFileService {
         return petFileDto;
     }
 
-    public void registerAndSaveFile(MultipartFile file, Long petNumber) throws IOException{
+    public void registerAndSaveFile(MultipartFile file, Long petNumber) throws IOException {
         PetFileDto petFileDto = saveFile(file);
         petFileDto.setPetNumber(petNumber);
         register(petFileDto);
     }
 
-    public void modifyAndSaveFile(MultipartFile file, Long petNumber) throws IOException{
+    public void modifyAndSaveFile(MultipartFile file, Long petNumber) throws IOException {
         PetFileDto petFile = findFile(petNumber);
         File target = new File(fileDir, petFile.getPetFileUploadPath() + "/" + petFile.getPetFileUuid() + "_" + petFile.getPetFileName());
-        if(target.exists()){
+        if (target.exists()) {
             target.delete();
         }
         PetFileDto petFileDto = saveFile(file);

@@ -12,11 +12,11 @@ public class SitterVo {
     private Long UserNumber;
     private String SitterHeader;
     private String SitterIntroduction;
-//  private   Long ApplyFileNumber;
+    //  private   Long ApplyFileNumber;
     private String ApplyFileTitle;
     private String ApplyFileName;
     private String ApplyFileUuid;
-//    Long ApplyNumber;
+    private Long ApplyNumber;
     private String userId;
     private String petFieldName;
     private String userPhoneNumber;

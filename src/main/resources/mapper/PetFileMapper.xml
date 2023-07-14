@@ -7,7 +7,8 @@
     </insert>
 
     <delete id="delete">
-        DELETE FROM TBL_PET_FILE
+        DELETE
+        FROM TBL_PET_FILE
         WHERE PET_NUMBER = #{petNumber}
     </delete>
 
@@ -19,7 +20,9 @@
 
     <update id="update">
         UPDATE TBL_PET_FILE
-        SET PET_FILE_NAME = #{petFileName}, PET_FILE_UPLOAD_PATH = #{petFileUploadPath}, PET_FILE_UUID = #{petFileUuid}
+        SET PET_FILE_NAME        = #{petFileName},
+            PET_FILE_UPLOAD_PATH = #{petFileUploadPath},
+            PET_FILE_UUID        = #{petFileUuid}
         WHERE PET_NUMBER = #{petNumber}
     </update>
 

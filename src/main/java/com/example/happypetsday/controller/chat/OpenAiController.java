@@ -1,7 +1,6 @@
 package com.example.happypetsday.controller.chat;
 
 import com.example.happypetsday.vo.AiChatVo;
-import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -25,8 +24,9 @@ public class OpenAiController {
     @Value("${gpt.api}")
     private String apiKey;
     private String endPoint = "https://api.openai.com/v1/chat/completions";
+
     @PostMapping("/question")
-    public Mono<Map> question(@RequestBody List<AiChatVo> list ){
+    public Mono<Map> question(@RequestBody List<AiChatVo> list) {
 
         AiChatVo system = new AiChatVo();
         system.setRole("system");
@@ -63,7 +63,7 @@ public class OpenAiController {
 
         Map<String, Object> reqBody = new HashMap<>();
         reqBody.put("model", "gpt-3.5-turbo");
-        reqBody.put("messages", list );
+        reqBody.put("messages", list);
         reqBody.put("temperature", 0.8);
         reqBody.put("max_tokens", 1000);
 

@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: 'Pretendard-Regular';
@@ -10,12 +10,12 @@
     font-style: normal;
 }
 
-header a{
+header a {
     text-decoration: none;
     color: black;
 }
 
-header{
+header {
     position: sticky;
     background-color: white;
     width: 100%;
@@ -29,7 +29,7 @@ header{
     border-bottom: 1px solid #D8D8D8;
 }
 
-.header{
+.header {
     width: 1200px;
     height: 70px;
     display: flex;
@@ -38,48 +38,47 @@ header{
 }
 
 
-
-
-.header--logo{
+.header--logo {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.header--logo img{
+.header--logo img {
     height: 70px;
     width: 150px;
 }
 
-.header--container{
+.header--container {
     width: 600px;
     display: flex;
     margin-left: 30px;
     margin-right: 200px;
     font-size: 18px;
 }
-.header--sub-container{
+
+.header--sub-container {
     display: flex;
     font-size: 18px;
     justify-content: flex-start;
 }
 
-.header--sub-container > a{
+.header--sub-container > a {
     margin-left: 50px;
     line-height: 70px;
 }
 
-.header--login-container{
+.header--login-container {
     display: flex;
 }
 
-.header--login-container a{
+.header--login-container a {
     margin: 0 10px;
     font-size: 15px;
 }
 
 
-.header--btn{
+.header--btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,23 +91,23 @@ header{
     border-radius: 60px;
 }
 
-.header--blue-btn{
+.header--blue-btn {
     background-color: #68A5FE;
     color: white;
 }
 
-.header--white-btn{
+.header--white-btn {
     color: #68A5FE;
 }
 
-.header--sitter-btn{
+.header--sitter-btn {
     cursor: pointer;
     line-height: 70px;
     position: relative;
     height: 70px;
 }
 
-.header--sitter-container{
+.header--sitter-container {
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -119,10 +118,10 @@ header{
     position: absolute;
     top: 70px;
     left: -60px;
-    background-color: rgba(255,255,255,0.9);
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
-.header--sitter-container a{
+.header--sitter-container a {
     margin: 20px 0;
     line-height: 0;
 }

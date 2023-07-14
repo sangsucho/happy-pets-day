@@ -2,7 +2,7 @@
 $('.search-txt').on('keypress', function (e) {
     if (e.code == 'Enter') {
         let message = $(this).val();
-        searchAjax(message,1,searchList,showSearchPage);
+        searchAjax(message, 1, searchList, showSearchPage);
     }
 });
 
@@ -10,12 +10,12 @@ $('.search-txt').on('keypress', function (e) {
 $(".search-button").click(function () {
     let keyword = $(".search-txt").val();  // 입력된 검색어 가져오기
     // Ajax를 통해 검색 결과 요청
-    searchAjax(keyword,1,searchList,showSearchPage);
+    searchAjax(keyword, 1, searchList, showSearchPage);
 });
 
-searchAjax('',1,searchList,showSearchPage);
+searchAjax('', 1, searchList, showSearchPage);
 
-function searchAjax(keyword,page,searchList,showSearchPage) {
+function searchAjax(keyword, page, searchList, showSearchPage) {
     $.ajax({
         url: `/usersManage/postSearch/${page}`,
         type: "get",
@@ -87,7 +87,7 @@ function showSearchPage(pageVo) {
     $('.page-ul').html(pageText);
 }
 
-$('.page-ul').on('click','a', function (){
+$('.page-ul').on('click', 'a', function () {
     let keyword = $(".search-txt").val();
     let page = $(this).data('page');
 

@@ -10,7 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/loc/*")
 public class LocSearchController {
     @GetMapping("/list")
-    public String list() {return "locSearch/medicine";}
+    public String list() {
+        return "locSearch/medicine";
+    }
+
     @GetMapping("/pharmacy")
-    public String pharmacy() {return "locSearch/pharmacy";}
+    public String pharmacy() {
+        return "locSearch/pharmacy";
+    }
 }

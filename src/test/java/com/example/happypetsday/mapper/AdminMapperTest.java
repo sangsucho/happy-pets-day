@@ -2,7 +2,6 @@ package com.example.happypetsday.mapper;
 
 import com.example.happypetsday.dto.SitterApplyDto;
 import com.example.happypetsday.dto.UserDto;
-import com.example.happypetsday.service.admin.AdminService;
 import com.example.happypetsday.vo.Criteria;
 import com.example.happypetsday.vo.UserVo;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Transactional
@@ -52,8 +51,8 @@ class AdminMapperTest {
     @Test
     @DisplayName("회원 1명 상세정보 조회")
     void selectUserOne() {
-    UserVo finduser =adminMapper.selectUserOne(userVo.getUserNumber());
-    log.info(finduser.toString());
+        UserVo finduser = adminMapper.selectUserOne(userVo.getUserNumber());
+        log.info(finduser.toString());
 
         assertThat(finduser.getUserNumber())
                 .isEqualTo(userVo.getUserNumber());
@@ -94,7 +93,7 @@ class AdminMapperTest {
 
     @Test
     @DisplayName("전체회원 수 조회")
-    void selectTotalUser(){
+    void selectTotalUser() {
         Long totalUserCount = adminMapper.selectTotalUser();
         UserVo userVo = new UserVo();
         userVo.setTotalUserNumber(totalUserCount);

@@ -1,185 +1,190 @@
 * {
-  margin: 0;
-  padding: 0;
-  font-family: "Pretendard";
-  list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-family: "Pretendard";
+    list-style-type: none;
 }
 
 :root {
-  --main-color: #68a4fe;
-  --main-font-color: #343434;
-  --border-bottom-color: #e3e3e3;
-  --font-green: #00bf00;
-  --font-orange: #ff8c00;
+    --main-color: #68a4fe;
+    --main-font-color: #343434;
+    --border-bottom-color: #e3e3e3;
+    --font-green: #00bf00;
+    --font-orange: #ff8c00;
 }
 
 /* Header */
 .header-container {
-  width: 100%;
-  height: 80px;
-  background-color: brown;
+    width: 100%;
+    height: 80px;
+    background-color: brown;
 }
 
 /* 왼쪽 탭 목록 */
 #container {
-  display: flex;
-  justify-content: center;
-  width: 1200px;
-  height: 100%;
-  margin: 0 auto;
-  padding-top: 50px;
-  margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    padding-top: 50px;
+    margin-bottom: 30px;
 }
 
 .color-text {
-  font-size: 25px;
-  color: var(--main-color);
-  margin-bottom: 30px;
-  width: 130px;
+    font-size: 25px;
+    color: var(--main-color);
+    margin-bottom: 30px;
+    width: 130px;
 }
 
 .font-bold {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .mypage-left {
-  width: 15%;
+    width: 15%;
 }
 
 .mypage-left ul li {
-  margin-bottom: 25px;
-  display: block;
+    margin-bottom: 25px;
+    display: block;
 }
 
 .mypage-left ul li a {
-  text-decoration: none;
-  display: block;
-  margin-bottom: 10px;
-  color: var(--main-font-color);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+    color: var(--main-font-color);
 }
 
 .mypage-left ul li a:hover {
-  opacity: 0.6;
+    opacity: 0.6;
 }
 
 .mypage-left h3 {
-  margin-bottom: 10px;
-  color: var(--main-font-color);
+    margin-bottom: 10px;
+    color: var(--main-font-color);
 }
 
 /* 오른쪽 컨텐츠 정보 */
 .mypage-right {
-  width: 85%;
+    width: 85%;
 }
 
 .mypage-right h2 {
-  color: var(--main-font-color);
-  font-size: 40px;
-  border-bottom: 3px solid var(--border-bottom-color);
-  margin-bottom: 50px;
-  line-height: 80px;
+    color: var(--main-font-color);
+    font-size: 40px;
+    border-bottom: 3px solid var(--border-bottom-color);
+    margin-bottom: 50px;
+    line-height: 80px;
 }
 
 #list-wrap {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 #contents-box {
-  width: 280px;
-  height: 200px;
-  border: 1px solid var(--border-bottom-color);
-  border-radius: 10px;
-  padding: 20px;
-  margin: 0 10px 10px 0;
+    width: 280px;
+    height: 200px;
+    border: 1px solid var(--border-bottom-color);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0 10px 10px 0;
 }
 
 .reservation-status {
-  width: 80px;
-  height: 24px;
-  font-size: 12px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid var(--border-bottom-color);
-  border-radius: 10px;
-  margin: 10px 0 25px 0;
-  color: var(--font-orange);
+    width: 80px;
+    height: 24px;
+    font-size: 12px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--border-bottom-color);
+    border-radius: 10px;
+    margin: 10px 0 25px 0;
+    color: var(--font-orange);
 }
 
 /* 이용 완료 상태 색상 */
 .green {
-  color: var(--font-green);
+    color: var(--font-green);
 }
 
 /* 예약 취소 */
 .red {
-  color: red;
+    color: red;
 }
 
 .info-wrap {
-  display: flex;
-  margin: 10px;
+    display: flex;
+    margin: 10px;
 }
 
 .info-wrap h4 {
-  width: 100px;
+    width: 100px;
 }
 
 .button-wrap {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
 }
 
 .button-wrap button {
-  all: unset;
-  background-color: var(--main-color);
-  color: white;
-  padding: 10px 20px;
-  border-radius: 10px;
-  cursor: pointer;
-  margin: 0 10px;
+    all: unset;
+    background-color: var(--main-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0 10px;
 }
 
 .button-wrap button:hover {
-  opacity: 0.7;
+    opacity: 0.7;
 }
 
 /* 페이징 스타일 */
 .pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
 }
 
 .pagination > ul {
-  display: flex;
-  list-style: none;
+    display: flex;
+    list-style: none;
 }
 
 .pagination a {
-  color: #747272;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 10px;
-  margin: 0 5px;
-  border-radius: 5px;
-  border: 1px solid #68a5fe;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  font-family: Pretendard-SemiBold;
+    color: #747272;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+    margin: 0 5px;
+    border-radius: 5px;
+    border: 1px solid #68a5fe;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: Pretendard-SemiBold;
 }
 
 .pagination a:hover {
-  background-color: #a4c9fe;
-  border-color: #a4c9fe;
-  color: #fff;
+    background-color: #a4c9fe;
+    border-color: #a4c9fe;
+    color: #fff;
 }
 
 .pagination .active {
-  background-color: #68a5fe;
-  border-color: #68a5fe;
-  color: #fff;
+    background-color: #68a5fe;
+    border-color: #68a5fe;
+    color: #fff;
+}
+
+.notExist-res {
+  text-align: center;
+  font-size: 20px;
 }

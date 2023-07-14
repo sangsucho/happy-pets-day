@@ -15,49 +15,49 @@ import java.util.List;
 public class ReplyService {
     private final StrollReplyMapper strollReplyMapper;
 
-//    댓글 추가
-    public void register(StrollReplyDto strollReplyDto){
-        if(strollReplyDto == null){
+    //    댓글 추가
+    public void register(StrollReplyDto strollReplyDto) {
+        if (strollReplyDto == null) {
             throw new IllegalArgumentException("댓글 등록 정보 누락");
         }
         strollReplyMapper.insert(strollReplyDto);
     }
 
-//    댓글 리스트 가져오기
-    public List<StrollReplyVo> findReplyList(Criteria criteria, Long strollBoardNumber){
-        if(strollBoardNumber==null||criteria==null){
+    //    댓글 리스트 가져오기
+    public List<StrollReplyVo> findReplyList(Criteria criteria, Long strollBoardNumber) {
+        if (strollBoardNumber == null || criteria == null) {
             throw new IllegalArgumentException("댓글 페이징 정보 누락");
         }
-        return strollReplyMapper.selectListPage(criteria,strollBoardNumber);
+        return strollReplyMapper.selectListPage(criteria, strollBoardNumber);
     }
 
-//    게시글 댓글 수
-    public int findTotal(Long strollBoardNumber){
-        if(strollBoardNumber==null){
+    //    게시글 댓글 수
+    public int findTotal(Long strollBoardNumber) {
+        if (strollBoardNumber == null) {
             throw new IllegalArgumentException("게시글 번호 누락");
         }
         return strollReplyMapper.selectTotal(strollBoardNumber);
     }
 
-//    댓글 1개 삭제
-    public void remove(Long strollReplyNumber){
-        if(strollReplyNumber==null){
+    //    댓글 1개 삭제
+    public void remove(Long strollReplyNumber) {
+        if (strollReplyNumber == null) {
             throw new IllegalArgumentException("댓글 번호 누락");
         }
         strollReplyMapper.delete(strollReplyNumber);
     }
 
-//    게시글에 있는 전체 댓글 삭제
-    public void removeAll(Long strollBoardNumber){
-        if(strollBoardNumber==null){
+    //    게시글에 있는 전체 댓글 삭제
+    public void removeAll(Long strollBoardNumber) {
+        if (strollBoardNumber == null) {
             throw new IllegalArgumentException("게시글 번호 누락(댓글삭제)");
         }
         strollReplyMapper.deleteAll(strollBoardNumber);
     }
 
-//    댓글 수정
-    public void modify(StrollReplyDto strollReplyDto){
-        if(strollReplyDto==null){
+    //    댓글 수정
+    public void modify(StrollReplyDto strollReplyDto) {
+        if (strollReplyDto == null) {
             throw new IllegalArgumentException("댓글 수정 정보 누락");
         }
         strollReplyMapper.update(strollReplyDto);

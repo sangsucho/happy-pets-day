@@ -38,7 +38,7 @@ public class MyBatisConfig {
     // "spring.datasource.hikari" 로 시작하는 설정값을 전부 가져오라는 의미이다.
     // 가져온 값을 new HikariConfig() 로 만든 객체의 필드에 바인딩한다.
     @Bean
-    public HikariConfig hikariConfig(){
+    public HikariConfig hikariConfig() {
 
         // Hikari 란?
         // Hikari(히카리 커넥션 풀) 라이브러리를 의미한다.
@@ -52,7 +52,7 @@ public class MyBatisConfig {
     }
 
     @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         // DataSource 란?
         // DataSource 객체는 CP를 관리하고 CP에 있는 커넥션 객체를 제공, 반납 받는다.
         // 모든 CP 라이브러리는 DataSource 객체를 사용한다.
@@ -62,7 +62,7 @@ public class MyBatisConfig {
     }
 
     @Bean
-    public SqlSessionFactory sqlSessionFactory() throws Exception{
+    public SqlSessionFactory sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource());
 //                                                                                                                                          /** 하위 어떤 경로든 xml파일 다 찾기

@@ -2,7 +2,7 @@ $.ajax({
     url: `http://openapi.seoul.go.kr:8088/786e44785864656334354e61496a76/json/TbAdpWaitAnimalView/1/3/`,
     type: "get",
     dataType: "json",
-    success: function(result) {
+    success: function (result) {
         if (result.TbAdpWaitAnimalView && result.TbAdpWaitAnimalView.row) {
             let list = result.TbAdpWaitAnimalView.row;
             makeList(list);

@@ -13,6 +13,7 @@ public class WebConfig implements WebMvcConfigurer {
     private String profileDir;
     @Value("${sitterImg.dir}")
     private String imgDir;
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 //        addResourceHandlers() 리소스 경로와 연결될 URL 경로를 작성한다.
@@ -24,6 +25,6 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/upload/profileFile/**")
                 .addResourceLocations("file:" + profileDir);
         registry.addResourceHandler("/upload/imgFile/**")
-                .addResourceLocations("file:"+imgDir);
+                .addResourceLocations("file:" + imgDir);
     }
 }

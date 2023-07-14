@@ -1,99 +1,95 @@
 * {
-  margin: 0px;
-  padding: 0px;
+    margin: 0px;
+    padding: 0px;
 }
 
 @font-face {
-  font-family: "Pretendard-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
-  format("woff");
-  font-style: normal;
+    font-family: "Pretendard-Regular";
+    src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+    font-style: normal;
 }
 
 @font-face {
-  font-family: "Pretendard-Medium";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff")
-  format("woff");
-  font-style: normal;
+    font-family: "Pretendard-Medium";
+    src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff") format("woff");
+    font-style: normal;
 }
 
 @font-face {
-  font-family: "Pretendard-Bold";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff")
-  format("woff");
-  font-style: normal;
+    font-family: "Pretendard-Bold";
+    src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff") format("woff");
+    font-style: normal;
 }
 
 @font-face {
-  font-family: "Pretendard-SemiBold";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff")
-  format("woff");
-  font-style: normal;
+    font-family: "Pretendard-SemiBold";
+    src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff") format("woff");
+    font-style: normal;
 }
 
 input {
-  /*border: 1px solid #68a5fe;*/
+    /*border: 1px solid #68a5fe;*/
 }
 
 body {
-  /* width: 1200px; */
-  margin: 0px auto;
+    /* width: 1200px; */
+    margin: 0px auto;
 }
 
 .header-title {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .box-padding {
 }
 
 .title {
-  display: flex;
-  justify-content: center;
-  margin-top: 150px;
-  margin-bottom: 100px;
-  font-size: 50px;
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+    margin-bottom: 100px;
+    font-size: 50px;
 }
 
 .main {
-  border: 1px solid #ebebeb;
-  border-radius: 50px;
-  -webkit-box-shadow: 0px 0px 32px 6px rgba(177, 180, 198, 0.2);
-  padding: 0px 110px;
-  width: 500px;
+    border: 1px solid #ebebeb;
+    border-radius: 50px;
+    -webkit-box-shadow: 0px 0px 32px 6px rgba(177, 180, 198, 0.2);
+    padding: 0px 110px;
+    width: 500px;
 }
 
 .main > p {
-  margin: 0px auto;
-  padding-bottom: 15px;
-  font-size: 25px;
-  font-weight: bold;
-  padding-top: 70px;
+    margin: 0px auto;
+    padding-bottom: 15px;
+    font-size: 25px;
+    font-weight: bold;
+    padding-top: 70px;
 }
 
 .apply-sitter {
-  margin: 0px auto;
-  /* display: flex; */
+    margin: 0px auto;
+    /* display: flex; */
 }
 
 .p-text {
-  font-size: 17px;
-  font-weight: bold;
-  color: #343434;
+    font-size: 17px;
+    font-weight: bold;
+    color: #343434;
 }
 
 .sitter-id {
-  background-color: white;
-  display: flex;
-  position: relative;
-  width: 350px;
-  height: 58px;
-  border: 1px solid #ebebeb;
-  border-radius: 5px;
-  padding: 0px 20px;
-  align-items: center;
-  justify-content: center;
+    background-color: white;
+    display: flex;
+    position: relative;
+    width: 350px;
+    height: 58px;
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+    padding: 0px 20px;
+    align-items: center;
+    justify-content: center;
 }
 
 /*.sitter-id > div {*/
@@ -104,204 +100,204 @@ body {
 /*}*/
 
 .birth {
-  text-align: center;
+    text-align: center;
 }
 
 .sitter-id > input {
-  height: 20px;
-  width: 136px;
-  border: solid 0px transparent;
+    height: 20px;
+    width: 136px;
+    border: solid 0px transparent;
 }
 
 .new-input {
-  margin-left: 60px;
+    margin-left: 60px;
 }
 
 .sitter-id > img {
-  position: absolute;
-  width: 99px;
-  height: 18px;
-  z-index: 1;
-  right: 20px;
+    position: absolute;
+    width: 99px;
+    height: 18px;
+    z-index: 1;
+    right: 20px;
 }
 
 .new-p {
-  font-size: 15px;
-  color: #343434;
+    font-size: 15px;
+    color: #343434;
 }
 
 input {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 .box-padding > div > input {
-  text-align: center;
-  width: 100%;
-  border: 1px solid #e0e0e0;
-  border-radius: 5px;
-  /* padding: 20px; */
-  height: 60px;
-  font-size: 18px;
-  margin-top: 10px;
-  color: #343434;
+    text-align: center;
+    width: 100%;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    /* padding: 20px; */
+    height: 60px;
+    font-size: 18px;
+    margin-top: 10px;
+    color: #343434;
 }
 
 .box-padding > div {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 #self-introduce {
-  margin-top: 10px;
-  width: 100%;
-  height: 300px;
-  padding-top: 10px;
-  min-height: 173px;
-  border: 1px solid #e0e0e0;
-  border-radius: 5px;
-  color: #343434;
-  font-size: 15px;
-  font-weight: bold;
-  resize: none;
+    margin-top: 10px;
+    width: 100%;
+    height: 300px;
+    padding-top: 10px;
+    min-height: 173px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    color: #343434;
+    font-size: 15px;
+    font-weight: bold;
+    resize: none;
 }
 
 .form-wrap {
-  width: 600px;
-  margin: 0 auto;
+    width: 600px;
+    margin: 0 auto;
 }
 
 .file-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 500px;
 }
 
 .specialty > label {
-  position: relative;
-  margin-right: 10px;
-  font-size: 17px;
-  font-weight: bold;
+    position: relative;
+    margin-right: 10px;
+    font-size: 17px;
+    font-weight: bold;
 }
 
 .file-wrap > li {
-  list-style-type: none;
-  width: 90px;
-  height: 90px;
-  margin: 0.5rem;
-  border: 0.0625rem dashed #e1e1e1;
-  border-radius: 8px;
-  cursor: pointer;
+    list-style-type: none;
+    width: 90px;
+    height: 90px;
+    margin: 0.5rem;
+    border: 0.0625rem dashed #e1e1e1;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 .file-wrap > li:last-child {
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
 
 #img-list {
-  cursor: default;
-  background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNiIgaGVpZ2h0PSIzNiI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48ZyBzdHJva2U9IiNCNUI1QjUiIHN0cm9rZS13aWR0aD0iMS41IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0IDQpIj48cmVjdCB3aWR0aD0iMjgiIGhlaWdodD0iMjgiIHJ4PSIzLjUiLz48Y2lyY2xlIGN4PSI4LjU1NiIgY3k9IjguNTU2IiByPSIyLjMzMyIvPjxwYXRoIGQ9Ik0yOCAxOC42NjdsLTcuNzc3LTcuNzc4TDMuMTExIDI4Ii8+PC9nPjxwYXRoIGQ9Ik0wIDBoMzZ2MzZIMHoiLz48L2c+PC9zdmc+)
-  no-repeat 50% #f2f2f2;
-  position: relative;
+    cursor: default;
+    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNiIgaGVpZ2h0PSIzNiI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48ZyBzdHJva2U9IiNCNUI1QjUiIHN0cm9rZS13aWR0aD0iMS41IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0IDQpIj48cmVjdCB3aWR0aD0iMjgiIGhlaWdodD0iMjgiIHJ4PSIzLjUiLz48Y2lyY2xlIGN4PSI4LjU1NiIgY3k9IjguNTU2IiByPSIyLjMzMyIvPjxwYXRoIGQ9Ik0yOCAxOC42NjdsLTcuNzc3LTcuNzc4TDMuMTExIDI4Ii8+PC9nPjxwYXRoIGQ9Ik0wIDBoMzZ2MzZIMHoiLz48L2c+PC9zdmc+) no-repeat 50% #f2f2f2;
+    position: relative;
 }
 
 input[type="file"] {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 input[type="file"] {
-  position: absolute;
-  width: 91px;
-  height: 91px;
-  opacity: 0;
+    position: absolute;
+    width: 91px;
+    height: 91px;
+    opacity: 0;
 }
 
 .form-group {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .submit-btn {
-  width: 270px;
-  height: 70px;
-  padding: 10px;
-  background-color: #fff;
-  border: 1px solid #68a5fe;
-  cursor: pointer;
-  border-radius: 30px;
-  margin: 20px 0 0 0;
-  font-size: 17px;
-  font-weight: bold;
-  color: #68a5fe;
-  font-family: Pretendard-SemiBold;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  text-decoration: none;
+    width: 270px;
+    height: 70px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #68a5fe;
+    cursor: pointer;
+    border-radius: 30px;
+    margin: 20px 0 0 0;
+    font-size: 17px;
+    font-weight: bold;
+    color: #68a5fe;
+    font-family: Pretendard-SemiBold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none;
 }
 
 .submit-btn:hover {
-  background-color: #68a5fe;
-  color: #fff;
+    background-color: #68a5fe;
+    color: #fff;
 }
 
 .btn-align {
-  display: flex;
-  margin-top: 60px;
-  justify-content: center;
-  padding-bottom: 110px;
+    display: flex;
+    margin-top: 60px;
+    justify-content: center;
+    padding-bottom: 110px;
 }
 
 .input-hidden {
-  align-items: center;
-  width: 56px;
-  display: grid;
-  font-size: 14px;
-  /* margin: 0.5rem; */
-  font-weight: bold;
-  margin-right: 85px;
+    align-items: center;
+    width: 56px;
+    display: grid;
+    font-size: 14px;
+    /* margin: 0.5rem; */
+    font-weight: bold;
+    margin-right: 85px;
 }
 
 .license-name > p {
-  text-align: center;
-  font-size: 14px;
-  margin: 0.5rem;
-  font-weight: bold;
-  /*color: #68a5fe;*/
+    text-align: center;
+    font-size: 14px;
+    margin: 0.5rem;
+    font-weight: bold;
+    /*color: #68a5fe;*/
 }
 
 .input-hidden > input {
-  font-size: 14px;
-  margin: 0.5rem;
-  font-weight: bold;
-  color: #343434;
-  width: 100px;
-  height: 22px;
-  border-radius: 5px;
-  text-align: center;
+    font-size: 14px;
+    margin: 0.5rem;
+    font-weight: bold;
+    color: #343434;
+    width: 100px;
+    height: 22px;
+    border-radius: 5px;
+    text-align: center;
 }
 
 .pppp {
-  margin: 0px auto;
-  padding-bottom: 15px;
-  font-size: 25px;
-  font-weight: bold;
-  padding-top: 70px;
+    margin: 0px auto;
+    padding-bottom: 15px;
+    font-size: 25px;
+    font-weight: bold;
+    padding-top: 70px;
 }
 
 .sitterFieldBox > p {
-  margin: 0px auto;
-  padding-bottom: 20px;
-  font-size: 25px;
-  font-weight: bold;
-  padding-top: 70px;
+    margin: 0px auto;
+    padding-bottom: 20px;
+    font-size: 25px;
+    font-weight: bold;
+    padding-top: 70px;
 }
 
 .sitterFieldBox > span {
-  margin-right: 40px;
-  font-size: 17px;
-  font-weight: bold;
-  color: #343434;
+    margin-right: 40px;
+    font-size: 17px;
+    font-weight: bold;
+    color: #343434;
 }
+
 .sitterFieldBox > span > input {
-  position: relative;
-  left: 6px;
+    position: relative;
+    left: 6px;
 }

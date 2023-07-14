@@ -7,7 +7,7 @@
 <body>
     <div class="mypage-left" th:fragment="myPageSideBar">
         <div class="color-text">
-            <span class="font-bold user-name">박광인</span>
+            <span class="font-bold user-name"></span>
             <span>님의 마이페이지</span>
         </div>
 
@@ -22,9 +22,6 @@
             </li>
             <li>
                 <h3>펫시터</h3>
-<!--                '펫시터 번호가 없습니다' 오류발생. -->
-<!--                내 소개 클릭 > 펫시터 번호를 가지고 페이지 이동을 해야한다.
-                    해당 펫시터의 번호로 펫시터의 정보를 보여줘야 하니까  -->
                 <a class="viewProfile" href="">내 소개</a>
                 <a th:href="@{/myPage/reservationList}">예약 내역 </a>
                 <a th:href="@{/myPage/checkReservation}">예약 확인 </a>
@@ -35,7 +32,8 @@
             </li>
         </ul>
     </div>
-
+    <script th:src="@{/js/myPage/checkPw.js}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script th:src="@{/js/fragment/myPageSidebar.js}"></script>
 </body>
 </html>

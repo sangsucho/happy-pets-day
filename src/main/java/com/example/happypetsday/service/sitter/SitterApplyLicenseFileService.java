@@ -8,7 +8,6 @@ import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -29,21 +28,27 @@ public class SitterApplyLicenseFileService {
     @Value("${sitterFile.dir}")
     private String applyDir;
 
-    public void register(SitterApplyLicenseFile file){
-        if(file == null) { throw new IllegalArgumentException("파일 정보 누락"); }
+    public void register(SitterApplyLicenseFile file) {
+        if (file == null) {
+            throw new IllegalArgumentException("파일 정보 누락");
+        }
         licenseFile.insert(file);
     }
 
-    public Long findApplyNum(Long userNumber){
+    public Long findApplyNum(Long userNumber) {
         return licenseFile.selectApplyNumber(userNumber);
     }
 
-    public List<SitterApplyLicenseFile> findList(Long applyNumber){
+    public List<SitterApplyLicenseFile> findList(Long applyNumber) {
         return licenseFile.select(applyNumber);
     }
 
     //    파일 저장 처리
     public SitterApplyLicenseFile saveFile(MultipartFile file, Long userNumber, Long applyNumber) throws IOException {
+        if (file == null) {
+            throw new IllegalArgumentException("파일이 누락되었습니다.");
+        }
+
         String originName = file.getOriginalFilename();
         originName = originName.replaceAll("\\s+", "");
 
@@ -69,13 +74,14 @@ public class SitterApplyLicenseFileService {
         fileDto.setApplyFileUuid(uuid.toString());
         fileDto.setApplyFileName(originName);
         fileDto.setApplyFileUploadPath(getUploadPath());
-        // applyNumber와 userNumber를 설정합니다.
-        // 이 부분이 추가된 부분입니다.
-        fileDto.setApplyNumber(applyNumber); // applyNumber를 설정해야 하는 값으로 변경해야 합니다.
-        fileDto.setUserNumber(userNumber); // userNumber를 설정해야 하는 값으로 변경해야 합니다.
-        System.out.println("업로드 패스" + uploadPath);
+        fileDto.setApplyNumber(applyNumber);
+        fileDto.setUserNumber(userNumber);
+
+        System.out.println("업로드 패스: " + uploadPath);
+
         return fileDto;
     }
+
 
 
     /**
@@ -92,20 +98,26 @@ public class SitterApplyLicenseFileService {
 
         for (int i = 0; i < files.size(); i++) {
             MultipartFile file = files.get(i);
-            String title = applyFileTitle.get(i);
-            SitterApplyLicenseFile fileDto = saveFile(file, userNumber, applyNumber);
+            String title;
 
+            if (applyFileTitle != null && i < applyFileTitle.size()) {
+                title = applyFileTitle.get(i);
+            } else {
+                title = "Untitled"; // 또는 다른 기본값으로 설정
+            }
+
+            SitterApplyLicenseFile fileDto = saveFile(file, userNumber, applyNumber);
             fileDto.setApplyFileTitle(title);
             register(fileDto);
         }
+
         System.out.println("파일서비스" + files.size());
         System.out.println("파일서비스" + applyFileTitle);
     }
 
 
-
     //    파일이 저장되는 하위 경로를 현재 날짜로 설정할 것이기 때문에 현재날짜를 구한다.
-    private String getUploadPath(){
+    private String getUploadPath() {
         return new SimpleDateFormat("yyyy/MM/dd").format(new Date());
     }
 

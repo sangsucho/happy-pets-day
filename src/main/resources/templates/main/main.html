@@ -46,27 +46,14 @@
             <div class="sitter-section2-title">인기 많은 <span>펫시터</span> 확인하세요</div>
             <div class="sitter-container">
                 <!--                    인기 펫시터 정보 3개 여기 a.sitter-info 한개 뽑아서 반복 세번-->
-                <a th:href="@{/sitter/profile}" class="sitter-info">
-                    <img th:src="@{/img/KakaoTalk_20230524_113238743_06.jpg}" alt="">
+
+                <a th:href="@{/sitter/profile(sitterNumber=${sitter.sitterNumber})}" class="sitter-info" th:each="sitter : ${sitterList}">
+                    <img th:src="@{${sitter.sitterFileFileName}}" alt="">
                     <div class="sitter-info-container">
                         <!--                            시터 이름-->
-                        <div class="sitter-name">박광인</div>
+                        <div class="sitter-name" th:text="${sitter.userName}"></div>
                         <!--                            시터 정보-->
-                        <div class="sitter-comment">동물을 사랑하는 시터</div>
-                    </div>
-                </a>
-                <a class="sitter-info">
-                    <img th:src="@{/img/KakaoTalk_20230524_113238743_06.jpg}" alt="">
-                    <div class="sitter-info-container">
-                        <div class="sitter-name">박광인</div>
-                        <div class="sitter-comment">동물을 사랑하는 시터</div>
-                    </div>
-                </a>
-                <a class="sitter-info">
-                    <img th:src="@{/img/KakaoTalk_20230524_113238743_06.jpg}" alt="">
-                    <div class="sitter-info-container">
-                        <div class="sitter-name">박광인</div>
-                        <div class="sitter-comment">동물을 사랑하는 시터</div>
+                        <div class="sitter-comment" th:text="${sitter.sitterIntroduction}"></div>
                     </div>
                 </a>
             </div>
@@ -89,7 +76,7 @@
                 </div>
                 <div class="board-section-body-list">
                     <!--                        게시판 리스트 3개 반복 href 게시글 보기 설정-->
-                    <a class="board-list" th:href="@{stroll/view(strollBoaardNumber=${board.strollBoardNumber})}"
+                    <a class="board-list" th:href="@{stroll/view(strollBoardNumber=${board.strollBoardNumber})}"
                        th:each="board : ${boardList}">
                         <div class="board-list-container">
                             <div class="board-title-container">

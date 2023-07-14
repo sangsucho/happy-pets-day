@@ -48,24 +48,24 @@
                 <tbody>
                 <!-- ========== 게시글 목록 예시 =========== -->
 
-<!--                <th:block th:unless="${#lists.isEmpty(userList)}">-->
-<!--                <tr th:each="user : ${userList}">-->
-<!--                    <td class="no" th:text="${user.userNumber}"></td>-->
+                <!--                <th:block th:unless="${#lists.isEmpty(userList)}">-->
+                <!--                <tr th:each="user : ${userList}">-->
+                <!--                    <td class="no" th:text="${user.userNumber}"></td>-->
 
-<!--                    <td class="user-id">-->
-<!--                    <a th:href="@{/admin/userDetailManage(userNumber=${user.userNumber})}" th:text="${user.userId}"></a>-->
-<!--                    </td>-->
+                <!--                    <td class="user-id">-->
+                <!--                    <a th:href="@{/admin/userDetailManage(userNumber=${user.userNumber})}" th:text="${user.userId}"></a>-->
+                <!--                    </td>-->
 
-<!--                    <td class="user-name" th:text="${user.userName}"></td>-->
-<!--                    <td class="user-level" th:text="${user.statusName}"></td>-->
-<!--                </tr>-->
-<!--                 </th:block>-->
+                <!--                    <td class="user-name" th:text="${user.userName}"></td>-->
+                <!--                    <td class="user-level" th:text="${user.statusName}"></td>-->
+                <!--                </tr>-->
+                <!--                 </th:block>-->
 
-<!--                <th:block th:if="${#lists.isEmpty(userList)}">-->
-<!--                <tr>-->
-<!--                    <td colspan="5" align="center">등록된 회원이 없습니다.</td>-->
-<!--                </tr>-->
-<!--                 </th:block>-->
+                <!--                <th:block th:if="${#lists.isEmpty(userList)}">-->
+                <!--                <tr>-->
+                <!--                    <td colspan="5" align="center">등록된 회원이 없습니다.</td>-->
+                <!--                </tr>-->
+                <!--                 </th:block>-->
 
                 <!-- ========== /게시글 목록 예시 =========== -->
                 </tbody>
@@ -73,15 +73,15 @@
             <div class="pagination">
                 <ul class="page-ul">
                     <!-- ========== 페이징 처리 예시 ============ -->
-<!--                    <li th:if="${pageInfo.prev}"><a th:href="@{/admin/userManage(page=${pageInfo.startPage-1})}" class="prev">&lt;</a></li>-->
+                    <!--                    <li th:if="${pageInfo.prev}"><a th:href="@{/admin/userManage(page=${pageInfo.startPage-1})}" class="prev">&lt;</a></li>-->
 
-<!--                    <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">-->
-<!--                        <li th:if="${i == pageInfo.criteria.page}"><a th:href="@{/admin/userManage(page=${i})}" class="active" th:text="${i}"></a></li>-->
-<!--                        <li th:unless="${i == pageInfo.criteria.page}"><a th:href="@{/admin/userManage(page=${i})}" th:text="${i}"></a></li>-->
-<!--                    </th:block>-->
+                    <!--                    <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">-->
+                    <!--                        <li th:if="${i == pageInfo.criteria.page}"><a th:href="@{/admin/userManage(page=${i})}" class="active" th:text="${i}"></a></li>-->
+                    <!--                        <li th:unless="${i == pageInfo.criteria.page}"><a th:href="@{/admin/userManage(page=${i})}" th:text="${i}"></a></li>-->
+                    <!--                    </th:block>-->
 
 
-<!--                    <li th:if="${pageInfo.next}"><a th:href="@{/admin/userManage(page=${pageInfo.endPage+1})}" class="next">&gt;</a></li>-->
+                    <!--                    <li th:if="${pageInfo.next}"><a th:href="@{/admin/userManage(page=${pageInfo.endPage+1})}" class="next">&gt;</a></li>-->
 
                     <!-- ========== /페이징 처리 예시 ============ -->
                 </ul>

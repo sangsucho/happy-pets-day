@@ -27,15 +27,14 @@ $(document).ready(function () {
 
 defaultChatMsg();
 
-function defaultChatMsg(){
-    let aiChatData  = JSON.parse(sessionStorage.getItem('aiChatData'));
+function defaultChatMsg() {
+    let aiChatData = JSON.parse(sessionStorage.getItem('aiChatData'));
     let text = "안녕하세요 저는 Happy Pet's Day 사이트의 챗봇입니다.";
-    if(aiChatData){
-        text = aiChatData[aiChatData.length-1].content;
+    if (aiChatData) {
+        text = aiChatData[aiChatData.length - 1].content;
     }
     $('.chat--bot-msg').text(text);
 }
-
 
 
 //세션스토리에 저장할 채팅내용들을 담을 배열 선언
@@ -74,11 +73,10 @@ $('.chat-room-detail-wrap').on('click', '.chat-screen-close', function () {
     $('#chatbot-open').show();
 });
 
-$('.chat-screen-close').on('click',  function () {
+$('.chat-screen-close').on('click', function () {
     $('#chatbot').hide();
     $('#chatbot-open').show();
 });
-
 
 
 // 유저 메세지 추가
@@ -123,7 +121,7 @@ function showChatBotRoom() {
     let text = '';
 
     //세션스토리지에 있는 값 가져오기
-    let aiChatData  = JSON.parse(sessionStorage.getItem('aiChatData'));
+    let aiChatData = JSON.parse(sessionStorage.getItem('aiChatData'));
 
     text += `
     <div id="chatbot-header" class="chatbot-header">
@@ -146,15 +144,15 @@ function showChatBotRoom() {
                     </div>
                 </div>`;
 
-                if(aiChatData){
-                    aiChatData.forEach(c=>{
-                        text += `
-                        <div class="${c.role=='user'?`user-message`:`bot-message`} message">
+    if (aiChatData) {
+        aiChatData.forEach(c => {
+            text += `
+                        <div class="${c.role == 'user' ? `user-message` : `bot-message`} message">
                              <div class="message-text">${c.content}</div>
                         </div>
                         `;
-                    })
-                }
+        })
+    }
 
     text += `</div>
             <div id="chatbot-footer" class="chatbot-footer">

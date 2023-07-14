@@ -3,21 +3,42 @@
 <mapper namespace="com.example.happypetsday.mapper.StrollBoardMapper">
 
     <insert id="insert">
-     <selectKey keyProperty="strollBoardNumber" order="BEFORE" resultType="long">
-         SELECT SEQ_STROLL_BOARD.NEXTVAL FROM DUAL
-     </selectKey>
+        <selectKey keyProperty="strollBoardNumber" order="BEFORE" resultType="long">
+            SELECT SEQ_STROLL_BOARD.NEXTVAL FROM DUAL
+        </selectKey>
         INSERT INTO TBL_STROLL_BOARD
-        (STROLL_BOARD_NUMBER, STROLL_BOARD_TITLE, STROLL_BOARD_CONTENT, STROLL_BOARD_LAT, STROLL_BOARD_LNG, STROLL_BOARD_MEETING_DATE, STROLL_BOARD_MEETING_PLACE, STROLL_BOARD_ADMIN_DISTRICT, STROLL_BOARD_REGISTER_DATE, STROLL_BOARD_UPDATE_DATE, USER_NUMBER, PET_NUMBER)
-        VALUES(#{strollBoardNumber}, #{strollBoardTitle}, #{strollBoardContent}, #{strollBoardLat}, #{strollBoardLng}, #{strollBoardMeetingDate}, #{strollBoardMeetingPlace}, #{strollBoardAdminDistrict}, SYSDATE , SYSDATE, #{userNumber}, #{petNumber, jdbcType=INTEGER })
+        (STROLL_BOARD_NUMBER, STROLL_BOARD_TITLE, STROLL_BOARD_CONTENT, STROLL_BOARD_LAT, STROLL_BOARD_LNG,
+        STROLL_BOARD_MEETING_DATE, STROLL_BOARD_MEETING_PLACE, STROLL_BOARD_ADMIN_DISTRICT, STROLL_BOARD_REGISTER_DATE,
+        STROLL_BOARD_UPDATE_DATE, USER_NUMBER, PET_NUMBER)
+        VALUES(#{strollBoardNumber}, #{strollBoardTitle}, #{strollBoardContent}, #{strollBoardLat}, #{strollBoardLng},
+        #{strollBoardMeetingDate}, #{strollBoardMeetingPlace}, #{strollBoardAdminDistrict}, SYSDATE , SYSDATE,
+        #{userNumber}, #{petNumber, jdbcType=INTEGER })
     </insert>
 
     <select id="selectOne" resultType="strollBoardVo">
-        SELECT SB.STROLL_BOARD_NUMBER, SB.STROLL_BOARD_TITLE, SB.STROLL_BOARD_CONTENT, SB.STROLL_BOARD_LAT, SB.STROLL_BOARD_LNG,
-               TO_CHAR(SB.STROLL_BOARD_MEETING_DATE, 'YYYY-MM-DD') AS STROLL_BOARD_MEETING_DATE, SB.STROLL_BOARD_MEETING_PLACE, SB.STROLL_BOARD_ADMIN_DISTRICT,
-               TO_CHAR(SB.STROLL_BOARD_REGISTER_DATE, 'YYYY-MM-DD') AS STROLL_BOARD_REGISTER_DATE, TO_CHAR(SB.STROLL_BOARD_UPDATE_DATE, 'YYYY-MM-DD') AS STROLL_BOARD_UPDATE_DATE,
-               U.USER_NUMBER, U.USER_ID,
-               P.PET_NUMBER, P.PET_NAME, TO_CHAR(P.PET_BIRTH, 'YYYY-MM-DD') AS PET_BIRTH, P.PET_KIND, P.PET_DETAILED_TYPE, P.PET_GENDER, P.PET_SURGERY,
-               PF.PET_FILE_NAME, PF.PET_FILE_UPLOAD_PATH, PF.PET_FILE_UUID, SB.STROLL_BOARD_VIEW_COUNT
+        SELECT SB.STROLL_BOARD_NUMBER,
+               SB.STROLL_BOARD_TITLE,
+               SB.STROLL_BOARD_CONTENT,
+               SB.STROLL_BOARD_LAT,
+               SB.STROLL_BOARD_LNG,
+               TO_CHAR(SB.STROLL_BOARD_MEETING_DATE, 'YYYY-MM-DD')  AS STROLL_BOARD_MEETING_DATE,
+               SB.STROLL_BOARD_MEETING_PLACE,
+               SB.STROLL_BOARD_ADMIN_DISTRICT,
+               TO_CHAR(SB.STROLL_BOARD_REGISTER_DATE, 'YYYY-MM-DD') AS STROLL_BOARD_REGISTER_DATE,
+               TO_CHAR(SB.STROLL_BOARD_UPDATE_DATE, 'YYYY-MM-DD')   AS STROLL_BOARD_UPDATE_DATE,
+               U.USER_NUMBER,
+               U.USER_ID,
+               P.PET_NUMBER,
+               P.PET_NAME,
+               TO_CHAR(P.PET_BIRTH, 'YYYY-MM-DD')                   AS PET_BIRTH,
+               P.PET_KIND,
+               P.PET_DETAILED_TYPE,
+               P.PET_GENDER,
+               P.PET_SURGERY,
+               PF.PET_FILE_NAME,
+               PF.PET_FILE_UPLOAD_PATH,
+               PF.PET_FILE_UUID,
+               SB.STROLL_BOARD_VIEW_COUNT
         FROM TBL_STROLL_BOARD SB
                  JOIN TBL_USER U ON SB.USER_NUMBER = U.USER_NUMBER
                  LEFT JOIN TBL_PET P ON SB.PET_NUMBER = P.PET_NUMBER
@@ -27,68 +48,110 @@
 
     <update id="updateViewCount">
         UPDATE TBL_STROLL_BOARD
-        SET STROLL_BOARD_VIEW_COUNT = STROLL_BOARD_VIEW_COUNT +1
+        SET STROLL_BOARD_VIEW_COUNT = STROLL_BOARD_VIEW_COUNT + 1
         WHERE STROLL_BOARD_NUMBER = #{strollBoardNumber}
     </update>
-    
+
     <select id="selectTotal" resultType="_int">
         SELECT COUNT(STROLL_BOARD_NUMBER)
         FROM TBL_STROLL_BOARD
     </select>
 
     <select id="selectAll" resultType="strollBoardVo">
-        SELECT STROLL_BOARD_NUMBER, STROLL_BOARD_TITLE,STROLL_BOARD_MEETING_DATE, STROLL_BOARD_ADMIN_DISTRICT,
-        USER_NUMBER, USER_ID
-        FROM(
-        SELECT 	ROWNUM RN,
-        STROLL_BOARD_NUMBER, STROLL_BOARD_TITLE,STROLL_BOARD_MEETING_DATE, STROLL_BOARD_ADMIN_DISTRICT,
-        USER_NUMBER, USER_ID
-        FROM
-        (
-        SELECT STROLL_BOARD_NUMBER, STROLL_BOARD_TITLE, TO_CHAR(STROLL_BOARD_MEETING_DATE,'YYYY-MM-DD') AS STROLL_BOARD_MEETING_DATE, STROLL_BOARD_ADMIN_DISTRICT,
-        B.USER_NUMBER, U.USER_ID
-        FROM TBL_USER U JOIN TBL_STROLL_BOARD B
-        ON U.USER_NUMBER =B.USER_NUMBER
-        ORDER BY STROLL_BOARD_NUMBER DESC
-        )
+        SELECT STROLL_BOARD_NUMBER,
+               STROLL_BOARD_TITLE,
+               STROLL_BOARD_MEETING_DATE,
+               STROLL_BOARD_ADMIN_DISTRICT,
+               USER_NUMBER,
+               USER_ID
+        FROM (
+                 SELECT ROWNUM RN,
+                        STROLL_BOARD_NUMBER,
+                        STROLL_BOARD_TITLE,
+                        STROLL_BOARD_MEETING_DATE,
+                        STROLL_BOARD_ADMIN_DISTRICT,
+                        USER_NUMBER,
+                        USER_ID
+                 FROM (
+                          SELECT STROLL_BOARD_NUMBER,
+                                 STROLL_BOARD_TITLE,
+                                 TO_CHAR(STROLL_BOARD_MEETING_DATE, 'YYYY-MM-DD') AS STROLL_BOARD_MEETING_DATE,
+                                 STROLL_BOARD_ADMIN_DISTRICT,
+                                 B.USER_NUMBER,
+                                 U.USER_ID
+                          FROM TBL_USER U
+                                   JOIN TBL_STROLL_BOARD B
+                                        ON U.USER_NUMBER = B.USER_NUMBER
+                          ORDER BY STROLL_BOARD_NUMBER DESC
+                      )
        <![CDATA[
-        WHERE ROWNUM <= #{page} * #{amount}
+                 WHERE ROWNUM <= #{page} * #{amount}
             ]]>
         )
         WHERE RN > (#{page} - 1) * #{amount}
     </select>
 
     <delete id="delete">
-        DELETE FROM TBL_STROLL_BOARD
-        WHERE STROLL_BOARD_NUMBER=#{strollBoardNumber}
+        DELETE
+        FROM TBL_STROLL_BOARD
+        WHERE STROLL_BOARD_NUMBER = #{strollBoardNumber}
     </delete>
 
     <update id="update">
         UPDATE TBL_STROLL_BOARD
-        SET STROLL_BOARD_TITLE=#{strollBoardTitle}, STROLL_BOARD_CONTENT=#{strollBoardContent}, STROLL_BOARD_LAT=#{strollBoardLat}, STROLL_BOARD_LNG=#{strollBoardLng}, STROLL_BOARD_MEETING_DATE=#{strollBoardMeetingDate}, STROLL_BOARD_MEETING_PLACE=#{strollBoardMeetingPlace}, STROLL_BOARD_ADMIN_DISTRICT=#{strollBoardAdminDistrict}, STROLL_BOARD_UPDATE_DATE=SYSDATE, PET_NUMBER=#{petNumber}
-        WHERE STROLL_BOARD_NUMBER=#{strollBoardNumber}
+        SET STROLL_BOARD_TITLE=#{strollBoardTitle},
+            STROLL_BOARD_CONTENT=#{strollBoardContent},
+            STROLL_BOARD_LAT=#{strollBoardLat},
+            STROLL_BOARD_LNG=#{strollBoardLng},
+            STROLL_BOARD_MEETING_DATE=#{strollBoardMeetingDate},
+            STROLL_BOARD_MEETING_PLACE=#{strollBoardMeetingPlace},
+            STROLL_BOARD_ADMIN_DISTRICT=#{strollBoardAdminDistrict},
+            STROLL_BOARD_UPDATE_DATE=SYSDATE,
+            PET_NUMBER=#{petNumber}
+        WHERE STROLL_BOARD_NUMBER = #{strollBoardNumber}
     </update>
 
     <select id="select">
-        SELECT STROLL_BOARD_NUMBER, STROLL_BOARD_TITLE, STROLL_BOARD_CONTENT, STROLL_BOARD_LAT, STROLL_BOARD_LNG, TO_CHAR(STROLL_BOARD_MEETING_DATE, 'YYYY-MM-DD') AS  STROLL_BOARD_MEETING_DATE, STROLL_BOARD_MEETING_PLACE, STROLL_BOARD_ADMIN_DISTRICT, USER_NUMBER, PET_NUMBER
+        SELECT STROLL_BOARD_NUMBER,
+               STROLL_BOARD_TITLE,
+               STROLL_BOARD_CONTENT,
+               STROLL_BOARD_LAT,
+               STROLL_BOARD_LNG,
+               TO_CHAR(STROLL_BOARD_MEETING_DATE, 'YYYY-MM-DD') AS STROLL_BOARD_MEETING_DATE,
+               STROLL_BOARD_MEETING_PLACE,
+               STROLL_BOARD_ADMIN_DISTRICT,
+               USER_NUMBER,
+               PET_NUMBER
         FROM TBL_STROLL_BOARD
-        WHERE STROLL_BOARD_NUMBER =#{strollBoardNumber}
+        WHERE STROLL_BOARD_NUMBER = #{strollBoardNumber}
     </select>
 
     <select id="selectMypageBoard" resultType="strollBoardVo">
-        SELECT STROLL_BOARD_NUMBER, STROLL_BOARD_TITLE, TO_CHAR(STROLL_BOARD_MEETING_DATE, 'YYYY-MM-DD') AS STROLL_BOARD_MEETING_DATE, STROLL_BOARD_ADMIN_DISTRICT, USER_ID
-        FROM
-        (
-            SELECT ROWNUM RNUM, STROLL_BOARD_NUMBER, STROLL_BOARD_TITLE, STROLL_BOARD_MEETING_DATE, STROLL_BOARD_ADMIN_DISTRICT, USER_ID
-            FROM (
-                     SELECT S.STROLL_BOARD_NUMBER, S.STROLL_BOARD_TITLE, S.STROLL_BOARD_MEETING_DATE, S.STROLL_BOARD_ADMIN_DISTRICT, U.USER_ID
-                     FROM TBL_STROLL_BOARD S
-                     JOIN TBL_USER U ON U.USER_NUMBER = S.USER_NUMBER
-                     WHERE U.USER_NUMBER = #{userNumber}
-                     ORDER BY STROLL_BOARD_NUMBER DESC
-                 ) B1
+        SELECT STROLL_BOARD_NUMBER,
+               STROLL_BOARD_TITLE,
+               TO_CHAR(STROLL_BOARD_MEETING_DATE, 'YYYY-MM-DD') AS STROLL_BOARD_MEETING_DATE,
+               STROLL_BOARD_ADMIN_DISTRICT,
+               USER_ID
+        FROM (
+                 SELECT ROWNUM RNUM,
+                        STROLL_BOARD_NUMBER,
+                        STROLL_BOARD_TITLE,
+                        STROLL_BOARD_MEETING_DATE,
+                        STROLL_BOARD_ADMIN_DISTRICT,
+                        USER_ID
+                 FROM (
+                          SELECT S.STROLL_BOARD_NUMBER,
+                                 S.STROLL_BOARD_TITLE,
+                                 S.STROLL_BOARD_MEETING_DATE,
+                                 S.STROLL_BOARD_ADMIN_DISTRICT,
+                                 U.USER_ID
+                          FROM TBL_STROLL_BOARD S
+                                   JOIN TBL_USER U ON U.USER_NUMBER = S.USER_NUMBER
+                          WHERE U.USER_NUMBER = #{userNumber}
+                          ORDER BY STROLL_BOARD_NUMBER DESC
+                      ) B1
                  <![CDATA[
-            WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+                 WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
         ]]>
         ) B2
         WHERE RNUM > (#{criteria.page} - 1) * #{criteria.amount}
@@ -97,20 +160,22 @@
     <select id="selectTotalMypageBoard" resultType="_int">
         SELECT COUNT(STROLL_BOARD_NUMBER)
         FROM TBL_STROLL_BOARD
+        WHERE USER_NUMBER = #{userNumber}
     </select>
 
-     <select id="selectMainList" resultType="strollBoardVo">
+    <select id="selectMainList" resultType="strollBoardVo">
 
-         SELECT STROLL_BOARD_NUMBER,USER_NUMBER ,USER_ID, STROLL_BOARD_TITLE,
-         STROLL_BOARD_CONTENT,STROLL_BOARD_MEETING_PLACE, STROLL_BOARD_ADMIN_DISTRICT,
-         STROLL_BOARD_REGISTER_DATE, STROLL_BOARD_VIEW_COUNT
-         FROM(
-             SELECT ROWNUM RN, U.USER_NUMBER ,U.USER_ID,STROLL_BOARD_NUMBER, STROLL_BOARD_TITLE, STROLL_BOARD_CONTENT,STROLL_BOARD_MEETING_PLACE, STROLL_BOARD_ADMIN_DISTRICT,
-             TO_CHAR(STROLL_BOARD_REGISTER_DATE,'YYYY-MM-DD') AS STROLL_BOARD_REGISTER_DATE,STROLL_BOARD_VIEW_COUNT
-             FROM TBL_USER U
-             JOIN TBL_STROLL_BOARD B
-             ON U.USER_NUMBER = B.USER_NUMBER
-             <![CDATA[
+        SELECT STROLL_BOARD_NUMBER,USER_NUMBER ,USER_ID, STROLL_BOARD_TITLE,
+        STROLL_BOARD_CONTENT,STROLL_BOARD_MEETING_PLACE, STROLL_BOARD_ADMIN_DISTRICT,
+        STROLL_BOARD_REGISTER_DATE, STROLL_BOARD_VIEW_COUNT
+        FROM(
+        SELECT ROWNUM RN, U.USER_NUMBER ,U.USER_ID,STROLL_BOARD_NUMBER, STROLL_BOARD_TITLE,
+        STROLL_BOARD_CONTENT,STROLL_BOARD_MEETING_PLACE, STROLL_BOARD_ADMIN_DISTRICT,
+        TO_CHAR(STROLL_BOARD_REGISTER_DATE,'YYYY-MM-DD') AS STROLL_BOARD_REGISTER_DATE,STROLL_BOARD_VIEW_COUNT
+        FROM TBL_USER U
+        JOIN TBL_STROLL_BOARD B
+        ON U.USER_NUMBER = B.USER_NUMBER
+        <![CDATA[
              WHERE ROWNUM <= 3
                  ]]>
              <if test="!(firstBoolean) and addressFirst !=null">
@@ -130,6 +195,6 @@
          WHERE RN > #{size}
 
 
-     </select>
+    </select>
 
 </mapper>

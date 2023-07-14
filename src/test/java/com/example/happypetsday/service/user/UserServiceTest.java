@@ -11,9 +11,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.doReturn;
 
 @ExtendWith(MockitoExtension.class)
 @Slf4j
@@ -27,16 +27,16 @@ class UserServiceTest {
     private UserDto userDto;
 
     @BeforeEach
-    void setUp(){
-    userDto = new UserDto();
-    userDto.setUserName("이건희");
-    userDto.setUserId("aaa");
-    userDto.setUserPassword("1234");
-    userDto.setUserGender("M");
-    userDto.setUserEmail("aaa@naver.com");
-    userDto.setUserBirth("1995.11.24");
-    userDto.setUserPhoneNumber("01011111111");
-    userDto.setUserAddress("강남구");
+    void setUp() {
+        userDto = new UserDto();
+        userDto.setUserName("이건희");
+        userDto.setUserId("aaa");
+        userDto.setUserPassword("1234");
+        userDto.setUserGender("M");
+        userDto.setUserEmail("aaa@naver.com");
+        userDto.setUserBirth("1995.11.24");
+        userDto.setUserPhoneNumber("01011111111");
+        userDto.setUserAddress("강남구");
     }
 
     @Test

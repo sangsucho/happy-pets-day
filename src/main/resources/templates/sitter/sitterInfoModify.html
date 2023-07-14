@@ -20,7 +20,7 @@
 </div>
 <div style="display: flex; justify-content: center; padding-bottom: 200px">
     <div class="main">
-        <form th:action="@{/sitter/sendModify}" method="post" enctype="multipart/form-data">
+        <form th:action="@{/sitter/sendModify}" method="post" enctype="multipart/form-data" onsubmit="return validateFiles();">
             <div style="margin-top: 100px;" th:with="sitterInfo =${info}">
                 <p class="p-text">제목 작성하기</p>
 
@@ -82,7 +82,8 @@
                                     accept="image/*"
                                     multiple
                             />
-                        <li class="img-list2" th:style="${'background-image: url(/upload/profileFile/' + sitterProfile.sitterProfileUploadPath + '/th_' + sitterProfile.sitterProfileUuid + '_' + sitterProfile.sitterProfileFileName + '); background-size: cover;'}" ></li>
+                        <li class="img-list2"
+                            th:style="${'background-image: url(/upload/profileFile/' + sitterProfile.sitterProfileUploadPath + '/th_' + sitterProfile.sitterProfileUuid + '_' + sitterProfile.sitterProfileFileName + '); background-size: cover;'}"></li>
                         </li>
                     </ul>
                 </div>
@@ -105,10 +106,11 @@
                             />
                         </li>
                         <th:block th:each="sitterFile : ${file}">
-                        <li class="img-list"th:style="${'background-image: url(/upload/imgFile/' + sitterFile.sitterFileUploadPath + '/th_' + sitterFile.sitterFileUuid + '_' + sitterFile.sitterFileFileName + '); background-size: cover;'}" ></li>
+                            <li class="img-list"
+                                th:style="${'background-image: url(/upload/imgFile/' + sitterFile.sitterFileUploadPath + '/th_' + sitterFile.sitterFileUuid + '_' + sitterFile.sitterFileFileName + '); background-size: cover;'}"></li>
                         </th:block>
-<!--                        <li class="img-list"></li>-->
-<!--                        <li class="img-list"></li>-->
+                        <!--                        <li class="img-list"></li>-->
+                        <!--                        <li class="img-list"></li>-->
                     </ul>
                 </div>
             </div>

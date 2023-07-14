@@ -9,54 +9,55 @@
 </head>
 <body>
 <header th:replace="fragment/header :: header"></header>
-    <div class="body-header-container">
-        <div class="body-header">
-            <h1 class="header-title">
-                반려동물 추천
-            </h1>
-            <div class="header-comment">
-                Happy pet's day
+<div class="body-header-container">
+    <div class="body-header">
+        <h1 class="header-title">
+            반려동물 추천
+        </h1>
+        <div class="header-comment">
+            Happy pet's day
+        </div>
+    </div>
+    <div class="body-header2">
+        <div class="sectionR section1"></div>
+        <div class="sectionL section2"></div>
+        <div class="sectionR section2"></div>
+        <div class="sectionL section1"></div>
+    </div>
+    <div class="body-header3">
+        <div class="tips">
+            <div class="tip">
+                <img th:src="@{/img/dog.png}" alt="">
+                <div class="tip-comment">원하는 동물을 찾아드립니다</div>
+            </div>
+            <div class="tip">
+                <img th:src="@{/img/cat.png}" alt="">
+                <div class="tip-comment">마음에 드는 답변을 선택하세요</div>
+            </div>
+            <div class="tip">
+                <img th:src="@{/img/dog2.png}" alt="">
+                <div class="tip-comment">동물 종류는 계속 업데이트 됩니다.</div>
             </div>
         </div>
-        <div class="body-header2">
-            <div class="sectionR section1"></div>
-            <div class="sectionL section2"></div>
-            <div class="sectionR section2"></div>
-            <div class="sectionL section1"></div>
-        </div>
-        <div class="body-header3">
-            <div class="tips">
-                <div class="tip">
-                    <img th:src="@{/img/dog.png}" alt="">
-                    <div class="tip-comment">원하는 동물을 찾아드립니다</div>
-                </div>
-                <div class="tip">
-                    <img th:src="@{/img/cat.png}" alt="">
-                    <div class="tip-comment">마음에 드는 답변을 선택하세요</div>
-                </div>
-                <div class="tip">
-                    <img th:src="@{/img/dog2.png}" alt="">
-                    <div class="tip-comment">동물 종류는 계속 업데이트 됩니다.</div>
-                </div>
-            </div>
-        </div>
     </div>
+</div>
 
-    <div class="main-container-empty" th:if="${#lists.isEmpty(recommendList)}">
-        검색 결과가 없습니다. 다른 조건으로 검색해 주세요!
-    </div>
+<div class="main-container-empty" th:if="${#lists.isEmpty(recommendList)}">
+    검색 결과가 없습니다. 다른 조건으로 검색해 주세요!
+</div>
 
-    <div class="main-container" th:unless="${#lists.isEmpty(recommendList)}">
-<!--        추천 결과 반복-->
-        <a th:href="@{/recommend/detail(recommendNumber = ${recommend.recommendNumber})}" class="recommend-item" th:each="recommend : ${recommendList}">
-            <img th:src="@{/upload/recommend/{path}(path = ${recommend.recommendFileName})}" alt="">
-<!--            <img th:src="${'/upload/recommend/' + recommend.recommendFileName}" alt="">-->
-            <div class="recommend-item-name" th:text="${recommend.recommendName}"></div>
-        </a>
-    </div>
-    <footer th:replace="fragment/footer :: footer"></footer>
-    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-    <script th:src="@{/js/recommend/petRecommendList.js}"></script>
-    <script th:src="@{/js/fragment/header.js}"></script>
+<div class="main-container" th:unless="${#lists.isEmpty(recommendList)}">
+    <!--        추천 결과 반복-->
+    <a th:href="@{/recommend/detail(recommendNumber = ${recommend.recommendNumber})}" class="recommend-item"
+       th:each="recommend : ${recommendList}">
+        <img th:src="@{/upload/recommend/{path}(path = ${recommend.recommendFileName})}" alt="">
+        <!--            <img th:src="${'/upload/recommend/' + recommend.recommendFileName}" alt="">-->
+        <div class="recommend-item-name" th:text="${recommend.recommendName}"></div>
+    </a>
+</div>
+<footer th:replace="fragment/footer :: footer"></footer>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script th:src="@{/js/recommend/petRecommendList.js}"></script>
+<script th:src="@{/js/fragment/header.js}"></script>
 </body>
 </html>
