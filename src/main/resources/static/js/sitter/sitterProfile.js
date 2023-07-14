@@ -302,3 +302,101 @@ document.addEventListener("DOMContentLoaded", function () {
   handleRating();
 });
 
+let modal = $("#modal-container");
+
+// '수정' 클릭 > 모달 띄워주기
+$(".modify1").on("click", function () {
+    $("#modal-container").css("display", "flex");
+    var reviewNumberValue = $(this).closest('.review-review').find('.reviewNumber').val();
+    console.log(reviewNumberValue);
+    $('#reviewNum').val(reviewNumberValue);
+});
+
+// 'X' 클릭 > 모달 끄기
+$(".btn-close").on("click", function () {
+    modal.hide();
+    $('.fa-regular').removeClass('active');
+    $('.reply-section').val('');
+});
+
+$(document).ready(function () {
+    // reply-btns가 클릭되었을 때
+    $('.review-box').on('click', '.reply-btns', function (e) {
+        e.stopPropagation(); // 이벤트 버블링을 막는다.
+
+        var currentEditBox = $(this).closest('.review-review').find('.edit-box');
+        $('.edit-box').not(currentEditBox).addClass('none');
+
+        currentEditBox.toggleClass('none');
+    });
+
+    // 문서의 다른 부분이 클릭되었을 때
+    $(document).click(function () {
+        $('.edit-box').addClass('none');
+    });
+
+    // '수정' 버튼 클릭 시 모달에 리뷰 내용 전달
+    $(document).on('click', '.modify1', function () {
+        var reviewText = $(this).closest('.review-review').find('.review-text p').text();
+        $('#reviewContent').val(reviewText);
+        $('#modal').show();
+    });
+
+});
+
+$(document).ready(function() {
+    // '수정' 버튼 클릭 시 모달에 리뷰 내용 전달
+    $(document).on('click', '.modify1', function() {
+        var reviewNumber =$(this).closest('.review-review').find('.reviewNumber').val();
+        var reviewContent = $(this).closest('.review').find('.review-content').text();
+
+        // 모달에 리뷰 번호와 내용을 설정
+        $('#reviewNum').val(reviewNumber);
+        $('#reviewContent').val(reviewContent);
+
+        // console.log(reviewNumber);
+        console.log(reviewContent);
+        // 모달 열기
+        $('#modal-container').css('display', 'flex');
+    });
+
+    // '저장하기' 버튼 클릭 시 수정된 리뷰 업데이트
+    $(document).on('click', '#updateBtn', function() {
+        var reviewNumber = $('#reviewNumber').val();
+        var reviewContent = $('#reviewContent').val();
+        // console.log(reviewNumber);
+        console.log(reviewContent);
+
+        // 서버로 전송할 데이터 객체 생성
+        var data = {
+            reviewNumber: reviewNumber,
+            reviewContent: reviewContent
+        };
+
+        // AJAX 요청
+        $.ajax({
+            url: '/sitters/reviewModify',
+            method: 'POST',
+            data: data,
+            success: function(response) {
+                console.log('데이터 업데이트 성공');
+                // 추가 동작 또는 모달 닫기 등 수행
+            },
+            error: function(xhr, status, error) {
+                console.error('데이터 업데이트 실패:', error);
+                // 실패 메시지 표시 또는 다른 조치 수행
+            }
+        });
+
+        // 모달 닫기
+        $('#modal-container').hide();
+        $('#reviewContent').val('');
+    });
+});
+
+// =================================
+
+$('.reply-btns').on('click', function (){
+    var reviewNumberValue = $(this).closest('.review-review').find('.reviewNumber').val();
+    console.log(reviewNumberValue);
+});

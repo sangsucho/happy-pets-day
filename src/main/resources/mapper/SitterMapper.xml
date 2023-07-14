@@ -192,7 +192,7 @@
 
     <!--    시터 리뷰-->
     <select id="selectSitterReview" resultType="sitterReviewVo">
-        SELECT u.USER_NAME, sr.REVIEW_SCORE, sr.REVIEW_CONTENT, sr.REVIEW_DATE
+        SELECT u.USER_NUMBER, sr.REVIEW_NUMBER, u.USER_NAME, sr.REVIEW_SCORE, sr.REVIEW_CONTENT, sr.REVIEW_DATE
         FROM TBL_SITTER_REVIEW sr
                  JOIN TBL_USER u
                       ON sr.USER_NUMBER = u.USER_NUMBER
