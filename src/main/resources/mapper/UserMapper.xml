@@ -56,6 +56,4 @@
         FROM TBL_USER
         WHERE USER_ID = #{userId}
     </select>
-
-
 </mapper>

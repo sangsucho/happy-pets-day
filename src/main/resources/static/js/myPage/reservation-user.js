@@ -131,14 +131,14 @@ $('.update-btn').on('click', function() {
 $('.r-res').on('click', function() {
     let sitterNumber = $(this).closest('#contents-box').find('#sitterNumber').val();
     console.log(sitterNumber);
-    window.location.href = '/sitter/profile?sitterNumber='+sitterNumber;
+    window.location.href = '/sitter/profile?sitterNumber=' + sitterNumber + '#moveScroll';
 });
 
 // '리뷰 보기' 클릭 > 해당 펫시터의 예약 페이지로 이동
 $('.my-review').on('click', function() {
     let sitterNumber = $(this).closest('#contents-box').find('#sitterNumber').val();
     console.log(sitterNumber);
-    window.location.href = '/sitter/profile?sitterNumber='+sitterNumber;
+    window.location.href = '/sitter/profile?sitterNumber=' + sitterNumber + '#moveScroll';
 });
 
 

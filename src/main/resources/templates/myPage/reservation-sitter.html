@@ -37,12 +37,8 @@
         <!-- 예약 후 이용하기 전 상태 -->
         <input type="hidden" id="reservationNumber" class="res-number" name="reservationNumber" th:value="${checkRes.reservationNumber}">
         <input type="hidden" id="reservationStatus" class="res-status" name="reservationStatus" th:value="${checkRes.reservationStatus}">
-<!--     펫시터 번호를 가져왔다. '내 소개'를 클릭하면 화면으로 가져온 펫시터 번호를 '펫시터 프로필' 페이지로 보내준다.-->
         <input type="hidden" id="sitterNumber" class="sitter-number" name="sitterNumber" th:value="${checkRes.sitterNumber}">
         <input type="hidden" id="userPhoneNumber" class="user-phone-number" name="userPhoneNumber" th:value="${checkRes.userPhoneNumber}">
-<!--        <input type="hidden" id="petNumber" class="pet-number" name="petNumber" th:value="${checkRes.petNumber}">-->
-<!--        <input type="hidden" id="resUserName" class="res-user-name" name="resUserName" th:value="${checkRes.resUserName}">-->
-
         <div class="reservation-status before"
           th:text="${checkRes.reservationStatus}"
           th:classappend="${checkRes.reservationStatus == '취소'} ? 'red'">
@@ -73,6 +69,10 @@
         </div>
       </th:block>
       </div>
+
+    <th:block th:if="${#lists.isEmpty(checkRes)}">
+      <div class="notExist-res">등록된 예약 내역이 없습니다.</div>
+    </th:block>
 
     <div class="pagination">
       <ul>

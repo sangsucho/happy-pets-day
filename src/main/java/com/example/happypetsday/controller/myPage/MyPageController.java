@@ -140,7 +140,7 @@ public class MyPageController {
     }
 
     @GetMapping("/checkPw")
-    public String checkPw() { return "myPage/checkPw"; }
+    public String checkPw(HttpServletRequest req, Model model) { return "myPage/checkPw"; }
 
     @GetMapping("/checkReservation")
     public String checkReservation(Model model, HttpServletRequest req, Criteria criteria) {
@@ -157,8 +157,9 @@ public class MyPageController {
     @GetMapping("/strollList")
     public String strollList(Model model, HttpServletRequest req, Criteria criteria) {
         model.addAttribute("boardList", mypageService.viewMypageBoard((Long)req.getSession().getAttribute("userNumber"), criteria));
-        model.addAttribute("pageInfo", new PageVo(criteria, mypageService.getTotalMypageBoard()));
+        model.addAttribute("pageInfo", new PageVo(criteria, mypageService.getTotalList((Long)req.getSession().getAttribute("userNumber"))));
         return "myPage/strollList"; }
+
 
 }
 
