@@ -22,21 +22,18 @@
 
 /* 왼쪽 탭 목록 */
 #container {
-    < < < < < < < HEAD
     display: flex;
     justify-content: center;
     width: 1200px;
     height: 100vh;
     margin: 0 auto;
     padding-top: 50px;
-= = = = = = = display: flex;
     justify-content: center;
     width: 1200px;
     height: 100%;
     margin: 0 auto;
     padding-top: 50px;
     margin-bottom: 30px;
->>> >>> > dddec9df833a64c68a68f6682c6c3d24f22143fe
 }
 
 .color-text {
@@ -103,7 +100,6 @@
 }
 
 .reservation-status {
-    < < < < < < < HEAD
     width: 80px;
     height: 24px;
     font-size: 12px;
@@ -123,7 +119,6 @@
 /* 예약 완료 상태 색상 */
 .before {
     color: var(--font-orange);
-= = = = = = = width: 80 px;
     height: 24px;
     font-size: 12px;
     text-align: center;
@@ -134,7 +129,6 @@
     border-radius: 10px;
     margin: 10px 0 25px 0;
     color: var(--font-orange);
->>> >>> > dddec9df833a64c68a68f6682c6c3d24f22143fe
 }
 
 /* 예약 취소 */
