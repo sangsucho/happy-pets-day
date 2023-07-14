@@ -17,6 +17,11 @@
         WHERE USER_NUMBER = #{userNumber}
     </select>
 
+    <select id="selectSitterCnt" resultType="_int">
+        SELECT COUNT(SITTER_NUMBER) FROM TBL_SITTER
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
+
     <select id="selectSitterInfo" resultType="sitterDto">
         SELECT SITTER_NUMBER, SITTER_HEADER, SITTER_INTRODUCTION, SITTER_PRICE
         FROM TBL_SITTER

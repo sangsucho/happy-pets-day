@@ -200,4 +200,11 @@ public class SitterService {
         return sitterMapper.findSitterMain();
     }
 
+    // 마이페이지 '예약 확인' 펫시터 숫자 가져오기
+//    public Long findSitterCnt(Long userNumber) {
+//        if (userNumber == null) {
+//            throw new IllegalArgumentException("회원번호가 없습니다.");
+//        }
+//        return sitterMapper.selectSitterCnt(userNumber);
+//    }
 }

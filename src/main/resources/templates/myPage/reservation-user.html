@@ -160,13 +160,17 @@
                                     th:style="${res.reviewCnt == 0 ? 'display: none;' : 'display: block;'}">다시 예약하기
                             </button>
                             <button type="button" class="my-review review-btn"
-                                    th:style="${res.reviewCnt == 0 ? 'display: none;' : 'display: block;'}">리뷰 보기
+                                    th:style="${res.reviewCnt == 0 ? 'display: none;' : 'display: none;'}">리뷰 보기
                             </button>
                         </th:block>
                     </div>
                 </div>
             </th:block>
         </div>
+
+        <th:block th:if="${#lists.isEmpty(resList)}">
+          <div class="notExist-res">등록된 예약 내역이 없습니다.</div>
+        </th:block>
 
         <div class="pagination">
                 <ul>

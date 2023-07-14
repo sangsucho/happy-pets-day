@@ -79,6 +79,10 @@
         </th:block>
     </div>
 
+    <th:block th:if="${#lists.isEmpty(checkRes)}">
+      <div class="notExist-res">등록된 예약 내역이 없습니다.</div>
+    </th:block>
+
     <div class="pagination">
         <ul>
             <li th:if="${pageInfo.prev}">
