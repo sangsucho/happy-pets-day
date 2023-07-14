@@ -96,9 +96,11 @@
     </select>
 
     <select id="selectSitterUser" resultType="Long">
-        SELECT COUNT(SITTER_NUMBER)
-        FROM TBL_SITTER
-        WHERE SITTER_STATUS = 'Y'
+        SELECT  COUNT(S.SITTER_NUMBER)
+        FROM TBL_USER U
+                 JOIN TBL_SITTER S
+                      ON U.USER_NUMBER = S.USER_NUMBER
+        WHERE S.SITTER_STATUS = 'Y'  AND U.USER_STATUS = 2
     </select>
 
     <select id="selectUnapprovedSitter" resultType="Long">
@@ -205,6 +207,7 @@
         FROM TBL_SITTER_FIELD F
                  JOIN TBL_SITTER_APPLY A ON F.USER_NUMBER = A.USER_NUMBER
         WHERE APPLY_NUMBER = #{applyNumber}
+        ORDER BY SITTER_FIELD_NUMBER
     </select>
 
     <update id="changeStatus">
@@ -224,6 +227,10 @@
         SET APPLY_STATUS='승인 거절'
         WHERE APPLY_NUMBER = #{applyNumber}
     </update>
+
+    <delete id="deleteSitterApply">
+        DELETE FROM TBL_SITTER_APPLY WHERE USER_NUMBER = #{userNumber}
+    </delete>
 
     <select id="selectAllSitter">
         SELECT USER_NUMBER, SITTER_NUMBER, USER_ID, PET_FIELD_NAME,
@@ -324,4 +331,32 @@
         SET SITTER_STATUS = #{sitterStatus}
         WHERE SITTER_NUMBER = #{sitterNumber}
     </update>
+
+    <delete id="deleteSitterTable">
+        DELETE FROM TBL_SITTER WHERE SITTER_NUMBER = #{sitterNumber}
+    </delete>
+
+    <delete id="deleteSitterField">
+        DELETE FROM TBL_SITTER_FIELD tsf WHERE USER_NUMBER = #{userNumber}
+    </delete>
+
+    <delete id="deleteLicense">
+        DELETE FROM TBL_SITTER_APPLY_LICENSE_FILE tsalf WHERE USER_NUMBER = #{userNumber}
+    </delete>
+
+    <delete id="deleteSitterReview">
+        DELETE FROM TBL_SITTER_REVIEW WHERE SITTER_NUMBER = #{sitterNumber}
+    </delete>
+
+    <delete id="deleteSitterReservation">
+        DELETE FROM TBL_SITTER_RESERVATION WHERE SITTER_NUMBER = #{sitterNumber}
+    </delete>
+
+    <delete id="deleteProfileFile">
+        DELETE FROM TBL_SITTER_PROFILE_FILE WHERE SITTER_NUMBER = #{sitterNumber}
+    </delete>
+
+    <delete id="deleteSitterFile">
+        DELETE FROM TBL_SITTER_FILE WHERE SITTER_NUMBER = #{sitterNumber}
+    </delete>
 </mapper>

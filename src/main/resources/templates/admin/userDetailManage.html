@@ -22,7 +22,7 @@
         <h2 class="guide-menu">일반회원 상세정보</h2>
         <div class="bottom-bar"></div>
 
-        <div class="detailed-guide">* 회원 아이디를 클릭 시 해당회원의 마이페이지로 이동합니다.</div>
+<!--    <div class="detailed-guide">* 회원 아이디를 클릭 시 해당회원의 마이페이지로 이동합니다.</div>-->
 
         <div class="container">
 
@@ -40,6 +40,7 @@
                 <tr>
                     <th>아이디</th>
 
+<<<<<<< HEAD
                     <td>
                         <a th:href="@{/myPage/myPage(userNumber=${user.userNumber})}" th:text="${user.userId}"></a>
                     </td>
@@ -70,6 +71,36 @@
                 </tr>
                 </tbody>
             </table>
+=======
+          <td th:text="${user.userId}"></td>
+        </tr>
+        <tr>
+          <th>이름</th>
+          <td th:text="${user.userName}"></td>
+        </tr>
+        <tr>
+          <th>성별</th>
+          <td th:text="${user.userGender}"></td>
+        </tr>
+        <tr>
+          <th>이메일</th>
+          <td th:text="${user.userEmail}"></td>
+        </tr>
+        <tr>
+          <th>생일</th>
+          <td th:text="${user.userBirth}"></td>
+        </tr>
+        <tr>
+          <th>연락처</th>
+          <td th:text="${user.userPhoneNumber}"></td>
+        </tr>
+        <tr>
+          <th class="table-head-left-bottom">주소</th>
+          <td th:text="${user.userAddress}"></td>
+        </tr>
+        </tbody>
+      </table>
+>>>>>>> work/admin10
 
             <div class="button-wrap">
                 <!-- 회원삭제 전 -->
