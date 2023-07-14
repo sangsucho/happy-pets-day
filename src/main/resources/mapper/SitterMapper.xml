@@ -99,6 +99,7 @@
                                   WHERE RK = 1) sf ON s.SITTER_NUMBER = sf.SITTER_NUMBER
                  LEFT OUTER JOIN TBL_SITTER_PROFILE_FILE spf ON s.SITTER_NUMBER = spf.SITTER_NUMBER
                  LEFT OUTER JOIN TBL_SITTER_REVIEW sr ON s.SITTER_NUMBER = sr.SITTER_NUMBER
+        WHERE S.SITTER_STATUS = 'Y'
         GROUP BY U.USER_NAME,
                  S.SITTER_NUMBER,
                  S.SITTER_HEADER,
@@ -108,14 +109,14 @@
                  spf.SITTER_PROFILE_FILE_NAME,
                  spf.SITTER_PROFILE_UPLOAD_PATH,
                  spf.SITTER_PROFILE_UUID
+        ORDER BY s.SITTER_NUMBER DESC
     </select>
 
     <select id="countSitter" resultType="int">
-        SELECT COUNT(S.SITTER_NUMBER)
-        FROM TBL_USER U
-                 JOIN TBL_SITTER S
-                      ON U.USER_NUMBER = S.USER_NUMBER
-        WHERE U.USER_NUMBER = #{userNumber}
+        SELECT COUNT(S.SITTER_NUMBER) FROM TBL_USER U
+        JOIN TBL_SITTER S
+        ON U.USER_NUMBER = S.USER_NUMBER
+        WHERE U.USER_NUMBER=#{userNumber}
     </select>
 
     <select id="selectSitterHeader" resultType="_int">
@@ -190,7 +191,7 @@
     <select id="selectReserveCantDate">
         SELECT RESERVATION_DATE
         FROM TBL_SITTER_RESERVATION
-        WHERE SITTER_NUMBER = #{sitterNumber}
+        WHERE SITTER_NUMBER = #{sitterNumber} AND RESERVATION_STATUS = '예약 완료'
     </select>
 
 
