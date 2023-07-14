@@ -41,7 +41,6 @@ function defaultChatMsg(){
 //세션스토리에 저장할 채팅내용들을 담을 배열 선언
 let aiChatArr = [];
 
-
 // 챗봇 비동기 통신
 function sendMessage() {
     let message = $('#chatbot-input').val();
@@ -54,7 +53,6 @@ function sendMessage() {
 
     sessionStorage.setItem('aiChatData', JSON.stringify(aiChatArr));
     chatBot.sendMessage(aiChatArr, addBotMessage,defaultChatMsg);
-
 }
 
 
@@ -107,8 +105,6 @@ function addBotMessage(message) {
 // 삭제버튼 띄우기
 $('.chat--more-dot').on('click', function (e) {
     let exitBtn = $(this).siblings('.chat-room-exit-btn');
-    let x = e.pageX;
-    let y = e.pageY;
 
     if (exitBtn.is(':visible')) {
         exitBtn.hide();
@@ -155,7 +151,7 @@ function showChatBotRoom() {
                         text += `
                         <div class="${c.role=='user'?`user-message`:`bot-message`} message">
                              <div class="message-text">${c.content}</div>
-                         </div>
+                        </div>
                         `;
                     })
                 }
@@ -168,9 +164,3 @@ function showChatBotRoom() {
     `;
     $('.chat-room-detail-wrap').html(text);
 }
-
-
-
-
-
-

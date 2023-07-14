@@ -46,9 +46,6 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
         let lat = mouseEvent.latLng.getLat();
         let lng = mouseEvent.latLng.getLng();
 
-        console.log("위도 : "+lat);
-        console.log("경도 : "+lng);
-
         $('.marker-lat').val(lat);
         $('.marker-lng').val(lng);
 
@@ -77,9 +74,7 @@ function displayCenterInfo(result, status) {
         if (result[i].region_type === 'H') {
             let hjjs  = result[i].address_name.split(" ", 2);    // 행정주소
 
-            console.log("행정주소 : "+hjjs[0]+" "+hjjs[1]);
             $('.administrative-district').val(hjjs[0]+" "+hjjs[1]);
-
             break;
         }
     }

@@ -30,9 +30,11 @@ public class CustomErrorController implements ErrorController{
                 case 500:
                     errorMsg = "서버 오류입니다.";
                     break;
+                default:
+                    errorMsg = "요청 처리 중 오류가 발생하였습니다.";
+                    break;
             }
             model.addAttribute("errorMsg",errorMsg);
-//            }
         }
         return "error/errorPage";
     }
