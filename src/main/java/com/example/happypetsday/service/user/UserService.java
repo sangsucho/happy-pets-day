@@ -113,4 +113,17 @@ public class UserService {
         return count > 0;
     }
 
+    /**
+     * 회원번호로 userName 조회하기
+     * @param userNumber 회원번호
+     * @return userName
+     * @throws IllegalArgumentException 존재하지 않는 회원번호인 경우
+     */
+    @Transactional(readOnly = true)
+    public String getUserName(Long userNumber) {
+        String userName = userMapper.getUserName(userNumber);
+
+        return userName;
+    }
+
 }
