@@ -32,16 +32,21 @@ public class SitterController {
     private final SitterService sitterService;
 
     @GetMapping("/apply")
-    public String sitterApplyTo(HttpServletRequest req, Model model){
-        UserDto userDto = sitterService.findUserInfo((Long)req.getSession().getAttribute("userNumber"));
-        model.addAttribute("info", userDto);
-        return "sitter/applyTo";
+    public String sitterApplyTo(HttpServletRequest req, Model model) {
+        Long userNumber = (Long) req.getSession().getAttribute("userNumber");
+        if (sitterService.findSitter(userNumber) != null) {
+            return "redirect:/sitter/list";
+        } else {
+            UserDto userDto = sitterService.findUserInfo(userNumber);
+            model.addAttribute("info", userDto);
+            return "sitter/applyTo";
+        }
     }
 
     @PostMapping("/apply")
     public RedirectView sendApply(SitterFieldDto sitterFieldDto,
                                   SitterApplyDto sitterApplyDto, HttpServletRequest req, RedirectAttributes redirectAttributes,
-                                  @RequestParam("applyFile") List<MultipartFile> files, @RequestParam("applyFileTitle") List<String> applyFileTitle
+                                  @RequestParam(value = "applyFile", required = false) List<MultipartFile> files, @RequestParam(value = "applyFileTitle", required = false) List<String> applyFileTitle
     ) {
         sitterApplyDto.setUserNumber((Long) req.getSession().getAttribute("userNumber"));
         sitterService.registerApply(sitterApplyDto);
@@ -73,21 +78,27 @@ public class SitterController {
     }
 
     @PostMapping("/addList")
-    public RedirectView sendAddList(HttpServletRequest req, SitterDto sitterDto,
-                                    @RequestParam("sitterProfileFile") List<MultipartFile> filess, @RequestParam("sitterFile") List<MultipartFile> files) {
+
+    public RedirectView sendAddList(HttpServletRequest req, SitterDto sitterDto, RedirectAttributes redirectAttributes,
+                                    @RequestParam("sitterProfileFile") List<MultipartFile> filess,
+                                    @RequestParam("sitterFile") List<MultipartFile> files) {
         sitterDto.setUserNumber((Long) req.getSession().getAttribute("userNumber"));
         Long sitterNumber = sitterService.findSitter(sitterDto.getUserNumber());
         sitterDto.setSitterNumber(sitterNumber);
 
-        sitterService.addList(sitterDto);
-        if (!files.isEmpty() && !files.get(0).isEmpty()) {
+        if (files.isEmpty() || files.get(0).isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "배경화면을 선택해주세요");
+            return new RedirectView("/sitter/list");
+        } else {
             try {
                 sitterFileService.registerAndSaveFiles(files, sitterDto.getSitterNumber());
             } catch (IOException e) {
-                 e.printStackTrace();
+                e.printStackTrace();
             }
+            sitterService.addList(sitterDto);
         }
-        if(!filess.isEmpty() && !filess.get(0).isEmpty()){
+
+        if (!filess.isEmpty() && !filess.get(0).isEmpty()) {
             try {
                 sitterProfileFileService.registerAndSaveFiles(filess, sitterDto.getSitterNumber());
             } catch (IOException e) {
@@ -97,6 +108,7 @@ public class SitterController {
 
         return new RedirectView("/sitter/list");
     }
+
 
     @GetMapping("/list")
     public String sitterList(@RequestParam(required = false) Long sitterNumber, Model model, HttpServletRequest req) {
@@ -131,8 +143,8 @@ public class SitterController {
     @GetMapping("/profile")
     public String sitterProfile(SitterDto sitterDto, HttpServletRequest req, Model model) {
 
-        if(req.getSession().getAttribute("userNumber") != null) {
-            Long userNumber = (Long)req.getSession().getAttribute("userNumber");
+        if (req.getSession().getAttribute("userNumber") != null) {
+            Long userNumber = (Long) req.getSession().getAttribute("userNumber");
             Long sitterNumber = sitterDto.getSitterNumber();
 
             boolean isSitter = sitterService.findSitter(userNumber) == sitterNumber;
@@ -164,9 +176,9 @@ public class SitterController {
     }
 
     @GetMapping("/modifyInfo")
-    public String sitterModify(Model model, HttpServletRequest req){
-       Long userNum = (Long)req.getSession().getAttribute("userNumber");
-       Long sitterNum = sitterService.findSitter(userNum);
+    public String sitterModify(Model model, HttpServletRequest req) {
+        Long userNum = (Long) req.getSession().getAttribute("userNumber");
+        Long sitterNum = sitterService.findSitter(userNum);
         SitterDto sitterDto = sitterService.sitterInfoUpload(sitterNum);
 
         SitterProfileFileDto sitterProfileFileDto = sitterService.findSitterProfile(sitterDto.getSitterNumber());
@@ -180,24 +192,27 @@ public class SitterController {
     }
 
     @PostMapping("/sendModify")
-    public RedirectView sendSitterModify(SitterDto sitterDto, @RequestParam("sitterProfileFile") List<MultipartFile> filess, @RequestParam("sitterFile") List<MultipartFile> files){
-        sitterService.sitterModify(sitterDto);
-        if(!filess.isEmpty() && !files.get(0).isEmpty()){
+    public RedirectView sendSitterModify(RedirectAttributes redirectAttributes, SitterDto sitterDto, @RequestParam("sitterProfileFile") List<MultipartFile> filess, @RequestParam("sitterFile") List<MultipartFile> files) {
+        if (!filess.isEmpty() && !filess.get(0).isEmpty()) {
             try {
                 sitterProfileFileService.registerAndSaveFiles(filess, sitterDto.getSitterNumber());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        if(!files.isEmpty() && !files.get(0).isEmpty()){
+        if (files.isEmpty() || files.get(0).isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "배경화면을 선택해주세요");
+            return new RedirectView("/sitter/list");
+        } else {
             try {
                 sitterFileService.registerAndSaveFiles(files, sitterDto.getSitterNumber());
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            sitterService.sitterModify(sitterDto);
         }
 
-        return new RedirectView("/sitter/profile?sitterNumber="+sitterDto.getSitterNumber());
+        return new RedirectView("/sitter/profile?sitterNumber=" + sitterDto.getSitterNumber());
     }
 
 }
