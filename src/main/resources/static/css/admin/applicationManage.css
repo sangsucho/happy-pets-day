@@ -149,7 +149,7 @@ body {
 
 /* 글 목록 테이블 스타일 */
 .board-table {
-    width: 100%;
+    width: 90%;
     margin-top: 40px;
     border-collapse: collapse;
 

@@ -194,6 +194,15 @@ public class AdminService {
         adminMapper.changeStatusRefuse(sitterApplyVo);
     }
 
+    // 시터신청 거절 시 apply테이블에서 삭제
+    public void removeSitterApply(Long userNumber) {
+        if (userNumber == null) {
+            throw new IllegalArgumentException("신청 정보가 없습니다.");
+        }
+
+        adminMapper.deleteSitterApply(userNumber);
+    }
+
     // 전체 조회(펫시터회원관리)
     @Transactional(readOnly = true)
     public List<SitterVo> findAllSitter(Criteria criteria){
@@ -241,6 +250,15 @@ public class AdminService {
         adminMapper.updateDemotion(sitterVo);
     }
 
+    // 펫시터 테이블에서 시터 삭제
+    public void removeSitterUser(Long sitterNumber) {
+        if (sitterNumber == null) {
+            throw new IllegalArgumentException("회원 정보가 없습니다.");
+        }
+
+        adminMapper.deleteSitterTable(sitterNumber);
+    }
+
     // 펫시터 전문분야 삭제(강등 시 사용)
     public void removeSitterField(Long userNumber) {
         if (userNumber == null) {
@@ -257,6 +275,42 @@ public class AdminService {
         }
 
         adminMapper.deleteLicense(userNumber);
+    }
+
+    // 펫시터 리뷰 삭제(강등 시 사용)
+    public void removeReview(Long sitterNumber) {
+        if (sitterNumber == null) {
+            throw new IllegalArgumentException("리뷰 정보가 없습니다.");
+        }
+
+        adminMapper.deleteSitterReview(sitterNumber);
+    }
+
+    // 펫시터 예약 삭제(강등 시 사용)
+    public void removeReservation(Long sitterNumber) {
+        if (sitterNumber == null) {
+            throw new IllegalArgumentException("예약 정보가 없습니다.");
+        }
+
+        adminMapper.deleteSitterReservation(sitterNumber);
+    }
+
+    // 펫시터 프로필파일 삭제(강등 시 사용)
+    public void removeProfileFile(Long sitterNumber) {
+        if (sitterNumber == null) {
+            throw new IllegalArgumentException("파일 정보가 없습니다.");
+        }
+
+        adminMapper.deleteProfileFile(sitterNumber);
+    }
+
+    // 펫시터 시터파일 삭제(강등 시 사용)
+    public void removeSitterFile(Long sitterNumber) {
+        if (sitterNumber == null) {
+            throw new IllegalArgumentException("파일 정보가 없습니다.");
+        }
+
+        adminMapper.deleteSitterFile(sitterNumber);
     }
 }
 

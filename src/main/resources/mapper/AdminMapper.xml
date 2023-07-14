@@ -173,6 +173,10 @@
         WHERE APPLY_NUMBER=#{applyNumber}
     </update>
 
+    <delete id="deleteSitterApply">
+        DELETE FROM TBL_SITTER_APPLY WHERE USER_NUMBER = #{userNumber}
+    </delete>
+
     <select id="selectAllSitter">
         SELECT USER_NUMBER, SITTER_NUMBER, USER_ID, PET_FIELD_NAME,
         USER_PHONE_NUMBER ,REVIEW_COUNT, REVIEW_AVG
@@ -273,11 +277,31 @@
         WHERE SITTER_NUMBER = #{sitterNumber}
     </update>
 
+    <delete id="deleteSitterTable">
+        DELETE FROM TBL_SITTER WHERE SITTER_NUMBER = #{sitterNumber}
+    </delete>
+
     <delete id="deleteSitterField">
         DELETE FROM TBL_SITTER_FIELD tsf WHERE USER_NUMBER = #{userNumber}
     </delete>
 
     <delete id="deleteLicense">
         DELETE FROM TBL_SITTER_APPLY_LICENSE_FILE tsalf WHERE USER_NUMBER = #{userNumber}
+    </delete>
+
+    <delete id="deleteSitterReview">
+        DELETE FROM TBL_SITTER_REVIEW WHERE SITTER_NUMBER = #{sitterNumber}
+    </delete>
+
+    <delete id="deleteSitterReservation">
+        DELETE FROM TBL_SITTER_RESERVATION WHERE SITTER_NUMBER = #{sitterNumber}
+    </delete>
+
+    <delete id="deleteProfileFile">
+        DELETE FROM TBL_SITTER_PROFILE_FILE WHERE SITTER_NUMBER = #{sitterNumber}
+    </delete>
+
+    <delete id="deleteSitterFile">
+        DELETE FROM TBL_SITTER_FILE WHERE SITTER_NUMBER = #{sitterNumber}
     </delete>
 </mapper>

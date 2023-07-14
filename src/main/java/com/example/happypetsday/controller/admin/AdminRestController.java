@@ -103,6 +103,7 @@ public class AdminRestController {
         adminService.registerSitter(sitterApplyVo);
         sitterApplyVo.setUserNumber(sitterApplyVo.getUserNumber());
         adminService.modifyUserToSitter(sitterApplyVo);
+        adminService.removeSitterApply(sitterApplyVo.getApplyNumber());
     }
 
     // applyStatus '승인 거절'로 변경
@@ -110,6 +111,7 @@ public class AdminRestController {
     public void statusModifyRefuse(@RequestBody SitterApplyVo sitterApplyVo){
         sitterApplyVo.setUserNumber(sitterApplyVo.getUserNumber());
         adminService.modifyStatusRefuse(sitterApplyVo);
+        adminService.removeSitterApply(sitterApplyVo.getApplyNumber());
     }
 
     // 펫시터회원관리 검색 기능
@@ -140,7 +142,13 @@ public class AdminRestController {
 //        sitterVo.setUserNumber(sitterVo.getUserNumber());
         adminService.modifyDemotion(sitterVo);
         adminService.restoreUser(userDto);
-        adminService.removeSitterField(sitterVo.getUserNumber());
         adminService.removeLicense(sitterVo.getUserNumber());
+        adminService.removeSitterApply(sitterVo.getUserNumber());
+        adminService.removeReview(sitterVo.getSitterNumber());
+        adminService.removeReservation(sitterVo.getSitterNumber());
+        adminService.removeProfileFile(sitterVo.getSitterNumber());
+        adminService.removeSitterFile(sitterVo.getSitterNumber());
+        adminService.removeSitterField(sitterVo.getUserNumber());
+        adminService.removeSitterUser(sitterVo.getSitterNumber());
     }
 }
