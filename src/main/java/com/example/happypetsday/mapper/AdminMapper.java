@@ -73,6 +73,9 @@ public interface AdminMapper {
     // applyStatus '승인 거절'로 변경
     public void changeStatusRefuse(SitterApplyVo sitterApplyVo);
 
+    // 시터신청 거절 시 apply테이블에서 삭제
+    public void deleteSitterApply(Long userNumber);
+
     //펫시터회원 전체 조회(펫시터회원관리)
     public List<SitterVo> selectAllSitter(Criteria criteria);
 
@@ -85,9 +88,31 @@ public interface AdminMapper {
     // 회원id로 검색조회결과 게시글 수
     public int searchIdCount(@Param("keyword") String keyword);
 
-    //펫시터회원(1명) 상세 조회(펫시터회원관리)
+    // 펫시터회원(1명) 상세 조회(펫시터회원관리)
     public SitterVo selectSitterOne(Long sitterNumber);
 
     // 회원등급(SitterStatus) 수정 - 시터->일반회원 강등
     public void updateDemotion(SitterVo sitterVo);
+
+    // 강등-시터 테이블에서 삭제
+    public void deleteSitterTable(Long sitterNumber);
+
+    // 펫시터 전문분야 삭제(강등 시 사용)
+    public void deleteSitterField(Long userNumber);
+
+    // 펫시터 자격증 삭제(강등 시 사용)
+    public void deleteLicense(Long userNumber);
+
+    // 펫시터 리뷰 삭제(강등 시 사용)
+    public void deleteSitterReview(Long sitterNumber);
+
+    // 펫시터 예약 삭제(강등 시 사용)
+    public void deleteSitterReservation(Long sitterNumber);
+
+    // 펫시터 프로필파일 삭제(강등 시 사용)
+    public void deleteProfileFile(Long sitterNumber);
+
+    // 펫시터 시터파일 삭제(강등 시 사용)
+    public void deleteSitterFile(Long sitterNumber);
+
 }
