@@ -64,4 +64,6 @@ public interface SitterMapper {
     SitterDto sitterUploadNumber(Long sitterNumber);
 
     void sitterUpdate(SitterDto sitterDto);
+
+    List<SitterListVo> findSitterMain();
 }

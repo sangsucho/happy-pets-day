@@ -196,4 +196,8 @@ public class SitterService {
         sitterMapper.sitterUpdate(sitterDto);
     }
 
+    public List<SitterListVo> findBestSitter(){
+        return sitterMapper.findSitterMain();
+    }
+
 }

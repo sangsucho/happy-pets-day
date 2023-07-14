@@ -105,6 +105,8 @@ public class MyPageController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }else{
+                petFileService.remove(petDto.getPetNumber());
             }
         } else {
             if (!petFile.isEmpty()) {

@@ -130,6 +130,7 @@ function updateImage(input) {
 function restoreDefaultImg() {
     let uploadedImage = document.getElementById("uploaded-image");
     uploadedImage.src = "https://lifet.co.kr/img/profile/default.png";
+    $('#photo-file').val("");
 }
 
 // 생년월일 입력 datepicker
