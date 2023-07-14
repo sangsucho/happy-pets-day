@@ -12,17 +12,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/adopt/*")
 public class AdoptController {
     @GetMapping("/list")
-    public String AdoptionInformation(){
+    public String AdoptionInformation() {
         return "AdoptionInformation/AdoptionInformation";
     }
+
     @GetMapping("/detail")
-    public String detail(){return "AdoptionInformation/adoptDetail";}
+    public String detail() {
+        return "AdoptionInformation/adoptDetail";
+    }
 
     @GetMapping("/api")
-    public String apiTest() { return "AdoptionInformation/adoptDetail"; }
+    public String apiTest() {
+        return "AdoptionInformation/adoptDetail";
+    }
 
     @GetMapping("/detailByMain")
     public String detailByMain(@RequestParam("petNumber") int petNumber, Model model) {
         model.addAttribute("petNumber", petNumber);
-        return "AdoptionInformation/adoptDetail"; }
+        return "AdoptionInformation/adoptDetail";
+    }
 }

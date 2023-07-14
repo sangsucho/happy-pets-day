@@ -14,13 +14,13 @@ const ps = new kakao.maps.services.Places();
 
 // 마커와 인포윈도우 생성
 const marker = new kakao.maps.Marker();
-const infowindow = new kakao.maps.InfoWindow({zindex:1});
+const infowindow = new kakao.maps.InfoWindow({zindex: 1});
 
 // 현재 지도 중심좌표로 주소를 검색해서 지도 좌측 상단에 표시
 searchAddrFromCoords(map.getCenter(), displayCenterInfo);
 
-kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
-    searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
+kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
+    searchDetailAddrFromCoords(mouseEvent.latLng, function (result, status) {
         let address = result[0].address.address_name;
         let addressTokens = address.split(" ");
 
@@ -43,18 +43,17 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
         let lat = mouseEvent.latLng.getLat();
         let lng = mouseEvent.latLng.getLng();
 
-        console.log("위도 : "+lat);
-        console.log("경도 : "+lng);
+        console.log("위도 : " + lat);
+        console.log("경도 : " + lng);
 
         $('.marker-lat').val(lat);
         $('.marker-lng').val(lng);
 
 
-
     });
 });
 
-kakao.maps.event.addListener(map, 'idle', function() {
+kakao.maps.event.addListener(map, 'idle', function () {
     searchAddrFromCoords(map.getCenter(), displayCenterInfo);
 });
 
@@ -71,12 +70,12 @@ function displayCenterInfo(result, status) {
 
     const infoDiv = document.getElementById('centerAddr');
 
-    for(let i = 0; i < result.length; i++) {
+    for (let i = 0; i < result.length; i++) {
         if (result[i].region_type === 'H') {
-            let hjjs  = result[i].address_name.split(" ", 2);    // 행정주소
+            let hjjs = result[i].address_name.split(" ", 2);    // 행정주소
 
-            console.log("행정주소 : "+hjjs[0]+" "+hjjs[1]);
-            $('.administrative-district').val(hjjs[0]+" "+hjjs[1]);
+            console.log("행정주소 : " + hjjs[0] + " " + hjjs[1]);
+            $('.administrative-district').val(hjjs[0] + " " + hjjs[1]);
 
             break;
         }
@@ -94,7 +93,7 @@ function placesSearchCB(data, status, pagination) {
     $('.marker-lat').val(latLng.getLat());
     $('.marker-lng').val(latLng.getLng());
 
-    searchDetailAddrFromCoords(latLng, function(result, status) {
+    searchDetailAddrFromCoords(latLng, function (result, status) {
         if (status !== kakao.maps.services.Status.OK) return;  // 조기 반환
 
         let detailAddr = !!result[0].road_address ? `<div class="detail-addr">도로명주소 : ${result[0].road_address.address_name}</div>` : '';
@@ -114,19 +113,19 @@ function placesSearchCB(data, status, pagination) {
 }
 
 //엔터키로 글 작성 막기
-$('.board-form').on('keyup keypress',function (e){
+$('.board-form').on('keyup keypress', function (e) {
     if (e.code == 'Enter') {
-    e.preventDefault();
+        e.preventDefault();
         return false;
     }
 })
 
 // 검색버튼 지도 검색
-$('.search-btn').on('click',mapSearch );
+$('.search-btn').on('click', mapSearch);
 
 // input칸 엔터 이벤트
 $('.search-input').on('keypress', function (e) {
-    if (e.code == 'Enter'&&$('.search-input').val().length>0) {
+    if (e.code == 'Enter' && $('.search-input').val().length > 0) {
         mapSearch();
     }
 });

@@ -1,10 +1,10 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: 'Pretendard-Regular';
 }
 
-a{
+a {
     text-decoration: none;
     color: black;
 }
@@ -15,16 +15,16 @@ a{
     font-style: normal;
 }
 
-.sitter-section{
+.sitter-section {
     height: 700px;
-    background-color: rgb(252,252,252);
+    background-color: rgb(252, 252, 252);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.board-section{
+.board-section {
     height: 700px;
     background-color: #F9F9F9;
     display: flex;
@@ -33,16 +33,16 @@ a{
     align-items: center;
 }
 
-.recommend-section{
+.recommend-section {
     height: 700px;
 }
 
-.adopt-section{
+.adopt-section {
     height: 700px;
     background-color: #F9F9F9;
 }
 
-.header-section{
+.header-section {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,7 +50,7 @@ a{
     background-color: #EEF3FF;
 }
 
-.header-section-container{
+.header-section-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -58,33 +58,33 @@ a{
     width: 1200px;
 }
 
-.header-section-title{
+.header-section-title {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.header-section-img{
+.header-section-img {
     width: 600px;
     height: 400px;
 }
 
-.header-section-title h1{
+.header-section-title h1 {
     font-size: 40px;
-    font-weight: 700 ;
+    font-weight: 700;
     margin-bottom: 30px;
 }
 
-.header-section-title h5{
+.header-section-title h5 {
     font-size: 20px;
     font-weight: 400;
 }
 
-.sitter-section{
+.sitter-section {
     position: relative;
 }
 
-.sitter-section1{
+.sitter-section1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -93,7 +93,7 @@ a{
     top: -100px;
 }
 
-.sitter-section1-content{
+.sitter-section1-content {
     height: 240px;
     width: 550px;
     border-radius: 15px;
@@ -103,27 +103,27 @@ a{
     align-items: center;
 }
 
-.sitter-section1-content img{
+.sitter-section1-content img {
     width: 240px;
     height: 240px;
 }
 
-.sitter-section1-content > div{
+.sitter-section1-content > div {
     margin-left: 40px;
 }
 
-.sitter-section1-content h1{
+.sitter-section1-content h1 {
     font-size: 30px;
     font-weight: 700;
 }
 
-.sitter-section1-content h2{
+.sitter-section1-content h2 {
     font-size: 18px;
     margin: 20px 0;
     font-weight: 400;
 }
 
-.sitter-section1-content a{
+.sitter-section1-content a {
     background-color: #68A5FE;
     color: white;
     font-size: 18px;
@@ -135,7 +135,7 @@ a{
     align-items: center;
 }
 
-.sitter-section2{
+.sitter-section2 {
     width: 1200px;
     display: flex;
     flex-direction: column;
@@ -143,38 +143,38 @@ a{
     align-items: center;
 }
 
-.sitter-section2-title{
+.sitter-section2-title {
     font-size: 36px;
     font-weight: 600;
     margin-top: 150px;
     margin-bottom: 50px;
 }
 
-.sitter-section2-title span{
+.sitter-section2-title span {
     color: #68A5FE;
 }
 
-.sitter-container{
+.sitter-container {
     width: 1200px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.sitter-info{
+.sitter-info {
     display: block;
     width: 370px;
     height: 245px;
     position: relative;
 }
 
-.sitter-info img{
+.sitter-info img {
     width: 100%;
     height: 100%;
     border-radius: 15px;
 }
 
-.sitter-info-container{
+.sitter-info-container {
     width: 100%;
     position: absolute;
     bottom: 10px;
@@ -186,39 +186,39 @@ a{
     font-size: 20px;
 }
 
-.board-section-container{
+.board-section-container {
     width: 1200px;
 }
 
-.board-section-title{
+.board-section-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 40px;
 }
 
-.board-section-title h1{
+.board-section-title h1 {
     font-size: 36px;
 }
 
-.board-section-title a{
+.board-section-title a {
     font-size: 22px;
     color: black;
     display: flex;
 }
 
-.board-section-title span{
+.board-section-title span {
     font-size: 26px;
     margin-left: 10px;
-   line-height: 23px;
+    line-height: 23px;
 }
 
-.board-section-body{
+.board-section-body {
     display: flex;
     justify-content: space-between;
 }
 
-.board-section-body-img{
+.board-section-body-img {
     width: 370px;
     height: 470px;
     background-color: #DBE9FF;
@@ -229,23 +229,23 @@ a{
     align-items: center;
 }
 
-.board-section-body-img h1{
+.board-section-body-img h1 {
     font-size: 28px;
     font-weight: 600;
 }
 
-.board-section-body-img h2{
+.board-section-body-img h2 {
     font-size: 18px;
     font-weight: 0;
     margin: 15px 0;
 }
 
-.board-section-body-img img{
+.board-section-body-img img {
     width: 260px;
     height: 260px;
 }
 
-.board-section-body-list{
+.board-section-body-list {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -254,7 +254,7 @@ a{
     height: 470px;
 }
 
-.board-list{
+.board-list {
     width: 100%;
     height: 150px;
     border-radius: 14px;
@@ -262,21 +262,22 @@ a{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    margin-bottom: 10px;
     /*align-items: center;*/
 }
 
-.board-title-container{
+.board-title-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.board-info-container{
+.board-info-container {
     display: flex;
     align-items: center;
 }
 
-.board-list-container{
+.board-list-container {
     margin: 20px 40px;
     height: 110px;
     display: flex;
@@ -284,37 +285,37 @@ a{
     justify-content: space-between;
 }
 
-.board-title{
+.board-title {
     font-size: 18px;
     font-weight: 600;
 }
 
-.user-name{
+.user-name {
     font-size: 14px;
     color: #6c6c6c;
 }
 
-.board-content{
+.board-content {
     font-size: 16px;
     overflow: hidden;
     margin: 9px 0;
 }
 
-.board-info-container{
+.board-info-container {
     font-size: 14px;
     color: #6C6C6C;
 }
 
-.board-date{
+.board-date {
     margin-right: 20px;
 }
 
-.board-cnt{
+.board-cnt {
     margin-left: 3px;
     margin-right: 20px;
 }
 
-.recommend-section{
+.recommend-section {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -322,36 +323,36 @@ a{
     background-color: #EEF3FF;
 }
 
-.recommend-section-container{
+.recommend-section-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 1200px;
 }
 
-.recommend-section-title{
+.recommend-section-title {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.recommend-section-img{
+.recommend-section-img {
     width: 600px;
     height: 400px;
 }
 
-.recommend-section-title h1{
+.recommend-section-title h1 {
     font-size: 40px;
-    font-weight: 700 ;
+    font-weight: 700;
     margin-bottom: 20px;
 }
 
-.recommend-section-title h5{
+.recommend-section-title h5 {
     font-size: 20px;
     font-weight: 400;
 }
 
-.recommend-btn{
+.recommend-btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -365,13 +366,13 @@ a{
     margin-top: 50px;
 }
 
-.adopt-section{
+.adopt-section {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.adopt-section-container{
+.adopt-section-container {
     width: 1200px;
     display: flex;
     flex-direction: column;
@@ -379,17 +380,17 @@ a{
     align-items: center;
 }
 
-.adopt-section-title span{
+.adopt-section-title span {
     font-size: 26px;
     margin-left: 10px;
     line-height: 23px;
 }
 
-.adopt-section-title h1{
+.adopt-section-title h1 {
     font-size: 36px;
 }
 
-.adopt-section-title{
+.adopt-section-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -397,20 +398,20 @@ a{
     width: 100%;
 }
 
-.adopt-section-title a{
+.adopt-section-title a {
     font-size: 22px;
     color: black;
     display: flex;
 }
 
-.adopt-section-content-container{
+.adopt-section-content-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
 }
 
-.adopt-section-content{
+.adopt-section-content {
     display: flex;
     flex-direction: column;
     width: 370px;
@@ -418,14 +419,14 @@ a{
     border-radius: 15px;
 }
 
-.adopt-section-content img{
+.adopt-section-content img {
     width: 100%;
     height: 230px;
     overflow: hidden;
     border-radius: 15px 15px 0 0;
 }
 
-.adopt-section-content > div{
+.adopt-section-content > div {
     padding: 18px 20px;
     width: 330px;
     height: 86px;
@@ -433,13 +434,13 @@ a{
     border-radius: 0 0 15px 15px;
 }
 
-.adopt-section-content span{
+.adopt-section-content span {
     color: #6992DE;
     font-weight: 600;
     font-size: 14px;
 }
 
-.adopt-section-content h3{
+.adopt-section-content h3 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -449,7 +450,7 @@ a{
     font-size: 24px;
 }
 
-.adopt-section-content p{
+.adopt-section-content p {
     white-space: nowrap;
     overflow: hidden;
     color: #B3B3B3;

@@ -1,11 +1,12 @@
 package com.example.happypetsday.controller.sitter;
 
 import com.example.happypetsday.dto.*;
-import com.example.happypetsday.mapper.SitterMapper;
-import com.example.happypetsday.service.sitter.*;
+import com.example.happypetsday.service.sitter.SitterApplyLicenseFileService;
+import com.example.happypetsday.service.sitter.SitterFileService;
+import com.example.happypetsday.service.sitter.SitterProfileFileService;
+import com.example.happypetsday.service.sitter.SitterService;
 import com.example.happypetsday.vo.SitterListVo;
 import com.example.happypetsday.vo.SitterReviewVo;
-import com.example.happypetsday.vo.SitterVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +20,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -39,18 +39,18 @@ public class SitterController {
     }
 
     @PostMapping("/apply")
-    public RedirectView sendApply( SitterFieldDto sitterFieldDto,
-            SitterApplyDto sitterApplyDto, HttpServletRequest req, RedirectAttributes redirectAttributes,
-            @RequestParam("applyFile") List<MultipartFile> files, @RequestParam("applyFileTitle") List<String> applyFileTitle
+    public RedirectView sendApply(SitterFieldDto sitterFieldDto,
+                                  SitterApplyDto sitterApplyDto, HttpServletRequest req, RedirectAttributes redirectAttributes,
+                                  @RequestParam("applyFile") List<MultipartFile> files, @RequestParam("applyFileTitle") List<String> applyFileTitle
     ) {
-        sitterApplyDto.setUserNumber((Long)req.getSession().getAttribute("userNumber"));
+        sitterApplyDto.setUserNumber((Long) req.getSession().getAttribute("userNumber"));
         sitterService.registerApply(sitterApplyDto);
 
         String[] fieldNames = req.getParameterValues("petFieldName");
-        for(String fieldName : fieldNames){
-        sitterFieldDto.setPetFieldName(fieldName);
-        sitterFieldDto.setUserNumber((Long)req.getSession().getAttribute("userNumber"));
-        sitterService.registerField(sitterFieldDto);
+        for (String fieldName : fieldNames) {
+            sitterFieldDto.setPetFieldName(fieldName);
+            sitterFieldDto.setUserNumber((Long) req.getSession().getAttribute("userNumber"));
+            sitterService.registerField(sitterFieldDto);
         }
 
 
@@ -68,14 +68,14 @@ public class SitterController {
 
 
     @GetMapping("/addList")
-    public String sitterAddList(){
+    public String sitterAddList() {
         return "sitter/sitterAddList";
     }
 
     @PostMapping("/addList")
     public RedirectView sendAddList(HttpServletRequest req, SitterDto sitterDto,
-    @RequestParam("sitterProfileFile") List<MultipartFile> filess, @RequestParam("sitterFile")List<MultipartFile> files){
-        sitterDto.setUserNumber((Long)req.getSession().getAttribute("userNumber"));
+                                    @RequestParam("sitterProfileFile") List<MultipartFile> filess, @RequestParam("sitterFile") List<MultipartFile> files) {
+        sitterDto.setUserNumber((Long) req.getSession().getAttribute("userNumber"));
         Long sitterNumber = sitterService.findSitter(sitterDto.getUserNumber());
         sitterDto.setSitterNumber(sitterNumber);
 
@@ -103,10 +103,15 @@ public class SitterController {
 
         List<SitterListVo> sitterList = sitterService.findAll();
 
-        if(req.getSession().getAttribute("userNumber") != null){
-            Long userNum = (Long)req.getSession().getAttribute("userNumber");
+        for (int i = 0; i < sitterList.size(); i++) {
+            SitterReviewDto sitterReviewDto = sitterService.reviewCntAndScoreAvg(sitterList.get(i).getSitterNumber());
+            model.addAttribute("cntAndAvg", sitterReviewDto);
+        }
+
+        if (req.getSession().getAttribute("userNumber") != null) {
+            Long userNum = (Long) req.getSession().getAttribute("userNumber");
             Long sitterNum = sitterService.findSitter(userNum);
-            if(sitterNum == null){
+            if (sitterNum == null) {
                 model.addAttribute("sitterNumber", sitterNumber);
                 model.addAttribute("sitterList", sitterList);
                 return "sitter/sitterList";
@@ -114,7 +119,7 @@ public class SitterController {
                 int nullSitter = sitterService.findSitterHeaderCount(sitterNum);
                 model.addAttribute("nullSitter", nullSitter);
             }
-            model.addAttribute("showBtn",sitterService.countSitter((Long)req.getSession().getAttribute("userNumber")));
+            model.addAttribute("showBtn", sitterService.countSitter((Long) req.getSession().getAttribute("userNumber")));
         }
 
         model.addAttribute("sitterNumber", sitterNumber);
@@ -123,10 +128,8 @@ public class SitterController {
     }
 
 
-
-
     @GetMapping("/profile")
-    public String sitterProfile(SitterDto sitterDto, HttpServletRequest req, Model model){
+    public String sitterProfile(SitterDto sitterDto, HttpServletRequest req, Model model) {
 
         if(req.getSession().getAttribute("userNumber") != null) {
             Long userNumber = (Long)req.getSession().getAttribute("userNumber");
@@ -151,7 +154,7 @@ public class SitterController {
         model.addAttribute("profile", sitterProfileFileDto);
         model.addAttribute("sitter", sitterFileDto);
         model.addAttribute("license", sitterApplyLicenseFile);
-        model.addAttribute("info",sitterService.findSitterInfo(userNumFromSitterNum));
+        model.addAttribute("info", sitterService.findSitterInfo(userNumFromSitterNum));
         model.addAttribute("sitterName", userDto);
         model.addAttribute("field", sitterFieldDto);
         model.addAttribute("review", sitterReviewVo);

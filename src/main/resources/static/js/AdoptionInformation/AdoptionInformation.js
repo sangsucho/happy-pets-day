@@ -8,6 +8,7 @@
 // 폼으로 보낸걸 컨트롤러로 받는데 그 때 VO를 사용해서 받는다.
 // VO에 center의 정보도 넣어준다.
 viewList();
+
 function viewList() {
     $.ajax({
         url: "http://openapi.seoul.go.kr:8088/786e44785864656334354e61496a76/json/TbAdpWaitAnimalView/1/100/",
@@ -166,7 +167,6 @@ function displayTotalPostCount() {
 $(document).ready(function () {
     displayTotalPostCount();
 });
-
 
 
 // 카테고리 분류

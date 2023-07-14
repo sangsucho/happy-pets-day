@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Document</title>
-    <link rel="stylesheet" th:href="@{/css/sitter/applyTo.css}" />
+    <link rel="stylesheet" th:href="@{/css/sitter/applyTo.css}"/>
     <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
     <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
     <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
-  </head>
-  <body>
-  <header th:replace="fragment/header :: header"></header>
-    <div class="header-title">
-      <h2 class="title">지원서 작성하기</h2>
-    </div>
-    <div style="display: flex; justify-content: center; padding-bottom: 200px">
-      <div class="main">
+</head>
+<body>
+<header th:replace="fragment/header :: header"></header>
+<div class="header-title">
+    <h2 class="title">지원서 작성하기</h2>
+</div>
+<div style="display: flex; justify-content: center; padding-bottom: 200px">
+    <div class="main">
         <p>기본 정보 확인</p>
         <form th:action="@{/sitter/apply}" method="post" enctype="multipart/form-data">
           <div class="apply-sitter">
@@ -49,63 +49,62 @@
                 <input type="text" name="userAddress" th:value="${userInfo.userAddress}"/>
               </div>
             </div>
-          </div>
-          <div class="sitterFieldBox">
-            <p>전문 분야 선택</p>
-            <span
-            ><span>강아지</span><input type="checkbox" name="petFieldName" value="강아지"
-            /></span>
-            <span
-            ><span>고양이</span><input type="checkbox" name="petFieldName" value="고양이"
-            /></span>
-            <span
-            ><span>기타</span><input type="checkbox" name="petFieldName" value="기타"
-            /></span>
-          </div>
-        <p class="pppp">자기 소개 및 자격증 첨부</p>
-          <div class="apply-sitter">
-            <div class="box-padding">
-              <div>
-                <p class="p-text">자기소개 및 지원동기</p>
-                <div>
-                  <textarea
-                    name="applyContent"
-                    id="self-introduce"
-                    cols="30"
-                    rows="10"
-                  ></textarea>
-                </div>
-              </div>
-
-              <div style="margin-top: 60px">
-                <p class="p-text">자격증 사진 업로드</p>
-                <div class="form-group">
-                  <ul class="file-wrap">
-                    <li>
-                      <span class="material-symbols-outlined"> add </span>
-                      <input
-                        type="file"
-                        id="post-image"
-                        name="applyFile"
-                        accept="image/*"
-                        multiple
-                        data-index="0"
-                      />
-                    </li>
-                  </ul>
-                </div>
-              </div>
+            <div class="sitterFieldBox">
+                <p>전문 분야 선택</p>
+                <span
+                ><span>강아지</span><input type="checkbox" name="petFieldName" value="강아지"
+                /></span>
+                <span
+                ><span>고양이</span><input type="checkbox" name="petFieldName" value="고양이"
+                /></span>
+                <span
+                ><span>기타</span><input type="checkbox" name="petFieldName" value="기타"
+                /></span>
             </div>
-          </div>
-          <div class="btn-align">
-            <button type="submit" class="submit-btn">펫시터 지원하기</button>
-          </div>
+            <p class="pppp">자기 소개 및 자격증 첨부</p>
+            <div class="apply-sitter">
+                <div class="box-padding">
+                    <div>
+                        <p class="p-text">자기소개 및 지원동기</p>
+                        <div>
+                  <textarea
+                          name="applyContent"
+                          id="self-introduce"
+                          cols="30"
+                          rows="10"
+                  ></textarea>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 60px">
+                        <p class="p-text">자격증 사진 업로드</p>
+                        <div class="form-group">
+                            <ul class="file-wrap">
+                                <li>
+                                    <span class="material-symbols-outlined"> add </span>
+                                    <input
+                                            type="file"
+                                            id="post-image"
+                                            name="applyFile"
+                                            accept="image/*"
+                                            multiple
+                                            data-index="0"
+                                    />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-align">
+                <button type="submit" class="submit-btn">펫시터 지원하기</button>
+            </div>
         </form>
-      </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script th:src="@{/js/sitter/applyTo.js}"></script>
-  <script th:src="@{/js/fragment/header.js}"></script>
-  <footer th:replace="fragment/footer :: footer"></footer>
-  </body>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script th:src="@{/js/sitter/applyTo.js}"></script>
+<script th:src="@{/js/fragment/header.js}"></script>
+<footer th:replace="fragment/footer :: footer"></footer>
+</body>
 </html>

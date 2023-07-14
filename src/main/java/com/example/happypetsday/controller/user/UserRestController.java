@@ -1,16 +1,14 @@
 package com.example.happypetsday.controller.user;
 
-import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.mapper.UserMapper;
 import com.example.happypetsday.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,13 +17,13 @@ public class UserRestController {
     private final UserService userService;
     private final UserMapper userMapper;
 
-//    아이디 중복확인
+    //    아이디 중복확인
     @GetMapping("/checkDuplicate")
     public boolean checkDuplicate(@RequestParam String userId) {
         return userService.isUserIdAvailable(userId);
     }
 
-//  아이디 찾기
+    //  아이디 찾기
     @GetMapping("/users/findId")
     public ResponseEntity<String> findUserIdByNameAndPhone(@RequestParam String userName, @RequestParam String userPhoneNumber) {
         try {

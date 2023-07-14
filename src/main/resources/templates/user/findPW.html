@@ -1,90 +1,92 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <link rel="stylesheet" th:href="@{/css/user/findPW.css}" />
-  <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
-  <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/user/findPW.css}"/>
+    <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+    <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
 </head>
 <body>
 <header th:replace="fragment/header :: header"></header>
 <div class="body">
-  <div class="main">
-    <div class="main-container">
-      <div class="sign-wrap">
-        <div class="sign-form">
-<!--          <form action="" class="find-account">-->
-            <ul class="page-tab">
-              <li class="active">
-                <a th:href="@{/user/findId}">아이디 찾기</a>
-              </li>
-              <li>
-                <a th:href="@{/user/findPW}" style="color: black">비밀번호 찾기</a>
-              </li>
-            </ul>
-            <div class="find-pw">
-              <div class="step-wrap-active">
-                <div class="alert">
-                  "회원가입 시 입력했던 질문과 답변을 입력해주세요."
-                </div>
-                <div class="field">
-                  <input
-                          type="id"
-                          name
-                          class="required"
-                          placeholder="아이디를 입력해주세요."
-                          id="userId"
-                          pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$"
-                          required
-                  />
+    <div class="main">
+        <div class="main-container">
+            <div class="sign-wrap">
+                <div class="sign-form">
+                    <!--          <form action="" class="find-account">-->
+                    <ul class="page-tab">
+                        <li class="active">
+                            <a th:href="@{/user/findId}">아이디 찾기</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/user/findPW}" style="color: black">비밀번호 찾기</a>
+                        </li>
+                    </ul>
+                    <div class="find-pw">
+                        <div class="step-wrap-active">
+                            <div class="alert">
+                                "회원가입 시 입력했던 질문과 답변을 입력해주세요."
+                            </div>
+                            <div class="field">
+                                <input
+                                        type="id"
+                                        name
+                                        class="required"
+                                        placeholder="아이디를 입력해주세요."
+                                        id="userId"
+                                        pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$"
+                                        required
+                                />
 
-                  <div class="verify-active">
-                    <div class="select-wrap">
-                      <div class="question-select-box" onclick="toggleSelectList()">
-                        <span id="selectedQuestion" class="placeholder">질문 선택</span>
-                      </div>
-                      <input
-                              type="hidden"
-                              name="questionNumber"
-                              class="questionNumber"
-                              value=""
-                      />
-                      <ul class="select-list" id="selectList" style="display: none">
-                        <li class="select-item" onclick="selectQuestion(0)">당신의 출신 도시는 어디인가요?</li>
-                        <li class="select-item" onclick="selectQuestion(1)">당신의 가장 좋아하는 동물은 무엇인가요?</li>
-                        <li class="select-item" onclick="selectQuestion(2)">당신의 초등학교 이름은 무엇인가요?</li>
-                        <li class="select-item" onclick="selectQuestion(3)">당신의 어머니의 이름은 무엇인가요?</li>
-                        <li class="select-item" onclick="selectQuestion(4)">당신의 아버지의 이름은 무엇인가요?</li>
-                        <li class="select-item" onclick="selectQuestion(5)">당신이 졸업한 고등학교는 어디인가요?</li>
-                      </ul>
+                                <div class="verify-active">
+                                    <div class="select-wrap">
+                                        <div class="question-select-box" onclick="toggleSelectList()">
+                                            <span id="selectedQuestion" class="placeholder">질문 선택</span>
+                                        </div>
+                                        <input
+                                                type="hidden"
+                                                name="questionNumber"
+                                                class="questionNumber"
+                                                value=""
+                                        />
+                                        <ul class="select-list" id="selectList" style="display: none">
+                                            <li class="select-item" onclick="selectQuestion(0)">당신의 출신 도시는 어디인가요?</li>
+                                            <li class="select-item" onclick="selectQuestion(1)">당신의 가장 좋아하는 동물은 무엇인가요?
+                                            </li>
+                                            <li class="select-item" onclick="selectQuestion(2)">당신의 초등학교 이름은 무엇인가요?</li>
+                                            <li class="select-item" onclick="selectQuestion(3)">당신의 어머니의 이름은 무엇인가요?</li>
+                                            <li class="select-item" onclick="selectQuestion(4)">당신의 아버지의 이름은 무엇인가요?</li>
+                                            <li class="select-item" onclick="selectQuestion(5)">당신이 졸업한 고등학교는 어디인가요?
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <input
+                                        type="text"
+                                        name="findPasswordAnswer"
+                                        class="required"
+                                        placeholder="답변을 입력해주세요."
+                                        id="answer"
+                                        required
+                                />
+                                <div class="confirmMsg"></div>
+                            </div>
+                            <div class="field">
+                                <button type="submit" class="submit-find" id="submit-find-pw">
+                                    비밀번호 찾기
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-
-                  <input
-                          type="text"
-                          name="findPasswordAnswer"
-                          class="required"
-                          placeholder="답변을 입력해주세요."
-                          id="answer"
-                          required
-                  />
-                  <div class="confirmMsg"></div>
+                    <!--          </form>-->
                 </div>
-                <div class="field">
-                  <button type="submit" class="submit-find" id="submit-find-pw">
-                    비밀번호 찾기
-                  </button>
-                </div>
-              </div>
             </div>
-<!--          </form>-->
         </div>
-      </div>
     </div>
-  </div>
 </div>
 <footer th:replace="fragment/footer :: footer"></footer>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

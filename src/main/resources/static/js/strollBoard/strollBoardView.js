@@ -90,7 +90,7 @@ $('#reply-content').on('keypress', function (e) {
 
 // 댓글 작성
 function replyWrite() {
-    if(loginNumber==-1){
+    if (loginNumber == -1) {
         alert('로그인을 해주세요');
         window.location.href = '/user/login';
         return;
@@ -221,31 +221,31 @@ function modifyStrollReply() {
     let thisPage = $('.active').data('page');
 
     let modifyReply = {
-        strollReplyContent:strollReplyContent,
-        strollReplyNumber:strollReplyNumber
+        strollReplyContent: strollReplyContent,
+        strollReplyNumber: strollReplyNumber
     }
     let pageInfo = {
         strollBoardNumber: strollBoardNumber,
         page: thisPage
     }
 
-    reply.modify(modifyReply,pageInfo,showReply, showReplyPage, showError);
+    reply.modify(modifyReply, pageInfo, showReply, showReplyPage, showError);
 }
 
 
 //댓글 삭제
-$('.reply-list-wrap').on('click', '.delete1', function (){
+$('.reply-list-wrap').on('click', '.delete1', function () {
 
-    if(confirm("해당 댓글을 삭제하시겠습니까?")){
+    if (confirm("해당 댓글을 삭제하시겠습니까?")) {
         let thisPage = $('.active').data('page');
         let rNum = $(this).closest('.reply-btn-box').siblings('.reply-box').data('num');
         let pageInfo = {
             strollBoardNumber: strollBoardNumber,
             page: thisPage
         }
-        reply.remove(rNum,pageInfo,showReply, showReplyPage, showError)
+        reply.remove(rNum, pageInfo, showReply, showReplyPage, showError)
 
-    }else{
+    } else {
     }
 
 });

@@ -48,15 +48,6 @@
     margin-right: 14px;">
                         <span class="sitter-name" th:text="${name.userName}"></span> 펫시터
                     </div>
-<!--                    <div class="sitter-info">-->
-<!--                        <img-->
-<!--                                src="https://wayopet.com/static/images/common/star_1.png"-->
-<!--                                alt=""-->
-<!--                                class="img-star"-->
-<!--                        />-->
-<!--                        <span class="rating">5.0</span>-->
-<!--&lt;!&ndash;                        <span class="review-cnt" th:text="${cntAvg.reviewCnt}">100개의 리뷰</span>&ndash;&gt;-->
-<!--                    </div>-->
                 </div>
             </div>
 
@@ -109,7 +100,8 @@
                     </span>
                     <div class="review-b">
                         <div class="star-ratings">
-                            <div class="star-ratings-fill space-x-2 text-lg" th:attr="style='width: ' + ${cntAvg.scoreAvg * 20} + '%'">
+                            <div class="star-ratings-fill space-x-2 text-lg"
+                                 th:attr="style='width: ' + ${cntAvg.scoreAvg * 20} + '%'">
                                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                             </div>
                             <div class="star-ratings-base space-x-2 text-lg">

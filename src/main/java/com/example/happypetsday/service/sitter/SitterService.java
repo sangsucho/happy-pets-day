@@ -92,7 +92,7 @@ public class SitterService {
         return sitterMapper.selectList();
     }
 
-    public int findSitterHeaderCount(Long sitterNumber){
+    public int findSitterHeaderCount(Long sitterNumber) {
         return sitterMapper.selectSitterHeader(sitterNumber);
     }
 
@@ -194,6 +194,10 @@ public class SitterService {
 
     public void sitterModify(SitterDto sitterDto) {
         sitterMapper.sitterUpdate(sitterDto);
+    }
+
+    public List<SitterListVo> findBestSitter(){
+        return sitterMapper.findSitterMain();
     }
 
 }

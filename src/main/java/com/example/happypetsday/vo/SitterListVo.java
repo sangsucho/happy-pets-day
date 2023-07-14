@@ -25,4 +25,5 @@ public class SitterListVo {
     private Long userNumber;
     private int reviewCnt;
     private double scoreAvg;
+    private String sitterIntroduction;
 }

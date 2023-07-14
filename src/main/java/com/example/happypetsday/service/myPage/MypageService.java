@@ -33,7 +33,7 @@ public class MypageService {
 
     // 예약내역 조회
     public List<ResVo> findRes(Long userNumber, Criteria criteria) {
-        if(userNumber == null) {
+        if (userNumber == null) {
             throw new IllegalArgumentException("회원 정보 누락");
         }
         return resMapper.selectRes(userNumber, criteria);
@@ -55,7 +55,7 @@ public class MypageService {
 
     // 펫시터 예약 확인
     public List<ResVo> findResForSitter(Long userNumber, Criteria criteria) {
-        if(userNumber == null) {
+        if (userNumber == null) {
             throw new IllegalArgumentException("회원 정보 누락");
         }
         sitterService.findSitter(userNumber);
@@ -64,7 +64,7 @@ public class MypageService {
 
     // 펫시터 예약 확인 > 예약 거절
     public void updateForSitter(ResVo resVo) {
-        if(resVo == null) {
+        if (resVo == null) {
             throw new IllegalArgumentException("예약정보 누락");
         }
         resMapper.updateForSitter(resVo);

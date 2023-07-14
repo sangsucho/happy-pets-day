@@ -62,14 +62,17 @@
                             <div class="img-container">
                                 <img
                                         th:src="@{/usersManage/view(fileName=${license.applyFileUploadPath+'/th_'+license.applyFileUuid+'_'+license.applyFileName})}"
-                                        alt="" class="certificate-img" th:unless="${license.applyFileName==null}" th:each="license : ${license}">
+                                        alt="" class="certificate-img" th:unless="${license.applyFileName==null}"
+                                        th:each="license : ${license}">
                             </div>
                             <div class="certificate-name">
-                                <div class="certificate-title">자격증 이름 : </div>
+                                <div class="certificate-title">자격증 이름 :</div>
                                 <div class="certificate-content">
                                     <th:block th:each="license, iterStat : ${license}">
-                                        <span th:text="${license.applyFileTitle}" th:unless="${license.applyFileTitle==null}"></span>
-                                        <span th:if="${!iterStat.last}" th:unless="${license.applyFileTitle==null}">, </span>
+                                        <span th:text="${license.applyFileTitle}"
+                                              th:unless="${license.applyFileTitle==null}"></span>
+                                        <span th:if="${!iterStat.last}"
+                                              th:unless="${license.applyFileTitle==null}">, </span>
                                     </th:block>
                                 </div>
                             </div>
@@ -83,8 +86,10 @@
                 </div>
             </div>
             <div class="btn">
-                <button type="button" class="approve" value="2" data-confirm="신청 승인하시겠습니까?" data-apply-number="123">승인</button>
-                <button type="button" class="refuse" value="1" data-confirm="신청 거절하시겠습니까?" data-apply-number="456">거절</button>
+                <button type="button" class="approve" value="2" data-confirm="신청 승인하시겠습니까?" data-apply-number="123">승인
+                </button>
+                <button type="button" class="refuse" value="1" data-confirm="신청 거절하시겠습니까?" data-apply-number="456">거절
+                </button>
                 <button type="button" class="list">목록</button>
             </div>
 

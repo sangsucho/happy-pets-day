@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.net.URLEncoder;
-
 @Controller
 @RequestMapping("/recommend/*")
 @RequiredArgsConstructor
@@ -23,27 +21,26 @@ public class RecommendController {
     private final RecommendService recommendService;
 
     @GetMapping("/main")
-    public String recommend(){
+    public String recommend() {
         return "recommend/petRecommend";
     }
 
     @GetMapping("/detail")
-    public String recommendDetail(@Param("recommendNumber")Long recommendNumber, Model model){
+    public String recommendDetail(@Param("recommendNumber") Long recommendNumber, Model model) {
         model.addAttribute("detail", recommendService.findRecommendDetail(recommendNumber));
         return "recommend/petRecommendDetail";
     }
 
     @GetMapping("/list")
-    public String recommendList(){
+    public String recommendList() {
         return "recommend/petRecommendList";
     }
 
     @PostMapping("/list")
-    public RedirectView recommendList(RecommendDto recommendDto, RedirectAttributes redirectAttributes){
+    public RedirectView recommendList(RecommendDto recommendDto, RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("recommendList", recommendService.findRecommendList(recommendDto));
         return new RedirectView("/recommend/list");
     }
-
 
 
 }

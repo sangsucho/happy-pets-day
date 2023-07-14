@@ -9,44 +9,61 @@ import java.util.List;
 
 @Mapper
 public interface SitterMapper {
-//    시터
+    //    시터
     void insert(SitterDto sitterDto);
+
     Long selectSitterNumber(Long userNumber);
+
     SitterDto selectSitterInfo(Long userNumber);
 
-//    시터 지원
+    //    시터 지원
     void apply(SitterApplyDto sitterApplyDto);
+
     void updateSitter(SitterDto sitterDto);
     UserDto selectUserInfo(Long userNumber);
 
-//    시터 필드
+    //    시터 필드
     void insertField(SitterFieldDto sitterFieldDto);
+
     void deleteField(Long userNumber);
+
     List<SitterFieldDto> selectField(Long userNumber);
 
-//    시터 리스트
+    //    시터 리스트
     List<SitterListVo> selectList();
+
     int countSitter(Long userNumber);
 
-//    시터 프로필
+    //    시터 프로필
 //    List<SitterListVo> selectSitterProfile(Long sitterNumber);
     List<SitterFileDto> selectSitterFile(Long sitterNumber);
+
     SitterProfileFileDto selectSitterProfile(Long sitterNumber);
+
     List<SitterApplyLicenseFile> selectApplyFile(Long userNumber);
+
     Long userNumFromSitter(Long sitterNumber);
+
     UserDto selectUserName(Long sitterNumber);
+
     int selectSitterHeader(Long sitterNumber);
 
-//    시터 예약
+    //    시터 예약
     void insertReserve(SitterReservationDto sitterReservationDto);
+
     void updateReserveStatus(Long userNumber);
+
     List<SitterReservationDto> selectReserveCantDate(Long sitterNumber);
 
-//    시터 리뷰
+    //    시터 리뷰
     List<SitterReviewVo> selectSitterReview(Long sitterNumber);
+
     SitterReviewDto reviewCntAndScoreAvg(Long sitterNumber);
 
-//    시터 수정
+    //    시터 수정
     SitterDto sitterUploadNumber(Long sitterNumber);
+
     void sitterUpdate(SitterDto sitterDto);
+
+    List<SitterListVo> findSitterMain();
 }

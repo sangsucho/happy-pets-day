@@ -54,7 +54,7 @@ $.ajax({
         $(".adopt-status").text(adoptStatus);
         $(".adopt-status").text(adoptStatus);
         $(".introduce-video").prop("href", introVideo);
-        $(".introduce-video").on("click", function(event) {
+        $(".introduce-video").on("click", function (event) {
             if (introVideo == "") {
                 event.preventDefault();
                 alert("영상 URL이 존재하지 않습니다.")
@@ -69,18 +69,19 @@ $.ajax({
         $(".title-section3").text(regiDate);
     }
 });
+
 function getCenter(centerName, callback) {
     $.ajax({
         url: `/adopts/getCenterName`,
         type: "get",
-        data: { centerName: centerName },
+        data: {centerName: centerName},
         dataType: "json",
-        success: function(result) {
+        success: function (result) {
             console.log(result);
             showCenter(centerName, result);
             callback(result);
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
             console.log(error);
         }
     });

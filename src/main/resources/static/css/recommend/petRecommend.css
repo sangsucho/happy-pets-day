@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: 'Pretendard-Regular';
@@ -10,7 +10,7 @@
     font-style: normal;
 }
 
-body{
+body {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -18,11 +18,11 @@ body{
 }
 
 
-.body-header-container{
+.body-header-container {
     width: 100%;
 }
 
-.body-header{
+.body-header {
     height: 400px;
     background-color: #68A5FE;
     display: flex;
@@ -31,63 +31,63 @@ body{
     align-items: center;
 }
 
-.header-title{
+.header-title {
     font-size: 60px;
     color: white;
     margin-bottom: 20px;
 }
 
-.header-comment{
+.header-comment {
     font-size: 30px;
     color: white;
     margin-bottom: 50px;
 }
 
-.body-header2{
+.body-header2 {
     height: 35px;
     display: flex;
 }
 
-.body-header3{
+.body-header3 {
     height: 150px;
     background-color: #f9f9f9;
 
     position: relative;
 }
 
-.header-section1{
+.header-section1 {
     width: 30%;
     height: 35px;
 }
 
-.header-section2{
+.header-section2 {
     width: 20%;
     height: 35px;
 }
 
-.header-sectionR{
+.header-sectionR {
     background: linear-gradient(to top right, #f9f9f9 49%, #68A5FE 51%);
 }
 
-.header-sectionL{
+.header-sectionL {
     background: linear-gradient(to top left, #f9f9f9 49%, #68A5FE 51%);
 }
 
-.tips{
+.tips {
     display: flex;
     justify-content: center;
     position: absolute;
-    left:50%;
-    transform:translateX(-50%);
+    left: 50%;
+    transform: translateX(-50%);
     top: -110px;
 }
 
-.tip{
+.tip {
     margin: 0 10px;
     width: 350px;
     height: 220px;
     border-radius: 10px;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255, 255, 255, 0.8);
     z-index: 4;
     display: flex;
     flex-direction: column;
@@ -95,19 +95,19 @@ body{
     align-items: center;
 }
 
-.tips img{
+.tips img {
     width: 90px;
     height: 90px;
     margin-bottom: 35px;
 }
 
-.tip-comment{
+.tip-comment {
     color: #576071;
     font-size: 18px;
     font-weight: 600;
 }
 
-.main-container{
+.main-container {
     width: 1200px;
     display: flex;
     flex-direction: column;
@@ -115,7 +115,7 @@ body{
     align-items: center;
 }
 
-.select{
+.select {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -129,11 +129,11 @@ body{
     opacity: 0.3;
 }
 
-.select-zone{
+.select-zone {
     display: flex;
 }
 
-.select-btn{
+.select-btn {
     width: 110px;
     height: 80px;
     border-radius: 20px;
@@ -145,21 +145,21 @@ body{
     cursor: pointer;
 }
 
-.select-btn:hover{
+.select-btn:hover {
     background-color: #68A5FE;
     color: white;
 }
 
-.show{
+.show {
     opacity: 1;
 }
 
-.click{
+.click {
     background-color: #68A5FE;
     color: white;
 }
 
-.submit{
+.submit {
     display: flex;
     justify-content: center;
     align-items: center;

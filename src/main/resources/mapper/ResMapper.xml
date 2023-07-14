@@ -28,7 +28,7 @@
         WHERE ROWNUM <= #{criteria.page} * (#{criteria.amount} - 1)
         ]]>
         ) B2
-        WHERE  RNUM > (#{criteria.page} - 1) * (#{criteria.amount} - 1)
+        WHERE RNUM > (#{criteria.page} - 1) * (#{criteria.amount} - 1)
     </select>
 
     <select id="selectTotal" resultType="_int">
@@ -43,25 +43,40 @@
     </update>
 
     <select id="selectResForSitter" resultType="resVo">
-        SELECT SITTER_NUMBER, RESERVATION_NUMBER, RESERVATION_DATE,
-        USER_NUMBER, USER_NAME, USER_PHONE_NUMBER, RESERVATION_STATUS FROM
-        (
-        SELECT ROWNUM AS RNUM, SITTER_NUMBER, RESERVATION_NUMBER, RESERVATION_DATE,
-        USER_NUMBER, USER_NAME, USER_PHONE_NUMBER, RESERVATION_STATUS
-        FROM
-        (
-        SELECT SR.SITTER_NUMBER, SR.RESERVATION_NUMBER, TO_CHAR(RESERVATION_DATE, 'YYYY-MM-DD') AS RESERVATION_DATE,
-        SR.USER_NUMBER, U.USER_NAME, U.USER_PHONE_NUMBER, SR.RESERVATION_STATUS
-        FROM TBL_USER U
-        JOIN TBL_SITTER_RESERVATION SR
-        ON U.USER_NUMBER = SR.USER_NUMBER
-        JOIN TBL_SITTER S
-        ON S.SITTER_NUMBER = SR.SITTER_NUMBER
-        WHERE S.SITTER_NUMBER = #{sitterNumber}
-        ORDER BY RESERVATION_NUMBER DESC
-        ) S1
+        SELECT SITTER_NUMBER,
+               RESERVATION_NUMBER,
+               RESERVATION_DATE,
+               USER_NUMBER,
+               USER_NAME,
+               USER_PHONE_NUMBER,
+               RESERVATION_STATUS
+        FROM (
+                 SELECT ROWNUM AS RNUM,
+                        SITTER_NUMBER,
+                        RESERVATION_NUMBER,
+                        RESERVATION_DATE,
+                        USER_NUMBER,
+                        USER_NAME,
+                        USER_PHONE_NUMBER,
+                        RESERVATION_STATUS
+                 FROM (
+                          SELECT SR.SITTER_NUMBER,
+                                 SR.RESERVATION_NUMBER,
+                                 TO_CHAR(RESERVATION_DATE, 'YYYY-MM-DD') AS RESERVATION_DATE,
+                                 SR.USER_NUMBER,
+                                 U.USER_NAME,
+                                 U.USER_PHONE_NUMBER,
+                                 SR.RESERVATION_STATUS
+                          FROM TBL_USER U
+                                   JOIN TBL_SITTER_RESERVATION SR
+                                        ON U.USER_NUMBER = SR.USER_NUMBER
+                                   JOIN TBL_SITTER S
+                                        ON S.SITTER_NUMBER = SR.SITTER_NUMBER
+                          WHERE S.SITTER_NUMBER = #{sitterNumber}
+                          ORDER BY RESERVATION_NUMBER DESC
+                      ) S1
         <![CDATA[
-        WHERE ROWNUM <= #{criteria.page} * (#{criteria.amount} - 1)
+                 WHERE ROWNUM <= #{criteria.page} * (#{criteria.amount} - 1)
         ]]>
         ) S2
         WHERE RNUM > (#{criteria.page} - 1) * (#{criteria.amount} - 1)

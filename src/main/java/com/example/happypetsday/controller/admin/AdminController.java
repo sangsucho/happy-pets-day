@@ -48,17 +48,17 @@ public class AdminController {
     }
 
     @GetMapping("/strollBoardManage")
-    public String strollBoardManage(Criteria criteria, Model model){
+    public String strollBoardManage(Criteria criteria, Model model) {
         List<StrollBoardVo> boardList = strollService.findAll(criteria);
 
-        model.addAttribute("boardList",boardList);
+        model.addAttribute("boardList", boardList);
         model.addAttribute("pageInfo", new PageVo(criteria, strollService.getTotal()));
 
         return "admin/strollBoardManage";
     }
 
     @GetMapping("/userDetailManage")
-    public String userDetailManage(Long userNumber, Model model){
+    public String userDetailManage(Long userNumber, Model model) {
         UserVo userVo = adminService.findUser(userNumber);
 
         model.addAttribute("user", userVo);
@@ -66,7 +66,7 @@ public class AdminController {
     }
 
     @GetMapping("/userManage")
-    public String userManage(Criteria criteria, Model model){
+    public String userManage(Criteria criteria, Model model) {
         List<UserVo> userList = adminService.findAll(criteria);
 
 //        List<UserVo> resultList = userList.stream()
@@ -92,7 +92,7 @@ public class AdminController {
 
 
     @GetMapping("/viewApplication")
-    public String viewApplication(Long applyNumber, Model model){
+    public String viewApplication(Long applyNumber, Model model) {
         SitterApplyVo sitterApplyVo = adminService.findApplicaton(applyNumber);
         List<SitterApplyVo> licenseList = adminService.findLicense(applyNumber);
         List<SitterApplyVo> fieldList = adminService.findField(applyNumber);
@@ -102,7 +102,6 @@ public class AdminController {
         model.addAttribute("field", fieldList);
         return "admin/viewApplication";
     }
-
 
 
 }

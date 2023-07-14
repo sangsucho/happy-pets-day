@@ -1,5 +1,5 @@
 let msg = $('.msg').val();
-if(msg){
+if (msg) {
     alert(msg)
 }
 
@@ -54,10 +54,8 @@ $(function () {
 });
 
 // 달력으로 생년월일 집어넣기
-$(function(){
-    $('.datepicker').datepicker({
-
-    });
+$(function () {
+    $('.datepicker').datepicker({});
 });
 
 
@@ -74,13 +72,13 @@ $.datepicker.setDefaults({
     yearSuffix: '년',
     changeMonth: true,
     changeYear: true,
-    yearRange:'c-50:c'
+    yearRange: 'c-50:c'
 });
 
-$('#select').on('change', function (){
-    if($('#select').val() == 'direct'){
+$('#select').on('change', function () {
+    if ($('#select').val() == 'direct') {
         $('#selectbox-direct').attr('required', true);
-    }else{
+    } else {
         $('#selectbox-direct').attr('required', false);
     }
 });

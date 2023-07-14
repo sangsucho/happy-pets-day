@@ -20,9 +20,9 @@ public class MyPageRestController {
     private final MypageService mypageService;
     private final SitterService sitterService;
 
-//    마이펫 수정 창 띄우기
+    //    마이펫 수정 창 띄우기
     @GetMapping("/myPet/editPet/{petNumber}")
-    public PetVo getMyPetInfo(@PathVariable("petNumber") Long petNumber){
+    public PetVo getMyPetInfo(@PathVariable("petNumber") Long petNumber) {
         return petService.findPetByPetNumber(petNumber);
     }
 
@@ -47,6 +47,6 @@ public class MyPageRestController {
     // 회원번호로 시터번호 가져오기
     @GetMapping("/sitter/profile/view")
     public Long viewSitterProfile(HttpServletRequest req) {
-        return sitterService.findSitter((Long)req.getSession().getAttribute("userNumber"));
+        return sitterService.findSitter((Long) req.getSession().getAttribute("userNumber"));
     }
 }

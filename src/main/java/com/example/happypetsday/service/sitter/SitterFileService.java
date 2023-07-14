@@ -1,6 +1,5 @@
 package com.example.happypetsday.service.sitter;
 
-import com.example.happypetsday.dto.SitterDto;
 import com.example.happypetsday.dto.SitterFileDto;
 import com.example.happypetsday.mapper.SitterFileMapper;
 import lombok.RequiredArgsConstructor;
@@ -28,14 +27,14 @@ public class SitterFileService {
     @Value("${sitterImg.dir}")
     private String fileDir;
 
-    public void register(SitterFileDto sitterFileDto){
-        if(sitterFileDto == null){
+    public void register(SitterFileDto sitterFileDto) {
+        if (sitterFileDto == null) {
             throw new IllegalArgumentException("시터 배경파일 누락");
         }
         fileMapper.insert(sitterFileDto);
     }
 
-    public List<SitterFileDto> findList(Long sitterNumber){
+    public List<SitterFileDto> findList(Long sitterNumber) {
         return fileMapper.selectFile(sitterNumber);
     }
 
@@ -54,7 +53,7 @@ public class SitterFileService {
         File uploadPath = new File(fileDir, getUploadPath());
 
 //        경로가 존재하지 않는다면(폴더가 없다면)
-        if(!uploadPath.exists()){
+        if (!uploadPath.exists()) {
 //            경로에 필요한 폴더를 생성한다.
             uploadPath.mkdirs();
         }
@@ -70,8 +69,8 @@ public class SitterFileService {
 
 //        썸네일 저장처리
 //        이미지 파일인 경우에만 처리하는 조건식
-        if(Files.probeContentType(uploadFile.toPath()).startsWith("image")){
-            FileOutputStream out = new FileOutputStream(new File(uploadPath, "th_"+sysName));
+        if (Files.probeContentType(uploadFile.toPath()).startsWith("image")) {
+            FileOutputStream out = new FileOutputStream(new File(uploadPath, "th_" + sysName));
             Thumbnailator.createThumbnail(file.getInputStream(), out, 300, 200);
             out.close();
         }
@@ -88,14 +87,14 @@ public class SitterFileService {
     /**
      * 파일 리스트를 DB등록 및 저장 처리
      *
-     * @param files 여러 파일을 담은 리스트
+     * @param files        여러 파일을 담은 리스트
      * @param sitterNumber 파일이 속하는 게시글 번호
      * @throws IOException
      */
-    public void registerAndSaveFiles(List<MultipartFile> files, Long sitterNumber) throws IOException{
+    public void registerAndSaveFiles(List<MultipartFile> files, Long sitterNumber) throws IOException {
 
         fileMapper.delete(sitterNumber);
-        for(MultipartFile file : files){
+        for (MultipartFile file : files) {
             SitterFileDto fileDto = saveFile(file);
             fileDto.setSitterNumber(sitterNumber);
             register(fileDto);
@@ -103,7 +102,7 @@ public class SitterFileService {
     }
 
     //    파일이 저장되는 하위 경로를 현재 날짜로 설정할 것이기 때문에 현재날짜를 구한다.
-    private String getUploadPath(){
+    private String getUploadPath() {
         return new SimpleDateFormat("yyyy/MM/dd").format(new Date());
     }
 }

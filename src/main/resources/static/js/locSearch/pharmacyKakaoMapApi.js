@@ -7,7 +7,7 @@ viewList();
 
 function viewList() {
     $.ajax({
-        url:"http://openapi.seoul.go.kr:8088/564967784a77687435354174525951/json/LOCALDATA_020302/1/100/ ",
+        url: "http://openapi.seoul.go.kr:8088/564967784a77687435354174525951/json/LOCALDATA_020302/1/100/ ",
         type: "get",
         dataType: "json",
         success: function (result) {
@@ -45,7 +45,7 @@ function processCoordinates(list) {
 }
 
 
-$('#map').on('click', 'area', function (){
+$('#map').on('click', 'area', function () {
 
     let title = $(this).attr('title');
 

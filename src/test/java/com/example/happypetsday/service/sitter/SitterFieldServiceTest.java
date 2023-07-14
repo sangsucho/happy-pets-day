@@ -7,10 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.function.DoubleToIntFunction;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 
 @SpringBootTest
 @Slf4j
@@ -21,7 +17,7 @@ class SitterFieldServiceTest {
     private SitterFieldDto sitterFieldDto;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         sitterFieldDto = new SitterFieldDto();
         sitterFieldDto.setSitterNumber(3L);
         sitterFieldDto.setPetFieldName("asdasd");

@@ -33,7 +33,7 @@ public class SitterProfileFileService {
         sitterProfileFileMapper.insert(sitterProfileFileDto);
     }
 
-    public List<SitterProfileFileDto> findList(Long sitterNumber){
+    public List<SitterProfileFileDto> findList(Long sitterNumber) {
         return sitterProfileFileMapper.selectFile(sitterNumber);
     }
 
@@ -52,7 +52,7 @@ public class SitterProfileFileService {
         File uploadPath = new File(fileDir, getUploadPath());
 
 //        경로가 존재하지 않는다면(폴더가 없다면)
-        if(!uploadPath.exists()){
+        if (!uploadPath.exists()) {
 //            경로에 필요한 폴더를 생성한다.
             uploadPath.mkdirs();
         }
@@ -68,8 +68,8 @@ public class SitterProfileFileService {
 
 //        썸네일 저장처리
 //        이미지 파일인 경우에만 처리하는 조건식
-        if(Files.probeContentType(uploadFile.toPath()).startsWith("image")){
-            FileOutputStream out = new FileOutputStream(new File(uploadPath, "th_"+sysName));
+        if (Files.probeContentType(uploadFile.toPath()).startsWith("image")) {
+            FileOutputStream out = new FileOutputStream(new File(uploadPath, "th_" + sysName));
             Thumbnailator.createThumbnail(file.getInputStream(), out, 300, 200);
             out.close();
         }
@@ -86,22 +86,22 @@ public class SitterProfileFileService {
     /**
      * 파일 리스트를 DB등록 및 저장 처리
      *
-     * @param filess 여러 파일을 담은 리스트
+     * @param filess       여러 파일을 담은 리스트
      * @param sitterNumber 파일이 속하는 게시글 번호
      * @throws IOException
      */
-    public void registerAndSaveFiles(List<MultipartFile> filess, Long sitterNumber) throws IOException{
-        for(MultipartFile file : filess){
+    public void registerAndSaveFiles(List<MultipartFile> filess, Long sitterNumber) throws IOException {
+        for (MultipartFile file : filess) {
             SitterProfileFileDto fileDto = saveFile(file);
             fileDto.setSitterNumber(sitterNumber);
-            if(fileDto.getSitterNumber() != null){
+            if (fileDto.getSitterNumber() != null) {
                 sitterProfileFileMapper.delete(sitterNumber);
             }
             register(fileDto);
         }
     }
 
-    private String getUploadPath(){
+    private String getUploadPath() {
         return new SimpleDateFormat("yyyy/MM/dd").format(new Date());
     }
 }

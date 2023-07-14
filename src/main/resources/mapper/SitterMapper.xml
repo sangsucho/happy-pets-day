@@ -2,29 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.happypetsday.mapper.SitterMapper">
 
-<!--    시터-->
+    <!--    시터-->
     <update id="updateSitter">
         UPDATE TBL_SITTER
-        SET SITTER_HEADER = #{sitterHeader}, SITTER_INTRODUCTION = #{sitterIntroduction},
-        SITTER_PRICE = #{sitterPrice}
+        SET SITTER_HEADER       = #{sitterHeader},
+            SITTER_INTRODUCTION = #{sitterIntroduction},
+            SITTER_PRICE        = #{sitterPrice}
         WHERE USER_NUMBER = #{userNumber}
     </update>
 
     <select id="selectSitterNumber" resultType="long">
-        SELECT SITTER_NUMBER FROM TBL_SITTER
+        SELECT SITTER_NUMBER
+        FROM TBL_SITTER
         WHERE USER_NUMBER = #{userNumber}
     </select>
 
     <select id="selectSitterInfo" resultType="sitterDto">
-        SELECT SITTER_NUMBER, SITTER_HEADER, SITTER_INTRODUCTION, SITTER_PRICE FROM TBL_SITTER
+        SELECT SITTER_NUMBER, SITTER_HEADER, SITTER_INTRODUCTION, SITTER_PRICE
+        FROM TBL_SITTER
         WHERE USER_NUMBER = #{userNumber}
     </select>
 
 
-
-<!--    시터 지원 -->
+    <!--    시터 지원 -->
     <select id="selectApplyNumber" resultType="long">
-        SELECT APPLY_NUMBER FROM TBL_SITTER_APPLY
+        SELECT APPLY_NUMBER
+        FROM TBL_SITTER_APPLY
         WHERE USER_NUMBER = #{userNumber}
     </select>
 
@@ -42,15 +45,15 @@
     </select>
 
 
-
-<!--    시터 필드-->
+    <!--    시터 필드-->
     <insert id="insertField">
         INSERT INTO TBL_SITTER_FIELD (SITTER_FIELD_NUMBER, PET_FIELD_NAME, USER_NUMBER)
         VALUES (SEQ_SITTER_FIELD.NEXTVAL, #{petFieldName}, #{userNumber})
     </insert>
 
     <delete id="deleteField">
-        DELETE FROM TBL_SITTER_FIELD
+        DELETE
+        FROM TBL_SITTER_FIELD
         WHERE USER_NUMBER = #{userNumber}
     </delete>
 
@@ -61,8 +64,7 @@
     </select>
 
 
-
-<!--    시터 리스트-->
+    <!--    시터 리스트-->
     <select id="selectList" resultType="sitterListVo">
         SELECT U.USER_NAME,
                S.SITTER_NUMBER,
@@ -74,13 +76,21 @@
                spf.SITTER_PROFILE_UPLOAD_PATH,
                spf.SITTER_PROFILE_UUID,
                COUNT(sr.REVIEW_NUMBER) reviewCnt,
-               AVG(sr.REVIEW_SCORE) scoreAvg
+               AVG(sr.REVIEW_SCORE)    scoreAvg
         FROM TBL_SITTER s
                  JOIN TBL_USER u ON S.USER_NUMBER = U.USER_NUMBER
-                 LEFT OUTER JOIN (select SITTER_NUMBER, SITTER_FILE_UPLOAD_PATH, SITTER_FILE_UUID, SITTER_FILE_FILE_NAME, SITTER_FILE_NUMBER FROM
-            (SELECT SITTER_NUMBER, SITTER_FILE_UPLOAD_PATH, SITTER_FILE_UUID, SITTER_FILE_FILE_NAME, SITTER_FILE_NUMBER,
-                    RANK() OVER (PARTITION BY SITTER_NUMBER ORDER BY SITTER_FILE_NUMBER) RK
-             from TBL_SITTER_FILE sf)
+                 LEFT OUTER JOIN (select SITTER_NUMBER,
+                                         SITTER_FILE_UPLOAD_PATH,
+                                         SITTER_FILE_UUID,
+                                         SITTER_FILE_FILE_NAME,
+                                         SITTER_FILE_NUMBER
+                                  FROM (SELECT SITTER_NUMBER,
+                                               SITTER_FILE_UPLOAD_PATH,
+                                               SITTER_FILE_UUID,
+                                               SITTER_FILE_FILE_NAME,
+                                               SITTER_FILE_NUMBER,
+                                               RANK() OVER (PARTITION BY SITTER_NUMBER ORDER BY SITTER_FILE_NUMBER) RK
+                                        from TBL_SITTER_FILE sf)
                                   WHERE RK = 1) sf ON s.SITTER_NUMBER = sf.SITTER_NUMBER
                  LEFT OUTER JOIN TBL_SITTER_PROFILE_FILE spf ON s.SITTER_NUMBER = spf.SITTER_NUMBER
                  LEFT OUTER JOIN TBL_SITTER_REVIEW sr ON s.SITTER_NUMBER = sr.SITTER_NUMBER
@@ -96,35 +106,35 @@
     </select>
 
     <select id="countSitter" resultType="int">
-        SELECT COUNT(S.SITTER_NUMBER) FROM TBL_USER U
-                                               JOIN TBL_SITTER S
-                                                    ON U.USER_NUMBER = S.USER_NUMBER
-        WHERE U.USER_NUMBER=#{userNumber}
+        SELECT COUNT(S.SITTER_NUMBER)
+        FROM TBL_USER U
+                 JOIN TBL_SITTER S
+                      ON U.USER_NUMBER = S.USER_NUMBER
+        WHERE U.USER_NUMBER = #{userNumber}
     </select>
 
     <select id="selectSitterHeader" resultType="_int">
-        SELECT COUNT(SITTER_HEADER) FROM TBL_SITTER
+        SELECT COUNT(SITTER_HEADER)
+        FROM TBL_SITTER
         WHERE SITTER_NUMBER = #{sitterNumber}
     </select>
 
 
+    <!--    시터 프로필-->
+    <!--    <select id="selectSitterProfile" resultType="sitterListVo">-->
+    <!--        SELECT  sf.APPLY_FILE_TITLE, sf.APPLY_FILE_NAME, sf.APPLY_FILE_UUID-->
+    <!--        FROM TBL_SITTER s-->
+    <!--                 LEFT OUTER JOIN TBL_SITTER_APPLY_LICENSE_FILE sf-->
+    <!--                                 ON s.USER_NUMBER = sf.USER_NUMBER-->
+    <!--        WHERE s.SITTER_NUMBER = #{sitterNumber}-->
+    <!--    </select>-->
 
+    <!--    <select id="selectSitterNumber" resultType="long">-->
+    <!--        SELECT SITTER_NUMBER,USER_NUMBER FROM TBL_SITTER-->
+    <!--        WHERE SITTER_NUMBER = #{sitterNumber}-->
+    <!--    </select>-->
 
-<!--    시터 프로필-->
-<!--    <select id="selectSitterProfile" resultType="sitterListVo">-->
-<!--        SELECT  sf.APPLY_FILE_TITLE, sf.APPLY_FILE_NAME, sf.APPLY_FILE_UUID-->
-<!--        FROM TBL_SITTER s-->
-<!--                 LEFT OUTER JOIN TBL_SITTER_APPLY_LICENSE_FILE sf-->
-<!--                                 ON s.USER_NUMBER = sf.USER_NUMBER-->
-<!--        WHERE s.SITTER_NUMBER = #{sitterNumber}-->
-<!--    </select>-->
-
-<!--    <select id="selectSitterNumber" resultType="long">-->
-<!--        SELECT SITTER_NUMBER,USER_NUMBER FROM TBL_SITTER-->
-<!--        WHERE SITTER_NUMBER = #{sitterNumber}-->
-<!--    </select>-->
-
-<!--    시터 프로필-->
+    <!--    시터 프로필-->
     <select id="selectSitterFile" resultType="sitterFileDto">
         SELECT SITTER_FILE_FILE_NAME, SITTER_FILE_UUID, SITTER_FILE_UPLOAD_PATH, SITTER_NUMBER
         FROM TBL_SITTER_FILE
@@ -146,19 +156,21 @@
     </select>
 
     <select id="userNumFromSitter" resultType="long">
-        SELECT USER_NUMBER FROM TBL_SITTER
+        SELECT USER_NUMBER
+        FROM TBL_SITTER
         WHERE SITTER_NUMBER = #{sitterNumber}
     </select>
 
     <select id="selectUserName" resultType="userDto">
-        SELECT U.USER_NAME FROM TBL_USER U
-        JOIN TBL_SITTER S
-        ON U.USER_NUMBER = S.USER_NUMBER
+        SELECT U.USER_NAME
+        FROM TBL_USER U
+                 JOIN TBL_SITTER S
+                      ON U.USER_NUMBER = S.USER_NUMBER
         WHERE SITTER_NUMBER = #{sitterNumber}
     </select>
 
 
-<!--    시터 예약-->
+    <!--    시터 예약-->
     <insert id="insertReserve">
         INSERT INTO TBL_SITTER_RESERVATION (RESERVATION_NUMBER, SITTER_NUMBER, USER_NUMBER, RESERVATION_DATE)
         VALUES (SEQ_SITTER_RESERVATION.NEXTVAL, #{sitterNumber}, #{userNumber}, #{reservationDate})
@@ -177,22 +189,23 @@
     </select>
 
 
-<!--    시터 리뷰-->
+    <!--    시터 리뷰-->
     <select id="selectSitterReview" resultType="sitterReviewVo">
         SELECT u.USER_NAME, sr.REVIEW_SCORE, sr.REVIEW_CONTENT, sr.REVIEW_DATE
         FROM TBL_SITTER_REVIEW sr
-        JOIN TBL_USER u
-        ON sr.USER_NUMBER = u.USER_NUMBER
+                 JOIN TBL_USER u
+                      ON sr.USER_NUMBER = u.USER_NUMBER
         WHERE SITTER_NUMBER = ${sitterNumber}
     </select>
 
     <select id="reviewCntAndScoreAvg" resultType="sitterReviewDto">
-        SELECT COUNT(REVIEW_NUMBER) reviewCnt, AVG(REVIEW_SCORE) scoreAvg FROM TBL_SITTER_REVIEW
+        SELECT COUNT(REVIEW_NUMBER) reviewCnt, AVG(REVIEW_SCORE) scoreAvg
+        FROM TBL_SITTER_REVIEW
         WHERE SITTER_NUMBER = #{sitterNumber}
     </select>
 
 
-<!--    시터 수정-->
+    <!--    시터 수정-->
     <select id="sitterUploadNumber" resultType="sitterDto">
         SELECT SITTER_NUMBER, SITTER_HEADER, SITTER_INTRODUCTION, SITTER_PRICE
         FROM TBL_SITTER
@@ -201,9 +214,30 @@
 
     <update id="sitterUpdate">
         UPDATE TBL_SITTER
-        SET SITTER_HEADER = #{sitterHeader}, SITTER_INTRODUCTION = #{sitterIntroduction},
-            SITTER_PRICE = #{sitterPrice}
+        SET SITTER_HEADER       = #{sitterHeader},
+            SITTER_INTRODUCTION = #{sitterIntroduction},
+            SITTER_PRICE        = #{sitterPrice}
         WHERE SITTER_NUMBER = #{sitterNumber}
     </update>
+
+    <select id="findSitterMain" resultType="sitterListVo">
+        SELECT SITTER_INTRODUCTION, USER_NAME, SITTER_PROFILE_FILE_NAME, SITTER_PROFILE_UUID, SITTER_PROFILE_UPLOAD_PATH
+        FROM (
+        SELECT ROWNUM AS RNUM, SITTER_INTRODUCTION, USER_NAME, SITTER_PROFILE_FILE_NAME, SITTER_PROFILE_UUID, SITTER_PROFILE_UPLOAD_PATH
+        FROM(SELECT S.SITTER_INTRODUCTION, U.USER_NAME, P.SITTER_PROFILE_FILE_NAME, P.SITTER_PROFILE_UUID, P.SITTER_PROFILE_UPLOAD_PATH,
+        (SELECT AVG(REVIEW_SCORE)
+        FROM TBL_SITTER_REVIEW
+        WHERE SITTER_NUMBER=S.SITTER_NUMBER) AS REVIEW_SCORE
+        FROM TBL_SITTER S
+        JOIN TBL_SITTER_PROFILE_FILE P
+        ON  S.SITTER_NUMBER = P.SITTER_NUMBER
+        JOIN TBL_USER U
+        ON S.USER_NUMBER = U.USER_NUMBER
+        ORDER BY REVIEW_SCORE DESC) S1
+        <![CDATA[
+        WHERE ROWNUM <= 3) S2
+        ]]>
+        WHERE RNUM > 0
+    </select>
 
 </mapper>
