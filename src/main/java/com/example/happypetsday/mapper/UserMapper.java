@@ -30,4 +30,7 @@ public interface UserMapper {
 
      // 비밀번호 찾기
      String getUserPassword(String userId);
+
+     // 회원번호로 이름 가져오기
+     String getUserName(Long userNumber);
 }

@@ -57,5 +57,11 @@
         WHERE USER_ID = #{userId}
     </select>
 
+<!--    회원번호로 이름 가져오기-->
+    <select id= "getUserName" resultType="String">
+        SELECT USER_NAME
+        FROM TBL_USER
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
 
 </mapper>

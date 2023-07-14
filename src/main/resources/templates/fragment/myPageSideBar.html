@@ -7,7 +7,7 @@
 <body>
     <div class="mypage-left" th:fragment="myPageSideBar">
         <div class="color-text">
-            <span class="font-bold user-name">박광인</span>
+            <span class="font-bold user-name"></span>
             <span>님의 마이페이지</span>
         </div>
 
@@ -35,7 +35,8 @@
             </li>
         </ul>
     </div>
-
+    <script th:src="@{/js/myPage/checkPw.js}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script th:src="@{/js/fragment/myPageSidebar.js}"></script>
 </body>
 </html>
