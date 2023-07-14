@@ -441,14 +441,18 @@ function timeForToday(value) {
 }
 
 // reviewDate 요소를 선택하여 값을 변경하는 함수
-function updateReviewDate() {
-    const reviewDateElement = document.getElementById('reviewDate');
-    const reviewDateValue = reviewDateElement.getAttribute('value');
-    const formattedDate = timeForToday(reviewDateValue);
-    reviewDateElement.textContent = formattedDate;
+function updateReviewDates() {
+    const reviewDateElements = document.getElementsByClassName('review-date');
+    for (let i = 0; i < reviewDateElements.length; i++) {
+        const reviewDateElement = reviewDateElements[i];
+        const reviewDateValue = reviewDateElement.getAttribute('value');
+        const formattedDate = timeForToday(reviewDateValue);
+        reviewDateElement.textContent = formattedDate;
+    }
 }
 
-updateReviewDate();
+// 페이지 로드 시 리뷰 날짜 업데이트 실행
+updateReviewDates();
 
 
 

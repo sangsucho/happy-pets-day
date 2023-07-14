@@ -202,9 +202,9 @@
                         <div class="review-user-name">
                             <span th:text="${review.userName}"></span><span> 님</span>
                             <!--                <span>(포메라니언)</span>-->
-                            <div id="reviewDate" th:value="${review.reviewDate}"></div>
+                            <div class="review-date" id="reviewDate" th:value="${review.reviewDate}"></div>
                         </div>
-                        <div class="reply-btn-box" >
+                        <div class="reply-btn-box" th:if="${session.userNumber == review.userNumber}">
                             <span class="reply-btns"></span>
                             <article class="edit-box none">
                                 <div class="select-box">
