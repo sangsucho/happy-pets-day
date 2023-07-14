@@ -106,4 +106,33 @@ public class SitterFileService {
     private String getUploadPath(){
         return new SimpleDateFormat("yyyy/MM/dd").format(new Date());
     }
+
+//    실제 파일에서 해당 시터의 파일 모두 삭제
+    public void removeSitterFile(Long sitterNumber){
+        if (sitterNumber == null) {
+            throw new IllegalArgumentException("시터 번호 누락(file)");
+        }
+        List<SitterFileDto> fileList = fileMapper.select(sitterNumber);
+
+        for(SitterFileDto file : fileList){
+            File target = new File(fileDir,file.getSitterFileUploadPath()+"/"+file.getSitterFileUuid()+"_"+file.getSitterFileFileName());
+            File thumbnail = new File(fileDir,file.getSitterFileUploadPath()+"/th_"+ file.getSitterFileUuid()+"_"+file.getSitterFileFileName());
+
+            if(target.exists()){
+                target.delete();
+            }
+            if(thumbnail.exists()){
+                thumbnail.delete();
+            }
+        }
+        
+    }
+
+
+
+
+
+
+
+
 }

@@ -1,6 +1,7 @@
 package com.example.happypetsday.mapper;
 
 import com.example.happypetsday.dto.SitterFileDto;
+import com.example.happypetsday.service.sitter.SitterFileService;
 import com.example.happypetsday.vo.SitterListVo;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,5 +13,7 @@ public interface SitterFileMapper {
     void insert(SitterFileDto sitterFileDto);
     void update(SitterFileDto sitterFileDto);
     void delete(Long sitterNumber);
+//    시터넘버로 해당 시터의 모든 파일정보 가져오기
+    List<SitterFileDto> select(Long sitterNumber);
 
 }
