@@ -1,12 +1,10 @@
 package com.example.happypetsday.controller.sitter;
 
 import com.example.happypetsday.dto.SitterReservationDto;
+import com.example.happypetsday.dto.SitterReviewDto;
 import com.example.happypetsday.service.sitter.SitterService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +35,17 @@ public class SitterRestController {
                 .map(SitterReservationDto::getReservationDate)
                 .collect(Collectors.toList());
         return reservationDates;
+    }
+
+    @PostMapping("/sendModifyReview")
+    public void sendReview(@RequestBody SitterReviewDto sitterReviewDto){
+        sitterService.modifyMyReview(sitterReviewDto);
+    }
+
+    @PostMapping("/removeReview")
+    public void removeReview(@RequestParam("reviewNumber") Long reviewNumber){
+        System.out.println(reviewNumber);
+        sitterService.removeReview(reviewNumber);
     }
 
 

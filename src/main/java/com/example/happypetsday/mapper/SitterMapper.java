@@ -58,7 +58,12 @@ public interface SitterMapper {
     //    시터 리뷰
     List<SitterReviewVo> selectSitterReview(Long sitterNumber);
 
+    void updateMyReview(SitterReviewDto sitterReviewDto);
+
     SitterReviewDto reviewCntAndScoreAvg(Long sitterNumber);
+
+    void deleteReview(Long reviewNumber);
+
 
     //    시터 수정
     SitterDto sitterUploadNumber(Long sitterNumber);
@@ -66,4 +71,5 @@ public interface SitterMapper {
     void sitterUpdate(SitterDto sitterDto);
 
     List<SitterListVo> findSitterMain();
+
 }

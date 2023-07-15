@@ -1,6 +1,8 @@
 // 초기에 보여지는 댓글 개수 설정
 var visibleReviews = 3;
 
+
+
 // 모든 리뷰 요소들을 선택합니다.
 var reviewElements = document.getElementsByClassName("review-review");
 
@@ -301,4 +303,157 @@ document.addEventListener("DOMContentLoaded", function () {
 
   handleRating();
 });
+
+let modal = $("#modal-container");
+
+// '수정' 클릭 > 모달 띄워주기
+$(".modify1").on("click", function () {
+    $("#modal-container").css("display", "flex");
+    var reviewNumberValue = $(this).closest('.review-review').find('.reviewNumber').val();
+    // console.log(reviewNumberValue);
+    $('#reviewNum').val(reviewNumberValue);
+
+
+
+});
+
+$(".star-rating .fa-regular").click(function () {
+    $(this).addClass("active");
+    $(this).nextAll().addClass("active");
+    $(this).prevAll().removeClass("active");
+    let rating = $(this).prev("input.rating").val();
+    $('#rate').val(rating);
+    console.log(rating);
+});
+
+// 'X' 클릭 > 모달 끄기
+$(".btn-close").on("click", function () {
+    modal.hide();
+    $('.fa-regular').removeClass('active');
+    $('.reply-section').val('');
+});
+
+$(document).ready(function () {
+    // reply-btns가 클릭되었을 때
+    $('.review-box').on('click', '.reply-btns', function (e) {
+        e.stopPropagation(); // 이벤트 버블링을 막는다.
+
+        var currentEditBox = $(this).closest('.review-review').find('.edit-box');
+        $('.edit-box').not(currentEditBox).addClass('none');
+
+        currentEditBox.toggleClass('none');
+    });
+
+    // 문서의 다른 부분이 클릭되었을 때
+    $(document).click(function () {
+        $('.edit-box').addClass('none');
+    });
+
+    // '수정' 버튼 클릭 시 모달에 리뷰 내용 전달
+    $(document).on('click', '.modify1', function () {
+        var reviewText = $(this).closest('.review-review').find('.review-text p').text();
+        $('#reviewContent').val(reviewText);
+        $('#modal').show();
+    });
+
+});
+
+$(document).ready(function() {
+    $(document).on('click', '.modify1', function() {
+        var reviewNumber =$(this).closest('.review-review').find('.reviewNumber').val();
+        var reviewContent = $(this).closest('.review').find('.review-content').text();
+
+        $('#reviewNum').val(reviewNumber);
+        $('#reviewContent').val(reviewContent);
+        $('#modal-container').css('display', 'flex');
+    });
+    $(document).on('click', '#updateBtn', function() {
+        var reviewNumber = $('#reviewNum').val();
+        var reviewContent = $('#reviewContent').val();
+        var reviewScore = $('#rate').val();
+        var data = {
+            reviewNumber: reviewNumber,
+            reviewContent: reviewContent,
+            reviewScore: reviewScore
+        };
+        $.ajax({
+            url: '/sitters/sendModifyReview',
+            method: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            success: function(response) {
+                document.location.reload();
+            },
+            error: function(xhr, status, error) {
+                console.error('데이터 업데이트 실패:', error);
+                // 실패 메시지 표시 또는 다른 조치 수행
+            }
+        });
+
+        // 모달 닫기
+        $('#modal-container').hide();
+        $('#reviewContent').val('');
+    });
+});
+
+$(document).ready(function() {
+    $(document).on('click', '.delete1', function() {
+        var reviewNumber = $(this).closest('.review-review').find('.reviewNumber').val();
+
+        // 컨펌 팝업 표시
+        if (confirm('삭제하시겠습니까?')) {
+            var data = { reviewNumber: reviewNumber };
+            $.ajax({
+                url: '/sitters/removeReview',
+                method: 'POST',
+                data: data,
+                success: function(response) {
+                    document.location.reload();
+                },
+                error: function(xhr, status, error) {
+                    console.error('데이터 업데이트 실패:', error);
+                }
+            });
+        }
+    });
+});
+
+function timeForToday(value) {
+    const today = new Date();
+    const timeValue = new Date(value);
+    const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
+
+    if (betweenTime < 1) {
+        return "방금 전";
+    }
+    if (betweenTime < 60) {
+        return `${betweenTime}분 전`;
+    }
+    const betweenTimeHour = Math.floor(betweenTime / 60);
+    if (betweenTimeHour < 24) {
+        return `${betweenTimeHour}시간 전`;
+    }
+    const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+    if (betweenTimeDay < 365) {
+        return `${betweenTimeDay}일 전`;
+    }
+    return `${Math.floor(betweenTimeDay / 365)}년 전`;
+}
+
+// reviewDate 요소를 선택하여 값을 변경하는 함수
+function updateReviewDates() {
+    const reviewDateElements = document.getElementsByClassName('review-date');
+    for (let i = 0; i < reviewDateElements.length; i++) {
+        const reviewDateElement = reviewDateElements[i];
+        const reviewDateValue = reviewDateElement.getAttribute('value');
+        const formattedDate = timeForToday(reviewDateValue);
+        reviewDateElement.textContent = formattedDate;
+    }
+}
+
+// 페이지 로드 시 리뷰 날짜 업데이트 실행
+updateReviewDates();
+
+
+
 

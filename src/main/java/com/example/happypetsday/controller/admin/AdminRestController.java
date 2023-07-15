@@ -104,7 +104,6 @@ public class AdminRestController {
         adminService.registerSitter(sitterApplyVo);
         sitterApplyVo.setUserNumber(sitterApplyVo.getUserNumber());
         adminService.modifyUserToSitter(sitterApplyVo);
-        adminService.removeSitterApply(sitterApplyVo.getApplyNumber());
     }
 
     // applyStatus '승인 거절'로 변경
