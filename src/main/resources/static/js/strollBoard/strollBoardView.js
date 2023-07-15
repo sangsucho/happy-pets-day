@@ -27,13 +27,6 @@ $(document).ready(function () {
 $('.reply-list-wrap').on('click', '.modify1', function () {
     let $content = $(this).closest('.reply').find('.reply-box__content');
 
-    let a = $(this).closest('.reply').find('.reply-number');
-    let b = this.closest('.reply').querySelector('.reply-number');
-    console.log(b);
-
-    console.log(b.value);
-    console.log(b.name);
-
     $content.replaceWith(`
     <div class='modify-box'>
       <textarea class='modify-content'>${$content.text()}</textarea>
@@ -243,9 +236,7 @@ $('.reply-list-wrap').on('click', '.delete1', function () {
             strollBoardNumber: strollBoardNumber,
             page: thisPage
         }
-        reply.remove(rNum, pageInfo, showReply, showReplyPage, showError)
-
-    } else {
+        reply.remove(rNum,pageInfo,showReply, showReplyPage, showError)
     }
 
 });

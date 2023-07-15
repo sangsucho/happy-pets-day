@@ -1,6 +1,7 @@
 // 댓글 작성
 export function add(reply, callback, callbackPage, error) {
     $.ajax({
+
         url: `/replies/reply`,
         type: 'post',
         data: JSON.stringify(reply),//우리가 보낼 데이터를 JSON형태로 보내준다. ->자바스크립트 객체를 JSON으로

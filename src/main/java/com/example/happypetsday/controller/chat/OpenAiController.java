@@ -61,10 +61,6 @@ public class OpenAiController {
                 "원하시는 서비스를 이용하시려면 해당 서비스의 링크를 클릭하시면 됩니다.");
         list.add(2,assistant);
 
-        System.out.println("==================");
-        System.out.println(list);
-        System.out.println("==================");
-
         Map<String, Object> reqBody = new HashMap<>();
         reqBody.put("model", "gpt-3.5-turbo");
         reqBody.put("messages", list);

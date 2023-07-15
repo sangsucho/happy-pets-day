@@ -26,10 +26,64 @@
 
     <form class="board-form" th:action="@{/stroll/write}" method="post">
 
-        <!-- 제목부분 -->
-        <div class="title-wrap">
-            <div class="title-guide-msg">
-                글 작성
+      <!-- 제목부분 -->
+      <div class="title-wrap">
+        <div class="title-guide-msg">
+          글 작성
+        </div>
+        <div class="title-write-input">
+          <input class="title-input" type="text" name="strollBoardTitle" placeholder="제목을 입력해주세요" required>
+        </div>
+
+      </div>
+
+      <!-- 같이 산책할 본인의 대표 반려동물 선택 부분 -->
+      <div class="my-pet-list-wrap" th:unless="${#lists.isEmpty(petList)}">
+        <div class="my-pet-guide-msg">
+          같이 산책할 대표 반려동물 선택
+        </div>
+        <div class="my-pet-list-box">
+          <ul class="my-pet-list" >
+            <!-- 해당 회원의 반려동물 이름 시작 -->
+            <label th:each="pet : ${petList}">
+              <li class="my-pet" >
+               <th:block th:text="${pet.petName}"/><input type="radio" class="pet-radio-input" name="petNumber" th:value="${pet.petNumber}" required="required">
+              </li>
+            </label>
+            <!-- 해당 회원의 반려동물 목록 끝 -->
+          </ul>
+
+        </div>
+      </div>
+
+      <!-- 게시물 글(컨텐츠) 영역 -->
+      <div class="content-wrap">
+        <textarea name="strollBoardContent" id="stroll-board-content" pseudo="content-placeholder" required
+          placeholder="게시글을 입력해 주세요"></textarea>
+      </div>
+
+      <!-- 달력, 지도 api사용 부분 -->
+      <div class="calender-and-map-wrap">
+        <!-- 달력 api 시작 -->
+        <div class="calender-box">
+          <div class="date-input-section">
+            <p class="date-text"> Date :</p>
+            <input type="text" id="selectedDate" name="strollBoardMeetingDate" readonly>
+          </div>
+          <div id="datepicker"></div>
+        </div>
+        <!-- 달력 api 끝 -->
+
+        <!-- 카카오지도 api 시작 -->
+        <div class="kakao-map-api-wrap">
+
+          <div class="map_wrap">
+            <div class="map-search-section">
+              위치 검색 : <input type="text" name="strollBoardMeetingPlace" class="search-input" placeholder="모일 위치를 검색해주세요">
+              <button type="button" class="search-btn">
+                <i class="fa-solid fa-magnifying-glass" style="color: #343434;"></i>
+              </button>
+
             </div>
             <div class="title-write-input">
                 <input class="title-input" type="text" name="strollBoardTitle" placeholder="제목을 입력해주세요" required>
@@ -57,6 +111,7 @@
                 <!--          <div class="meeting-place-input">-->
                 <!--            모임 위치 : <input type="text"  class="meeting-input" placeholder="00 공원 앞">-->
                 <!--          </div>-->
+
 
             </div>
         </div>

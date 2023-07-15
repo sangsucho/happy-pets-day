@@ -1,8 +1,11 @@
 package com.example.happypetsday.controller.admin;
 
+import com.example.happypetsday.dto.SitterProfileFileDto;
 import com.example.happypetsday.dto.UserDto;
 import com.example.happypetsday.service.admin.AdminService;
 import com.example.happypetsday.service.sitter.SitterApplyLicenseFileService;
+import com.example.happypetsday.service.sitter.SitterFileService;
+import com.example.happypetsday.service.sitter.SitterProfileFileService;
 import com.example.happypetsday.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +23,10 @@ import java.util.Map;
 @RequestMapping("/usersManage/*")
 public class AdminRestController {
     private final AdminService adminService;
+    private final SitterProfileFileService sitterProfileFileService;
+    private final SitterFileService sitterFileService;
+    private final SitterApplyLicenseFileService sitterApplyLicenseFileService;
+
 
     @Value("${sitterFile.dir}")
     private String fileDir;
@@ -82,8 +89,6 @@ public class AdminRestController {
         return searchPostMap;
     }
 
-    // 펫시터신청서 자격증 파일 가져오기
-    private final SitterApplyLicenseFileService sitterApplyLicenseFileService;
 
     @GetMapping("/view")
     public byte[] display(String fileName) throws IOException {
@@ -135,6 +140,12 @@ public class AdminRestController {
         userDto.setUserStatus(sitterVo.getUserStatus());
 
 //        sitterVo.setUserNumber(sitterVo.getUserNumber());
+//      실제 파일 삭제
+        sitterProfileFileService.removeSitterProfileFile(sitterVo.getSitterNumber());
+        sitterFileService.removeSitterFile(sitterVo.getSitterNumber());
+        sitterApplyLicenseFileService.removeLicenceFile(sitterVo.getUserNumber());
+
+//        db삭제
         adminService.modifyDemotion(sitterVo);
         adminService.restoreUser(userDto);
         adminService.removeLicense(sitterVo.getUserNumber());

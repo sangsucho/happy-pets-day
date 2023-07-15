@@ -28,12 +28,3 @@ $('.board-write-btn').on('click', function (e) {
         alert("지도에 모일 장소를 클릭해 주세요!!")
     }
 });
-
-
-
-
-
-
-
-
-

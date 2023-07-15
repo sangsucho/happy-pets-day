@@ -96,5 +96,4 @@ public class StrollController {
         return new RedirectView("/stroll/view?strollBoardNumber=" + strollBoardDto.getStrollBoardNumber());
     }
 
-
 }

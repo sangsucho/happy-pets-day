@@ -121,7 +121,7 @@ public class StrollService {
         int totalCount = 0;
         long listSize = 0L;
 
-            if (userNumber == null) {
+        if(userNumber== null){
 //            회원번호가 없으면(로그인이 되어있지 않으면)
 //            조회 조건을 전체게시물로 하게끔 설정후 바로 반환
                 mainStrollSearchVo.setFirstBoolean(false);
@@ -130,10 +130,12 @@ public class StrollService {
             }
 
 //       회원주소 가져와서 "서울", "강남구" 이런식으로 분리
-            String[] splitAddress = userService.findUserInfoByUserNumber(userNumber)
-                    .getUserAddress().split(" ");
-            mainStrollSearchVo.setAddressFirst(splitAddress[0]);
-            mainStrollSearchVo.setAddressSecond(splitAddress[1]);
+
+        String[] splitAddress = userService.findUserInfoByUserNumber(userNumber)
+                .getUserAddress().split(" ");
+        mainStrollSearchVo.setAddressFirst(splitAddress[0]);
+        mainStrollSearchVo.setAddressSecond(splitAddress[1]);
+
 
 //        메인화면에 띄워줄 산책게시판 3개 목록 리스트에 조건에 맞게 추가
             for (int i = 0; i < 3; i++) {

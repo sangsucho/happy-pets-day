@@ -7,7 +7,6 @@ import com.example.happypetsday.vo.StrollReplyVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Service
@@ -63,27 +62,4 @@ public class ReplyService {
         }
         strollReplyMapper.update(strollReplyDto);
     }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

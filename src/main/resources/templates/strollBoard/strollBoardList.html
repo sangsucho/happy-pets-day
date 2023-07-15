@@ -56,10 +56,9 @@
                 </tr>
                 </thead>
             </div>
+
             <tbody>
-            <!-- ========== 게시글 목록 예시 =========== -->
-
-
+            <!-- ========== 게시글 목록  =========== -->
             <th:block th:unless="${#lists.isEmpty(boardList)}">
                 <tr th:each="board : ${boardList}">
                     <td class="no" th:text="${board.strollBoardNumber}"></td>
@@ -78,7 +77,7 @@
                 </tr>
             </th:block>
 
-            <!-- ========== /게시글 목록 예시 =========== -->
+            <!-- ========== /게시글 목록  =========== -->
 
         </table>
         <div class="pagination">
