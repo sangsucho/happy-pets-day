@@ -34,6 +34,7 @@
     <select id="selectTotal" resultType="_int">
         SELECT COUNT(RESERVATION_NUMBER)
         FROM TBL_SITTER_RESERVATION
+        WHERE USER_NUMBER = #{userNumber}
     </select>
 
     <update id="update">

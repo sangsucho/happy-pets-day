@@ -145,7 +145,6 @@
                             <button type="button" class="complete basic-btn">이용 완료</button>
                             <button type="button" class="r-res review-btn" style="display: none">다시 예약하기</button>
                             <button type="button" class="review review-btn" style="display: none">후기 작성</button>
-                            <button type="button" class="my-review review-btn" style="display: none">리뷰 보기</button>
                         </th:block>
                         <th:block th:if="${res.reservationStatus == '취소'}">
                             <button type="button" class="cancel basic-btn" style="display: none">예약 취소</button>
@@ -158,9 +157,6 @@
                             </button>
                             <button type="button" class="r-res review-btn"
                                     th:style="${res.reviewCnt == 0 ? 'display: none;' : 'display: block;'}">다시 예약하기
-                            </button>
-                            <button type="button" class="my-review review-btn"
-                                    th:style="${res.reviewCnt == 0 ? 'display: none;' : 'display: none;'}">리뷰 보기
                             </button>
                         </th:block>
                     </div>

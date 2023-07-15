@@ -143,19 +143,17 @@ public class MyPageController {
         return "myPage/checkPw";
     }
 
-    public String checkPw(HttpServletRequest req, Model model) { return "myPage/checkPw"; }
-
     @GetMapping("/checkReservation")
     public String checkReservation(Model model, HttpServletRequest req, Criteria criteria) {
         model.addAttribute("checkRes", mypageService.findResForSitter((Long) req.getSession().getAttribute("userNumber"), criteria));
-        model.addAttribute("pageInfo", new PageVo(criteria, mypageService.getTotalResList()));
+        model.addAttribute("pageInfo", new PageVo(criteria, mypageService.getTotalResList((Long)req.getSession().getAttribute("userNumber"))));
         return "myPage/reservation-sitter";
     }
 
     @GetMapping("/reservationList")
     public String reservationList(Model model, HttpServletRequest req, Criteria criteria) {
         model.addAttribute("resList", mypageService.findRes((Long) req.getSession().getAttribute("userNumber"), criteria));
-        model.addAttribute("pageInfo", new PageVo(criteria, mypageService.getTotalResList()));
+        model.addAttribute("pageInfo", new PageVo(criteria, mypageService.getTotalResList((Long)req.getSession().getAttribute("userNumber"))));
         return "myPage/reservation-user";
     }
 

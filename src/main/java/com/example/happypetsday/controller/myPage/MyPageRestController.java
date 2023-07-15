@@ -51,7 +51,9 @@ public class MyPageRestController {
     // 회원번호로 시터번호 가져오기
     @GetMapping("/sitter/profile/view")
     public Long viewSitterProfile(HttpServletRequest req) {
-        return sitterService.findSitter((Long) req.getSession().getAttribute("userNumber"));
+        Long sitterNumber = (Long)req.getSession().getAttribute("userNumber");
+        log.info("--------------------" + sitterNumber.toString());
+        return sitterService.findSitter((Long)req.getSession().getAttribute("userNumber"));
     }
 
     // 회원번호로 이름 가져오기

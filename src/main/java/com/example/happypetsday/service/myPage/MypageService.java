@@ -45,8 +45,8 @@ public class MypageService {
 
     // 예약내역 게시물 수 조회
     @Transactional(readOnly = true)
-    public int getTotalResList() {
-        return resMapper.selectTotal();
+    public int getTotalResList(Long userNumber) {
+        return resMapper.selectTotal(userNumber);
     }
 
     // 예약상태 변경
@@ -62,7 +62,6 @@ public class MypageService {
         if (userNumber == null) {
             throw new IllegalArgumentException("회원 정보 누락");
         }
-//        sitterService.findSitter(userNumber);
         return resMapper.selectResForSitter(sitterService.findSitter(userNumber), criteria);
     }
 
