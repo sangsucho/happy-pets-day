@@ -39,7 +39,7 @@ $('.reply-list-wrap').on('click', '.modify1', function () {
 // 목록 버튼
 $('.list-btn').on('click', function () {
     let url = localStorage.getItem('url');
-    
+
     if(url!=null){
         localStorage.removeItem('url');
         window.location.href =url;
