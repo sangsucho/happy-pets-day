@@ -118,7 +118,6 @@ $('.update-btn').on('click', function () {
             updateBtn.closest('#modal-container').css('display', 'none');
             $(reviewBtnTarget).closest('.button-wrap').find('.review').css('display', 'none');
             $(reviewBtnTarget).closest('.button-wrap').find('.r-res').css('display', 'block');
-            $(reviewBtnTarget).closest('.button-wrap').find('.my-review').css('display', 'block');
         },
         error: function (a, b, c) {
             console.log(c);

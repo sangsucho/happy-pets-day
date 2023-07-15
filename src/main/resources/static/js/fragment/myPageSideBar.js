@@ -2,15 +2,23 @@
 $.ajax({
     url: `/myPages/sitter/profile/view`,
     type: 'get',
-    dataType: 'json',
+    dataType: 'text',
     success: function (result) {
-        console.log(result);
-        $('.viewProfile').attr("href", `/sitter/profile?sitterNumber=${result}`);
+        if(result) {
+            $('.viewProfile').attr("href", `/sitter/profile?sitterNumber=${result}`);
+        } else {
+            $('.hasSitterNumber').css('display', 'none');
+            $('.viewProfile').attr("href", `/sitter/apply`);
+            $('.viewProfile').on('click', function () {
+               alert("펫시터 등록을 해주세요!");
+            });
+        }
     },
     error: function (a, b, c) {
         console.log(c);
     }
 });
+
 
 // 회원번호로 이름 가져오기
 $(document).ready(function () {

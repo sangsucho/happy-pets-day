@@ -13,7 +13,7 @@ public interface ResMapper {
     List<ResVo> selectRes(@Param("userNumber") Long userNumber, @Param("criteria") Criteria criteria);
 
     // 예약내역 게시물 수 조회
-    int selectTotal();
+    int selectTotal(Long userNumber);
 
     // 예약상태 변경
     void update(ResVo resVo);
