@@ -2,7 +2,6 @@ package com.example.happypetsday.service.sitter;
 
 
 import com.example.happypetsday.dto.SitterApplyLicenseFile;
-import com.example.happypetsday.dto.SitterFileDto;
 import com.example.happypetsday.mapper.SitterApplyLicenseFileMapper;
 import lombok.RequiredArgsConstructor;
 import net.coobird.thumbnailator.Thumbnailator;
@@ -95,6 +94,11 @@ public class SitterApplyLicenseFileService {
         if (files == null || files.isEmpty()) { // 파일 리스트가 null이거나 비어있을 경우 처리하지 않음
             return;
         }
+
+        if( applyFileTitle == null){
+            return;
+        }
+
         System.out.println("파일서비스 ===== " + files.size());
 
         for (int i = 0; i < files.size(); i++) {
@@ -117,31 +121,10 @@ public class SitterApplyLicenseFileService {
     }
 
 
+
     //    파일이 저장되는 하위 경로를 현재 날짜로 설정할 것이기 때문에 현재날짜를 구한다.
     private String getUploadPath() {
         return new SimpleDateFormat("yyyy/MM/dd").format(new Date());
     }
-
-//    실제 자격증 사진 삭제
-    public void removeLicenceFile(Long userNumber){
-        if (userNumber == null) {
-            throw new IllegalArgumentException("시터 번호 누락(file)");
-        }
-        List<SitterApplyLicenseFile> fileList = licenseFile.selectByUserNumber(userNumber);
-
-        for(SitterApplyLicenseFile file : fileList){
-            File target = new File(applyDir,file.getApplyFileUploadPath()+"/"+file.getApplyFileUuid()+"_"+file.getApplyFileName());
-            File thumbnail = new File(applyDir,file.getApplyFileUploadPath()+"/th_"+ file.getApplyFileUuid()+"_"+file.getApplyFileName());
-
-            if(target.exists()){
-                target.delete();
-            }
-            if(thumbnail.exists()){
-                thumbnail.delete();
-            }
-        }
-    }
-
-
 
 }

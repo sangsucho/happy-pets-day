@@ -34,7 +34,7 @@ public class SitterController {
     @GetMapping("/apply")
     public String sitterApplyTo(HttpServletRequest req, Model model) {
         Long userNumber = (Long) req.getSession().getAttribute("userNumber");
-        if (sitterService.findSitter(userNumber) != null) {
+        if (sitterService.findSitter(userNumber) != null || sitterService.findApplyNumber(userNumber) != null) {
             return "redirect:/sitter/list";
         } else {
             UserDto userDto = sitterService.findUserInfo(userNumber);
@@ -49,25 +49,25 @@ public class SitterController {
                                   @RequestParam(value = "applyFile", required = false) List<MultipartFile> files, @RequestParam(value = "applyFileTitle", required = false) List<String> applyFileTitle
     ) {
         sitterApplyDto.setUserNumber((Long) req.getSession().getAttribute("userNumber"));
-        sitterService.registerApply(sitterApplyDto);
 
         String[] fieldNames = req.getParameterValues("petFieldName");
-        for (String fieldName : fieldNames) {
-            sitterFieldDto.setPetFieldName(fieldName);
-            sitterFieldDto.setUserNumber((Long) req.getSession().getAttribute("userNumber"));
-            sitterService.registerField(sitterFieldDto);
+        if (fieldNames != null) {
+            for (String fieldName : fieldNames) {
+                sitterFieldDto.setPetFieldName(fieldName);
+                sitterFieldDto.setUserNumber((Long) req.getSession().getAttribute("userNumber"));
+                sitterService.registerField(sitterFieldDto);
+            }
         }
 
-
-        redirectAttributes.addFlashAttribute("applyNumber", sitterApplyDto.getApplyNumber());
-
-        if (files != null && !files.isEmpty()) { // 파일 리스트가 null이 아니고 비어있지 않을 경우에만 처리
+        if (files != null || !files.isEmpty()) {
             try {
                 sitterApplyLicenseFileService.registerAndSaveFiles(files, sitterApplyDto.getApplyNumber(), applyFileTitle, sitterApplyDto.getUserNumber());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+        sitterService.registerApply(sitterApplyDto);
+        redirectAttributes.addFlashAttribute("applyNumber", sitterApplyDto.getApplyNumber());
         return new RedirectView("/");
     }
 

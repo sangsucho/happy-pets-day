@@ -50,6 +50,7 @@
     </select>
 
 
+
     <!--    시터 필드-->
     <insert id="insertField">
         INSERT INTO TBL_SITTER_FIELD (SITTER_FIELD_NUMBER, PET_FIELD_NAME, USER_NUMBER)
