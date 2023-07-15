@@ -38,13 +38,22 @@ $('.reply-list-wrap').on('click', '.modify1', function () {
 
 // 목록 버튼
 $('.list-btn').on('click', function () {
-    window.location.href = '/stroll/list';
+    let url = localStorage.getItem('url');
+    
+    if(url!=null){
+        localStorage.removeItem('url');
+        window.location.href =url;
+    }else{
+        window.location.href = '/stroll/list';
+    }
+
 });
 
 // 게시글 삭제
 $('.board-delete-btn').on('click', function () {
     if (window.confirm('해당 게시글을 삭제하시겠습니까?')) {
         let boardNumber = $('.boardNum').val();
+
         let url = localStorage.getItem('url');
         if(url!=null){
             localStorage.removeItem('url');
