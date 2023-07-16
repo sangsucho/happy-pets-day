@@ -46,7 +46,7 @@
 
                 <div class="reservation-status before"
                      th:text="${checkRes.reservationStatus}"
-                     th:classappend="${checkRes.reservationStatus == '취소'} ? 'red'">
+                     th:classappend="${checkRes.reservationStatus == '취소'} ? 'red' : 'green'">
                 </div>
                 <div class="info-wrap">
                     <h4>예약 날짜</h4>
@@ -63,13 +63,17 @@
 
                 <!-- 예약하면 바로 예약 완료 > 거절만 처리-->
                 <div class="button-wrap">
-                    <th:block th:if="${checkRes.reservationStatus != '취소'}">
+                    <th:block th:if="${checkRes.reservationStatus == '예약 완료'}">
                         <button type="button" class="reject-btn">거절</button>
                         <button type="button" class="reject-ok-btn" style="display: none">예약을 거절했습니다</button>
                     </th:block>
                     <th:block th:if="${checkRes.reservationStatus == '취소'}">
                         <button type="button" class="reject-ok-btn" th:style="${'pointer-events: none'}">예약을 거절했습니다
                         </button>
+                    </th:block>
+                    <th:block th:if="${checkRes.reservationStatus == '이용 완료'}">
+                        <button type="button" class="reject-btn" style="display: none">거절</button>
+                        <button type="button" class="reject-ok-btn"  th:style="${'pointer-events: none'}">이용이 완료됐습니다</button>
                     </th:block>
                 </div>
             </div>
