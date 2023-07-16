@@ -111,7 +111,9 @@ public class AdminRestController {
     public void statusModifyRefuse(@RequestBody SitterApplyVo sitterApplyVo) {
         sitterApplyVo.setUserNumber(sitterApplyVo.getUserNumber());
         adminService.modifyStatusRefuse(sitterApplyVo);
+        adminService.removeLicense(sitterApplyVo.getUserNumber());
         adminService.removeSitterApply(sitterApplyVo.getApplyNumber());
+        adminService.removeSitterField(sitterApplyVo.getUserNumber());
     }
 
     // 펫시터회원관리 검색 기능
