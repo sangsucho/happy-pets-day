@@ -31,7 +31,7 @@
 
     <!--    시터 지원 -->
     <select id="selectApplyNumber" resultType="long">
-        SELECT APPLY_NUMBER
+        SELECT APPLY_NUMBER, APPLY_STATUS
         FROM TBL_SITTER_APPLY
         WHERE USER_NUMBER = #{userNumber}
     </select>
@@ -48,6 +48,7 @@
         SELECT USER_NUMBER, USER_NAME, TO_CHAR(USER_BIRTH, 'YYYY-mm-DD') USER_BIRTH, USER_PHONE_NUMBER, USER_ADDRESS FROM TBL_USER
         WHERE USER_NUMBER = #{userNumber}
     </select>
+
 
 
     <!--    시터 필드-->

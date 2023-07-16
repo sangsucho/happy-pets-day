@@ -2,7 +2,6 @@ package com.example.happypetsday.service.sitter;
 
 
 import com.example.happypetsday.dto.SitterApplyLicenseFile;
-import com.example.happypetsday.dto.SitterFileDto;
 import com.example.happypetsday.mapper.SitterApplyLicenseFileMapper;
 import lombok.RequiredArgsConstructor;
 import net.coobird.thumbnailator.Thumbnailator;
@@ -99,21 +98,18 @@ public class SitterApplyLicenseFileService {
 
         for (int i = 0; i < files.size(); i++) {
             MultipartFile file = files.get(i);
-            String title;
+            String title = applyFileTitle.get(i);
+            if(title!=null){
 
-            if (applyFileTitle != null && i < applyFileTitle.size()) {
-                title = applyFileTitle.get(i);
-            } else {
-                title = "Untitled"; // 또는 다른 기본값으로 설정
+                SitterApplyLicenseFile fileDto = saveFile(file, userNumber, applyNumber);
+
+                fileDto.setApplyFileTitle(title);
+                register(fileDto);
             }
-
-            SitterApplyLicenseFile fileDto = saveFile(file, userNumber, applyNumber);
-            fileDto.setApplyFileTitle(title);
-            register(fileDto);
         }
-
         System.out.println("파일서비스" + files.size());
         System.out.println("파일서비스" + applyFileTitle);
+        return;
     }
 
 
@@ -121,27 +117,5 @@ public class SitterApplyLicenseFileService {
     private String getUploadPath() {
         return new SimpleDateFormat("yyyy/MM/dd").format(new Date());
     }
-
-//    실제 자격증 사진 삭제
-    public void removeLicenceFile(Long userNumber){
-        if (userNumber == null) {
-            throw new IllegalArgumentException("시터 번호 누락(file)");
-        }
-        List<SitterApplyLicenseFile> fileList = licenseFile.selectByUserNumber(userNumber);
-
-        for(SitterApplyLicenseFile file : fileList){
-            File target = new File(applyDir,file.getApplyFileUploadPath()+"/"+file.getApplyFileUuid()+"_"+file.getApplyFileName());
-            File thumbnail = new File(applyDir,file.getApplyFileUploadPath()+"/th_"+ file.getApplyFileUuid()+"_"+file.getApplyFileName());
-
-            if(target.exists()){
-                target.delete();
-            }
-            if(thumbnail.exists()){
-                thumbnail.delete();
-            }
-        }
-    }
-
-
 
 }
