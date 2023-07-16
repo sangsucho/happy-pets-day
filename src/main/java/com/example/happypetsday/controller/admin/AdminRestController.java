@@ -109,10 +109,9 @@ public class AdminRestController {
     // applyStatus '승인 거절'로 변경
     @PatchMapping("/refuse")
     public void statusModifyRefuse(@RequestBody SitterApplyVo sitterApplyVo) {
-        sitterApplyVo.setUserNumber(sitterApplyVo.getUserNumber());
         adminService.modifyStatusRefuse(sitterApplyVo);
         adminService.removeLicense(sitterApplyVo.getUserNumber());
-        adminService.removeSitterApply(sitterApplyVo.getApplyNumber());
+        adminService.removeSitterApply(sitterApplyVo.getUserNumber());
         adminService.removeSitterField(sitterApplyVo.getUserNumber());
     }
 
