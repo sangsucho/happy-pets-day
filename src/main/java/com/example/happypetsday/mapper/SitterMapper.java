@@ -21,7 +21,7 @@ public interface SitterMapper {
 
     void updateSitter(SitterDto sitterDto);
     UserDto selectUserInfo(Long userNumber);
-    Long selectApplyNumber(Long userNumber);
+    List<SitterApplyDto> selectApplyNumber(Long userNumber);
 
     //    시터 필드
     void insertField(SitterFieldDto sitterFieldDto);

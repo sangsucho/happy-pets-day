@@ -30,8 +30,8 @@
 
 
     <!--    시터 지원 -->
-    <select id="selectApplyNumber" resultType="long">
-        SELECT APPLY_NUMBER
+    <select id="selectApplyNumber" resultType="sitterApplyDto">
+        SELECT APPLY_NUMBER, APPLY_STATUS
         FROM TBL_SITTER_APPLY
         WHERE USER_NUMBER = #{userNumber}
     </select>

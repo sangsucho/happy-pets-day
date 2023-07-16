@@ -36,7 +36,8 @@ public class SitterController {
         Long userNumber = (Long) req.getSession().getAttribute("userNumber");
         if (sitterService.findSitter(userNumber) != null || sitterService.findApplyNumber(userNumber) != null) {
             return "redirect:/sitter/list";
-        } else {
+        }
+        else {
             UserDto userDto = sitterService.findUserInfo(userNumber);
             model.addAttribute("info", userDto);
             return "sitter/applyTo";
@@ -44,30 +45,33 @@ public class SitterController {
     }
 
     @PostMapping("/apply")
-    public RedirectView sendApply(SitterFieldDto sitterFieldDto,
-                                  SitterApplyDto sitterApplyDto, HttpServletRequest req, RedirectAttributes redirectAttributes,
-                                  @RequestParam(value = "applyFile", required = false) List<MultipartFile> files, @RequestParam(value = "applyFileTitle", required = false) List<String> applyFileTitle
+    public RedirectView sendApply( SitterFieldDto sitterFieldDto,
+                                   SitterApplyDto sitterApplyDto, HttpServletRequest req, RedirectAttributes redirectAttributes,
+                                   @RequestParam("applyFile") List<MultipartFile> files, @RequestParam(value = "applyFileTitle", required = false) List<String> applyFileTitle
     ) {
-        sitterApplyDto.setUserNumber((Long) req.getSession().getAttribute("userNumber"));
+        sitterApplyDto.setUserNumber((Long)req.getSession().getAttribute("userNumber"));
+        sitterService.registerApply(sitterApplyDto);
 
         String[] fieldNames = req.getParameterValues("petFieldName");
-        if (fieldNames != null) {
-            for (String fieldName : fieldNames) {
-                sitterFieldDto.setPetFieldName(fieldName);
-                sitterFieldDto.setUserNumber((Long) req.getSession().getAttribute("userNumber"));
-                sitterService.registerField(sitterFieldDto);
-            }
+        if(fieldNames != null){
+        for(String fieldName : fieldNames){
+            sitterFieldDto.setPetFieldName(fieldName);
+            sitterFieldDto.setUserNumber((Long)req.getSession().getAttribute("userNumber"));
+            sitterService.registerField(sitterFieldDto);
+        }
         }
 
-        if (files != null || !files.isEmpty()) {
+
+        redirectAttributes.addFlashAttribute("applyNumber", sitterApplyDto.getApplyNumber());
+
+        if (files != null && !files.isEmpty() && applyFileTitle !=null) { // 파일 리스트가 null이 아니고 비어있지 않을 경우에만 처리
             try {
                 sitterApplyLicenseFileService.registerAndSaveFiles(files, sitterApplyDto.getApplyNumber(), applyFileTitle, sitterApplyDto.getUserNumber());
             } catch (IOException e) {
                 e.printStackTrace();
+                return new RedirectView("/");
             }
         }
-        sitterService.registerApply(sitterApplyDto);
-        redirectAttributes.addFlashAttribute("applyNumber", sitterApplyDto.getApplyNumber());
         return new RedirectView("/");
     }
 

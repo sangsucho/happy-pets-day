@@ -47,6 +47,9 @@ public class SitterService {
         return sitterMapper.selectUserInfo(userNumber);
     }
 
+    public List<SitterApplyDto> findApplyNumber(Long userNumber){
+        return sitterMapper.selectApplyNumber(userNumber);
+    }
 
     //    시터 게시글
     public void addList(SitterDto sitterDto) {

@@ -94,32 +94,23 @@ public class SitterApplyLicenseFileService {
         if (files == null || files.isEmpty()) { // 파일 리스트가 null이거나 비어있을 경우 처리하지 않음
             return;
         }
-
-        if( applyFileTitle == null){
-            return;
-        }
-
         System.out.println("파일서비스 ===== " + files.size());
 
         for (int i = 0; i < files.size(); i++) {
             MultipartFile file = files.get(i);
-            String title;
+            String title = applyFileTitle.get(i);
+            if(title!=null){
 
-            if (applyFileTitle != null && i < applyFileTitle.size()) {
-                title = applyFileTitle.get(i);
-            } else {
-                title = "Untitled"; // 또는 다른 기본값으로 설정
+                SitterApplyLicenseFile fileDto = saveFile(file, userNumber, applyNumber);
+
+                fileDto.setApplyFileTitle(title);
+                register(fileDto);
             }
-
-            SitterApplyLicenseFile fileDto = saveFile(file, userNumber, applyNumber);
-            fileDto.setApplyFileTitle(title);
-            register(fileDto);
         }
-
         System.out.println("파일서비스" + files.size());
         System.out.println("파일서비스" + applyFileTitle);
+        return;
     }
-
 
 
     //    파일이 저장되는 하위 경로를 현재 날짜로 설정할 것이기 때문에 현재날짜를 구한다.
