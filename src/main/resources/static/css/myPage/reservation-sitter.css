@@ -136,6 +136,10 @@
     color: red;
 }
 
+.green {
+    color: var(--font-green);
+}
+
 .info-wrap {
     display: flex;
     margin: 10px;
