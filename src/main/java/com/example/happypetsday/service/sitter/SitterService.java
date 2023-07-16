@@ -47,7 +47,7 @@ public class SitterService {
         return sitterMapper.selectUserInfo(userNumber);
     }
 
-    public List<SitterApplyDto> findApplyNumber(Long userNumber){
+    public Long findApplyNumber(Long userNumber){
         return sitterMapper.selectApplyNumber(userNumber);
     }
 

@@ -36,8 +36,7 @@ public class SitterController {
         Long userNumber = (Long) req.getSession().getAttribute("userNumber");
         if (sitterService.findSitter(userNumber) != null || sitterService.findApplyNumber(userNumber) != null) {
             return "redirect:/sitter/list";
-        }
-        else {
+        } else {
             UserDto userDto = sitterService.findUserInfo(userNumber);
             model.addAttribute("info", userDto);
             return "sitter/applyTo";

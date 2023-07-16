@@ -148,9 +148,9 @@ input {
 
 #self-introduce {
     margin-top: 10px;
-    width: 100%;
+    width: 460px;
+    padding: 20px;
     height: 300px;
-    padding-top: 10px;
     min-height: 173px;
     border: 1px solid #e0e0e0;
     border-radius: 5px;
