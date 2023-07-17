@@ -11,3 +11,8 @@ $('.header--logout-btn').on('click', function (e) {
     window.location.href = '/user/logout';
 });
 
+$('.header--loc-btn').hover(function () {
+    $('.header--loc-container').css('display', 'flex');
+}, function () {
+    $('.header--loc-container').css("display", "none");
+});
