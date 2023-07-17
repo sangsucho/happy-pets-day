@@ -50,10 +50,10 @@ header {
 }
 
 .header--container {
-    width: 600px;
+    width: 690px;
     display: flex;
     margin-left: 30px;
-    margin-right: 200px;
+    margin-right: 100px;
     font-size: 18px;
 }
 
@@ -122,6 +122,33 @@ header {
 }
 
 .header--sitter-container a {
+    margin: 20px 0;
+    line-height: 0;
+}
+
+.header--loc-btn{
+    cursor: pointer;
+    line-height: 70px;
+    position: relative;
+    height: 70px;
+    margin-left: 50px;
+}
+
+.header--loc-container{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 167px;
+    height: 100px;
+    border-top: 2px solid #68A5FE;
+    position: absolute;
+    top: 70px;
+    left: -60px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.header--loc-container a {
     margin: 20px 0;
     line-height: 0;
 }
