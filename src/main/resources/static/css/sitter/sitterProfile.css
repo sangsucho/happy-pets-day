@@ -165,6 +165,7 @@
     font-size: 17px;
     color: #343434;
     line-height: 28px;
+    white-space: pre-line;
 }
 
 .review-box {
