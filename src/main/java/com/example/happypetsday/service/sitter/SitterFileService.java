@@ -71,7 +71,7 @@ public class SitterFileService {
 //        이미지 파일인 경우에만 처리하는 조건식
         if (Files.probeContentType(uploadFile.toPath()).startsWith("image")) {
             FileOutputStream out = new FileOutputStream(new File(uploadPath, "th_" + sysName));
-            Thumbnailator.createThumbnail(file.getInputStream(), out, 300, 200);
+            Thumbnailator.createThumbnail(file.getInputStream(), out, 800, 600);
             out.close();
         }
 
