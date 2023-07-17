@@ -160,7 +160,7 @@
             <div class="sitter-introduce">
                 <p class="introduce">자기소개</p>
                 <div class="introduce-box">
-                    <p class="introduce-text" th:text="${info.sitterIntroduction}">
+                    <p class="introduce-text" th:utext="${info.sitterIntroduction}">
                     </p>
                 </div>
                 <th:block th:if="${isSitter}">
