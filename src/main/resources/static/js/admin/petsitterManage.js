@@ -54,7 +54,7 @@ function searchList(sitterList) {
                         <td class="specialty" >${sitter.petFieldName}</td>
                         <td class="phone-num" >${sitter.userPhoneNumber}</td>
                         <td class="review" >${sitter.reviewCount}</td>
-                        <td class="average" >${sitter.reviewAvg}</td>
+                        <td class="average" >${Math.round((sitter.reviewAvg)*10)/10}</td>
                     </tr>
                 `;
 

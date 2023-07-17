@@ -85,7 +85,7 @@
                 </tr>
                 <tr>
                     <th>평균평점</th>
-                    <td th:text="${sitter.reviewAvg}+' 점'"></td>
+                    <td th:text="${#numbers.formatDecimal(sitter.reviewAvg,1,1)}+' 점'"></td>
                 </tr>
                 <tr>
                     <th class="table-head-left-bottom">경력･자격증</th>
