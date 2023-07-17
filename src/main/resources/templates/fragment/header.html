@@ -24,14 +24,6 @@
                 <a th:href="@{/stroll/list}">모임 게시판</a>
                 <a th:href="@{/recommend/main}">반려동물 추천</a>
                 <a th:href="@{/adopt/list}">반려동물 입양</a>
-                <div class="header--loc-btn">병원/약국
-                    <div class="header--loc-container">
-                        <a th:href="@{/loc/list}">동물병원</a>
-                        <a th:href="@{/loc/pharmacy}">동물약국</a>
-                    </div>
-
-                </div>
-
                 <th:block th:if="${session.adminNumber !=null}">
                     <a th:href="@{/admin/userManage}">관리자</a>
                 </th:block>
