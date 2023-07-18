@@ -464,5 +464,10 @@ a {
     overflow: hidden;
     display: flex;
     justify-content: center;
-    height: 20px;
+}
+
+.sitter-comment{
+    max-height: 70px;
+    margin-top: 5px;
+    word-break: break-all;
 }
