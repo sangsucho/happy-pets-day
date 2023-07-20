@@ -10,7 +10,6 @@
     <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
     <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"/>
-    <link rel="stylesheet" th:href="@{/css/fragment/chat.css}">
 
 </head>
 
@@ -40,9 +39,22 @@
         </div>
     </div>
     <div class="container">
-        <div class="write-btn-wrap">
-            <!-- 글쓰기 페이지 이동 처리 -->
-            <a th:href="@{/stroll/write}" class="write-btn">글쓰기</a>
+        <div class="search-and-write-box">
+            <select class="search-select">
+                <option value="id">아이디로 검색</option>
+                <option value="district">지역으로 검색</option>
+                <option value="title">제목으로 검색</option>
+            </select>
+
+            <div class="search-box">
+                <input type="text" class="search-txt" placeholder="Search">
+                <button type="submit" class="search-button"></button>
+            </div>
+
+            <div class="write-btn-wrap">
+                <!-- 글쓰기 페이지 이동 처리 -->
+                <a th:href="@{/stroll/write}" class="write-btn">글쓰기</a>
+            </div>
         </div>
         <table class="board-table">
             <div class="head-layout">
@@ -104,13 +116,9 @@
 
 <footer th:replace="fragment/footer :: footer"></footer>
 
-<th:block th:unless="${session.userNumber==null}">
-    <div id="chat--screen" th:replace="fragment/chat :: chat"></div>
-</th:block>
 
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <script th:src="@{/js/fragment/header.js}"></script>
-<script type="module" th:src="@{/js/fragment/chat.js}"></script>
 </body>
 
 </html>

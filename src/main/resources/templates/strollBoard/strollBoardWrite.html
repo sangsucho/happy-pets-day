@@ -16,7 +16,6 @@
     <link rel="stylesheet" th:href="@{/css/strollBoard/calenderApi.css}">
     <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
     <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
-    <link rel="stylesheet" th:href="@{/css/fragment/chat.css}">
 </head>
 
 <body>
@@ -113,9 +112,6 @@
     </form>
 </div>
 <footer th:replace="fragment/footer :: footer"></footer>
-<th:block th:unless="${session.userNumber==null}">
-    <div id="chat--screen" th:replace="fragment/chat :: chat"></div>
-</th:block>
 
 <!-- 폰트어썸 -->
 <script src="https://kit.fontawesome.com/c6992f5b12.js" crossorigin="anonymous"></script>
@@ -129,7 +125,6 @@
 <script th:src="@{/js/strollBoard/boardWriteKakaoMapApi.js}"></script>
 <script th:src="@{/js/strollBoard/strollBoardWrite.js}"></script>
 <script th:src="@{/js/fragment/header.js}"></script>
-<script type="module" th:src="@{/js/fragment/chat.js}"></script>
 
 </body>
 
