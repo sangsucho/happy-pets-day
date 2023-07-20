@@ -97,16 +97,18 @@ public class MyPageController {
     }
 
     @PostMapping("/myPet/editPet")
-    public RedirectView editMyPet(PetDto petDto, @RequestParam("petFile") MultipartFile petFile) {
+    public RedirectView editMyPet(PetDto petDto, @RequestParam("petFile") MultipartFile petFile, @Param("isPetFile") int isPetFile) {
         if (petFileService.findFile(petDto.getPetNumber()) != null) {
-            if (!petFile.isEmpty()) {
-                try {
-                    petFileService.modifyAndSaveFile(petFile, petDto.getPetNumber());
-                } catch (IOException e) {
-                    e.printStackTrace();
+            if(isPetFile != 1){
+                if (!petFile.isEmpty()) {
+                    try {
+                        petFileService.modifyAndSaveFile(petFile, petDto.getPetNumber());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    petFileService.remove(petDto.getPetNumber());
                 }
-            }else{
-                petFileService.remove(petDto.getPetNumber());
             }
         } else {
             if (!petFile.isEmpty()) {

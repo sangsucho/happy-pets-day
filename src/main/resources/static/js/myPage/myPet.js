@@ -32,7 +32,6 @@ $(".delete1").on("click", function () {
 
 // 모달
 let modal = $("#modal-container");
-
 // '수정' 클릭 > 모달 띄워주기
 $(".modify1").on("click", function () {
     modal.css('display', 'flex');
@@ -71,6 +70,7 @@ $(".modify1").on("click", function () {
 
             if (result.petFileName) {
                 $('#uploaded-image').attr('src', `/upload/pet/${result.petFileUploadPath}/${result.petFileUuid}_${result.petFileName}`);
+                $('.isPetFile').val(1);
             } else {
                 $('#uploaded-image').attr('src', 'https://lifet.co.kr/img/profile/default.png');
             }
@@ -124,6 +124,7 @@ function updateImage(input) {
         };
         reader.readAsDataURL(input.files[0]);
     }
+    $('.isPetFile').val(0);
 }
 
 // '기본 이미지' 클릭 > 기본 프로필 이미지로 변경
@@ -131,6 +132,7 @@ function restoreDefaultImg() {
     let uploadedImage = document.getElementById("uploaded-image");
     uploadedImage.src = "https://lifet.co.kr/img/profile/default.png";
     $('#photo-file').val("");
+    $('.isPetFile').val(0);
 }
 
 // 생년월일 입력 datepicker
