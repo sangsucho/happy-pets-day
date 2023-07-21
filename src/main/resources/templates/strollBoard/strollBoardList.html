@@ -68,48 +68,12 @@
                 </tr>
                 </thead>
             </div>
-
-            <tbody class="strollBoardList">
-            <!-- ========== 게시글 목록  =========== -->
-<!--            <th:block th:unless="${#lists.isEmpty(boardList)}">-->
-<!--                <tr th:each="board : ${boardList}">-->
-<!--                    <td class="no" th:text="${board.strollBoardNumber}"></td>-->
-<!--                    <td class="title">-->
-<!--                        <a th:href="@{/stroll/view(strollBoardNumber=${board.strollBoardNumber})}"-->
-<!--                           th:text="${board.strollBoardTitle}"></a>-->
-<!--                    </td>-->
-<!--                    <td class="author" th:text="${board.userId}"></td>-->
-<!--                    <td class="date" th:text="${board.strollBoardMeetingDate}"></td>-->
-<!--                    <td class="location" th:text="${board.strollBoardAdminDistrict}"></td>-->
-<!--                </tr>-->
-<!--            </th:block>-->
-<!--            <th:block th:if="${#lists.isEmpty(boardList)}">-->
-<!--                <tr>-->
-<!--                    <td colspan="5" align="center">등록된 게시물이 없습니다.</td>-->
-<!--                </tr>-->
-<!--            </th:block>-->
-
-            <!-- ========== /게시글 목록  =========== -->
-
-        </table>
+            <!--게시글 목록-->
+            <tbody class="strollBoardList"></table>
         <div class="pagination">
-            <ul class="page-ul">
-                <!-- ========== 페이징 처리 예시 ============ -->
-<!--                <li th:if="${pageInfo.prev}"><a th:href="@{/stroll/list(page=${pageInfo.startPage-1})}" class="prev">&lt;</a>-->
-<!--                </li>-->
+                <!-- ========== 페이징 처리 ============ -->
+            <ul class="page-ul"></ul>
 
-<!--                <th:block th:each="i : ${#numbers.sequence(pageInfo.startPage, pageInfo.endPage)}">-->
-<!--                    <li th:if="${i == pageInfo.criteria.page}"><a th:href="@{/stroll/list/(page=${i})}" class="active"-->
-<!--                                                                  th:text="${i}"></a></li>-->
-<!--                    <li th:unless="${i == pageInfo.criteria.page}"><a th:href="@{/stroll/list/(page=${i})}"-->
-<!--                                                                      th:text="${i}"></a></li>-->
-<!--                </th:block>-->
-
-
-<!--                <li th:if="${pageInfo.next}"><a th:href="@{/stroll/list(page=${pageInfo.endPage+1})}"-->
-<!--                                                class="next">&gt;</a></li>-->
-                <!-- ========== /페이징 처리 예시 ============ -->
-            </ul>
         </div>
     </div>
 </div>
