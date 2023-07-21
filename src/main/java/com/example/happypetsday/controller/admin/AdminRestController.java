@@ -140,11 +140,11 @@ public class AdminRestController {
         userDto.setUserNumber(sitterVo.getUserNumber());
         userDto.setUserStatus(sitterVo.getUserStatus());
 
-//        sitterVo.setUserNumber(sitterVo.getUserNumber());
+        sitterVo.setUserNumber(sitterVo.getUserNumber());
 //      실제 파일 삭제
-//        sitterProfileFileService.removeSitterProfileFile(sitterVo.getSitterNumber());
-//        sitterFileService.removeSitterFile(sitterVo.getSitterNumber());
-//        sitterApplyLicenseFileService.removeLicenceFile(sitterVo.getUserNumber());
+        sitterProfileFileService.removeSitterProfileFile(sitterVo.getSitterNumber());
+        sitterFileService.removeSitterFile(sitterVo.getSitterNumber());
+        sitterApplyLicenseFileService.removeLicenceFile(sitterVo.getUserNumber());
 
 //        db삭제
         adminService.modifyDemotion(sitterVo);

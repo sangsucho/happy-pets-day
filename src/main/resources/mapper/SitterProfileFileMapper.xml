@@ -31,5 +31,11 @@
         WHERE SITTER_NUMBER = #{sitterNumber}
     </delete>
 
+    <select id="select" resultType="sitterProfileFileDto">
+        SELECT SITTER_PROFILE_NUMBER, SITTER_NUMBER, SITTER_PROFILE_FILE_NAME, SITTER_PROFILE_UUID, SITTER_PROFILE_UPLOAD_PATH
+        FROM TBL_SITTER_PROFILE_FILE
+        WHERE SITTER_NUMBER =#{sitterNumber}
+    </select>
+
 
 </mapper>

@@ -6,6 +6,7 @@ import com.example.happypetsday.mapper.StrollReplyMapper;
 import com.example.happypetsday.service.user.UserService;
 import com.example.happypetsday.vo.Criteria;
 import com.example.happypetsday.vo.MainStrollSearchVo;
+import com.example.happypetsday.vo.StrollBoardSearchVo;
 import com.example.happypetsday.vo.StrollBoardVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -161,6 +162,20 @@ public class StrollService {
 
             return strollBoardList;
         }
+
+//        산책게시판 검색
+        @Transactional(readOnly = true)
+        public List<StrollBoardVo> findBoardSearch(StrollBoardSearchVo strollBoardSearchVo,
+                                                   Criteria criteria){
+            return strollBoardMapper.selectSearch(strollBoardSearchVo,criteria);
+        }
+
+//        산책게시판 검색 카운트
+    @Transactional(readOnly = true)
+    public int findBoardSearchTotal(StrollBoardSearchVo strollBoardSearchVo){
+        return strollBoardMapper.selectSearchTotal(strollBoardSearchVo);
+    }
+
 
 
     }

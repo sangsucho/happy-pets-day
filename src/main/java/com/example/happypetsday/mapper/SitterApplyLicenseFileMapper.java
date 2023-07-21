@@ -16,4 +16,6 @@ public interface SitterApplyLicenseFileMapper {
     List<SitterApplyLicenseFile> select(Long userNumber);
 
     List<SitterApplyLicenseFile> selectOldList();
+
+    List<SitterApplyLicenseFile> selectByUserNumber(Long userNumber);
 }
