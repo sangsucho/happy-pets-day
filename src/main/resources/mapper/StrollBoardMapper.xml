@@ -193,8 +193,71 @@
              ORDER BY B.STROLL_BOARD_NUMBER DESC
          )
          WHERE RN > #{size}
-
-
     </select>
+
+    <select id="selectSearch" resultType="strollBoardVo">
+        SELECT STROLL_BOARD_NUMBER,
+        STROLL_BOARD_TITLE,
+        STROLL_BOARD_MEETING_DATE,
+        STROLL_BOARD_ADMIN_DISTRICT,
+        USER_NUMBER,
+        USER_ID
+        FROM (
+        SELECT ROWNUM RN,
+        STROLL_BOARD_NUMBER,
+        STROLL_BOARD_TITLE,
+        STROLL_BOARD_MEETING_DATE,
+        STROLL_BOARD_ADMIN_DISTRICT,
+        USER_NUMBER,
+        USER_ID
+        FROM (
+        SELECT STROLL_BOARD_NUMBER,
+        STROLL_BOARD_TITLE,
+        TO_CHAR(STROLL_BOARD_MEETING_DATE, 'YYYY-MM-DD') AS STROLL_BOARD_MEETING_DATE,
+        STROLL_BOARD_ADMIN_DISTRICT,
+        B.USER_NUMBER,
+        U.USER_ID
+        FROM TBL_USER U
+        JOIN TBL_STROLL_BOARD B
+        ON U.USER_NUMBER = B.USER_NUMBER
+        <if test="!(''.equals(strollBoardSearchVo.searchType))">
+            <if test="'userId'.equals(strollBoardSearchVo.searchType) ">
+               WHERE U.USER_ID LIKE '%'|| #{strollBoardSearchVo.keyword} || '%'
+            </if>
+            <if test="'district'.equals(strollBoardSearchVo.searchType)">
+               WHERE B.STROLL_BOARD_ADMIN_DISTRICT  LIKE '%'|| #{strollBoardSearchVo.keyword} || '%'
+            </if>
+            <if test="'title'.equals(strollBoardSearchVo.searchType)">
+               WHERE B.STROLL_BOARD_TITLE LIKE '%'|| #{strollBoardSearchVo.keyword} || '%'
+            </if>
+        </if>
+        ORDER BY STROLL_BOARD_NUMBER DESC
+        )
+        <![CDATA[
+                 WHERE ROWNUM <= #{criteria.page} * #{criteria.amount}
+            ]]>
+        )
+        WHERE RN > (#{criteria.page} - 1) * #{criteria.amount}
+    </select>
+
+    <select id="selectSearchTotal" resultType="_int">
+        SELECT COUNT(STROLL_BOARD_NUMBER)
+        FROM TBL_USER U
+        JOIN TBL_STROLL_BOARD B
+        ON U.USER_NUMBER = B.USER_NUMBER
+        <if test="searchType!=null">
+            <if test="'userId'.equals(searchType) ">
+               WHERE U.USER_ID LIKE '%'|| #{keyword} || '%'
+            </if>
+            <if test="'district'.equals(searchType)">
+               WHERE B.STROLL_BOARD_ADMIN_DISTRICT  LIKE '%'|| #{keyword} || '%'
+            </if>
+            <if test="'title'.equals(searchType)">
+              WHERE B.STROLL_BOARD_TITLE LIKE '%'|| #{keyword} || '%'
+            </if>
+        </if>
+    </select>
+
+
 
 </mapper>

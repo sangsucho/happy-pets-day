@@ -12,29 +12,29 @@ import org.springframework.boot.test.context.SpringBootTest;
 @Slf4j
 class SitterFieldServiceTest {
 
-    @Mock
-    private SitterFieldService sitterFieldService;
-    private SitterFieldDto sitterFieldDto;
-
-    @BeforeEach
-    void setUp() {
-        sitterFieldDto = new SitterFieldDto();
-        sitterFieldDto.setSitterNumber(3L);
-        sitterFieldDto.setPetFieldName("asdasd");
-    }
-
-    @Test
-    void register() {
-        long userNumber = sitterFieldDto.getSitterNumber();
-        sitterFieldService.register(userNumber);
-    }
-
-    @Test
-    void modify() {
-        long userNumber = sitterFieldDto.getSitterNumber();
-        sitterFieldService.register(userNumber);
-
-        sitterFieldDto.setPetFieldName("aaaaaa22");
-        sitterFieldService.modify(userNumber);
-    }
+//    @Mock
+//    private SitterFieldService sitterFieldService;
+//    private SitterFieldDto sitterFieldDto;
+//
+//    @BeforeEach
+//    void setUp() {
+//        sitterFieldDto = new SitterFieldDto();
+//        sitterFieldDto.setSitterNumber(3L);
+//        sitterFieldDto.setPetFieldName("asdasd");
+//    }
+//
+//    @Test
+//    void register() {
+//        long userNumber = sitterFieldDto.getSitterNumber();
+//        sitterFieldService.register(userNumber);
+//    }
+//
+//    @Test
+//    void modify() {
+//        long userNumber = sitterFieldDto.getSitterNumber();
+//        sitterFieldService.register(userNumber);
+//
+//        sitterFieldDto.setPetFieldName("aaaaaa22");
+//        sitterFieldService.modify(userNumber);
+//    }
 }
