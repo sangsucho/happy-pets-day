@@ -169,9 +169,7 @@ $(document).ready(function () {
 });
 
 
-// 카테고리 분류
 // 강아지와 고양이 선택 이벤트 처리
-
 $(".category-img").on("click", function (e) {
     e.preventDefault();
     const category = $(this).data("category");
@@ -205,6 +203,9 @@ $(".category-img").on("click", function (e) {
     } else {
         $(".board-data").show();
     }
-});
 
+    // 해당 카테고리의 게시글 수를 표시
+    const categoryPostCount = $(".board-data:visible").length;
+    $('.full-list').text(`${category}(${categoryPostCount})`);
+});
 
