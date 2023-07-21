@@ -11,4 +11,6 @@ public interface SitterProfileFileMapper {
     void insert(SitterProfileFileDto sitterProfileFileDto);
     void update(SitterProfileFileDto sitterProfileFileDto);
     void delete(Long sitterNumber);
+    List<SitterProfileFileDto> select(Long sitterNumber);
+
 }

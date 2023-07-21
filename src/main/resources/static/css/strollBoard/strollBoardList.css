@@ -269,3 +269,66 @@ thead .table-head-right {
 thead th {
     background-color: #b9d3f9;
 }
+
+/*게시글 검색*/
+
+.search-and-write-box{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.search-box {
+    display: flex;
+    justify-content: flex-end;
+    margin: 32px 10px 0 10px;
+    position: relative;
+    top: 12px;
+    left: -10px;
+}
+
+.search-txt {
+    border-radius: 46px;
+    background-color: #F3F3F3;
+    width: 200px;
+    height: 35px;
+    border: none;
+    padding: 0 0 0 20px;
+}
+
+.search-button {
+    background-image: url(https://lifet.co.kr/img/icon/icon_search.png);
+    background-size: 31px;
+    width: 66px;
+    height: 66px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    position: absolute;
+    top: 2px;
+    right: -24px;
+}
+
+select {
+    cursor: pointer;
+    width: 120px;
+    height: 35px;
+    font-size: 14px;
+    padding: 7px 9px;
+    border: 1px solid #e0e0e0;
+    font-family: inherit;
+    background: url('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99761B495C84AA8716') no-repeat 95% 50%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 45px 20px 0 0;
+    background-size: 25px;
+    border-radius: 15px;
+    outline: 0 none;
+}
+
+select::-ms-expand {
+
+    display: none;
+
+}

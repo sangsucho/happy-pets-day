@@ -17,7 +17,6 @@
   <link rel="stylesheet" th:href="@{/css/fragment/header.css}">
   <link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"/>
-  <link rel="stylesheet" th:href="@{/css/fragment/chat.css}">
 </head>
 
 <body>
@@ -118,9 +117,7 @@
     </form>
 </div>
 <footer th:replace="fragment/footer :: footer"></footer>
-<th:block th:unless="${session.userNumber==null}">
-  <div id="chat--screen" th:replace="fragment/chat :: chat"></div>
-</th:block>
+
 
   <script>
     let boardLat = [[${board.strollBoardLat}]];
@@ -137,7 +134,6 @@
   <script th:src="@{/js/strollBoard/boardModifyKakaoMapApi.js}"></script>
   <script th:src="@{/js/strollBoard/strollBoardModify.js}"></script>
   <script th:src="@{/js/fragment/header.js}"></script>
-  <script type="module" th:src="@{/js/fragment/chat.js}"></script>
 
 </body>
 
