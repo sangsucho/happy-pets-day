@@ -203,6 +203,7 @@
                  JOIN TBL_USER u
                       ON sr.USER_NUMBER = u.USER_NUMBER
         WHERE SITTER_NUMBER = ${sitterNumber}
+        ORDER BY REVIEW_NUMBER DESC
     </select>
 
     <select id="reviewCntAndScoreAvg" resultType="sitterReviewDto">
