@@ -73,6 +73,7 @@ $(".modify1").on("click", function () {
                 $('.isPetFile').val(1);
             } else {
                 $('#uploaded-image').attr('src', 'https://lifet.co.kr/img/profile/default.png');
+                $('.isPetFile').val(2);
             }
             ;
 
