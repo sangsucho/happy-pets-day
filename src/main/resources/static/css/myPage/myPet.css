@@ -186,6 +186,7 @@
     background: url(https://lifet.co.kr/img/icon/dot.svg);
     border: none;
     cursor: pointer;
+    height: 20px;
 }
 
 .default-profile {
