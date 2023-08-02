@@ -99,7 +99,7 @@ public class MyPageController {
     @PostMapping("/myPet/editPet")
     public RedirectView editMyPet(PetDto petDto, @RequestParam("petFile") MultipartFile petFile, @Param("isPetFile") int isPetFile) {
         if (petFileService.findFile(petDto.getPetNumber()) != null) {
-            if(isPetFile != 1){
+            if(isPetFile == 0){
                 if (!petFile.isEmpty()) {
                     try {
                         petFileService.modifyAndSaveFile(petFile, petDto.getPetNumber());
