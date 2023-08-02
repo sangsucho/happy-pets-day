@@ -12,9 +12,14 @@
 |:-:|:-:|:-:|:-:|:-:|:-:|
 |[@lee-geon-hee](https://github.com/lee-geon-hee)|[@gimdaeyeon](https://github.com/gimdaeyeon)|[@decoy8080](https://github.com/decoy8080)|[@Jmsuhhh](https://github.com/Jmsuhhh)|[@leejh1118](https://github.com/leejh1118)|[@sangsucho](https://github.com/sangsucho)|
 
-## ERD구성
 
+<details>
+<summary>## ERD구성</summary>
+  
 [![NPE단속반 erd구성](./src/main/resources/static/img/Spring_Erd.png)](https://dbdiagram.io/d/647f4f07722eb774947ee12c)
+
+</details>
+
 
 ## ⚙️ 개발 환경
 - Java
